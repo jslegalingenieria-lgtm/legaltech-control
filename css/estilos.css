@@ -428,13 +428,6 @@ RESPONSIVE
     }
 }
 
-.table-responsive{
-    width:100%;
-    overflow-x:auto;
-}
 
-.table-responsive table{
-    min-width:700px;
-}
 
 
