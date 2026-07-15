@@ -362,3 +362,63 @@ table button:hover {
     line-height: 1.6;
     font-weight: 500;
 }
+
+/* ==========================================
+   DISEÑO RESPONSIVO PARA PANTALLAS MÓVILES
+   ========================================== */
+@media (max-width: 768px) {
+    /* 1. Ajuste del contenedor principal de la App */
+    body {
+        padding: 10px;
+        font-size: 14px; /* Texto un poco más legible en celular */
+    }
+
+    /* 2. El contenedor o "card" principal ocupará todo el ancho */
+    .container, .dashboard-container, .login-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto;
+        padding: 15px !important;
+        box-sizing: border-box;
+    }
+
+    /* 3. Menús o layouts que usen Flexbox o Grid se apilarán verticalmente */
+    .row, .grid-layout, .menu-container {
+        display: flex;
+        flex-direction: column !important;
+        gap: 15px;
+    }
+
+    /* 4. Formularios: Inputs, selectores y botones al 100% de ancho */
+    input, select, textarea, button, .btn {
+        width: 100% !important;
+        height: 48px; /* Tamaño ideal para tocar con el dedo cómodamente */
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box;
+    }
+
+    /* 5. Tablas: Evita que rompan la pantalla creando un scroll horizontal */
+    .table-container, table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    /* 6. Si tienes un menú lateral (sidebar), lo convertimos en barra superior */
+    .sidebar {
+        width: 100% !important;
+        height: auto !important;
+        position: relative !important;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px 0;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+        padding: 10px !important;
+    }
+}
