@@ -170,17 +170,68 @@ function switchTab(vista) {
     const viewTitle = document.getElementById("view-title");
     if (viewTitle) viewTitle.innerText = titulos[vista] || "JS LegalTech Control";
 
-    document.querySelectorAll(".menu-item").forEach(item => {
-    item.addEventListener("click", () => {
-
-        const sidebar = document.querySelector(".sidebar");
-
-        if (window.innerWidth <= 768) {
-            sidebar.classList.remove("open");
-        }
-
+    // Cambiar de pantallas (SPA) y gestionar estados activos
+function switchTab(vista) {
+    // Ocultar todas las vistas primero
+    document.querySelectorAll('.app-view').forEach(section => {
+        section.style.display = 'none';
     });
-});
+    
+    // Quitar clase activa de todos los elementos li del menú lateral
+    document.querySelectorAll('.sidebar-menu li').forEach(li => {
+        li.classList.remove('active');
+    });
+    
+    // Mostrar la vista deseada
+    const targetVista = document.getElementById(`vista-${vista}`);
+    if (targetVista) targetVista.style.display = 'block';
+    
+    // Marcar como activo el botón correspondiente en el menú si tiene ID asignado
+    const targetMenu = document.getElementById(`menu-${vista}`);
+    if (targetMenu) targetMenu.classList.add('active');
+    
+    // Al regresar al dashboard, refrescar el robot y los números
+    if (vista === 'dashboard') {
+        actualizarContadoresReales();
+        actualizarAsistenteVirtual();
+    }
+    
+    // Ejecutar recarga del portal si el cliente navega manualmente
+    if (vista === 'portal' && usuarioActivoGlobal && usuarioActivoGlobal.rol === 'Cliente') {
+        if (typeof cargarExpedientesClientePortal === 'function') cargarExpedientesClientePortal(usuarioActivoGlobal.id);
+        else if (typeof cargarPortalCliente === 'function') cargarPortalCliente();
+    }
+
+    // Inicializar o refrescar la tabla de personal cuando se entra a su vista
+    if (vista === 'personal' && typeof renderizarTablaPersonal === 'function') {
+        renderizarTablaPersonal();
+    }
+    
+    // Cambiar título superior
+    const titulos = {
+        dashboard: "Dashboard Informativo",
+        clientes: "Administración de Clientes",
+        asuntos: "Control de Asuntos Jurídicos",
+        agenda: "Agenda de Audiencias y Términos",
+        portal: "Portal de Consulta Ciudadana",
+        personal: "Gestión de Personal y Abogados"
+    };
+    
+    const viewTitle = document.getElementById("view-title");
+    if (viewTitle) viewTitle.innerText = titulos[vista] || "JS LegalTech Control";
+
+    
+   
+  // Cerrar menú lateral en móviles después de seleccionar una opción
+if (window.innerWidth <= 768) {
+    const sidebar = document.querySelector(".sidebar");
+
+    if (sidebar) {
+        sidebar.classList.remove("open");
+    }
+}
+
+  
 }
 
 
