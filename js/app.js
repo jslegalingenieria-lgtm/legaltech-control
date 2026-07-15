@@ -44,41 +44,94 @@ function actualizarContadoresReales() {
 }
 
 // ===================================================
+// ===================================================
 // CONTROL DEL ASISTENTE VIRTUAL EN EL DASHBOARD
 // ===================================================
-function actualizarAsistenteVirtual() {
+async function actualizarAsistenteVirtual() {
+
     const contenedorAsistente = document.getElementById("asistente-mensaje"); 
     if (!contenedorAsistente) return;
 
-    const agenda = JSON.parse(localStorage.getItem("js_legal_agenda")) || [];
-    
-    // Obtener la fecha de hoy en formato YYYY-MM-DD
-    const ahora = new Date();
-    const anio = ahora.getFullYear();
-    const mes = String(ahora.getMonth() + 1).padStart(2, '0');
-    const dia = String(ahora.getDate()).padStart(2, '0');
-    const fechaHoyStr = `${anio}-${mes}-${dia}`;
+    const usuarioActivo = obtenerUsuarioSesion();
 
-    // Filtrar TODOS los eventos de hoy (Audiencias, Términos, Reuniones, etc.)
-    const eventosDeHoy = agenda.filter(ev => ev.fecha === fechaHoyStr);
+    try {
 
-    if (eventosDeHoy.length === 0) {
-        contenedorAsistente.innerText = "🤖 Asistente Virtual JS: Revisando la agenda... No tienes compromisos ni audiencias programadas para hoy. ¡Buen día!";
-    } else {
-        const audiencias = eventosDeHoy.filter(e => e.tipo === "Audiencia").length;
-        const terminos = eventosDeHoy.filter(e => e.tipo === "Término Judicial").length;
-        const otros = eventosDeHoy.length - (audiencias + terminos);
+        // Leer agenda desde Firebase
+        const snapshot = await db.collection("agenda").get();
 
-        let mensaje = `🤖 Asistente Virtual JS: ¡Atención, Lic. Sánchez! Para hoy tienes ${eventosDeHoy.length} evento(s) en agenda: `;
-        
-        let detalles = [];
-        if (audiencias > 0) detalles.push(`${audiencias} audiencia(s)`);
-        if (terminos > 0) detalles.push(`${terminos} término(s) crítico(s)`);
-        if (otros > 0) detalles.push(`${otros} cita(s) o diligencia(s)`);
+        let agenda = [];
 
-        mensaje += detalles.join(", ") + ". Revisa la sección de Agenda para ver los detalles.";
-        
-        contenedorAsistente.innerText = mensaje;
+        snapshot.forEach(doc => {
+            agenda.push({
+                id: doc.id,
+                ...doc.data()
+            });
+        });
+
+
+        // Fecha actual YYYY-MM-DD
+        const ahora = new Date();
+
+        const fechaHoyStr =
+            ahora.getFullYear() + "-" +
+            String(ahora.getMonth() + 1).padStart(2,'0') + "-" +
+            String(ahora.getDate()).padStart(2,'0');
+
+
+        // Eventos del día
+        let eventosDeHoy = agenda.filter(ev => ev.fecha === fechaHoyStr);
+
+
+        // Si es abogado solo muestra sus eventos
+        if (usuarioActivo && usuarioActivo.rol === "Abogado") {
+
+            eventosDeHoy = eventosDeHoy.filter(ev =>
+                String(ev.abogadoAsignado) === String(usuarioActivo.usuario)
+            );
+
+        }
+
+
+        if (eventosDeHoy.length === 0) {
+
+            contenedorAsistente.innerText =
+            "🤖 Asistente Virtual JS: No tienes compromisos ni audiencias programadas para hoy. ¡Buen día!";
+
+        } else {
+
+            const audiencias = eventosDeHoy.filter(e => e.tipo === "Audiencia").length;
+            const terminos = eventosDeHoy.filter(e => e.tipo === "Término Judicial").length;
+            const otros = eventosDeHoy.length - (audiencias + terminos);
+
+            let mensaje =
+            `🤖 Asistente Virtual JS: Para hoy tienes ${eventosDeHoy.length} evento(s): `;
+
+            let detalles = [];
+
+            if (audiencias > 0)
+                detalles.push(`${audiencias} audiencia(s)`);
+
+            if (terminos > 0)
+                detalles.push(`${terminos} término(s) crítico(s)`);
+
+            if (otros > 0)
+                detalles.push(`${otros} cita(s) o diligencia(s)`);
+
+
+            mensaje += detalles.join(", ") + 
+            ". Revisa la sección Agenda para más detalles.";
+
+            contenedorAsistente.innerText = mensaje;
+        }
+
+
+    } catch(error) {
+
+        console.error("Error cargando asistente virtual:", error);
+
+        contenedorAsistente.innerText =
+        "🤖 Asistente Virtual JS: No fue posible consultar la agenda.";
+
     }
 }
 
