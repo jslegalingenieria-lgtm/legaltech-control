@@ -236,18 +236,17 @@ setInterval(() => {
 
 document.addEventListener("DOMContentLoaded",()=>{
 
-const boton=document.getElementById("menu-toggle");
+    const boton = document.getElementById("menu-toggle");
+    const sidebar = document.querySelector(".sidebar");
 
-const sidebar=document.querySelector(".sidebar");
+    if(boton && sidebar){
 
-if(boton){
+        boton.addEventListener("click",()=>{
 
-    boton.addEventListener("click",()=>{
+            sidebar.classList.toggle("open");
 
-        sidebar.classList.toggle("open");
+        });
 
-    });
-
-}
+    }
 
 });

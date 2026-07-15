@@ -53,3 +53,46 @@
     }
 
 }
+
+/* BOTÓN MENU MÓVIL */
+#menu-toggle {
+    display: none;
+    position: relative;
+    z-index: 2000;
+    color: #1e293b;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+
+/* RESPONSIVE MOVIL */
+@media (max-width:768px){
+
+    #menu-toggle {
+        display: block;
+    }
+
+    .sidebar {
+        position: fixed;
+        top:0;
+        left:-260px;
+        width:260px;
+        height:100vh;
+        z-index:1500;
+        transition:0.3s ease;
+    }
+
+
+    .sidebar.open {
+        left:0;
+    }
+
+
+    .top-bar {
+        position: relative;
+        z-index:1000;
+        display:flex;
+        align-items:center;
+    }
+
+}
