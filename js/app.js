@@ -169,9 +169,8 @@ function switchTab(vista) {
     
     const viewTitle = document.getElementById("view-title");
     if (viewTitle) viewTitle.innerText = titulos[vista] || "JS LegalTech Control";
-}
 
-document.querySelectorAll(".menu-item").forEach(item => {
+    document.querySelectorAll(".menu-item").forEach(item => {
     item.addEventListener("click", () => {
 
         const sidebar = document.querySelector(".sidebar");
@@ -182,6 +181,9 @@ document.querySelectorAll(".menu-item").forEach(item => {
 
     });
 });
+}
+
+
 
 // ==========================================
 // VIGILANTE DE AGENDA EN TIEMPO REAL
