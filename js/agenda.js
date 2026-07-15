@@ -58,12 +58,13 @@ function poblarSelectAsuntos() {
     let asuntosFiltrados = asuntos;
     
     if (usuarioActivo && usuarioActivo.rol === 'Abogado') {
-        asuntosFiltrados = asuntos.filter(a => {
-            const strAsunto = JSON.stringify(a).toLowerCase();
-            return strAsunto.includes(String(usuarioActivo.id).toLowerCase()) || 
-                   strAsunto.includes(String(usuarioActivo.nombre).toLowerCase());
-        });
-    }
+
+    asuntosFiltrados = asuntos.filter(a => 
+        String(a.abogadoAsignado) === String(usuarioActivo.id) ||
+        String(a.abogadoAsignado) === String(usuarioActivo.nombre)
+    );
+
+}
     
     if (asuntosFiltrados.length === 0) {
         select.innerHTML = '<option value="">-- No tienes expedientes disponibles --</option>';
