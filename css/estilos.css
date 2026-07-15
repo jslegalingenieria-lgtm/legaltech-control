@@ -422,5 +422,19 @@ RESPONSIVE
     gap: 20px;
 }
 
+@media(max-width:768px){
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+.table-responsive{
+    width:100%;
+    overflow-x:auto;
+}
+
+.table-responsive table{
+    min-width:700px;
+}
 
 
