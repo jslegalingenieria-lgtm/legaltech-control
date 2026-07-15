@@ -1,0 +1,61 @@
+#menu-toggle{
+
+    display:none;
+
+}
+
+@media(max-width:768px){
+
+.sidebar{
+
+    position:fixed;
+
+    left:-260px;
+
+    top:0;
+
+    width:260px;
+
+    height:100vh;
+
+    z-index:999;
+
+    transition:.3s;
+
+}
+
+.sidebar.open{
+
+    left:0;
+
+}
+
+.main-content{
+
+    width:100%;
+
+}
+
+#menu-toggle{
+
+    display:block;
+
+    border:none;
+
+    background:none;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    margin-right:15px;
+
+}
+
+.top-bar{
+
+    padding:15px;
+
+}
+
+}

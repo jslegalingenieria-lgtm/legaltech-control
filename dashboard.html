@@ -5,7 +5,15 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>JS LegalTech Control - Panel Principal</title>
-    <link rel="stylesheet" href="css/estilos.css">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/tables.css">
+<link rel="stylesheet" href="css/modal.css">
+<link rel="stylesheet" href="css/utilities.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/estilos.css">
 
     <!-- Cargar librerías de Firebase desde el servidor oficial de Google -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -49,10 +57,21 @@
         <main class="main-content">
             
             <!-- ENCABEZADO SUPERIOR -->
-            <header class="top-bar">
-                <h2 id="view-title">Dashboard Informativo</h2>
-                <div class="date-display">📅 Julio, 2026</div>
-            </header>
+<header class="top-bar">
+
+    <button id="menu-toggle" class="menu-toggle">
+        ☰
+    </button>
+
+    <h2 id="view-title">
+        Dashboard Informativo
+    </h2>
+
+    <div class="date-display">
+        📅 Julio, 2026
+    </div>
+
+</header>
 
             <!-- VISTA 1: DASHBOARD -->
             <section id="vista-dashboard" class="app-view">
@@ -81,7 +100,7 @@
 
             <!-- VISTA 2: CLIENTES -->
             <section id="vista-clientes" class="app-view" style="display: none;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <div class="toolbar">
                     <h3>Directorio Jurídico de Clientes</h3>
                     <button class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;" onclick="abrirModalCliente()">+ Nuevo Cliente</button>
                 </div>
@@ -125,7 +144,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                        <div class="toolbar">
                             <button type="button" class="btn-primary" style="background-color: var(--text-muted); width: auto; padding: 0.6rem 1.2rem;" onclick="cerrarModalCliente()">Cancelar</button>
                             <button type="submit" class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;">Guardar Cliente</button>
                         </div>
@@ -151,7 +170,7 @@
 
             <!-- VISTA 3: ASUNTOS -->
             <section id="vista-asuntos" class="app-view" style="display: none;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <div class="toolbar">
                     <h3>Control de Asuntos Jurídicos</h3>
                     <button class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;" onclick="abrirModalAsunto()">+ Nuevo Asunto</button>
                 </div>
@@ -162,7 +181,7 @@
                     <form id="form-asunto">
                         <input type="hidden" id="asunto-id">
                         
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div class="toolbar">
                             <div class="form-group" style="margin-bottom: 0;">
                                 <label for="asu-cliente-id">Cliente Asociado</label>
                                 <select id="asu-cliente-id" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 6px;">
@@ -216,7 +235,7 @@
                             <textarea id="asu-resumen" rows="3" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 6px;" placeholder="Ej. Se presentó demanda, en espera de auto admisorio."></textarea>
                         </div>
 
-                        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                       <div class="toolbar">
                             <button type="button" class="btn-primary" style="background-color: var(--text-muted); width: auto; padding: 0.6rem 1.2rem;" onclick="cerrarModalAsunto()">Cancelar</button>
                             <button type="submit" class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;">Guardar Expediente</button>
                         </div>
@@ -226,7 +245,7 @@
                 <!-- Modal de Historial de Actuaciones (Bitácora) -->
                 <div id="modal-bitacora" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); overflow-y: auto;">
                     <div style="background-color: #ffffff; margin: 5% auto; padding: 2rem; width: 90%; max-width: 600px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 1rem; margin-bottom: 1rem;">
+                        <div class="toolbar">
                             <h3 style="margin: 0; font-size: 1.3rem; color: #1e293b;">Historial de Actuaciones: <span id="bitacora-expediente-titulo" style="color: #8b5cf6;"></span></h3>
                             <span onclick="cerrarModalBitacora()" style="cursor: pointer; font-size: 1.5rem; color: #94a3b8; font-weight: bold;">&times;</span>
                         </div>
@@ -272,7 +291,7 @@
 
             <!-- VISTA 4: AGENDA JURÍDICA -->
             <section id="vista-agenda" class="app-view" style="display: none;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <div class="toolbar">
                     <h3>Agenda de Audiencias y Términos</h3>
                     <button class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;" onclick="abrirModalAgenda()">+ Agendar Evento</button>
                 </div>
@@ -317,7 +336,7 @@
                             <textarea id="age-notes" rows="3" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 6px;" placeholder="Ej. Llevar pliegos de posiciones o preparar alegatos de apertura."></textarea>
                         </div>
 
-                        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                        <div class="toolbar">
                             <button type="button" class="btn-primary" style="background-color: var(--text-muted); width: auto; padding: 0.6rem 1.2rem;" onclick="cerrarModalAgenda()">Cancelar</button>
                             <button type="submit" class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;">Fijar en Agenda</button>
                         </div>
@@ -354,7 +373,7 @@
 
             <!-- VISTA 6: GESTIÓN DE PERSONAL (Solo visible para Administradores) -->
             <section id="vista-personal" class="app-view" style="display: none;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <div class="toolbar">
                     <h2>Gestión de Personal y Abogados</h2>
                     <button onclick="abrirModalPersonal()" style="background: #2563eb; color: white; border: none; padding: 10px 18px; border-radius: 6px; font-weight: 600; cursor: pointer;">
                         + Alta de Personal
@@ -412,7 +431,7 @@
                     </select>
                 </div>
                 
-                <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                <div class="toolbar">
                     <button type="button" onclick="cerrarModalPersonal()" style="background: #f1f5f9; color: #64748b; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer;">Cancelar</button>
                     <button type="submit" style="background: #2563eb; color: white; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer;">Guardar Personal</button>
                 </div>

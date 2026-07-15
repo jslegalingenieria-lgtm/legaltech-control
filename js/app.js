@@ -204,7 +204,7 @@ setInterval(() => {
             const oscillatorGain = audioCtx.createGain();
             
             oscillator.type = 'sine';
-            oscllator.frequency.setValueAtTime(440, audioCtx.currentTime); // Nota LA
+            oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // Nota LA
             
             oscillatorGain.gain.setValueAtTime(0.3, audioCtx.currentTime); // Controlar volumen a nivel moderado
             
@@ -219,3 +219,20 @@ setInterval(() => {
         }
     }
 }, 30000); // Revisa cada 30 segundos
+document.addEventListener("DOMContentLoaded",()=>{
+
+const boton=document.getElementById("menu-toggle");
+
+const sidebar=document.querySelector(".sidebar");
+
+if(boton){
+
+    boton.addEventListener("click",()=>{
+
+        sidebar.classList.toggle("open");
+
+    });
+
+}
+
+});
