@@ -64,7 +64,7 @@ function poblarSelectAsuntos() {
 
         asuntosFiltrados = asuntos.filter(a => 
             String(a.abogadoAsignado) === String(usuarioActivo.id) ||
-            String(a.abogadoAsignado) === String(usuarioActivo.nombre)
+            String(a.abogadoAsignado) === String(usuarioActivo.usuario)
         );
 
     }
