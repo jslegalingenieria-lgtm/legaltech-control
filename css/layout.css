@@ -1,0 +1,71 @@
+:root{
+
+    --sidebar-width:260px;
+
+    --topbar-height:70px;
+
+    --primary:#1E3A8A;
+
+    --secondary:#2563EB;
+
+    --background:#F8FAFC;
+
+    --surface:#FFFFFF;
+
+    --border:#E2E8F0;
+
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Segoe UI,Tahoma,sans-serif;
+
+    background:var(--background);
+
+}
+
+.app-container{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+.sidebar{
+
+    width:var(--sidebar-width);
+
+    flex-shrink:0;
+
+}
+
+.main-content{
+
+    flex:1;
+
+    min-width:0;
+
+    overflow-x:hidden;
+
+}
+
+.top-bar{
+
+    height:var(--topbar-height);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 30px;
+
+}

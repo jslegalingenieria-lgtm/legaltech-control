@@ -59,3 +59,21 @@
 }
 
 }
+
+@media (max-width: 768px) {
+
+    .app-container {
+        display: block;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 15px;
+    }
+
+    .top-bar {
+        width: 100%;
+    }
+
+}

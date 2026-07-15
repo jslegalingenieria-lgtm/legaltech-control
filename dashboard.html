@@ -12,8 +12,9 @@
 <link rel="stylesheet" href="css/tables.css">
 <link rel="stylesheet" href="css/modal.css">
 <link rel="stylesheet" href="css/utilities.css">
-<link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/estilos.css">
+<link rel="stylesheet" href="css/responsive.css">
+
 
     <!-- Cargar librerías de Firebase desde el servidor oficial de Google -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -152,8 +153,8 @@
                 </div>
 
                 <!-- Tabla de Clientes -->
-                <div style="background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <div class="table-responsive">
+                      <table>
                         <thead>
                             <tr style="background-color: #f1f5f9; border-bottom: 2px solid var(--border-color); color: var(--primary-color);">
                                 <th style="padding: 1rem;">Nombre</th>
@@ -272,8 +273,8 @@
                 </div>
 
                 <!-- Tabla de Asuntos -->
-                <div style="background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <div class="table-responsive">
+                       <table>
                         <thead>
                             <tr style="background-color: #f1f5f9; border-bottom: 2px solid var(--border-color); color: var(--primary-color);">
                                 <th style="padding: 1rem;">Expediente</th>
@@ -355,8 +356,8 @@
                 </div>
 
                 <!-- Tabla del Portal -->
-                <div style="background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <div class="table-responsive">
+                     <table>
                         <thead>
                             <tr style="background-color: #f1f5f9; border-bottom: 2px solid var(--border-color); color: var(--primary-color);">
                                 <th style="padding: 1rem;">Número de Expediente</th>
@@ -380,8 +381,8 @@
                     </button>
                 </div>
 
-                <div style="background: white; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow-x: auto;">
-                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <div class="table-responsive">
+                    <table>
                         <thead>
                             <tr style="background: #f8fafc; border-bottom: 2px solid #e2e8f0;">
                                 <th style="padding: 12px 24px; font-weight: 600; color: #475569;">Nombre Completo</th>
