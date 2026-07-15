@@ -422,3 +422,72 @@ table button:hover {
         padding: 10px !important;
     }
 }
+
+/* =======================================================
+   Ajustes Específicos para Móvil (Basado en la captura)
+   ======================================================= */
+   @media (max-width: 768px) {
+    /* 1. Resetear el Layout Principal */
+    body {
+        margin: 0;
+        padding: 0;
+        display: block !important; /* Desactiva Flexbox/Grid si se usa en body */
+    }
+
+    /* 2. El Sidebar (Menú Lateral) */
+    /* Lo ideal es ocultarlo y usar un botón para mostrarlo, 
+       pero para arreglarlo rápido, lo convertimos en un menú superior simple. */
+    .sidebar {
+        width: 100% !important;
+        height: auto !important;
+        position: relative !important; /* Deja de ser fijo */
+        display: flex !important;
+        flex-wrap: wrap; /* Para que los ítems se envuelvan si no caben */
+        justify-content: space-around;
+        padding: 5px !important;
+        z-index: 1000;
+        float: none !important;
+    }
+
+    .sidebar-item {
+        padding: 5px !important;
+        font-size: 12px; /* Un poco más pequeño para que quepa */
+    }
+
+    /* Ocultar elementos secundarios del sidebar para ganar espacio */
+    .sidebar-user-info, .sidebar .user-role, .sidebar .logout-button {
+        display: none !important;
+    }
+
+    /* 3. El Contenido Principal */
+    .main-content {
+        margin-left: 0 !important; /* Elimina el espacio para el sidebar */
+        width: 100% !important;
+        padding: 10px !important;
+        position: relative;
+    }
+
+    /* 4. Ajustar Títulos */
+    h1, h2, .page-title {
+        font-size: 18px !important; /* Más pequeño para que no corte el texto */
+        margin-top: 10px;
+        word-wrap: break-word; /* Evita que el texto largo se corte */
+    }
+
+    /* 5. El Botón Flotante "+" (Agendar Evento) */
+    .add-event-btn {
+        right: 10px !important;
+        bottom: 10px !important;
+        font-size: 12px !important;
+        padding: 8px 12px !important;
+    }
+
+    /* 6. Forzar Formularios a pantalla completa */
+    input, select, textarea, .form-group {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box !important;
+    }
+}
