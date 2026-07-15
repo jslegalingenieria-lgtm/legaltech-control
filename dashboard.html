@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS LegalTech Control - Panel Principal</title>
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <!-- Cargar librerías de Firebase desde el servidor oficial de Google -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <!-- Librería para conversión limpia de HTML a PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+     <link rel="manifest" href="manifest.json">
+
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- BARRA LATERAL (SIDEBAR) -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                JS LegalTech Control
+            </div>
+            
+            <!-- Menú Lateral -->
+            <ul class="sidebar-menu" id="menu-lateral">
+                <li id="menu-dashboard"><a href="#" class="menu-item" onclick="switchTab('dashboard')">🏠 Dashboard</a></li>
+                <li id="menu-clientes"><a href="#" class="menu-item" onclick="switchTab('clientes')">👥 Clientes</a></li>
+                <li id="menu-asuntos"><a href="#" class="menu-item" onclick="switchTab('asuntos')">⚖️ Asuntos</a></li>
+                <li id="menu-agenda"><a href="#" class="menu-item" onclick="switchTab('agenda')">📅 Agenda</a></li>
+                <!-- app.js inyectará aquí el botón de Personal automáticamente si el rol es Administrador -->
+            </ul>
+
+            <div class="sidebar-footer">
+                <span id="user-display">Usuario: ...</span><br>
+                <small id="role-display" style="color: #60a5fa;">Rol</small><br>
+                <button onclick="cerrarSesion()" class="btn-logout">🚪 Cerrar Sesión</button>
+            </div>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+            
+            <!-- ENCABEZADO SUPERIOR -->
+            <header class="top-bar">
+                <h2 id="view-title">Dashboard Informativo</h2>
+                <div class="date-display">📅 Julio, 2026</div>
+            </header>
+
+            <!-- VISTA 1: DASHBOARD -->
+            <section id="vista-dashboard" class="app-view">
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="metric-title">Clientes Registrados</span>
+                        <span class="metric-value" id="count-clientes">0</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-title">Asuntos Activos</span>
+                        <span class="metric-value" id="count-asuntos">0</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-title">Audiencias este mes</span>
+                        <span class="metric-value" id="count-audiencias">0</span>
+                    </div>
+                </div>
+
+                <div style="background: #eff6ff; border-left: 4px solid #2563eb; padding: 1.5rem; border-radius: 6px; margin-top: 2rem;">
+                    <h3 style="color: #1e3a8a; margin-bottom: 0.5rem;">🤖 Asistente Virtual JS</h3>
+                    <p style="color: #1e40af; font-size: 0.95rem;" id="asistente-mensaje">
+                        Revisando la agenda... No tienes audiencias programadas para hoy. Buen día.
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA 2: CLIENTES -->
+            <section id="vista-clientes" class="app-view" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h3>Directorio Jurídico de Clientes</h3>
+                    <button class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;" onclick="abrirModalCliente()">+ Nuevo Cliente</button>
+                </div>
+
+                <!-- Formulario de Clientes (Modal u Oculto) -->
+                <div id="modal-cliente" style="display: none; background: #ffffff; border: 1px solid var(--border-color); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h4 style="margin-bottom: 1.5rem; color: var(--primary-color);" id="modal-titulo">Registrar Nuevo Cliente</h4>
+                    <form id="form-cliente">
+                        <input type="hidden" id="cliente-id">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="cli-nombre">Nombre Completo</label>
+                                <input type="text" id="cli-nombre" required placeholder="Ej. Juan Pérez">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="cli-curp">CURP / Identificación</label>
+                                <input type="text" id="cli-curp" placeholder="CURP de 18 dígitos">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="cli-telefono">Teléfono</label>
+                                <input type="tel" id="cli-telefono" required placeholder="33XXXXXXXX">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="cli-correo">Correo Electrónico</label>
+                                <input type="email" id="cli-correo" required placeholder="correo@ejemplo.com">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label for="cli-direccion">Dirección Particular</label>
+                            <input type="text" id="cli-direccion" placeholder="Calle, Número, Col., Municipio">
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="cli-password">Contraseña de Acceso al Portal</label>
+                                <input type="text" id="cli-password" placeholder="Asigna una contraseña para el cliente">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="cliente-abogado">Abogado Asignado</label>
+                                <select id="cliente-abogado" style="width: 100%; padding: 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; background: white;">
+                                    <!-- Se llenará dinámicamente -->
+                                </select>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                            <button type="button" class="btn-primary" style="background-color: var(--text-muted); width: auto; padding: 0.6rem 1.2rem;" onclick="cerrarModalCliente()">Cancelar</button>
+                            <button type="submit" class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;">Guardar Cliente</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Tabla de Clientes -->
+                <div style="background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr style="background-color: #f1f5f9; border-bottom: 2px solid var(--border-color); color: var(--primary-color);">
+                                <th style="padding: 1rem;">Nombre</th>
+                                <th style="padding: 1rem;">CURP</th>
+                                <th style="padding: 1rem;">Teléfono</th>
+                                <th style="padding: 1rem;">Correo</th>
+                                <th style="padding: 1rem; text-align: center;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-clientes-cuerpo"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- VISTA 3: ASUNTOS -->
+            <section id="vista-asuntos" class="app-view" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h3>Control de Asuntos Jurídicos</h3>
+                    <button class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;" onclick="abrirModalAsunto()">+ Nuevo Asunto</button>
+                </div>
+
+                <!-- Formulario de Asuntos (Modal) -->
+                <div id="modal-asunto" style="display: none; background: #ffffff; border: 1px solid var(--border-color); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h4 style="margin-bottom: 1.5rem; color: var(--primary-color);" id="asunto-modal-titulo">Registrar Nuevo Expediente</h4>
+                    <form id="form-asunto">
+                        <input type="hidden" id="asunto-id">
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="asu-cliente-id">Cliente Asociado</label>
+                                <select id="asu-cliente-id" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 6px;">
+                                    <option value="">-- Selecciona un cliente --</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="asu-materia">Materia Jurídica</label>
+                                <select id="asu-materia" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 6px;">
+                                    <option value="Civil">Civil</option>
+                                    <option value="Familiar">Familiar</option>
+                                    <option value="Laboral">Laboral</option>
+                                    <option value="Amparo">Amparo / Otra</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="asu-expediente">Número de Expediente</label>
+                                <input type="text" id="asu-expediente" required placeholder="Ej. 1234/2026">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="asu-juzgado">Órgano Jurisdiccional / Juzgado</label>
+                                <input type="text" id="asu-juzgado" required placeholder="Ej. Juzgado 5to de lo Civil">
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="asu-accion">Acción / Demanda</label>
+                                <input type="text" id="asu-accion" required placeholder="Ej. Juicio Ordinario Civil">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="asu-estado">Estado del Juicio</label>
+                                <select id="asu-estado" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 6px;">
+                                    <option value="En Curso">En Curso</option>
+                                    <option value="Para Sentencia">Para Sentencia</option>
+                                    <option value="Concluido">Concluido</option>
+                                    <option value="Suspendido">Suspendido</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label for="expediente-abogado">Abogado Asignado</label>
+                            <select id="expediente-abogado" required style="width: 100%; padding: 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; background: white;">
+                                <!-- Se llenará dinámicamente -->
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label for="asu-resumen">Último Estado / Resumen Procesal (Para Vista del Cliente)</label>
+                            <textarea id="asu-resumen" rows="3" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 6px;" placeholder="Ej. Se presentó demanda, en espera de auto admisorio."></textarea>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                            <button type="button" class="btn-primary" style="background-color: var(--text-muted); width: auto; padding: 0.6rem 1.2rem;" onclick="cerrarModalAsunto()">Cancelar</button>
+                            <button type="submit" class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;">Guardar Expediente</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal de Historial de Actuaciones (Bitácora) -->
+                <div id="modal-bitacora" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); overflow-y: auto;">
+                    <div style="background-color: #ffffff; margin: 5% auto; padding: 2rem; width: 90%; max-width: 600px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 1rem; margin-bottom: 1rem;">
+                            <h3 style="margin: 0; font-size: 1.3rem; color: #1e293b;">Historial de Actuaciones: <span id="bitacora-expediente-titulo" style="color: #8b5cf6;"></span></h3>
+                            <span onclick="cerrarModalBitacora()" style="cursor: pointer; font-size: 1.5rem; color: #94a3b8; font-weight: bold;">&times;</span>
+                        </div>
+
+                        <form id="form-actuacion" style="background-color: #f8fafc; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; border: 1px solid #e2e8f0;">
+                            <h4 style="margin: 0 0 0.8rem 0; font-size: 0.95rem; color: #475569;">📍 Registrar Nueva Actuación / Acuerdo</h4>
+                            
+                            <div style="margin-bottom: 0.8rem;">
+                                <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #475569; margin-bottom: 0.3rem;">Fecha del Evento (Opcional - Vacío usa hoy):</label>
+                                <input type="date" id="act-fecha" style="width: 100%; padding: 0.4rem; border: 1px solid #cbd5e1; border-radius: 4px;">
+                            </div>
+
+                            <div style="margin-bottom: 0.8rem;">
+                                <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #475569; margin-bottom: 0.3rem;">Descripción Jurídica / Resumen:</label>
+                                <textarea id="act-descripcion" required placeholder="Ej. Se desahogó la audiencia de ley o Se publica acuerdo de admisión..." rows="3" style="width: 100%; padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 4px; font-family: inherit; resize: vertical;"></textarea>
+                            </div>
+
+                            <button type="submit" style="background-color: #8b5cf6; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; width: 100%;">Agregar al Historial</button>
+                        </form>
+
+                        <h4 style="margin: 0 0 0.5rem 0; font-size: 1rem; color: #1e293b;">📜 Línea del Tiempo del Juicio</h4>
+                        <div id="bitacora-lista-historico" style="max-height: 250px; overflow-y: auto; padding-right: 5px;"></div>
+                    </div>
+                </div>
+
+                <!-- Tabla de Asuntos -->
+                <div style="background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr style="background-color: #f1f5f9; border-bottom: 2px solid var(--border-color); color: var(--primary-color);">
+                                <th style="padding: 1rem;">Expediente</th>
+                                <th style="padding: 1rem;">Cliente</th>
+                                <th style="padding: 1rem;">Materia / Juicio</th>
+                                <th style="padding: 1rem;">Juzgado</th>
+                                <th style="padding: 1rem;">Estado</th>
+                                <th style="padding: 1rem; text-align: center;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-asuntos-cuerpo"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- VISTA 4: AGENDA JURÍDICA -->
+            <section id="vista-agenda" class="app-view" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h3>Agenda de Audiencias y Términos</h3>
+                    <button class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;" onclick="abrirModalAgenda()">+ Agendar Evento</button>
+                </div>
+
+                <!-- Formulario de Agenda (Modal) -->
+                <div id="modal-agenda" style="display: none; background: #ffffff; border: 1px solid var(--border-color); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h4 style="margin-bottom: 1.5rem; color: var(--primary-color);" id="agenda-modal-titulo">Agendar Evento Procesal</h4>
+                    <form id="form-agenda">
+                        <input type="hidden" id="agenda-id">
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="age-asunto-id">Expediente / Asunto</label>
+                                <select id="age-asunto-id" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 6px;">
+                                    <option value="">-- Selecciona un expediente --</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="age-tipo">Tipo de Evento</label>
+                                <select id="age-tipo" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 6px;">
+                                    <option value="Audiencia">Audiencia</option>
+                                    <option value="Término Judicial">Término Judicial (Vencimiento)</option>
+                                    <option value="Reunión Cliente">Reunión con Cliente</option>
+                                    <option value="Diligencia">Diligencia / Notificación</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="age-fecha">Fecha del Evento</label>
+                                <input type="date" id="age-fecha" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 6px;">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="age-hora">Hora</label>
+                                <input type="time" id="age-hora" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 6px;">
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label for="age-notes">Descripción / Notas de Preparación</label>
+                            <textarea id="age-notes" rows="3" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 6px;" placeholder="Ej. Llevar pliegos de posiciones o preparar alegatos de apertura."></textarea>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                            <button type="button" class="btn-primary" style="background-color: var(--text-muted); width: auto; padding: 0.6rem 1.2rem;" onclick="cerrarModalAgenda()">Cancelar</button>
+                            <button type="submit" class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;">Fijar en Agenda</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Lista Cronológica de Compromisos -->
+                <div id="lista-agenda-contenedor" style="display: flex; flex-direction: column; gap: 1rem;"></div>
+            </section>
+
+            <!-- VISTA 5: PORTAL DEL CLIENTE -->
+            <section id="vista-portal" class="app-view" style="display: none;">
+                <div style="background: #ffffff; border: 1px solid var(--border-color); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">Bienvenido a su Portal de Consulta Jurídica</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Aquí puede verificar el estado en tiempo real de sus asuntos legales vigentes.</p>
+                </div>
+
+                <!-- Tabla del Portal -->
+                <div style="background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr style="background-color: #f1f5f9; border-bottom: 2px solid var(--border-color); color: var(--primary-color);">
+                                <th style="padding: 1rem;">Número de Expediente</th>
+                                <th style="padding: 1rem;">Materia / Juicio</th>
+                                <th style="padding: 1rem;">Órgano Jurisdiccional / Juzgado</th>
+                                <th style="padding: 1rem;">Estado Procesal</th>
+                                <th style="padding: 1rem;">Última Actualización / Resumen</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-portal-cuerpo"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- VISTA 6: GESTIÓN DE PERSONAL (Solo visible para Administradores) -->
+            <section id="vista-personal" class="app-view" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2>Gestión de Personal y Abogados</h2>
+                    <button onclick="abrirModalPersonal()" style="background: #2563eb; color: white; border: none; padding: 10px 18px; border-radius: 6px; font-weight: 600; cursor: pointer;">
+                        + Alta de Personal
+                    </button>
+                </div>
+
+                <div style="background: white; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr style="background: #f8fafc; border-bottom: 2px solid #e2e8f0;">
+                                <th style="padding: 12px 24px; font-weight: 600; color: #475569;">Nombre Completo</th>
+                                <th style="padding: 12px 24px; font-weight: 600; color: #475569;">Usuario de Acceso</th>
+                                <th style="padding: 12px 24px; font-weight: 600; color: #475569;">Rol / Perfil</th>
+                                <th style="padding: 12px 24px; font-weight: 600; color: #475569; text-align: center;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-personal-cuerpo">
+                            <!-- Se llena dinámicamente con JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+                  
+        </main>
+    </div>
+
+    <!-- Modal: Alta / Edición de Personal -->
+    <div id="modal-personal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); justify-content: center; align-items: center; z-index: 9999;">
+        <div style="background: white; width: 100%; max-width: 450px; border-radius: 12px; padding: 24px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);">
+            <h3 id="modal-personal-titulo" style="margin-top: 0; margin-bottom: 20px; color: #1e293b;">Alta de Personal</h3>
+            
+            <form id="form-alta-personal" onsubmit="guardarPersonal(event)">
+                <input type="hidden" id="personal-id">
+                
+                <div style="margin-bottom: 16px;">
+                    <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #475569;">Nombre Completo</label>
+                    <input type="text" id="personal-nombre" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;">
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #475569;">Usuario (Para Login)</label>
+                    <input type="text" id="personal-usuario" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;">
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #475569;">Contraseña</label>
+                    <input type="password" id="personal-pass" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;">
+                </div>
+                
+                <div style="margin-bottom: 24px;">
+                    <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #475569;">Perfil del Sistema</label>
+                    <select id="personal-rol" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; box-sizing: border-box;">
+                        <option value="Abogado">Abogado (Solo visualiza sus casos asignados)</option>
+                        <option value="Administrador">Administrador (Control total del despacho)</option>
+                    </select>
+                </div>
+                
+                <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                    <button type="button" onclick="cerrarModalPersonal()" style="background: #f1f5f9; color: #64748b; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer;">Cancelar</button>
+                    <button type="submit" style="background: #2563eb; color: white; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer;">Guardar Personal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts de la Aplicación -->
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/clientes.js"></script>
+    <script src="js/asuntos.js"></script>
+    <script src="js/agenda.js"></script>
+    <script src="js/personal.js"></script>
+    <script src="js/app.js"></script>
+
+
+     <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(() => console.log('Service Worker registrado con éxito.'))
+      .catch(err => console.log('Error al registrar Service Worker:', err));
+  }
+</script>
+
+
+</body>
+</html>
