@@ -94,14 +94,17 @@ async function guardarEventoAgenda(e) {
     const textareaNotas = document.getElementById("age-notes") || document.getElementById("age-notas");
     const notas = textareaNotas ? textareaNotas.value.trim() : "";
     
-    const datosEvento = {
-        asuntoId: asuntoId,
-        tipo: tipo,
-        fecha: fecha,
-        hora: hora,
-        notas: notas,
-        notificado: false // Reinicia alarma si se edita
-    };
+const usuarioActivo = obtenerUsuarioSesion();
+
+const datosEvento = {
+    asuntoId: asuntoId,
+    tipo: tipo,
+    fecha: fecha,
+    hora: hora,
+    notas: notas,
+    abogadoAsignado: usuarioActivo ? usuarioActivo.usuario : "",
+    notificado: false
+};
 
     try {
         if (id) {
@@ -144,22 +147,38 @@ async function cargarAgendaLista() {
         eventos.sort((a, b) => new Date(`${a.fecha}T${a.hora}`) - new Date(`${b.fecha}T${b.hora}`));
 
         // Filtrado por rol de usuario
-        let eventosFiltrados = [];
-        if (usuarioActivo && usuarioActivo.rol === 'Administrador') {
-            eventosFiltrados = eventos;
-        } else if (usuarioActivo && usuarioActivo.rol === 'Abogado') {
-            eventosFiltrados = eventos.filter(ev => {
-                const asu = asuntos.find(a => String(a.id) === String(ev.asuntoId));
-                if (!asu) return false;
-                return JSON.stringify(asu).toLowerCase().includes(String(usuarioActivo.nombre).toLowerCase());
-            });
-        } else {
-            // Clientes u otros: solo ven lo asociado a su identificador
-            eventosFiltrados = eventos.filter(ev => {
-                const asu = asuntos.find(a => String(a.id) === String(ev.asuntoId));
-                return asu && JSON.stringify(asu).toLowerCase().includes(String(usuarioActivo.id).toLowerCase());
-            });
-        }
+       // Filtrado por rol de usuario
+let eventosFiltrados = [];
+
+if (usuarioActivo && usuarioActivo.rol === 'Administrador') {
+
+    // Administrador ve toda la agenda
+    eventosFiltrados = eventos;
+
+} else if (usuarioActivo && usuarioActivo.rol === 'Abogado') {
+
+    // Abogado solo ve sus propios eventos
+    eventosFiltrados = eventos.filter(ev => {
+
+        return String(ev.abogadoAsignado) === String(usuarioActivo.usuario);
+
+    });
+
+} else {
+
+    // Clientes u otros usuarios
+    eventosFiltrados = eventos.filter(ev => {
+
+        const asu = asuntos.find(a => String(a.id) === String(ev.asuntoId));
+
+        return asu && 
+        JSON.stringify(asu)
+        .toLowerCase()
+        .includes(String(usuarioActivo.id).toLowerCase());
+
+    });
+
+}
         
         contenedor.innerHTML = "";
         
