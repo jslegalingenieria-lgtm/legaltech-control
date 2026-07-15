@@ -46,31 +46,34 @@ function cerrarModalAgenda() {
     document.getElementById("modal-agenda").style.display = "none";
 }
 
-// Poblado de asuntos (Para esta prueba sigue leyendo local, idealmente también migrará a la nube)
 function poblarSelectAsuntos() {
-    const select = document.getElementById("age-asunto-id") || document.getElementById("asunto-id") || document.getElementById("agenda-asunto-id");
+    const select = document.getElementById("age-asunto-id") || 
+                   document.getElementById("asunto-id") || 
+                   document.getElementById("agenda-asunto-id");
+
     if (!select) return;
-    
+
     const usuarioActivo = obtenerUsuarioSesion();
     const asuntos = JSON.parse(localStorage.getItem("js_legal_asuntos")) || [];
-    
+
     select.innerHTML = '<option value="">-- Selecciona un expediente --</option>';
+
     let asuntosFiltrados = asuntos;
-    
+
     if (usuarioActivo && usuarioActivo.rol === 'Abogado') {
 
-    asuntosFiltrados = asuntos.filter(a => 
-        String(a.abogadoAsignado) === String(usuarioActivo.id) ||
-        String(a.abogadoAsignado) === String(usuarioActivo.nombre)
-    );
+        asuntosFiltrados = asuntos.filter(a => 
+            String(a.abogadoAsignado) === String(usuarioActivo.id) ||
+            String(a.abogadoAsignado) === String(usuarioActivo.nombre)
+        );
 
-}
-    
+    }
+
     if (asuntosFiltrados.length === 0) {
         select.innerHTML = '<option value="">-- No tienes expedientes disponibles --</option>';
         return;
     }
-    
+
     asuntosFiltrados.forEach(a => {
         const option = document.createElement("option");
         option.value = a.id;
