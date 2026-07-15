@@ -160,7 +160,11 @@ if (usuarioActivo && usuarioActivo.rol === 'Administrador') {
     // Abogado solo ve sus propios eventos
     eventosFiltrados = eventos.filter(ev => {
 
-        return String(ev.abogadoAsignado) === String(usuarioActivo.usuario);
+               console.log("EVENTO:", ev);
+        console.log("COMPARANDO:", ev.abogadoAsignado, "=", usuarioActivo.usuario);
+
+        return String(ev.abogadoAsignado).trim().toLowerCase() === 
+               String(usuarioActivo.usuario).trim().toLowerCase();
 
     });
 
