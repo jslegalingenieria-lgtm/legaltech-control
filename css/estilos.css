@@ -226,7 +226,7 @@ body {
 /* Cuadrícula de Tarjetas de Indicadores */
 .metrics-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
 }
@@ -387,25 +387,33 @@ table button:hover {
 RESPONSIVE
 =====================================*/
 
-@media screen and (max-width:768px){
+@media (max-width: 768px) {
 
-.menu-toggle{
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 15px;
+    }
 
-    display:block;
+    .container,
+    .dashboard,
+    .content {
+        width: 100%;
+        max-width: 100%;
+    }
 
-    color:#1e293b;
+    table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 
-}
-
-.top-bar{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:15px;
-
-}
+    .card-container,
+    .cards,
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
 
 }
 
