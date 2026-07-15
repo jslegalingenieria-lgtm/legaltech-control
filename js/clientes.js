@@ -242,36 +242,28 @@ function actualizarContadoresDashboard() {
     if (badge) badge.innerText = totalClientes;
 }
 
-// Función para abrir la bitácora en modo solo lectura para el cliente
 function abrirBitacoraCliente(asuntoId) {
+
     const asuntos = JSON.parse(localStorage.getItem("js_legal_asuntos")) || [];
-    const asunto = asuntos.find(a => a.id == asuntoId);
-    
+    const asunto = asuntos.find(a => String(a.id) === String(asuntoId));
+
     if (!asunto) return;
 
+    expedienteActivoParaPDF = asunto.expediente;
+
     document.getElementById("bitacora-expediente-titulo").innerText = asunto.expediente;
+
     document.getElementById("modal-bitacora").style.display = "block";
+
+    // Ocultar el formulario para el cliente
     document.getElementById("form-actuacion").style.display = "none";
-    
-    renderizarActuacionesCliente(asunto.actuaciones || []);
-}
 
-function renderizarActuacionesCliente(actuaciones) {
-    const lista = document.getElementById("bitacora-lista-historico");
-    lista.innerHTML = "";
-    
-    if (actuaciones.length === 0) {
-        lista.innerHTML = "<p>No hay actuaciones registradas.</p>";
-        return;
-    }
+    // Mostrar el botón PDF
+    const botonPDF = document.getElementById("btn-descargar-bitacora");
+    if (botonPDF) botonPDF.style.display = "inline-block";
 
-    actuaciones.slice().reverse().forEach(act => {
-        const div = document.createElement("div");
-        div.style.padding = "0.8rem";
-        div.style.borderBottom = "1px solid #eee";
-        div.innerHTML = `<strong>${act.fecha}</strong><br>${act.descripcion}`;
-        lista.appendChild(div);
-    });
+    // Reutilizar el mismo render del abogado
+    cargarHistorialActuacionesLista(asunto);
 }
 
 function actualizarSelectAbogadosAsignados() {

@@ -183,46 +183,73 @@ window.cerrarModalBitacoraPortal = cerrarModalBitacoraPortal;
 
 // 3. Función del Motor de Generación de PDF
 function descargarBitacoraPDF() {
-    const elemento = document.getElementById("pdf-contenedor-impresion");
-    const piePagina = document.getElementById("pdf-pie-pagina");
-    const listaHistorico = document.getElementById("portal-lista-historico");
-    
-    if (!elemento) return;
 
-    // Ajustes estéticos temporales para que el PDF no corte las barras de scroll ni los fondos
-    if (piePagina) piePagina.style.display = "block";
-    if (listaHistorico) {
-        listaHistorico.style.maxHeight = "none"; // Quita el límite de altura para que salgan todas las notas en el PDF
-        listaHistorico.style.overflowY = "visible";
+    const elemento = document.getElementById("pdf-contenedor-impresion");
+    if (!elemento) {
+        alert("No se encontró el contenido para generar el PDF.");
+        return;
     }
 
-    // Configuración del motor html2pdf
+    const piePagina = document.getElementById("pdf-pie-pagina");
+    const listaHistorico = document.getElementById("bitacora-lista-historico");
+
+    if (piePagina) piePagina.style.display = "block";
+
+    if (listaHistorico) {
+        listaHistorico.style.maxHeight = "none";
+        listaHistorico.style.overflow = "visible";
+    }
+
+    const expediente =
+        document.getElementById("bitacora-expediente-titulo")?.innerText ||
+        "Expediente";
+
     const opciones = {
-        margin:       [15, 15, 15, 15], // Márgenes físicos en el documento [arriba, izquierda, abajo, derecha]
-        filename:     `Bitacora_Expediente_${expedienteActivoParaPDF.replace(/\//g, '-')}.pdf`,
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
-        jsPDF:        { unit: 'mm', format: 'letter', orientation: 'portrait' }
+        margin: 15,
+        filename: `Bitacora_${expediente.replace(/[\/\\]/g, "-")}.pdf`,
+        image: {
+            type: "jpeg",
+            quality: 0.98
+        },
+        html2canvas: {
+            scale: 2,
+            useCORS: true
+        },
+        jsPDF: {
+            unit: "mm",
+            format: "letter",
+            orientation: "portrait"
+        }
     };
 
-    // Ejecución de la promesa de descarga
-    html2pdf().set(opciones).from(elemento).save().then(() => {
-        // Restaurar la vista del modal en pantalla después de la captura
-        if (piePagina) piePagina.style.display = "none";
-        if (listaHistorico) {
-            listaHistorico.style.maxHeight = "400px";
-            listaHistorico.style.overflowY = "auto";
-        }
-    }).catch(err => {
-        console.error("Error al generar PDF:", err);
-        // Restaurar en caso de fallo
-        if (piePagina) piePagina.style.display = "none";
-        if (listaHistorico) {
-            listaHistorico.style.maxHeight = "400px";
-            listaHistorico.style.overflowY = "auto";
-        }
-    });
+    html2pdf()
+        .set(opciones)
+        .from(elemento)
+        .save()
+        .then(() => {
+
+            if (piePagina)
+                piePagina.style.display = "none";
+
+            if (listaHistorico) {
+                listaHistorico.style.maxHeight = "250px";
+                listaHistorico.style.overflowY = "auto";
+            }
+
+        })
+        .catch(err => {
+            console.error(err);
+
+            if (piePagina)
+                piePagina.style.display = "none";
+
+            if (listaHistorico) {
+                listaHistorico.style.maxHeight = "250px";
+                listaHistorico.style.overflowY = "auto";
+            }
+        });
+
 }
 
-// Exportar función al entorno global window
 window.descargarBitacoraPDF = descargarBitacoraPDF;
+

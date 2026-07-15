@@ -340,6 +340,9 @@ function abrirBitacoraAsunto(asuntoId) {
 function cerrarModalBitacora() {
     document.getElementById("modal-bitacora").style.display = "none";
     asuntoHistorialIdSeleccionado = null;
+
+    const formulario = document.getElementById("form-actuacion");
+if (formulario) formulario.style.display = "block";
 }
 
 function cargarHistorialActuacionesLista(asunto) {
