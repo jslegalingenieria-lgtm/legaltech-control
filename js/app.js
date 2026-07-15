@@ -170,16 +170,16 @@ function switchTab(vista) {
     const viewTitle = document.getElementById("view-title");
     if (viewTitle) viewTitle.innerText = titulos[vista] || "JS LegalTech Control";
 
-    // Cerrar menú lateral en móviles después de seleccionar una opción
+       // Cerrar menú lateral en móviles después de seleccionar una opción
     if (window.innerWidth <= 768) {
-    const sidebar = document.querySelector(".sidebar");
+        const sidebar = document.querySelector(".sidebar");
 
-    if (sidebar) {
-        sidebar.classList.remove("open");
+        if (sidebar) {
+            sidebar.classList.remove("open");
+        }
     }
-       }
 
-    }
+}
       
 
 
@@ -248,7 +248,6 @@ if(boton){
 
     });
 
-}}
-
+}
 
 });
