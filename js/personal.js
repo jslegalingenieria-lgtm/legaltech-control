@@ -30,9 +30,11 @@
         return {
             id: String(id),
             nombre: datos.nombre || "",
+            correo: String(datos.correo || "").trim().toLowerCase(),
             usuario: datos.usuario || "",
-            pass: datos.pass || "",
             rol: datos.rol || "Abogado",
+            estado: datos.estado || "Activo",
+            uid: datos.uid || null,
             fechaRegistro: datos.fechaRegistro || null,
             fechaActualizacion: datos.fechaActualizacion || null
         };
@@ -144,10 +146,13 @@
             document.getElementById("modal-personal-titulo");
         const usuario =
             document.getElementById("personal-usuario");
+        const estado =
+            document.getElementById("personal-estado");
 
         if (id) id.value = "";
         if (titulo) titulo.textContent = "Alta de Personal";
         if (usuario) usuario.disabled = false;
+        if (estado) estado.value = "Activo";
 
         modal.style.display = "flex";
     }
@@ -176,21 +181,34 @@
                     .getElementById("personal-nombre")
                     ?.value.trim() || "";
 
+            const correo =
+                document
+                    .getElementById("personal-correo")
+                    ?.value.trim()
+                    .toLowerCase() || "";
+
             const usuario =
                 document
                     .getElementById("personal-usuario")
                     ?.value.trim()
                     .toLowerCase() || "";
 
-            const pass =
-                document.getElementById("personal-pass")?.value || "";
-
             const rol =
                 document.getElementById("personal-rol")?.value ||
                 "Abogado";
 
-            if (!nombre || !usuario || !pass || !rol) {
+            const estado =
+                document.getElementById("personal-estado")?.value ||
+                "Activo";
+
+            if (!nombre || !correo || !usuario || !rol || !estado) {
                 alert("Completa todos los campos.");
+                return;
+            }
+
+            const formatoCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!formatoCorreo.test(correo)) {
+                alert("Escribe un correo electrónico válido.");
                 return;
             }
 
@@ -208,18 +226,28 @@
                     String(item.id) !== String(id)
             );
 
+            const correoDuplicado = dinamico.some(
+                item =>
+                    String(item.correo || "").toLowerCase() === correo &&
+                    String(item.id) !== String(id)
+            );
+
             if (existeEnBase || existeEnDinamico) {
-                alert(
-                    "El nombre de usuario ya está registrado."
-                );
+                alert("El nombre de usuario ya está registrado.");
+                return;
+            }
+
+            if (correoDuplicado) {
+                alert("El correo electrónico ya está registrado.");
                 return;
             }
 
             const datos = {
                 nombre,
+                correo,
                 usuario,
-                pass,
                 rol,
+                estado,
                 fechaActualizacion:
                     firebase.firestore.FieldValue.serverTimestamp()
             };
@@ -278,14 +306,17 @@
         document.getElementById("personal-nombre").value =
             empleado.nombre || "";
 
+        document.getElementById("personal-correo").value =
+            empleado.correo || "";
+
         document.getElementById("personal-usuario").value =
             empleado.usuario || "";
 
-        document.getElementById("personal-pass").value =
-            empleado.pass || "";
-
         document.getElementById("personal-rol").value =
             empleado.rol || "Abogado";
+
+        document.getElementById("personal-estado").value =
+            empleado.estado || "Activo";
 
         if (titulo) titulo.textContent = "Modificar Personal";
         if (modal) modal.style.display = "flex";
@@ -363,7 +394,7 @@
         if (!listaCompleta.length) {
             cuerpo.innerHTML = `
                 <tr>
-                    <td colspan="4"
+                    <td colspan="6"
                         style="text-align:center;padding:2rem;color:#64748b;">
                         No hay personal registrado.
                     </td>
@@ -384,6 +415,10 @@
             fila.innerHTML = `
                 <td style="padding:12px 24px;color:#1e293b;">
                     ${escaparHTML(empleado.nombre)}
+                </td>
+
+                <td style="padding:12px 24px;color:#475569;">
+                    ${escaparHTML(empleado.correo || "Sin registrar")}
                 </td>
 
                 <td style="padding:12px 24px;color:#475569;">
@@ -408,6 +443,19 @@
                         };
                     ">
                         ${escaparHTML(empleado.rol)}
+                    </span>
+                </td>
+
+                <td style="padding:12px 24px;">
+                    <span style="
+                        padding:4px 8px;
+                        border-radius:999px;
+                        font-size:.82rem;
+                        font-weight:600;
+                        background:${empleado.estado === "Inactivo" ? "#f1f5f9" : "#dcfce7"};
+                        color:${empleado.estado === "Inactivo" ? "#64748b" : "#166534"};
+                    ">
+                        ${escaparHTML(empleado.estado || "Activo")}
                     </span>
                 </td>
 
