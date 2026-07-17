@@ -1,386 +1,958 @@
 /**
- * JS LegalTech Control - Módulo de Asuntos (Expedientes)
+ * JS LegalTech Control
+ * Módulo de Asuntos y Bitácora sincronizado con Cloud Firestore.
+ *
+ * Firestore es la fuente principal.
+ * LocalStorage se conserva como caché temporal para mantener
+ * compatibilidad con los módulos todavía no migrados.
  */
 
-let asuntoHistorialIdSeleccionado = null;
+(() => {
+    "use strict";
 
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. Inyectamos el modal primero
-    inicializarModalBitacora();
-    
-    // 2. Cargamos la tabla
-    cargarAsuntosTabla();
-    
-    // 3. Escuchamos formularios (si existen)
-    document.getElementById("form-asunto")?.addEventListener("submit", guardarAsunto);
-    document.getElementById("form-actuacion")?.addEventListener("submit", guardarActuacion);
-});
+    const COLECCION_ASUNTOS = "asuntos";
+    const CACHE_ASUNTOS = "js_legal_asuntos";
 
-// --- FUNCIÓN DE INYECCIÓN DEL MODAL (HTML DENTRO DE JS) ---
-function inicializarModalBitacora() {
-    if (document.getElementById("modal-bitacora")) return; 
+    let asuntosCache = [];
+    let asuntoHistorialIdSeleccionado = null;
+    let detenerEscuchaAsuntos = null;
 
-    const div = document.createElement("div");
-    div.id = "modal-bitacora";
-    div.style.display = "none";
-    div.style.position = "fixed";
-    div.style.zIndex = "1000";
-    div.style.left = "0";
-    div.style.top = "0";
-    div.style.width = "100%";
-    div.style.height = "100%";
-    div.style.backgroundColor = "rgba(0,0,0,0.5)";
-    div.style.overflowY = "auto";
+    function obtenerDB() {
+        if (!window.db) {
+            throw new Error(
+                "Firestore no está disponible. Revisa js/firebase.js."
+            );
+        }
 
-    div.innerHTML = `
-    <div style="background-color: #ffffff; margin: 5% auto; padding: 2rem; width: 90%; max-width: 600px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 1rem; margin-bottom: 1rem;">
-            <h3 style="margin: 0; font-size: 1.3rem; color: #1e293b;">Historial de Actuaciones: <span id="bitacora-expediente-titulo" style="color: #8b5cf6;"></span></h3>
-            <span onclick="cerrarModalBitacora()" style="cursor: pointer; font-size: 1.5rem; color: #94a3b8; font-weight: bold;">&times;</span>
-        </div>
-        <form id="form-actuacion" style="background-color: #f8fafc; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; border: 1px solid #e2e8f0;">
-            <h4 style="margin: 0 0 0.8rem 0; font-size: 0.95rem; color: #475569;">📍 Registrar Nueva Actuación / Acuerdo</h4>
-            <div style="margin-bottom: 0.8rem;">
-                <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #475569; margin-bottom: 0.3rem;">Fecha:</label>
-                <input type="date" id="act-fecha" style="width: 100%; padding: 0.4rem; border: 1px solid #cbd5e1; border-radius: 4px;">
-            </div>
-            <div style="margin-bottom: 0.8rem;">
-                <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #475569; margin-bottom: 0.3rem;">Descripción:</label>
-                <textarea id="act-descripcion" required rows="3" style="width: 100%; padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 4px;"></textarea>
-            </div>
-            <button type="submit" style="background-color: #8b5cf6; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; width: 100%;">Agregar al Historial</button>
-        </form>
-        <h4 style="margin: 0 0 0.5rem 0; font-size: 1rem; color: #1e293b;">📜 Línea del Tiempo del Juicio</h4>
-        <div id="bitacora-lista-historico" style="max-height: 250px; overflow-y: auto; padding-right: 5px;"></div>
-    </div>`;
-
-    document.body.appendChild(div);
-}
-
-// Función auxiliar para recuperar de forma adaptativa el contenedor select de abogados sin depender de IDs rígidos
-function obtenerSelectAbogadoElemento() {
-    let select = document.getElementById('asu-abogado-id') || 
-                 document.getElementById('asunto-abogado') || 
-                 document.getElementById('abogado-asignado');
-
-    if (!select) {
-        const todosLosSelects = document.querySelectorAll("select");
-        todosLosSelects.forEach(sel => {
-            const idLower = sel.id.toLowerCase();
-            const nameLower = (sel.name || "").toLowerCase();
-            if (idLower.includes("abogado") || idLower.includes("resp") || nameLower.includes("abogado")) {
-                select = sel;
-            }
-        });
+        return window.db;
     }
 
-    if (!select) {
-        const todosLosLabels = document.querySelectorAll("label");
-        todosLosLabels.forEach(label => {
-            if (label.textContent.toLowerCase().includes("abogado")) {
-                const contenedor = label.parentElement;
-                const selectCercano = contenedor ? contenedor.querySelector("select") : null;
-                if (selectCercano) select = selectCercano;
-            }
-        });
-    }
-    return select;
-}
-
-// Renderiza la tabla de expedientes considerando el Rol del usuario activo
-function cargarAsuntosTabla() {
-    const tablaCuerpo = document.getElementById("tabla-asuntos-cuerpo") || document.getElementById("tabla-expedientes-cuerpo");
-    if (!tablaCuerpo) return;
-
-    const usuarioActivo = JSON.parse(sessionStorage.getItem("js_legal_usuario"));
-    let asuntos = obtenerAsuntos();
-    
-    // FILTRO DE ROL PARA EXPENDIENTES: Si es Abogado, sólo ve los que explícitamente tiene asignados
-    if (usuarioActivo && usuarioActivo.rol === "Abogado") {
-        asuntos = asuntos.filter(a => a.abogadoAsignado && String(a.abogadoAsignado) === String(usuarioActivo.usuario));
-    }
-
-    tablaCuerpo.innerHTML = "";
-
-    if (asuntos.length === 0) {
-        tablaCuerpo.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:1rem;">No tienes expedientes registrados o asignados.</td></tr>`;
-        return;
-    }
-
-    asuntos.forEach(a => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-            <td>${a.expediente}</td>
-            <td>${a.juzgado}</td>
-            <td>${a.materia}</td>
-            <td><span class="badge ${a.estado}">${a.estado}</span></td>
-            <td>${a.fechaRegistro}</td>
-            <td>
-                <button onclick="editarAsunto(${a.id})" style="color: #3b82f6; background:none; border:none; cursor:pointer; margin-right:5px;">✏️</button>
-                <button onclick="abrirBitacoraAsunto(${a.id})" style="color: #8b5cf6; background:none; border:none; cursor:pointer; margin-right:5px;">📜</button>
-                <button onclick="eliminarAsunto(${a.id})" style="color: #ef4444; background:none; border:none; cursor:pointer;">❌</button>
-            </td>
-        `;
-        tablaCuerpo.appendChild(tr);
-    });
-    
-}
-
-// Obtener asuntos de LocalStorage
-function obtenerAsuntos() {
-    const asuntos = localStorage.getItem("js_legal_asuntos");
-    return asuntos ? JSON.parse(asuntos) : [];
-}
-
-// Abrir Modal de Asunto y rellenar los selects
-function abrirModalAsunto() {
-    const modal = document.getElementById("modal-asunto");
-    if (modal) modal.style.display = "block";
-    
-    const titulo = document.getElementById("asunto-modal-titulo");
-    if (titulo) titulo.innerText = "Registrar Nuevo Expediente";
-    
-    document.getElementById("form-asunto")?.reset();
-    
-    const idInput = document.getElementById("asunto-id");
-    if (idInput) idInput.value = "";
-    
-    poblarSelectClientes();
-    cargarAbogadosEnAsuntos(); 
-}
-
-function cerrarModalAsunto() {
-    const modal = document.getElementById("modal-asunto");
-    if (modal) modal.style.display = "none";
-}
-
-// Llenar el select con los clientes de LocalStorage
-function poblarSelectClientes() {
-    const select = document.getElementById("asu-cliente-id");
-    if (!select) return;
-    
-    const clientes = JSON.parse(localStorage.getItem("js_legal_clientes")) || [];
-    select.innerHTML = '<option value="">-- Selecciona un cliente --</option>';
-    
-    clientes.forEach(c => {
-        const option = document.createElement("option");
-        option.value = c.id;
-        option.textContent = c.nombre;
-        select.appendChild(option);
-    });
-}
-
-// Carga dinámica de Abogados responsables en el selector
-function cargarAbogadosEnAsuntos() {
-    const selectAbogado = obtenerSelectAbogadoElemento();
-
-    if (!selectAbogado) {
-        console.error("Error crítico: No se encontró la etiqueta <select> para los abogados en el HTML.");
-        return;
-    }
-
-    const listaPersonal = JSON.parse(localStorage.getItem('js_legal_personal')) || [];
-    const abogados = listaPersonal.filter(emp => emp.rol === 'Abogado' || emp.rol === 'Administrador');
-
-    selectAbogado.innerHTML = '<option value="">-- Seleccione un Abogado Responsable --</option>';
-    
-    abogados.forEach(abogado => {
-        const option = document.createElement('option');
-        option.value = abogado.usuario; 
-        option.textContent = abogado.nombre;
-        selectAbogado.appendChild(option);
-    });
-}
-
-// Guardar o Editar Asunto - CORREGIDO (Ya extrae el valor correctamente y no falla)
-function guardarAsunto(e) {
-    e.preventDefault();
-    
-    const id = document.getElementById("asunto-id")?.value;
-    const clienteId = document.getElementById("asu-cliente-id")?.value;
-    const materia = document.getElementById("asu-materia")?.value;
-    const expediente = document.getElementById("asu-expediente")?.value.trim();
-    const juzgado = document.getElementById("asu-juzgado")?.value.trim();
-    const accion = document.getElementById("asu-accion")?.value.trim();
-    const estado = document.getElementById("asu-estado")?.value;
-    const resumen = document.getElementById("asu-resumen")?.value.trim();
-    
-    // Capturar usando la función adaptativa para evitar fallos por IDs
-    const selectAbogado = obtenerSelectAbogadoElemento();
-    const abogadoAsignado = selectAbogado ? selectAbogado.value : "";
-    
-    let listaAsuntos = obtenerAsuntos();
-    
-    if (id) {
-        listaAsuntos = listaAsuntos.map(a => {
-            if (String(a.id) === String(id)) {
-                return { ...a, clienteId, materia, expediente, juzgado, accion, estado, resumen, abogadoAsignado };
-            }
-            return a;
-        });
-    } else {
-        const nuevoAsunto = {
-            id: Date.now(),
-            clienteId,
-            materia,
-            expediente,
-            juzgado,
-            accion,
-            estado,
-            resumen,
-            abogadoAsignado, 
-            fechaRegistro: new Date().toLocaleDateString('es-MX'),
-            actuaciones: [] 
+    function normalizarAsunto(id, datos = {}) {
+        return {
+            id: String(id),
+            clienteId: datos.clienteId || "",
+            cliente: datos.cliente || "",
+            materia: datos.materia || "",
+            expediente: datos.expediente || "",
+            juzgado: datos.juzgado || "",
+            accion: datos.accion || "",
+            estado: datos.estado || "En Curso",
+            resumen: datos.resumen || "",
+            abogadoAsignado: datos.abogadoAsignado || "",
+            fechaRegistro: datos.fechaRegistro || null,
+            fechaActualizacion: datos.fechaActualizacion || null,
+            actuaciones: Array.isArray(datos.actuaciones)
+                ? datos.actuaciones
+                : []
         };
-        listaAsuntos.push(nuevoAsunto);
     }
-    
-    localStorage.setItem("js_legal_asuntos", JSON.stringify(listaAsuntos));
-    cerrarModalAsunto();
-    cargarAsuntosTabla();
-    if (typeof actualizarContadoresDashboard === "function") {
-        actualizarContadoresDashboard();
-    }
-}
 
-// Cargar para Editar - CORREGIDO
-function editarAsunto(id) {
-    const asuntos = obtenerAsuntos();
-    const asunto = asuntos.find(a => a.id == id);
-    
-    if (asunto) {
+    function convertirFechaFirestore(valor) {
+        if (!valor) return "";
+
+        if (typeof valor.toDate === "function") {
+            return valor.toDate().toLocaleDateString("es-MX");
+        }
+
+        return String(valor);
+    }
+
+    function guardarCacheLocal(lista) {
+        asuntosCache = Array.isArray(lista) ? lista : [];
+
+        localStorage.setItem(
+            CACHE_ASUNTOS,
+            JSON.stringify(asuntosCache)
+        );
+    }
+
+    function obtenerAsuntos() {
+        if (asuntosCache.length) {
+            return [...asuntosCache];
+        }
+
+        try {
+            return JSON.parse(
+                localStorage.getItem(CACHE_ASUNTOS)
+            ) || [];
+        } catch (error) {
+            console.error(
+                "No se pudo leer la caché de asuntos:",
+                error
+            );
+
+            return [];
+        }
+    }
+
+    function iniciarSincronizacionAsuntos() {
+        if (detenerEscuchaAsuntos) return;
+
+        try {
+            const db = obtenerDB();
+
+            detenerEscuchaAsuntos = db
+                .collection(COLECCION_ASUNTOS)
+                .orderBy("fechaRegistro", "desc")
+                .onSnapshot(snapshot => {
+                    const lista = snapshot.docs.map(doc =>
+                        normalizarAsunto(doc.id, doc.data())
+                    );
+
+                    guardarCacheLocal(lista);
+                    cargarAsuntosTabla();
+
+                    if (
+                        typeof window.cargarAsuntosConsultaCiudadana ===
+                        "function"
+                    ) {
+                        window.cargarAsuntosConsultaCiudadana();
+                    }
+
+                    if (
+                        typeof window.actualizarContadoresReales ===
+                        "function"
+                    ) {
+                        window.actualizarContadoresReales();
+                    }
+
+                    window.dispatchEvent(
+                        new CustomEvent("asuntosActualizados", {
+                            detail: lista
+                        })
+                    );
+
+                    if (asuntoHistorialIdSeleccionado) {
+                        const asuntoActual = lista.find(
+                            asunto =>
+                                String(asunto.id) ===
+                                String(asuntoHistorialIdSeleccionado)
+                        );
+
+                        if (asuntoActual) {
+                            cargarHistorialActuacionesLista(
+                                asuntoActual
+                            );
+                        }
+                    }
+                }, error => {
+                    console.error(
+                        "Error sincronizando asuntos:",
+                        error
+                    );
+
+                    alert(
+                        "No fue posible sincronizar los asuntos con Firebase."
+                    );
+                });
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    function obtenerUsuarioActivo() {
+        try {
+            const sesion =
+                sessionStorage.getItem("js_legal_usuario") ||
+                localStorage.getItem("js_legal_session");
+
+            return sesion ? JSON.parse(sesion) : null;
+        } catch (error) {
+            console.error(
+                "No se pudo leer la sesión:",
+                error
+            );
+
+            return null;
+        }
+    }
+
+    function escaparHTML(valor) {
+        return String(valor ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    function obtenerNombreCliente(clienteId) {
+        const clientes =
+            typeof window.obtenerClientes === "function"
+                ? window.obtenerClientes()
+                : JSON.parse(
+                    localStorage.getItem("js_legal_clientes")
+                ) || [];
+
+        const cliente = clientes.find(
+            item =>
+                String(item.id) === String(clienteId)
+        );
+
+        return cliente?.nombre || "";
+    }
+
+    function obtenerSelectAbogadoElemento() {
+        return (
+            document.getElementById("expediente-abogado") ||
+            document.getElementById("asu-abogado-id") ||
+            document.getElementById("asunto-abogado") ||
+            document.getElementById("abogado-asignado")
+        );
+    }
+
+    function poblarSelectClientes() {
+        const select =
+            document.getElementById("asu-cliente-id");
+
+        if (!select) return;
+
+        const clientes =
+            typeof window.obtenerClientes === "function"
+                ? window.obtenerClientes()
+                : JSON.parse(
+                    localStorage.getItem("js_legal_clientes")
+                ) || [];
+
+        select.innerHTML =
+            '<option value="">-- Selecciona un cliente --</option>';
+
+        clientes.forEach(cliente => {
+            const opcion = document.createElement("option");
+
+            opcion.value = cliente.id;
+            opcion.textContent =
+                cliente.nombre || "Cliente sin nombre";
+
+            select.appendChild(opcion);
+        });
+    }
+
+    function cargarAbogadosEnAsuntos() {
+        const select = obtenerSelectAbogadoElemento();
+
+        if (!select) {
+            console.error(
+                "No se encontró el selector de abogado del expediente."
+            );
+            return;
+        }
+
+        let lista = [];
+
+        if (
+            typeof window.obtenerListaCompletaPersonal ===
+            "function"
+        ) {
+            lista = window.obtenerListaCompletaPersonal();
+        } else {
+            const dinamico =
+                JSON.parse(
+                    localStorage.getItem("js_legal_personal")
+                ) || [];
+
+            const base =
+                typeof window.USUARIOS_MOCK !== "undefined"
+                    ? window.USUARIOS_MOCK
+                    : [];
+
+            lista = [...base, ...dinamico];
+        }
+
+        const abogados = lista.filter(
+            empleado =>
+                empleado.rol === "Abogado" ||
+                empleado.rol === "Administrador"
+        );
+
+        select.innerHTML =
+            '<option value="">-- Seleccione un abogado responsable --</option>';
+
+        abogados.forEach(abogado => {
+            const opcion = document.createElement("option");
+
+            opcion.value =
+                abogado.usuario || abogado.id;
+
+            opcion.textContent =
+                abogado.nombre || abogado.usuario;
+
+            select.appendChild(opcion);
+        });
+    }
+
+    function abrirModalAsunto() {
+        const modal = document.getElementById("modal-asunto");
+        const formulario =
+            document.getElementById("form-asunto");
+
+        if (!modal || !formulario) return;
+
+        formulario.reset();
+
+        const id = document.getElementById("asunto-id");
+        const titulo =
+            document.getElementById(
+                "asunto-modal-titulo"
+            );
+
+        if (id) id.value = "";
+        if (titulo) {
+            titulo.innerText =
+                "Registrar Nuevo Expediente";
+        }
+
+        poblarSelectClientes();
+        cargarAbogadosEnAsuntos();
+
+        modal.style.display = "block";
+    }
+
+    function cerrarModalAsunto() {
+        const modal = document.getElementById("modal-asunto");
+
+        if (modal) modal.style.display = "none";
+    }
+
+    async function guardarAsunto(event) {
+        event.preventDefault();
+
+        try {
+            const db = obtenerDB();
+
+            const id =
+                document.getElementById("asunto-id")
+                    ?.value.trim() || "";
+
+            const clienteId =
+                document.getElementById("asu-cliente-id")
+                    ?.value || "";
+
+            const materia =
+                document.getElementById("asu-materia")
+                    ?.value || "";
+
+            const expediente =
+                document.getElementById("asu-expediente")
+                    ?.value.trim() || "";
+
+            const juzgado =
+                document.getElementById("asu-juzgado")
+                    ?.value.trim() || "";
+
+            const accion =
+                document.getElementById("asu-accion")
+                    ?.value.trim() || "";
+
+            const estado =
+                document.getElementById("asu-estado")
+                    ?.value || "En Curso";
+
+            const resumen =
+                document.getElementById("asu-resumen")
+                    ?.value.trim() || "";
+
+            const selectAbogado =
+                obtenerSelectAbogadoElemento();
+
+            const abogadoAsignado =
+                selectAbogado?.value || "";
+
+            if (
+                !clienteId ||
+                !materia ||
+                !expediente ||
+                !juzgado ||
+                !accion
+            ) {
+                alert(
+                    "Completa los campos obligatorios del expediente."
+                );
+                return;
+            }
+
+            const cliente =
+                obtenerNombreCliente(clienteId);
+
+            const datos = {
+                clienteId,
+                cliente,
+                materia,
+                expediente,
+                juzgado,
+                accion,
+                estado,
+                resumen,
+                abogadoAsignado,
+                fechaActualizacion:
+                    firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            if (id) {
+                await db
+                    .collection(COLECCION_ASUNTOS)
+                    .doc(String(id))
+                    .set(datos, { merge: true });
+
+                alert(
+                    "Expediente actualizado correctamente."
+                );
+            } else {
+                datos.actuaciones = [];
+                datos.fechaRegistro =
+                    firebase.firestore.FieldValue.serverTimestamp();
+
+                await db
+                    .collection(COLECCION_ASUNTOS)
+                    .add(datos);
+
+                alert(
+                    "Expediente registrado correctamente."
+                );
+            }
+
+            cerrarModalAsunto();
+
+        } catch (error) {
+            console.error(
+                "Error guardando asunto:",
+                error
+            );
+
+            alert(
+                "No fue posible guardar el expediente en Firebase."
+            );
+        }
+    }
+
+    function editarAsunto(id) {
+        const asunto = obtenerAsuntos().find(
+            item =>
+                String(item.id) === String(id)
+        );
+
+        if (!asunto) {
+            alert("No se encontró el expediente.");
+            return;
+        }
+
         abrirModalAsunto();
-        document.getElementById("asunto-modal-titulo").innerText = "Editar Expediente";
-        document.getElementById("asunto-id").value = asunto.id;
-        document.getElementById("asu-cliente-id").value = asunto.clienteId;
-        document.getElementById("asu-materia").value = asunto.materia;
-        document.getElementById("asu-expediente").value = asunto.expediente;
-        document.getElementById("asu-juzgado").value = asunto.juzgado;
-        document.getElementById("asu-accion").value = asunto.accion;
-        document.getElementById("asu-estado").value = asunto.estado;
-        document.getElementById("asu-resumen").value = asunto.resumen;
-        
-        const selectAbogado = obtenerSelectAbogadoElemento();
-        if (selectAbogado) selectAbogado.value = asunto.abogadoAsignado || "";
-    }
-}
 
-// Eliminar Asunto
-function eliminarAsunto(id) {
-    if (confirm("¿Seguro de que deseas eliminar este expediente del sistema?")) {
+        document.getElementById(
+            "asunto-modal-titulo"
+        ).innerText = "Editar Expediente";
+
+        document.getElementById("asunto-id").value =
+            asunto.id;
+
+        document.getElementById(
+            "asu-cliente-id"
+        ).value = asunto.clienteId || "";
+
+        document.getElementById("asu-materia").value =
+            asunto.materia || "";
+
+        document.getElementById(
+            "asu-expediente"
+        ).value = asunto.expediente || "";
+
+        document.getElementById("asu-juzgado").value =
+            asunto.juzgado || "";
+
+        document.getElementById("asu-accion").value =
+            asunto.accion || "";
+
+        document.getElementById("asu-estado").value =
+            asunto.estado || "En Curso";
+
+        document.getElementById("asu-resumen").value =
+            asunto.resumen || "";
+
+        const selectAbogado =
+            obtenerSelectAbogadoElemento();
+
+        if (selectAbogado) {
+            selectAbogado.value =
+                asunto.abogadoAsignado || "";
+        }
+    }
+
+    async function eliminarAsunto(id) {
+        if (
+            !confirm(
+                "¿Seguro que deseas eliminar este expediente?"
+            )
+        ) {
+            return;
+        }
+
+        try {
+            const db = obtenerDB();
+
+            await db
+                .collection(COLECCION_ASUNTOS)
+                .doc(String(id))
+                .delete();
+
+            alert("Expediente eliminado.");
+        } catch (error) {
+            console.error(
+                "Error eliminando asunto:",
+                error
+            );
+
+            alert(
+                "No fue posible eliminar el expediente."
+            );
+        }
+    }
+
+    function cargarAsuntosTabla() {
+        const cuerpo =
+            document.getElementById(
+                "tabla-asuntos-cuerpo"
+            ) ||
+            document.getElementById(
+                "tabla-expedientes-cuerpo"
+            );
+
+        if (!cuerpo) return;
+
+        const usuarioActivo = obtenerUsuarioActivo();
         let asuntos = obtenerAsuntos();
-        asuntos = asuntos.filter(a => a.id != id);
-        localStorage.setItem("js_legal_asuntos", JSON.stringify(asuntos));
-        cargarAsuntosTabla();
-        if (typeof actualizarContadoresDashboard === "function") {
-            actualizarContadoresDashboard();
+
+        if (
+            usuarioActivo &&
+            usuarioActivo.rol === "Abogado"
+        ) {
+            asuntos = asuntos.filter(
+                asunto =>
+                    String(
+                        asunto.abogadoAsignado || ""
+                    ) ===
+                    String(usuarioActivo.usuario || "")
+            );
+        }
+
+        cuerpo.innerHTML = "";
+
+        if (!asuntos.length) {
+            cuerpo.innerHTML = `
+                <tr>
+                    <td colspan="6"
+                        style="text-align:center;padding:1rem;">
+                        No hay expedientes registrados o asignados.
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
+        asuntos.forEach(asunto => {
+            const fila = document.createElement("tr");
+
+            fila.innerHTML = `
+                <td>${escaparHTML(
+                    asunto.expediente || "S/N"
+                )}</td>
+
+                <td>${escaparHTML(
+                    asunto.cliente || "Sin cliente"
+                )}</td>
+
+                <td>${escaparHTML(
+                    `${asunto.materia || ""} / ${
+                        asunto.accion || ""
+                    }`
+                )}</td>
+
+                <td>${escaparHTML(
+                    asunto.juzgado || ""
+                )}</td>
+
+                <td>
+                    <span class="badge">
+                        ${escaparHTML(
+                            asunto.estado || ""
+                        )}
+                    </span>
+                </td>
+
+                <td style="text-align:center;">
+                    <button
+                        type="button"
+                        onclick="editarAsunto('${asunto.id}')"
+                        style="color:#3b82f6;background:none;border:none;cursor:pointer;margin-right:5px;">
+                        ✏️
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="abrirBitacoraAsunto('${asunto.id}')"
+                        style="color:#8b5cf6;background:none;border:none;cursor:pointer;margin-right:5px;">
+                        📜
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="eliminarAsunto('${asunto.id}')"
+                        style="color:#ef4444;background:none;border:none;cursor:pointer;">
+                        ❌
+                    </button>
+                </td>
+            `;
+
+            cuerpo.appendChild(fila);
+        });
+    }
+
+    function abrirBitacoraAsunto(asuntoId) {
+        asuntoHistorialIdSeleccionado =
+            String(asuntoId);
+
+        const asunto = obtenerAsuntos().find(
+            item =>
+                String(item.id) ===
+                String(asuntoId)
+        );
+
+        if (!asunto) {
+            alert("No se encontró el expediente.");
+            return;
+        }
+
+        const modal =
+            document.getElementById("modal-bitacora");
+
+        const titulo =
+            document.getElementById(
+                "bitacora-expediente-titulo"
+            );
+
+        const formulario =
+            document.getElementById("form-actuacion");
+
+        if (!modal) {
+            console.error(
+                "No existe modal-bitacora."
+            );
+            return;
+        }
+
+        if (modal.parentElement !== document.body) {
+            document.body.appendChild(modal);
+        }
+
+        if (titulo) {
+            titulo.innerText =
+                asunto.expediente || "Sin número";
+        }
+
+        if (formulario) {
+            formulario.style.display = "block";
+            formulario.reset();
+        }
+
+        cargarHistorialActuacionesLista(asunto);
+        modal.style.display = "block";
+    }
+
+    function cerrarModalBitacora() {
+        const modal =
+            document.getElementById("modal-bitacora");
+
+        if (modal) modal.style.display = "none";
+
+        asuntoHistorialIdSeleccionado = null;
+
+        const formulario =
+            document.getElementById("form-actuacion");
+
+        if (formulario) {
+            formulario.style.display = "block";
         }
     }
-}
 
+    function cargarHistorialActuacionesLista(asunto) {
+        const contenedor =
+            document.getElementById(
+                "bitacora-lista-historico"
+            );
 
-function abrirBitacoraAsunto(asuntoId) {
-    asuntoHistorialIdSeleccionado = asuntoId;
-    const asuntos = obtenerAsuntos();
-    const asunto = asuntos.find(a => a.id == asuntoId);
-    
-    if (!asunto) return;
-    
-    document.getElementById("bitacora-expediente-titulo").innerText = asunto.expediente;
-    document.getElementById("modal-bitacora").style.display = "block";
-    document.getElementById("form-actuacion").reset();
-    
-    cargarHistorialActuacionesLista(asunto);
-}
+        if (!contenedor) return;
 
-function cerrarModalBitacora() {
-    document.getElementById("modal-bitacora").style.display = "none";
-    asuntoHistorialIdSeleccionado = null;
+        contenedor.innerHTML = "";
 
-    const formulario = document.getElementById("form-actuacion");
-if (formulario) formulario.style.display = "block";
-}
+        const actuaciones =
+            Array.isArray(asunto.actuaciones)
+                ? asunto.actuaciones
+                : [];
 
-function cargarHistorialActuacionesLista(asunto) {
-    const listaContenedor = document.getElementById("bitacora-lista-historico");
-    if (!listaContenedor) return;
-    
-    listaContenedor.innerHTML = "";
-    const actuaciones = asunto.actuaciones || [];
-    
-    if (actuaciones.length === 0) {
-        listaContenedor.innerHTML = `<p style="color: var(--text-muted); text-align: center; padding: 1rem;">No hay actuaciones registradas en este expediente aún.</p>`;
-        return;
+        if (!actuaciones.length) {
+            contenedor.innerHTML = `
+                <p style="
+                    color:#64748b;
+                    text-align:center;
+                    padding:1rem;
+                ">
+                    No hay actuaciones registradas.
+                </p>
+            `;
+            return;
+        }
+
+        actuaciones
+            .slice()
+            .reverse()
+            .forEach((actuacion, indiceInvertido) => {
+                const indiceReal =
+                    actuaciones.length -
+                    1 -
+                    indiceInvertido;
+
+                const elemento =
+                    document.createElement("div");
+
+                elemento.style.cssText = `
+                    background:#f8fafc;
+                    border-left:4px solid #8b5cf6;
+                    padding:.8rem;
+                    margin-bottom:.5rem;
+                    border-radius:0 6px 6px 0;
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:flex-start;
+                `;
+
+                elemento.innerHTML = `
+                    <div style="flex-grow:1;margin-right:10px;">
+                        <span style="
+                            font-size:.8rem;
+                            font-weight:bold;
+                            color:#64748b;
+                            display:block;
+                        ">
+                            📅 ${escaparHTML(
+                                actuacion.fecha || ""
+                            )}
+                        </span>
+
+                        <p style="
+                            margin:.2rem 0 0;
+                            font-size:.9rem;
+                            color:#1e293b;
+                            line-height:1.4;
+                        ">
+                            ${escaparHTML(
+                                actuacion.descripcion || ""
+                            )}
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        onclick="eliminarActuacion(${indiceReal})"
+                        style="
+                            background:none;
+                            border:none;
+                            color:#ef4444;
+                            cursor:pointer;
+                            font-size:.85rem;
+                        ">
+                        ❌
+                    </button>
+                `;
+
+                contenedor.appendChild(elemento);
+            });
     }
-    
-    actuaciones.slice().reverse().forEach((act, index) => {
-        const realIndex = actuaciones.length - 1 - index; 
-        const div = document.createElement("div");
-        div.style.backgroundColor = "#f8fafc";
-        div.style.borderLeft = "4px solid #8b5cf6";
-        div.style.padding = "0.8rem";
-        div.style.marginBottom = "0.5rem";
-        div.style.borderRadius = "0 6px 6px 0";
-        div.style.display = "flex";
-        div.style.justifyContent = "between";
-        div.style.alignItems = "start";
-        
-        div.innerHTML = `
-            <div style="flex-grow: 1; margin-right: 10px;">
-                <span style="font-size: 0.8rem; font-weight: bold; color: #64748b; display: block;">📅 ${act.fecha}</span>
-                <p style="margin: 0.2rem 0 0 0; font-size: 0.9rem; color: #1e293b; line-height: 1.4;">${act.descripcion}</p>
-            </div>
-            <button onclick="eliminarActuacion(${realIndex})" style="background: none; border: none; color: #ef4444; cursor: pointer; font-size: 0.85rem;">❌</button>
-        `;
-        listaContenedor.appendChild(div);
-    });
-}
 
-function guardarActuacion(e) {
-    e.preventDefault();
-    if (!asuntoHistorialIdSeleccionado) return;
-    
-    const descripcion = document.getElementById("act-descripcion").value.trim();
-    const fecha = document.getElementById("act-fecha").value;
-    
-    const fechaFormateada = fecha ? new Date(fecha + "T00:00:00").toLocaleDateString('es-MX') : new Date().toLocaleDateString('es-MX');
-    
-    let listaAsuntos = obtenerAsuntos();
-    
-    listaAsuntos = listaAsuntos.map(a => {
-        if (String(a.id) === String(asuntoHistorialIdSeleccionado)) {
-            if (!a.actuaciones) a.actuaciones = [];
-            a.actuaciones.push({ fecha: fechaFormateada, descripcion: descripcion });
+    async function guardarActuacion(event) {
+        event.preventDefault();
+
+        if (!asuntoHistorialIdSeleccionado) {
+            alert("No hay expediente seleccionado.");
+            return;
         }
-        return a;
-    });
-    
-    localStorage.setItem("js_legal_asuntos", JSON.stringify(listaAsuntos));
-    
-    const asuntoActualizado = listaAsuntos.find(a => a.id == asuntoHistorialIdSeleccionado);
-    document.getElementById("form-actuacion").reset();
-    cargarHistorialActuacionesLista(asuntoActualizado);
-}
 
-function eliminarActuacion(index) {
-    if (!confirm("¿Deseas borrar esta actuación del historial?")) return;
-    
-    let listaAsuntos = obtenerAsuntos();
-    listaAsuntos = listaAsuntos.map(a => {
-        if (String(a.id) === String(asuntoHistorialIdSeleccionado)) {
-            a.actuaciones.splice(index, 1);
+        const descripcion =
+            document.getElementById(
+                "act-descripcion"
+            )?.value.trim() || "";
+
+        const fechaInput =
+            document.getElementById("act-fecha")
+                ?.value || "";
+
+        if (!descripcion) {
+            alert(
+                "Escribe la descripción de la actuación."
+            );
+            return;
         }
-        return a;
-    });
-    
-    localStorage.setItem("js_legal_asuntos", JSON.stringify(listaAsuntos));
-    
-    const asuntoActualizado = listaAsuntos.find(a => a.id == asuntoHistorialIdSeleccionado);
-    cargarHistorialActuacionesLista(asuntoActualizado);
-}
 
-function actualizarContadoresDashboard() {
-    const totalAsuntos = obtenerAsuntos().length;
-    const badge = document.getElementById("count-asuntos");
-    if (badge) badge.innerText = totalAsuntos;
-}
+        const fecha = fechaInput
+            ? new Date(
+                  `${fechaInput}T00:00:00`
+              ).toLocaleDateString("es-MX")
+            : new Date().toLocaleDateString(
+                  "es-MX"
+              );
+
+        const asunto = obtenerAsuntos().find(
+            item =>
+                String(item.id) ===
+                String(asuntoHistorialIdSeleccionado)
+        );
+
+        if (!asunto) {
+            alert("No se encontró el expediente.");
+            return;
+        }
+
+        const actuaciones = Array.isArray(
+            asunto.actuaciones
+        )
+            ? [...asunto.actuaciones]
+            : [];
+
+        actuaciones.push({
+            fecha,
+            descripcion,
+            creadoEn: new Date().toISOString()
+        });
+
+        try {
+            const db = obtenerDB();
+
+            await db
+                .collection(COLECCION_ASUNTOS)
+                .doc(
+                    String(
+                        asuntoHistorialIdSeleccionado
+                    )
+                )
+                .update({
+                    actuaciones,
+                    resumen: descripcion,
+                    fechaActualizacion:
+                        firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+            document
+                .getElementById("form-actuacion")
+                ?.reset();
+
+        } catch (error) {
+            console.error(
+                "Error guardando actuación:",
+                error
+            );
+
+            alert(
+                "No fue posible guardar la actuación."
+            );
+        }
+    }
+
+    async function eliminarActuacion(indice) {
+        if (
+            !confirm(
+                "¿Deseas borrar esta actuación del historial?"
+            )
+        ) {
+            return;
+        }
+
+        const asunto = obtenerAsuntos().find(
+            item =>
+                String(item.id) ===
+                String(asuntoHistorialIdSeleccionado)
+        );
+
+        if (!asunto) return;
+
+        const actuaciones = Array.isArray(
+            asunto.actuaciones
+        )
+            ? [...asunto.actuaciones]
+            : [];
+
+        actuaciones.splice(indice, 1);
+
+        try {
+            const db = obtenerDB();
+
+            await db
+                .collection(COLECCION_ASUNTOS)
+                .doc(
+                    String(
+                        asuntoHistorialIdSeleccionado
+                    )
+                )
+                .update({
+                    actuaciones,
+                    fechaActualizacion:
+                        firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+        } catch (error) {
+            console.error(
+                "Error eliminando actuación:",
+                error
+            );
+
+            alert(
+                "No fue posible eliminar la actuación."
+            );
+        }
+    }
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        () => {
+            document
+                .getElementById("form-asunto")
+                ?.addEventListener(
+                    "submit",
+                    guardarAsunto
+                );
+
+            document
+                .getElementById("form-actuacion")
+                ?.addEventListener(
+                    "submit",
+                    guardarActuacion
+                );
+
+            iniciarSincronizacionAsuntos();
+            cargarAsuntosTabla();
+        }
+    );
+
+    window.obtenerAsuntos = obtenerAsuntos;
+    window.cargarAsuntosTabla =
+        cargarAsuntosTabla;
+    window.abrirModalAsunto =
+        abrirModalAsunto;
+    window.cerrarModalAsunto =
+        cerrarModalAsunto;
+    window.guardarAsunto = guardarAsunto;
+    window.editarAsunto = editarAsunto;
+    window.eliminarAsunto = eliminarAsunto;
+    window.abrirBitacoraAsunto =
+        abrirBitacoraAsunto;
+    window.cerrarModalBitacora =
+        cerrarModalBitacora;
+    window.guardarActuacion =
+        guardarActuacion;
+    window.eliminarActuacion =
+        eliminarActuacion;
+    window.cargarHistorialActuacionesLista =
+        cargarHistorialActuacionesLista;
+    window.cargarAbogadosEnAsuntos =
+        cargarAbogadosEnAsuntos;
+    window.poblarSelectClientes =
+        poblarSelectClientes;
+})();

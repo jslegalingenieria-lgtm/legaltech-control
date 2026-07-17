@@ -1,0 +1,303 @@
+/* =========================================================
+   JS LegalTech Control — Dashboard Ejecutivo 3.0
+   ========================================================= */
+
+.dashboard-ejecutivo {
+    --dash-primary: #0f172a;
+    --dash-secondary: #334155;
+    --dash-accent: #2563eb;
+    --dash-soft: #eff6ff;
+    --dash-border: #e2e8f0;
+    --dash-muted: #64748b;
+}
+
+.dashboard-welcome {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-eyebrow,
+.dashboard-panel-kicker {
+    display: block;
+    color: var(--dash-accent);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+}
+
+.dashboard-welcome h3 {
+    color: var(--dash-primary);
+    font-size: clamp(1.35rem, 2vw, 1.9rem);
+    margin: 0 0 0.35rem;
+}
+
+.dashboard-welcome p {
+    color: var(--dash-muted);
+    margin: 0;
+}
+
+.dashboard-refresh,
+.dashboard-link-button {
+    border: 1px solid var(--dash-border);
+    background: #fff;
+    color: var(--dash-secondary);
+    border-radius: 8px;
+    padding: 0.65rem 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.dashboard-refresh:hover,
+.dashboard-link-button:hover {
+    border-color: var(--dash-accent);
+    color: var(--dash-accent);
+}
+
+.executive-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.executive-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #fff;
+    border: 1px solid var(--dash-border);
+    border-radius: 14px;
+    padding: 1.15rem;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+    min-width: 0;
+}
+
+.executive-card-icon {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--dash-soft);
+    font-size: 1.35rem;
+}
+
+.executive-card-label {
+    display: block;
+    color: var(--dash-muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.executive-card strong {
+    display: block;
+    color: var(--dash-primary);
+    font-size: 1.85rem;
+    line-height: 1.15;
+    margin: 0.18rem 0;
+}
+
+.executive-card small {
+    color: var(--dash-muted);
+}
+
+.dashboard-assistant {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, #eff6ff, #f8fafc);
+    border: 1px solid #bfdbfe;
+    border-left: 5px solid var(--dash-accent);
+    border-radius: 12px;
+    padding: 1.15rem 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.dashboard-assistant-icon {
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--dash-accent);
+    color: #fff;
+    font-weight: 900;
+}
+
+.dashboard-assistant h4 {
+    color: #1e3a8a;
+    margin: 0 0 0.25rem;
+}
+
+.dashboard-assistant p {
+    color: #1e40af;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.dashboard-panel {
+    background: #fff;
+    border: 1px solid var(--dash-border);
+    border-radius: 14px;
+    padding: 1.25rem;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+    min-width: 0;
+}
+
+.dashboard-panel-wide {
+    grid-column: span 2;
+}
+
+.dashboard-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.dashboard-panel h4 {
+    color: var(--dash-primary);
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.dashboard-link-button {
+    padding: 0.45rem 0.65rem;
+    font-size: 0.78rem;
+}
+
+.dashboard-chart-wrap {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+.dashboard-chart-small {
+    height: 260px;
+}
+
+.dashboard-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.dashboard-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    border: 1px solid var(--dash-border);
+    border-radius: 10px;
+    padding: 0.85rem;
+    background: #f8fafc;
+}
+
+.dashboard-list-date {
+    min-width: 58px;
+    border-radius: 8px;
+    padding: 0.45rem;
+    text-align: center;
+    background: #fff;
+    border: 1px solid var(--dash-border);
+    color: var(--dash-accent);
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.dashboard-list-content {
+    min-width: 0;
+}
+
+.dashboard-list-content strong {
+    display: block;
+    color: var(--dash-primary);
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+}
+
+.dashboard-list-content span,
+.dashboard-list-content small {
+    display: block;
+    color: var(--dash-muted);
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+.dashboard-empty,
+.dashboard-error {
+    color: var(--dash-muted);
+    text-align: center;
+    padding: 1.5rem 0.5rem;
+}
+
+.dashboard-error {
+    color: #b91c1c;
+}
+
+@media (max-width: 1100px) {
+    .executive-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 780px) {
+    .dashboard-welcome {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .dashboard-refresh {
+        width: 100%;
+    }
+
+    .executive-metrics,
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-panel-wide {
+        grid-column: auto;
+    }
+
+    .dashboard-chart-wrap,
+    .dashboard-chart-small {
+        height: 260px;
+    }
+}
+
+@media (max-width: 480px) {
+    .executive-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .executive-card {
+        padding: 1rem;
+    }
+
+    .dashboard-panel {
+        padding: 1rem;
+    }
+
+    .dashboard-panel-header {
+        flex-direction: column;
+    }
+
+    .dashboard-link-button {
+        width: 100%;
+    }
+}

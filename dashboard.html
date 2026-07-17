@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="css/tables.css">
 <link rel="stylesheet" href="css/estilos.css">
 <link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/dashboard-ejecutivo.css">
 
 
 <!-- Firebase primero -->
@@ -75,30 +76,158 @@
 
 </header>
 
-            <!-- VISTA 1: DASHBOARD -->
-            <section id="vista-dashboard" class="app-view">
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <span class="metric-title">Clientes Registrados</span>
-                        <span class="metric-value" id="count-clientes">0</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-title">Asuntos Activos</span>
-                        <span class="metric-value" id="count-asuntos">0</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-title">Audiencias este mes</span>
-                        <span class="metric-value" id="count-audiencias">0</span>
-                    </div>
-                </div>
+      <section id="vista-dashboard" class="app-view dashboard-ejecutivo">
+    <div class="dashboard-welcome">
+        <div>
+            <span class="dashboard-eyebrow">Panel ejecutivo</span>
+            <h3 id="dashboard-saludo">Resumen del despacho</h3>
+            <p id="dashboard-subtitulo">
+                Información actualizada en tiempo real desde Firebase.
+            </p>
+        </div>
 
-                <div style="background: #eff6ff; border-left: 4px solid #2563eb; padding: 1.5rem; border-radius: 6px; margin-top: 2rem;">
-                    <h3 style="color: #1e3a8a; margin-bottom: 0.5rem;">🤖 Asistente Virtual JS</h3>
-                    <p style="color: #1e40af; font-size: 0.95rem;" id="asistente-mensaje">
-                        Revisando la agenda... No tienes audiencias programadas para hoy. Buen día.
-                    </p>
+        <button
+            type="button"
+            class="dashboard-refresh"
+            id="btn-refrescar-dashboard"
+            title="Actualizar información"
+        >
+            ↻ Actualizar
+        </button>
+    </div>
+
+    <div class="executive-metrics">
+        <article class="executive-card">
+            <div class="executive-card-icon">👥</div>
+            <div>
+                <span class="executive-card-label">Clientes</span>
+                <strong id="count-clientes">0</strong>
+                <small id="metric-clientes-detalle">Registrados</small>
+            </div>
+        </article>
+
+        <article class="executive-card">
+            <div class="executive-card-icon">⚖️</div>
+            <div>
+                <span class="executive-card-label">Asuntos activos</span>
+                <strong id="count-asuntos">0</strong>
+                <small id="metric-asuntos-detalle">En seguimiento</small>
+            </div>
+        </article>
+
+        <article class="executive-card">
+            <div class="executive-card-icon">📅</div>
+            <div>
+                <span class="executive-card-label">Eventos del mes</span>
+                <strong id="count-audiencias">0</strong>
+                <small id="metric-agenda-detalle">Agenda jurídica</small>
+            </div>
+        </article>
+
+        <article class="executive-card">
+            <div class="executive-card-icon">⏰</div>
+            <div>
+                <span class="executive-card-label">Eventos de hoy</span>
+                <strong id="count-eventos-hoy">0</strong>
+                <small id="metric-hoy-detalle">Pendientes del día</small>
+            </div>
+        </article>
+    </div>
+
+    <div class="dashboard-assistant">
+        <div class="dashboard-assistant-icon">JS</div>
+        <div>
+            <h4>Asistente Virtual</h4>
+            <p id="asistente-mensaje">
+                Consultando la agenda y los expedientes...
+            </p>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <article class="dashboard-panel dashboard-panel-wide">
+            <div class="dashboard-panel-header">
+                <div>
+                    <span class="dashboard-panel-kicker">Distribución</span>
+                    <h4>Asuntos por materia</h4>
                 </div>
-            </section>
+            </div>
+
+            <div class="dashboard-chart-wrap">
+                <canvas id="grafica-asuntos-materia"></canvas>
+            </div>
+        </article>
+
+        <article class="dashboard-panel">
+            <div class="dashboard-panel-header">
+                <div>
+                    <span class="dashboard-panel-kicker">Situación procesal</span>
+                    <h4>Estado de expedientes</h4>
+                </div>
+            </div>
+
+            <div class="dashboard-chart-wrap dashboard-chart-small">
+                <canvas id="grafica-asuntos-estado"></canvas>
+            </div>
+        </article>
+
+        <article class="dashboard-panel">
+            <div class="dashboard-panel-header">
+                <div>
+                    <span class="dashboard-panel-kicker">Agenda inmediata</span>
+                    <h4>Próximos eventos</h4>
+                </div>
+                <button
+                    type="button"
+                    class="dashboard-link-button"
+                    onclick="switchTab('agenda')"
+                >
+                    Ver agenda
+                </button>
+            </div>
+
+            <div id="dashboard-proximos-eventos" class="dashboard-list">
+                <p class="dashboard-empty">Cargando eventos...</p>
+            </div>
+        </article>
+
+        <article class="dashboard-panel">
+            <div class="dashboard-panel-header">
+                <div>
+                    <span class="dashboard-panel-kicker">Seguimiento</span>
+                    <h4>Actividad reciente</h4>
+                </div>
+                <button
+                    type="button"
+                    class="dashboard-link-button"
+                    onclick="switchTab('asuntos')"
+                >
+                    Ver asuntos
+                </button>
+            </div>
+
+            <div id="dashboard-actividad-reciente" class="dashboard-list">
+                <p class="dashboard-empty">Cargando actuaciones...</p>
+            </div>
+        </article>
+
+        <article
+            id="panel-carga-abogados"
+            class="dashboard-panel dashboard-panel-wide"
+        >
+            <div class="dashboard-panel-header">
+                <div>
+                    <span class="dashboard-panel-kicker">Equipo jurídico</span>
+                    <h4>Carga de asuntos por abogado</h4>
+                </div>
+            </div>
+
+            <div class="dashboard-chart-wrap">
+                <canvas id="grafica-carga-abogados"></canvas>
+            </div>
+        </article>
+    </div>
+</section>
 
             <!-- VISTA 2: CLIENTES -->
             <section id="vista-clientes" class="app-view" style="display: none;">
@@ -487,20 +616,22 @@
         </div>
     </div>
 
-    <!-- Librerías para generar PDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
-    <!-- Scripts de la aplicación: cargar cada archivo una sola vez -->
-    <script src="js/storage.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/clientes.js"></script>
-    <script src="js/asuntos.js"></script>
-    <script src="js/agenda.js"></script>
-    <script src="js/personal.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/pdf.js"></script>
+<script src="js/firebase.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/clientes.js"></script>
+<script src="js/asuntos.js"></script>
+<script src="js/agenda.js"></script>
+<script src="js/personal.js"></script>
+<script src="js/app.js"></script>
+<script src="js/dashboard-ejecutivo.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="js/pdf.js"></script>
 
     <script>
         if ("serviceWorker" in navigator) {

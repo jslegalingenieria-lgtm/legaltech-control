@@ -1,127 +1,302 @@
-// 1. Catálogo Base de Usuarios (Hardcoded)
-const USUARIOS_MOCK = [
-    {
-        id: "1",
-        usuario: "jorge.sanchez",
-        nombre: "Jorge Sánchez Flores",
+/**
+ * JS LegalTech Control
+ * Login Firestore con migración inicial del administrador.
+ *
+ * Requiere:
+ *   firebase-app-compat.js
+ *   firebase-firestore-compat.js
+ *   js/firebase.js
+ */
+
+(() => {
+    "use strict";
+
+    const CLAVE_SESION_LOCAL = "js_legal_session";
+    const CLAVE_SESION_TEMPORAL = "js_legal_usuario";
+
+    // Acceso inicial únicamente para migrar al administrador antiguo.
+    // Después de confirmar que el documento aparece en Firestore,
+    // puedes eliminar este bloque y la función migrarAdministradorInicial.
+    const ADMIN_INICIAL = {
+        usuario: "Administrador",
+        nombre: "Administrador",
         rol: "Administrador",
         pass: "admin2026"
-    },
-    {
-        id: "2",
-        usuario: "abogado.demo",
-        nombre: "Lic. Alejandro Martínez",
-        rol: "Abogado",
-        pass: "abogado123"
+    };
+
+    function obtenerDB() {
+        if (!window.db) {
+            throw new Error(
+                "Firestore no está disponible. Verifica que firebase.js se cargue antes de auth.js."
+            );
+        }
+        return window.db;
     }
-];
 
-// 2. Manejador del Formulario de Login Centralizado
-function procesarLogin(e) {
-    if (e) e.preventDefault();
-    
-    const usuarioInput = document.getElementById('usuario').value.trim().toLowerCase();
-    const passwordInput = document.getElementById('password').value;
-    
-    console.log("Intentando iniciar sesión con:", usuarioInput);
-    
-    // Obtener el personal dinámico creado desde la App
-    const personalRegistrado = JSON.parse(localStorage.getItem("js_legal_personal")) || [];
-    
-    // Combinamos el catálogo base con el del LocalStorage
-    const todoElPersonal = [...USUARIOS_MOCK, ...personalRegistrado];
-    
-    // Buscar coincidencia en la lista unificada de personal administrativo/abogados
-    let usuarioValido = todoElPersonal.find(u => {
-        if (!u.usuario) return false;
-        // Validamos que coincida el usuario y soportamos tanto 'pass' como 'password'
-        const passwordAlmacenado = u.pass || u.password;
-        return u.usuario.toLowerCase() === usuarioInput && passwordAlmacenado === passwordInput;
-    });
-    
-    // Si no es interno, buscar en clientes de LocalStorage
-    if (!usuarioValido) {
-        const clientesRegistrados = JSON.parse(localStorage.getItem("js_legal_clientes")) || [];
-        
-        // Limpieza absoluta para evitar fallos por espacios o puntos (ej: "juan sanchez" -> "juansanchez")
-        const inputLimpio = usuarioInput.normalize("NFD")
-                                        .replace(/[\u0300-\u036f]/g, "")
-                                        .replace(/\s+/g, '')
-                                        .replace(/\./g, '');
+    function normalizarTexto(valor) {
+        return String(valor || "")
+            .trim()
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
+    }
 
-        const clienteEncontrado = clientesRegistrados.find(c => {
-            if (!c.nombre) return false;
-            
-            const nombreBD = c.nombre.toLowerCase()
-                                     .normalize("NFD")
-                                     .replace(/[\u0300-\u036f]/g, "")
-                                     .replace(/\s+/g, '')
-                                     .replace(/\./g, '');
-                                     
-            const correoBD = c.correo ? c.correo.toLowerCase().trim() : "";
-            
-            return inputLimpio === nombreBD || usuarioInput === correoBD;
+    function normalizarNombre(valor) {
+        return normalizarTexto(valor)
+            .replace(/\s+/g, "")
+            .replace(/\./g, "");
+    }
+
+    function construirSesion(id, datos, rolForzado = null) {
+        return {
+            id: String(id),
+            nombre: datos.nombre || "Usuario",
+            rol: rolForzado || datos.rol || "Cliente",
+            usuario: datos.usuario || datos.correo || normalizarNombre(datos.nombre),
+            token:
+                "tk_" +
+                Date.now().toString(36) +
+                "_" +
+                Math.random().toString(36).slice(2, 10),
+            inicioSesion: new Date().toISOString()
+        };
+    }
+
+    function guardarSesion(sesion, recordar = true) {
+        sessionStorage.setItem(
+            CLAVE_SESION_TEMPORAL,
+            JSON.stringify(sesion)
+        );
+
+        if (recordar) {
+            localStorage.setItem(
+                CLAVE_SESION_LOCAL,
+                JSON.stringify(sesion)
+            );
+        } else {
+            localStorage.removeItem(CLAVE_SESION_LOCAL);
+        }
+    }
+
+    async function buscarPersonal(usuarioInput, passwordInput) {
+        const db = obtenerDB();
+        const usuarioNormalizado = normalizarTexto(usuarioInput);
+        const snapshot = await db.collection("personal").get();
+
+        const documento = snapshot.docs.find(doc => {
+            const datos = doc.data();
+            const usuario = normalizarTexto(datos.usuario || datos.correo);
+            return usuario === usuarioNormalizado;
         });
 
-        if (clienteEncontrado) {
-            console.log("Cliente encontrado en la base de datos:", clienteEncontrado.nombre);
-            
-            if (passwordInput === clienteEncontrado.password) {
-                usuarioValido = {
-                    id: clienteEncontrado.id,
-                    nombre: clienteEncontrado.nombre,
-                    rol: "Cliente",
-                    usuario: clienteEncontrado.correo || inputLimpio
-                };
+        if (!documento) return null;
+
+        const datos = documento.data();
+        const passwordGuardado =
+            datos.pass ??
+            datos.password ??
+            datos.contrasena ??
+            datos.contraseña ??
+            "";
+
+        if (String(passwordGuardado) !== String(passwordInput)) {
+            return null;
+        }
+
+        return construirSesion(documento.id, datos);
+    }
+
+    async function buscarCliente(usuarioInput, passwordInput) {
+        const db = obtenerDB();
+        const entradaNormalizada = normalizarTexto(usuarioInput);
+        const entradaComoNombre = normalizarNombre(usuarioInput);
+        const snapshot = await db.collection("clientes").get();
+
+        const documento = snapshot.docs.find(doc => {
+            const datos = doc.data();
+
+            return (
+                normalizarTexto(datos.correo) === entradaNormalizada ||
+                normalizarTexto(datos.usuario) === entradaNormalizada ||
+                normalizarNombre(datos.nombre) === entradaComoNombre
+            );
+        });
+
+        if (!documento) return null;
+
+        const datos = documento.data();
+        const passwordGuardado =
+            datos.password ??
+            datos.pass ??
+            datos.contrasena ??
+            datos.contraseña ??
+            "";
+
+        if (String(passwordGuardado) !== String(passwordInput)) {
+            return null;
+        }
+
+        return construirSesion(documento.id, datos, "Cliente");
+    }
+
+    async function migrarAdministradorInicial(usuarioInput, passwordInput) {
+        const usuarioCoincide =
+            normalizarTexto(usuarioInput) === normalizarTexto(ADMIN_INICIAL.usuario);
+        const passwordCoincide =
+            String(passwordInput) === String(ADMIN_INICIAL.pass);
+
+        if (!usuarioCoincide || !passwordCoincide) {
+            return null;
+        }
+
+        const db = obtenerDB();
+
+        const existente = await db
+            .collection("personal")
+            .where("usuario", "==", ADMIN_INICIAL.usuario)
+            .limit(1)
+            .get();
+
+        let idDocumento;
+
+        if (existente.empty) {
+            const referencia = await db.collection("personal").add({
+                usuario: ADMIN_INICIAL.usuario,
+                nombre: ADMIN_INICIAL.nombre,
+                rol: ADMIN_INICIAL.rol,
+                pass: ADMIN_INICIAL.pass,
+                estado: "Activo",
+                fechaRegistro: new Date().toISOString()
+            });
+
+            idDocumento = referencia.id;
+            console.log("Administrador inicial migrado a Firestore.");
+        } else {
+            idDocumento = existente.docs[0].id;
+        }
+
+        return construirSesion(idDocumento, ADMIN_INICIAL);
+    }
+
+    function establecerEstadoFormulario(procesando) {
+        const boton = document.querySelector(
+            '#login-form button[type="submit"]'
+        );
+
+        if (!boton) return;
+
+        boton.disabled = procesando;
+        boton.textContent = procesando
+            ? "Verificando..."
+            : "Iniciar sesión";
+    }
+
+    async function procesarLogin(event) {
+        if (event) event.preventDefault();
+
+        const usuarioInput =
+            document.getElementById("usuario")?.value.trim() || "";
+        const passwordInput =
+            document.getElementById("password")?.value || "";
+        const recordar =
+            document.getElementById("recordar-sesion")?.checked ?? true;
+
+        if (!usuarioInput || !passwordInput) {
+            alert("Escribe tu usuario y contraseña.");
+            return;
+        }
+
+        establecerEstadoFormulario(true);
+
+        try {
+            let sesion = await buscarPersonal(usuarioInput, passwordInput);
+
+            if (!sesion) {
+                sesion = await buscarCliente(usuarioInput, passwordInput);
             }
+
+            if (!sesion) {
+                sesion = await migrarAdministradorInicial(
+                    usuarioInput,
+                    passwordInput
+                );
+            }
+
+            if (!sesion) {
+                alert(
+                    "❌ Usuario o contraseña incorrectos. Verifica tus datos."
+                );
+                return;
+            }
+
+            guardarSesion(sesion, recordar);
+            window.location.href = "dashboard.html";
+        } catch (error) {
+            console.error("Error iniciando sesión:", error);
+            alert(
+                "No fue posible consultar Firebase. Abre la consola con F12 para revisar el error."
+            );
+        } finally {
+            establecerEstadoFormulario(false);
         }
     }
-    
-    // Ejecución del inicio de sesión o alerta de error
-    if (usuarioValido) {
-        const sesion = {
-            id: usuarioValido.id,
-            nombre: usuarioValido.nombre,
-            rol: usuarioValido.rol,
-            usuario: usuarioValido.usuario, // Conservamos el nombre de usuario para los filtros de asignación
-            token: "tk_" + Math.random().toString(36).substring(2, 11)
-        };
-        
-        localStorage.setItem('js_legal_session', JSON.stringify(sesion));
-        sessionStorage.setItem('js_legal_usuario', JSON.stringify(sesion));
-        
-        console.log("Redirigiendo a la aplicación con rol:", usuarioValido.rol);
-        window.location.href = 'dashboard.html';
-    } else {
-        alert('❌ Usuario o contraseña incorrectos. Verifica tus datos.');
-    }
-}
 
-// Vinculación segura de eventos al cargar el DOM
-document.addEventListener("DOMContentLoaded", () => {
-    // CORRECCIÓN: Escuchar ÚNICAMENTE el submit del formulario maneja tanto clicks como 'Enter' de forma limpia
-    document.getElementById('login-form')?.addEventListener('submit', procesarLogin);
-});
+    function leerSesion() {
+        const sesionData =
+            localStorage.getItem(CLAVE_SESION_LOCAL) ||
+            sessionStorage.getItem(CLAVE_SESION_TEMPORAL);
 
-// 3. Guardián de Seguridad
-function verificarSesion() {
-    const sesionData = localStorage.getItem('js_legal_session') || sessionStorage.getItem('js_legal_usuario');
-    
-    if (!sesionData) {
-        if (!window.location.href.includes('index.html')) {
-            window.location.href = 'index.html';
+        if (!sesionData) return null;
+
+        try {
+            return JSON.parse(sesionData);
+        } catch (error) {
+            cerrarSesion(false);
+            return null;
         }
-        return null;
     }
-    
-    const usuarioActivo = JSON.parse(sesionData);
-    sessionStorage.setItem('js_legal_usuario', JSON.stringify(usuarioActivo));
-    return usuarioActivo;
-}
 
-// 4. Salida Segura
-function cerrarSesion() {
-    localStorage.removeItem('js_legal_session');
-    sessionStorage.removeItem('js_legal_usuario');
-    window.location.href = 'index.html';
-}
+    function verificarSesion() {
+        const sesion = leerSesion();
+
+        if (!sesion) {
+            const esPaginaLogin =
+                window.location.pathname.endsWith("/") ||
+                window.location.pathname.endsWith("index.html");
+
+            if (!esPaginaLogin) {
+                window.location.replace("index.html");
+            }
+            return null;
+        }
+
+        sessionStorage.setItem(
+            CLAVE_SESION_TEMPORAL,
+            JSON.stringify(sesion)
+        );
+
+        return sesion;
+    }
+
+    function cerrarSesion(redirigir = true) {
+        localStorage.removeItem(CLAVE_SESION_LOCAL);
+        sessionStorage.removeItem(CLAVE_SESION_TEMPORAL);
+
+        if (redirigir) {
+            window.location.replace("index.html");
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const formulario = document.getElementById("login-form");
+
+        if (formulario) {
+            formulario.addEventListener("submit", procesarLogin);
+        }
+    });
+
+    window.procesarLogin = procesarLogin;
+    window.verificarSesion = verificarSesion;
+    window.obtenerUsuarioSesion = leerSesion;
+    window.cerrarSesion = cerrarSesion;
+})();
