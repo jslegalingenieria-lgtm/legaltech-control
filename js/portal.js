@@ -124,7 +124,8 @@ function abrirBitacoraClientePortal(asuntoId) {
 }
 
 function renderizarActuacionesPortal(actuaciones) {
-    const lista = document.getElementById("portal-lista-historico");
+   const listaHistorico = document.getElementById("portal-lista-historico") ||
+                       document.getElementById("bitacora-lista-historico");
     if (!lista) return;
     lista.innerHTML = "";
     
@@ -182,74 +183,282 @@ window.abrirBitacoraClientePortal = abrirBitacoraClientePortal;
 window.cerrarModalBitacoraPortal = cerrarModalBitacoraPortal;
 
 // 3. Función del Motor de Generación de PDF
-function descargarBitacoraPDF() {
+async function descargarBitacoraPDF() {
+    const lineaTiempo = document.getElementById("bitacora-lista-historico");
+    const titulo = document.getElementById("bitacora-expediente-titulo");
 
-    const elemento = document.getElementById("pdf-contenedor-impresion");
-    if (!elemento) {
-        alert("No se encontró el contenido para generar el PDF.");
+    if (!lineaTiempo) {
+        alert("No se encontró la Línea del Tiempo.");
         return;
     }
 
-    const piePagina = document.getElementById("pdf-pie-pagina");
-    const listaHistorico = document.getElementById("bitacora-lista-historico");
-
-    if (piePagina) piePagina.style.display = "block";
-
-    if (listaHistorico) {
-        listaHistorico.style.maxHeight = "none";
-        listaHistorico.style.overflow = "visible";
+    if (!lineaTiempo.children.length) {
+        alert("No existen actuaciones para descargar.");
+        return;
     }
 
-    const expediente =
-        document.getElementById("bitacora-expediente-titulo")?.innerText ||
-        "Expediente";
+    if (typeof html2canvas === "undefined") {
+        alert("No se cargó html2canvas.");
+        return;
+    }
 
-    const opciones = {
-        margin: 15,
-        filename: `Bitacora_${expediente.replace(/[\/\\]/g, "-")}.pdf`,
-        image: {
-            type: "jpeg",
-            quality: 0.98
-        },
-        html2canvas: {
-            scale: 2,
-            useCORS: true
-        },
-        jsPDF: {
-            unit: "mm",
-            format: "letter",
-            orientation: "portrait"
+    if (!window.jspdf?.jsPDF) {
+        alert("No se cargó jsPDF.");
+        return;
+    }
+
+    const expediente = titulo?.innerText?.trim() || "Expediente";
+
+    const documento = document.createElement("div");
+
+    documento.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(-200vw);
+        width: 760px;
+        padding: 35px;
+        box-sizing: border-box;
+        background: #ffffff;
+        color: #1e293b;
+        font-family: Arial, Helvetica, sans-serif;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: none;
+    `;
+
+    const logoURL = new URL(
+        "img/logo-js-legal.png",
+        window.location.href
+    ).href;
+
+    documento.innerHTML = `
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            align-items:flex-start;
+            gap:25px;
+            padding-bottom:18px;
+            margin-bottom:24px;
+            border-bottom:4px solid #2563eb;
+        ">
+            <div>
+                <img
+                    id="logo-temporal-pdf"
+                    src="${logoURL}"
+                    alt="JS Legal & Ingeniería"
+                    style="
+                        width:250px;
+                        height:auto;
+                        display:block;
+                        margin-bottom:12px;
+                    "
+                >
+
+                <div style="
+                    font-size:18px;
+                    font-weight:800;
+                    color:#2563eb;
+                    text-transform:uppercase;
+                    letter-spacing:1px;
+                ">
+                    Reporte de actuaciones
+                </div>
+            </div>
+
+            <div style="
+                text-align:right;
+                font-size:11px;
+                line-height:1.7;
+                color:#475569;
+            ">
+                <div>
+                    <strong>Expediente:</strong>
+                    ${escaparHTMLPDF(expediente)}
+                </div>
+
+                <div>
+                    <strong>Fecha:</strong>
+                    ${new Date().toLocaleDateString("es-MX")}
+                </div>
+
+                <div>
+                    <strong>Hora:</strong>
+                    ${new Date().toLocaleTimeString("es-MX", {
+                        hour: "2-digit",
+                        minute: "2-digit"
+                    })}
+                </div>
+            </div>
+        </div>
+
+        <div style="
+            margin-bottom:18px;
+            padding-bottom:8px;
+            border-bottom:2px solid #cbd5e1;
+            font-size:16px;
+            font-weight:800;
+            color:#0f172a;
+        ">
+            Línea del Tiempo del Juicio
+        </div>
+
+        <div id="contenido-linea-tiempo-pdf"></div>
+
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            margin-top:30px;
+            padding-top:12px;
+            border-top:1px solid #cbd5e1;
+            color:#64748b;
+            font-size:9px;
+        ">
+            <span>
+                Documento generado por
+                <strong>JS LegalTech Control</strong>
+            </span>
+
+            <span>JS Legal &amp; Ingeniería</span>
+        </div>
+    `;
+
+    const clon = lineaTiempo.cloneNode(true);
+
+    clon.removeAttribute("id");
+    clon.style.maxHeight = "none";
+    clon.style.height = "auto";
+    clon.style.overflow = "visible";
+    clon.style.padding = "0";
+    clon.style.margin = "0";
+
+    clon.querySelectorAll("button").forEach(boton => boton.remove());
+
+    documento
+        .querySelector("#contenido-linea-tiempo-pdf")
+        .appendChild(clon);
+
+    document.body.appendChild(documento);
+
+    try {
+        const logo = documento.querySelector("#logo-temporal-pdf");
+
+        if (logo && !logo.complete) {
+            await new Promise(resolve => {
+                logo.onload = resolve;
+
+                logo.onerror = () => {
+                    logo.remove();
+                    resolve();
+                };
+
+                setTimeout(resolve, 2000);
+            });
         }
-    };
 
-    html2pdf()
-        .set(opciones)
-        .from(elemento)
-        .save()
-        .then(() => {
-
-            if (piePagina)
-                piePagina.style.display = "none";
-
-            if (listaHistorico) {
-                listaHistorico.style.maxHeight = "250px";
-                listaHistorico.style.overflowY = "auto";
-            }
-
-        })
-        .catch(err => {
-            console.error(err);
-
-            if (piePagina)
-                piePagina.style.display = "none";
-
-            if (listaHistorico) {
-                listaHistorico.style.maxHeight = "250px";
-                listaHistorico.style.overflowY = "auto";
-            }
+        await new Promise(resolve => {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(resolve);
+            });
         });
 
+        const canvas = await html2canvas(documento, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: false,
+            backgroundColor: "#ffffff",
+            scrollX: 0,
+            scrollY: 0,
+            windowWidth: 820
+        });
+
+        const imagen = canvas.toDataURL("image/jpeg", 0.98);
+        const { jsPDF } = window.jspdf;
+
+        const pdf = new jsPDF({
+            orientation: "portrait",
+            unit: "mm",
+            format: "letter"
+        });
+
+        const anchoPagina = pdf.internal.pageSize.getWidth();
+        const altoPagina = pdf.internal.pageSize.getHeight();
+
+        const margen = 10;
+        const anchoImagen = anchoPagina - margen * 2;
+        const altoImagen = canvas.height * anchoImagen / canvas.width;
+
+        let posicionY = margen;
+        let alturaRestante = altoImagen;
+
+        pdf.addImage(
+            imagen,
+            "JPEG",
+            margen,
+            posicionY,
+            anchoImagen,
+            altoImagen
+        );
+
+        alturaRestante -= altoPagina - margen * 2;
+
+        while (alturaRestante > 0) {
+            pdf.addPage();
+
+            posicionY =
+                margen - (altoImagen - alturaRestante);
+
+            pdf.addImage(
+                imagen,
+                "JPEG",
+                margen,
+                posicionY,
+                anchoImagen,
+                altoImagen
+            );
+
+            alturaRestante -= altoPagina - margen * 2;
+        }
+
+        const totalPaginas = pdf.internal.getNumberOfPages();
+
+        for (let pagina = 1; pagina <= totalPaginas; pagina++) {
+            pdf.setPage(pagina);
+            pdf.setFontSize(8);
+            pdf.setTextColor(100);
+
+            pdf.text(
+                `Página ${pagina} de ${totalPaginas}`,
+                anchoPagina - 30,
+                altoPagina - 6
+            );
+        }
+
+        pdf.save(
+            `Bitacora_${expediente.replace(
+                /[\/\\:*?"<>|]/g,
+                "-"
+            )}.pdf`
+        );
+
+    } catch (error) {
+        console.error("Error al generar el PDF:", error);
+        alert("No fue posible generar el PDF.");
+    } finally {
+        documento.remove();
+    }
+}
+
+function escaparHTMLPDF(valor) {
+    return String(valor ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
 window.descargarBitacoraPDF = descargarBitacoraPDF;
+
+
 

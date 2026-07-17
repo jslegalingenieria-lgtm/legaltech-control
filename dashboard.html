@@ -11,8 +11,6 @@
 <link rel="stylesheet" href="css/components.css">
 <link rel="stylesheet" href="css/forms.css">
 <link rel="stylesheet" href="css/tables.css">
-<link rel="stylesheet" href="css/modal.css">
-<link rel="stylesheet" href="css/utilities.css">
 <link rel="stylesheet" href="css/estilos.css">
 <link rel="stylesheet" href="css/responsive.css">
 
@@ -22,17 +20,11 @@
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
 
-<!-- Módulos del sistema -->
-<script src="js/auth.js"></script>
-<script src="js/agenda.js"></script>
-<script src="js/personal.js"></script>
-<script src="js/app.js"></script>
+
 
 
     <!-- Librería para conversión limpia de HTML a PDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
-     <link rel="manifest" href="manifest.json">
+<link rel="manifest" href="manifest.json">
 
 
      
@@ -171,6 +163,7 @@
                                 <th style="padding: 1rem;">Teléfono</th>
                                 <th style="padding: 1rem;">Correo</th>
                                 <th style="padding: 1rem; text-align: center;">Acciones</th>
+
                             </tr>
                         </thead>
                         <tbody id="tabla-clientes-cuerpo"></tbody>
@@ -253,93 +246,76 @@
                 </div>
 
                 <!-- Modal de Historial de Actuaciones (Bitácora) -->
-                <div id="modal-bitacora" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); overflow-y: auto;">
+                <div id="modal-bitacora" style="display:none; position:fixed; z-index:1000; inset:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); overflow-y:auto;">
                     <div id="pdf-contenedor-impresion"
-     style="background-color:#ffffff;
-     margin:5% auto;
-     padding:2rem;
-     width:90%;
-     max-width:600px;
-     border-radius:8px;
-     box-shadow:0 4px 20px rgba(0,0,0,0.15);">
+                         style="background-color:#ffffff; margin:5% auto; padding:2rem; width:90%; max-width:600px; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,0.15);">
 
-                       <div class="toolbar" style="display:flex;justify-content:space-between;align-items:center;">
+                        <div class="toolbar" style="display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+                            <h3 style="margin:0; font-size:1.3rem; color:#1e293b;">
+                                Historial de Actuaciones:
+                                <span id="bitacora-expediente-titulo" style="color:#8b5cf6;"></span>
+                            </h3>
 
-    <h3 style="margin:0;font-size:1.3rem;color:#1e293b;">
-        Historial de Actuaciones:
-        <span id="bitacora-expediente-titulo" style="color:#8b5cf6;"></span>
-    </h3>
+                            <div style="display:flex; align-items:center; gap:10px;" data-html2pdf-ignore="true">
+                                <button id="btn-descargar-pdf"
+                                        type="button"
+                                        onclick="descargarBitacoraPDF()"
+                                        style="background:#10b981; color:white; border:none; padding:6px 12px; border-radius:5px; cursor:pointer; font-weight:600;">
+                                    📄 Descargar PDF
+                                </button>
 
-    <div style="display:flex;align-items:center;gap:10px;">
+                                <span onclick="cerrarModalBitacora()"
+                                      style="cursor:pointer; font-size:28px; color:#94a3b8; font-weight:bold;">
+                                    &times;
+                                </span>
+                            </div>
+                        </div>
 
-        <button
-            id="btn-descargar-pdf"
-            onclick="descargarBitacoraPDF()"
-            style="
-                background:#10b981;
-                color:white;
-                border:none;
-                padding:6px 12px;
-                border-radius:5px;
-                cursor:pointer;
-                font-weight:600;
-            ">
-            📄 Descargar PDF
-        </button>
+                        <form id="form-actuacion"
+                              data-html2pdf-ignore="true"
+                              style="background-color:#f8fafc; padding:1rem; border-radius:6px; margin:1.5rem 0; border:1px solid #e2e8f0;">
+                            <h4 style="margin:0 0 0.8rem; font-size:0.95rem; color:#475569;">
+                                📍 Registrar Nueva Actuación / Acuerdo
+                            </h4>
 
-        <span
-            onclick="cerrarModalBitacora()"
-            style="
-                cursor:pointer;
-                font-size:28px;
-                color:#94a3b8;
-                font-weight:bold;
-            ">
-            &times;
-        </span>
-
-    </div>
-
-</div>
-
-</div>
-
-                        <form id="form-actuacion" style="background-color: #f8fafc; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; border: 1px solid #e2e8f0;">
-                            <h4 style="margin: 0 0 0.8rem 0; font-size: 0.95rem; color: #475569;">📍 Registrar Nueva Actuación / Acuerdo</h4>
-                            
-                            <div style="margin-bottom: 0.8rem;">
-                                <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #475569; margin-bottom: 0.3rem;">Fecha del Evento (Opcional - Vacío usa hoy):</label>
-                                <input type="date" id="act-fecha" style="width: 100%; padding: 0.4rem; border: 1px solid #cbd5e1; border-radius: 4px;">
+                            <div style="margin-bottom:0.8rem;">
+                                <label for="act-fecha" style="display:block; font-size:0.85rem; font-weight:600; color:#475569; margin-bottom:0.3rem;">
+                                    Fecha del Evento (opcional; vacío usa hoy):
+                                </label>
+                                <input type="date" id="act-fecha"
+                                       style="width:100%; padding:0.4rem; border:1px solid #cbd5e1; border-radius:4px;">
                             </div>
 
-                            <div style="margin-bottom: 0.8rem;">
-                                <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #475569; margin-bottom: 0.3rem;">Descripción Jurídica / Resumen:</label>
-                                <textarea id="act-descripcion" required placeholder="Ej. Se desahogó la audiencia de ley o Se publica acuerdo de admisión..." rows="3" style="width: 100%; padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 4px; font-family: inherit; resize: vertical;"></textarea>
+                            <div style="margin-bottom:0.8rem;">
+                                <label for="act-descripcion" style="display:block; font-size:0.85rem; font-weight:600; color:#475569; margin-bottom:0.3rem;">
+                                    Descripción Jurídica / Resumen:
+                                </label>
+                                <textarea id="act-descripcion"
+                                          required
+                                          rows="3"
+                                          placeholder="Ej. Se desahogó la audiencia de ley o se publicó el acuerdo de admisión..."
+                                          style="width:100%; padding:0.5rem; border:1px solid #cbd5e1; border-radius:4px; font-family:inherit; resize:vertical;"></textarea>
                             </div>
 
-                            <button type="submit" style="background-color: #8b5cf6; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; width: 100%;">Agregar al Historial</button>
+                            <button type="submit"
+                                    style="background-color:#8b5cf6; color:white; border:none; padding:0.5rem 1rem; border-radius:4px; cursor:pointer; font-weight:600; width:100%;">
+                                Agregar al Historial
+                            </button>
                         </form>
 
-                        <h4 style="margin: 0 0 0.5rem 0; font-size: 1rem; color: #1e293b;">📜 Línea del Tiempo del Juicio</h4>
+                        <h4 style="margin:0 0 0.5rem; font-size:1rem; color:#1e293b;">
+                            📜 Línea del Tiempo del Juicio
+                        </h4>
+
                         <div id="bitacora-lista-historico"
-                          style="max-height:400px;overflow-y:auto;padding-right:5px;">
+                             style="max-height:400px; overflow-y:auto; padding-right:5px;"></div>
 
+                        <div id="pdf-pie-pagina"
+                             style="display:none; text-align:center; margin-top:25px; border-top:1px solid #ddd; padding-top:10px; color:#777; font-size:12px;">
+                            Documento generado automáticamente por
+                            <strong>JS LegalTech Control</strong>
+                        </div>
                     </div>
-
-                  <div id="pdf-pie-pagina"
-     style="display:none;
-            text-align:center;
-            margin-top:25px;
-            border-top:1px solid #ddd;
-            padding-top:10px;
-            color:#777;
-            font-size:12px;">
-
-    Documento generado automáticamente por
-    <strong>JS LegalTech Control</strong>
-
-</div>
-
                 </div>
 
                 <!-- Tabla de Asuntos -->
@@ -435,6 +411,7 @@
                                 <th style="padding: 1rem;">Órgano Jurisdiccional / Juzgado</th>
                                 <th style="padding: 1rem;">Estado Procesal</th>
                                 <th style="padding: 1rem;">Última Actualización / Resumen</th>
+                                <th style="padding: 1rem; text-align:center;">Línea de tiempo</th>
                             </tr>
                         </thead>
                         <tbody id="tabla-portal-cuerpo"></tbody>
@@ -510,10 +487,11 @@
         </div>
     </div>
 
-    <!-- Scripts de la Aplicación -->
+    <!-- Librerías para generar PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-
-    <script src="js/pdf.js"></script>
+    <!-- Scripts de la aplicación: cargar cada archivo una sola vez -->
     <script src="js/storage.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/clientes.js"></script>
@@ -521,16 +499,16 @@
     <script src="js/agenda.js"></script>
     <script src="js/personal.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/pdf.js"></script>
 
 
-     <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js')
-      .then(() => console.log('Service Worker registrado con éxito.'))
-      .catch(err => console.log('Error al registrar Service Worker:', err));
-  }
-</script>
-
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("sw.js")
+                .then(() => console.log("Service Worker registrado con éxito."))
+                .catch(error => console.error("Error al registrar Service Worker:", error));
+        }
+    </script>
 
 </body>
 </html>

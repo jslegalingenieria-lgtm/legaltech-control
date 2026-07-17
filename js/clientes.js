@@ -76,13 +76,31 @@ function cargarAsuntosConsultaCiudadana() {
             const est = a.estado || 'En Trámite';
             const act = a.ultimaActualizacion || a.resumen || 'Sin actualizaciones recientes';
 
-            fila.innerHTML = `
-                <td style="padding: 12px; font-weight: 600; color: var(--primary-color);">${exp}</td>
-                <td style="padding: 12px;">${mat}</td>
-                <td style="padding: 12px;">${juz}</td>
-                <td style="padding: 12px;"><span style="background: #e0f2fe; color: #0369a1; padding: 4px 8px; border-radius: 50px; font-size: 13px; font-weight: 600;">${est}</span></td>
-                <td style="padding: 12px; font-size: 14px; color: var(--text-muted);">${act}</td>
-            `;
+
+
+           fila.innerHTML = `
+    <td style="padding: 12px; font-weight: 600; color: var(--primary-color);">${exp}</td>
+    <td style="padding: 12px;">${mat}</td>
+    <td style="padding: 12px;">${juz}</td>
+    <td style="padding: 12px;">
+        <span style="background:#e0f2fe;color:#0369a1;padding:4px 8px;border-radius:50px;font-size:13px;font-weight:600;">
+            ${est}
+        </span>
+    </td>
+    <td style="padding: 12px; font-size: 14px; color: var(--text-muted);">${act}</td>
+    <td style="padding: 12px; text-align:center;">
+        <button
+            type="button"
+            onclick="abrirBitacoraCliente('${a.id}')"
+            style="background:#8b5cf6;color:white;border:none;padding:7px 12px;border-radius:5px;cursor:pointer;font-weight:600;">
+            📜 Línea de tiempo
+        </button>
+    </td>
+`;
+
+
+
+
             contenedorTabla.appendChild(fila);
         });
     }
@@ -172,7 +190,7 @@ function cargarClientesTabla() {
     if (clientes.length === 0) {
         contenedorTabla.innerHTML = `
             <tr>
-                <td colspan="5" style="text-align: center; padding: 2rem; color: #64748b; background: white;">
+                <td colspan="6" style="text-align: center; padding: 2rem; color: #64748b; background: white;">
                     No hay clientes registrados en el directorio.
                 </td>
             </tr>
@@ -243,27 +261,91 @@ function actualizarContadoresDashboard() {
 }
 
 function abrirBitacoraCliente(asuntoId) {
+    const asuntos =
+        JSON.parse(localStorage.getItem("js_legal_asuntos")) || [];
 
-    const asuntos = JSON.parse(localStorage.getItem("js_legal_asuntos")) || [];
-    const asunto = asuntos.find(a => String(a.id) === String(asuntoId));
+    const asunto = asuntos.find(
+        a => String(a.id) === String(asuntoId)
+    );
 
-    if (!asunto) return;
+    if (!asunto) {
+        alert("No se encontró el expediente.");
+        return;
+    }
 
-    expedienteActivoParaPDF = asunto.expediente;
+    const modal = document.getElementById("modal-bitacora");
+    const titulo = document.getElementById("bitacora-expediente-titulo");
+    const formulario = document.getElementById("form-actuacion");
+    const botonPDF = document.getElementById("btn-descargar-pdf");
 
-    document.getElementById("bitacora-expediente-titulo").innerText = asunto.expediente;
+    if (!modal) {
+        console.error("No existe el modal-bitacora.");
+        return;
+    }
 
-    document.getElementById("modal-bitacora").style.display = "block";
+    /*
+     * El modal está originalmente dentro de vista-asuntos.
+     * Lo movemos al body para que también pueda mostrarse
+     * desde el Portal del Cliente.
+     */
+    if (modal.parentElement !== document.body) {
+        document.body.appendChild(modal);
+    }
 
-    // Ocultar el formulario para el cliente
-    document.getElementById("form-actuacion").style.display = "none";
+    if (titulo) {
+        titulo.innerText = asunto.expediente || "Sin número";
+    }
 
-    // Mostrar el botón PDF
-    const botonPDF = document.getElementById("btn-descargar-bitacora");
-    if (botonPDF) botonPDF.style.display = "inline-block";
+    // Cliente: solo lectura
+    if (formulario) {
+        formulario.style.display = "none";
+    }
 
-    // Reutilizar el mismo render del abogado
-    cargarHistorialActuacionesLista(asunto);
+    if (botonPDF) {
+        botonPDF.style.display = "inline-block";
+    }
+
+    renderizarActuacionesCliente(asunto.actuaciones || []);
+
+    modal.style.display = "block";
+}
+
+window.abrirBitacoraCliente = abrirBitacoraCliente;
+
+
+function renderizarActuacionesCliente(actuaciones) {
+
+    const lista = document.getElementById("bitacora-lista-historico");
+
+    if (!lista) {
+        console.error("No existe el contenedor bitacora-lista-historico");
+        return;
+    }
+
+    lista.innerHTML = "";
+
+    if (!actuaciones || actuaciones.length === 0) {
+        lista.innerHTML = "<p>No hay actuaciones registradas.</p>";
+        return;
+    }
+
+
+    actuaciones.slice().reverse().forEach(act => {
+
+        const div = document.createElement("div");
+
+        div.style.padding = "0.8rem";
+        div.style.borderBottom = "1px solid #eee";
+
+        div.innerHTML = `
+            <strong>${act.fecha}</strong>
+            <br>
+            ${act.descripcion}
+        `;
+
+        lista.appendChild(div);
+
+    });
 }
 
 function actualizarSelectAbogadosAsignados() {

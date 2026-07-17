@@ -124,10 +124,6 @@ function cargarAsuntosTabla() {
         tablaCuerpo.appendChild(tr);
     });
     
-    // Sincronizar simultáneamente la tabla de clientes vinculada si existe en el DOM de la vista actual
-    if (document.getElementById("tabla-clientes-cuerpo")) {
-        cargarTablaClientes();
-    }
 }
 
 // Obtener asuntos de LocalStorage
@@ -282,46 +278,6 @@ function eliminarAsunto(id) {
     }
 }
 
-// Filtro estricto para la tabla de Clientes según el Rol del usuario activo
-function cargarTablaClientes() {
-    const tablaCuerpo = document.getElementById("tabla-clientes-cuerpo");
-    if (!tablaCuerpo) return;
-
-    const usuarioActivo = JSON.parse(sessionStorage.getItem("js_legal_usuario"));
-    if (!usuarioActivo) return;
-
-    let clientes = JSON.parse(localStorage.getItem("js_legal_clientes")) || [];
-    const asuntos = obtenerAsuntos();
-
-    // FILTRO DE ROL PARA CLIENTES: El Abogado sólo ve clientes vinculados a expedientes que explícitamente tiene asignados
-    if (usuarioActivo.rol === "Abogado") {
-        const misClientesIds = asuntos
-            .filter(a => a.abogadoAsignado && String(a.abogadoAsignado) === String(usuarioActivo.usuario))
-            .map(a => String(a.clienteId));
-
-        clientes = clientes.filter(c => misClientesIds.includes(String(c.id)));
-    }
-
-    tablaCuerpo.innerHTML = "";
-    
-    if (clientes.length === 0) {
-        tablaCuerpo.innerHTML = `<tr><td colspan="4" style="text-align:center; padding:1rem;">No tienes clientes asignados o vinculados a tus expedientes.</td></tr>`;
-        return;
-    }
-
-    clientes.forEach(cliente => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-            <td>${cliente.nombre}</td>
-            <td>${cliente.telefono || 'N/A'}</td>
-            <td>${cliente.correo || 'N/A'}</td>
-            <td>
-                <button onclick="editarCliente(${cliente.id})" style="color: #3b82f6; background:none; border:none; cursor:pointer;">✏️</button>
-            </td>
-        `;
-        tablaCuerpo.appendChild(tr);
-    });
-}
 
 function abrirBitacoraAsunto(asuntoId) {
     asuntoHistorialIdSeleccionado = asuntoId;

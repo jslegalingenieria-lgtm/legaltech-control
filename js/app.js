@@ -209,6 +209,10 @@ function switchTab(vista) {
     if (vista === 'personal' && typeof renderizarTablaPersonal === 'function') {
         renderizarTablaPersonal();
     }
+
+    if (vista === "clientes" && typeof cargarClientesTabla === "function") {
+    cargarClientesTabla();
+}
     
     // Cambiar título superior
     const titulos = {
