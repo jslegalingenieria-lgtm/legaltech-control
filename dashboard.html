@@ -562,8 +562,10 @@
                         <thead>
                             <tr style="background: #f8fafc; border-bottom: 2px solid #e2e8f0;">
                                 <th style="padding: 12px 24px; font-weight: 600; color: #475569;">Nombre Completo</th>
+                                <th style="padding: 12px 24px; font-weight: 600; color: #475569;">Correo Electrónico</th>
                                 <th style="padding: 12px 24px; font-weight: 600; color: #475569;">Usuario de Acceso</th>
                                 <th style="padding: 12px 24px; font-weight: 600; color: #475569;">Rol / Perfil</th>
+                                <th style="padding: 12px 24px; font-weight: 600; color: #475569;">Estado</th>
                                 <th style="padding: 12px 24px; font-weight: 600; color: #475569; text-align: center;">Acciones</th>
                             </tr>
                         </thead>
@@ -589,6 +591,11 @@
                     <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #475569;">Nombre Completo</label>
                     <input type="text" id="personal-nombre" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;">
                 </div>
+
+                <div style="margin-bottom: 16px;">
+                    <label for="personal-correo" style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #475569;">Correo Electrónico</label>
+                    <input type="email" id="personal-correo" required placeholder="correo@ejemplo.com" autocomplete="email" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;">
+                </div>
                 
                 <div style="margin-bottom: 16px;">
                     <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #475569;">Usuario (Para Login)</label>
@@ -600,11 +607,19 @@
                     <input type="password" id="personal-pass" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;">
                 </div>
                 
-                <div style="margin-bottom: 24px;">
+                <div style="margin-bottom: 16px;">
                     <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #475569;">Perfil del Sistema</label>
                     <select id="personal-rol" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; box-sizing: border-box;">
                         <option value="Abogado">Abogado (Solo visualiza sus casos asignados)</option>
                         <option value="Administrador">Administrador (Control total del despacho)</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <label for="personal-estado" style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #475569;">Estado</label>
+                    <select id="personal-estado" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; box-sizing: border-box;">
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
                     </select>
                 </div>
                 
