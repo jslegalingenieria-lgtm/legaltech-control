@@ -16,14 +16,6 @@
 <link rel="stylesheet" href="css/dashboard-ejecutivo.css">
 
 
-<!-- Firebase primero -->
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-
-
-
-
-
     <!-- Librería para conversión limpia de HTML a PDF -->
 <link rel="manifest" href="manifest.json">
 
@@ -485,6 +477,12 @@
                                     <option value="">-- Selecciona un expediente --</option>
                                 </select>
                             </div>
+                            <div class="form-group" id="contenedor-age-abogado" style="margin-bottom: 0; display: none;">
+                                <label for="age-abogado">Abogado responsable</label>
+                                <select id="age-abogado" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 6px; background: white;">
+                                    <option value="">-- Selecciona un abogado --</option>
+                                </select>
+                            </div>
                             <div class="form-group" style="margin-bottom: 0;">
                                 <label for="age-tipo">Tipo de Evento</label>
                                 <select id="age-tipo" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 6px;">
@@ -603,7 +601,7 @@
                 </div>
                 
                 <div style="margin-bottom: 16px;">
-                    <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #475569;">Contraseña</label>
+                    <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #475569;">Contraseña <small style="font-weight:400;">(solo obligatoria en alta)</small></label>
                     <input type="password" id="personal-pass" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;">
                 </div>
                 
@@ -631,10 +629,17 @@
         </div>
     </div>
 
+
+
+<!-- Firebase: cargar una sola vez y en este orden -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
+<!-- Configuración de Firebase -->
 <script src="js/firebase.js"></script>
+
+<!-- Módulos del sistema -->
 <script src="js/storage.js"></script>
 <script src="js/auth.js"></script>
 <script src="js/clientes.js"></script>
@@ -643,7 +648,6 @@
 <script src="js/personal.js"></script>
 <script src="js/app.js"></script>
 <script src="js/dashboard-ejecutivo.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="js/pdf.js"></script>

@@ -1,0 +1,21 @@
+JS LegalTech Control — versión 1.2 estable
+
+CAMBIOS
+- Firebase Authentication para personal.
+- Personal, clientes, asuntos y agenda usan Firestore como fuente de datos.
+- Se eliminaron las cachés de datos en localStorage; localStorage/sessionStorage solo conservan la sesión.
+- Permisos de interfaz: Administrador, Abogado y Cliente.
+- Los abogados ven únicamente registros asignados a su UID/usuario.
+- Solo el administrador puede entrar a Personal y eliminar clientes.
+- Dashboard y asistente leen directamente de Firestore.
+- dashboard.html corregido para cargar Firebase una sola vez.
+- Se incluye firestore.rules como base de seguridad para personal autenticado.
+
+PRUEBAS RECOMENDADAS
+1. Administrador: crear/editar personal, clientes, asuntos y eventos.
+2. Abogado: verificar que solo vea sus registros y no vea Personal.
+3. Cliente: verificar su portal. El acceso de clientes sigue siendo compatible con el esquema anterior; su migración completa a Authentication puede hacerse después sin bloquear esta versión.
+4. Probar Ctrl+F5 y también una ventana privada.
+
+IMPORTANTE
+No publiques firestore.rules sin probar primero el portal de clientes. Estas reglas protegen al personal autenticado, pero el portal de clientes todavía usa el acceso compatible anterior.

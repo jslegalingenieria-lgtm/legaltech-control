@@ -251,7 +251,56 @@
         });
     }
 
-    function abrirModalAgenda() {
+    async function poblarSelectAbogados(valorSeleccionado = "") {
+        const contenedor = document.getElementById("contenedor-age-abogado");
+        const select = document.getElementById("age-abogado");
+
+        if (!contenedor || !select) return;
+
+        const usuario = obtenerUsuarioSesion();
+
+        if (usuario?.rol !== "Administrador") {
+            contenedor.style.display = "none";
+            select.required = false;
+            select.innerHTML = '<option value="">-- Selecciona un abogado --</option>';
+            return;
+        }
+
+        contenedor.style.display = "block";
+        select.required = true;
+        select.innerHTML = '<option value="">-- Selecciona un abogado --</option>';
+
+        try {
+            const snapshot = await obtenerDB()
+                .collection("personal")
+                .where("rol", "==", "Abogado")
+                .get();
+
+            const abogados = snapshot.docs
+                .map(doc => ({ id: doc.id, ...doc.data() }))
+                .filter(item => String(item.estado || "Activo").toLowerCase() === "activo")
+                .sort((a, b) => String(a.nombre || a.usuario || "").localeCompare(
+                    String(b.nombre || b.usuario || ""),
+                    "es"
+                ));
+
+            abogados.forEach(abogado => {
+                const option = document.createElement("option");
+                option.value = abogado.usuario || abogado.uid || abogado.id;
+                option.textContent = abogado.nombre || abogado.usuario || abogado.correo || "Abogado";
+                select.appendChild(option);
+            });
+
+            if (valorSeleccionado) {
+                select.value = valorSeleccionado;
+            }
+        } catch (error) {
+            console.error("No se pudo cargar la lista de abogados:", error);
+            select.innerHTML = '<option value="">No fue posible cargar abogados</option>';
+        }
+    }
+
+    async function abrirModalAgenda() {
         const modal = document.getElementById("modal-agenda");
         const formulario = document.getElementById("form-agenda");
         const titulo = document.getElementById("agenda-modal-titulo");
@@ -264,6 +313,7 @@
         if (titulo) titulo.innerText = "Agendar Evento Procesal";
 
         poblarSelectAsuntos();
+        await poblarSelectAbogados();
         modal.style.display = "block";
     }
 
@@ -296,6 +346,18 @@
         }
 
         const usuario = obtenerUsuarioSesion();
+        const abogadoSeleccionado =
+            document.getElementById("age-abogado")?.value || "";
+
+        if (usuario?.rol === "Administrador" && !abogadoSeleccionado) {
+            alert("Selecciona el abogado responsable del evento.");
+            return;
+        }
+
+        const abogadoAsignado =
+            usuario?.rol === "Administrador"
+                ? abogadoSeleccionado
+                : (usuario?.usuario || usuario?.id || "");
 
         try {
             const db = obtenerDB();
@@ -319,11 +381,7 @@
                         fecha,
                         hora,
                         notas,
-                        abogadoAsignado:
-                            eventoAnterior?.abogadoAsignado ||
-                            usuario?.usuario ||
-                            usuario?.id ||
-                            "",
+                        abogadoAsignado,
                         notificado: cambioFechaHora
                             ? false
                             : Boolean(eventoAnterior?.notificado),
@@ -341,10 +399,7 @@
                         fecha,
                         hora,
                         notas,
-                        abogadoAsignado:
-                            usuario?.usuario ||
-                            usuario?.id ||
-                            "",
+                        abogadoAsignado,
                         notificado: false,
                         fechaRegistro:
                             firebase.firestore.FieldValue.serverTimestamp(),
@@ -509,7 +564,7 @@
         actualizarContadoresDashboard(eventos.length);
     }
 
-    function editarEvento(id) {
+    async function editarEvento(id) {
         const evento = obtenerAgenda().find(
             item => String(item.id) === String(id)
         );
@@ -519,7 +574,7 @@
             return;
         }
 
-        abrirModalAgenda();
+        await abrirModalAgenda();
 
         const titulo =
             document.getElementById("agenda-modal-titulo");
@@ -534,6 +589,11 @@
 
         const notas = obtenerTextareaNotas();
         if (notas) notas.value = evento.notas || "";
+
+        const abogado = document.getElementById("age-abogado");
+        if (abogado) {
+            abogado.value = evento.abogadoAsignado || "";
+        }
     }
 
     async function eliminarEvento(id) {
@@ -708,6 +768,7 @@
     window.abrirModalAgenda = abrirModalAgenda;
     window.cerrarModalAgenda = cerrarModalAgenda;
     window.poblarSelectAsuntos = poblarSelectAsuntos;
+    window.poblarSelectAbogados = poblarSelectAbogados;
     window.guardarEventoAgenda = guardarEventoAgenda;
     window.cargarAgendaLista = cargarAgendaLista;
     window.editarEvento = editarEvento;

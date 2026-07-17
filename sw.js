@@ -1,4 +1,4 @@
-const CACHE_NAME = 'legaltech-v1';
+const CACHE_NAME = 'legaltech-v1-auth-v11';
 const ASSETS = [
   // Agregamos las rutas de Firebase para que la app cargue rápido en el cel
   'https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js',

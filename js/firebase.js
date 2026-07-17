@@ -1,6 +1,6 @@
 /**
  * JS LegalTech Control
- * Conexión central con Firebase y Cloud Firestore.
+ * Conexión central con Firebase, Authentication y Cloud Firestore.
  */
 (() => {
     "use strict";
@@ -26,6 +26,7 @@
     }
 
     const db = firebase.firestore();
+    const auth = firebase.auth();
 
     db.enablePersistence({ synchronizeTabs: true }).catch(error => {
         if (error.code === "failed-precondition") {
@@ -37,8 +38,10 @@
         }
     });
 
+    window.FIREBASE_CONFIG = firebaseConfig;
     window.db = db;
     window.firebaseDB = db;
+    window.firebaseAuth = auth;
 
-    console.log("✅ Firebase y Firestore conectados correctamente.");
+    console.log("✅ Firebase Authentication y Firestore conectados.");
 })();

@@ -1,0 +1,28 @@
+JS LEGALTECH CONTROL v1.1 - FIREBASE AUTHENTICATION
+
+CAMBIOS PRINCIPALES
+- Personal se guarda en Firestore y ya no en localStorage.
+- Las contraseñas se guardan exclusivamente en Firebase Authentication.
+- El acceso del personal se realiza por usuario + contraseña.
+- Se conserva temporalmente el acceso anterior de clientes hasta su migración.
+- Dar de baja cambia el estado a Inactivo; no elimina la cuenta de Authentication.
+
+PRIMER ACCESO
+Usuario: Administrador
+Contraseña: admin2026
+
+En el primer acceso se crea automáticamente la cuenta inicial en Firebase
+Authentication y su perfil en Firestore. Por seguridad, crea después tu cuenta
+administrativa definitiva con un correo real y da de baja la cuenta inicial.
+
+REQUISITOS EN FIREBASE
+Authentication > Sign-in method > Email/Password debe estar habilitado.
+
+INSTALACIÓN
+Copia el contenido de esta carpeta sobre tu proyecto actual. Conserva tu carpeta
+.git si trabajas con Git. Después limpia la caché del navegador o abre con Ctrl+F5.
+
+NOTA TÉCNICA
+La edición no cambia el correo, usuario ni contraseña de Authentication desde el
+navegador. Sí permite actualizar nombre, rol y estado. Para cambios de contraseña,
+usa el flujo de restablecimiento de Firebase o la consola de Authentication.
