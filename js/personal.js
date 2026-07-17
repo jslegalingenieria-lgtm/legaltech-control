@@ -15,11 +15,16 @@
         .replaceAll("'", "&#039;");
 
     function servicios() {
-        if (!window.db || !window.firebaseAuth || !window.FIREBASE_CONFIG) {
-            throw new Error("Firebase no está disponible.");
-        }
-        return { db: window.db, auth: window.firebaseAuth };
+
+    if (!window.db) {
+        throw new Error("Firestore no está disponible.");
     }
+
+    return {
+        db: window.db,
+        auth: window.firebaseAuth || firebase.auth()
+    };
+}
 
     async function cargarPersonal() {
         const { db } = servicios();
