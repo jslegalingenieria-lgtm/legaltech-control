@@ -1,0 +1,21 @@
+JS LegalTech Control — Integración EmailJS
+
+Cambios incluidos:
+- Nuevo módulo js/email.js.
+- EmailJS cargado en dashboard.html.
+- Envío automático al correo del abogado al registrar un asunto.
+- La notificación interna se conserva.
+- Si el correo falla, el expediente permanece guardado.
+- Se actualizó la versión de caché del Service Worker.
+
+Configuración utilizada:
+- Service ID: service_u5nu19m
+- Template ID: template_3n49lhp
+- Destinatario dinámico de la plantilla: {{correo}}
+
+Prueba recomendada:
+1. Iniciar sesión como administrador.
+2. Confirmar que el abogado tenga un correo en Personal.
+3. Registrar un asunto nuevo y asignarlo al abogado.
+4. Confirmar el mensaje de envío y revisar la bandeja del abogado.
+5. Si no llega, revisar Spam y la consola del navegador (F12).

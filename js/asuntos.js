@@ -403,13 +403,69 @@
                 datos.fechaRegistro =
                     firebase.firestore.FieldValue.serverTimestamp();
 
-                await db
+                const documentoCreado = await db
                     .collection(COLECCION_ASUNTOS)
                     .add(datos);
 
-                alert(
-                    "Expediente registrado correctamente."
-                );
+                const opcionSeleccionada =
+                    selectAbogado?.options[selectAbogado.selectedIndex];
+
+                if (
+                    abogadoAsignado &&
+                    typeof window.crearAlertaNuevoAsunto === "function"
+                ) {
+                    try {
+                        await window.crearAlertaNuevoAsunto({
+                            usuario: abogadoAsignado,
+                            abogadoNombre:
+                                opcionSeleccionada?.textContent?.trim() || "",
+                            asuntoId: documentoCreado.id,
+                            expediente,
+                            cliente
+                        });
+                    } catch (errorAlerta) {
+                        console.error(
+                            "El expediente se guardó, pero no se pudo crear la alerta interna:",
+                            errorAlerta
+                        );
+                    }
+                }
+
+                let resultadoCorreo = null;
+
+                if (
+                    abogadoAsignado &&
+                    window.JSLegalEmail?.enviarCorreoNuevoAsunto
+                ) {
+                    resultadoCorreo =
+                        await window.JSLegalEmail.enviarCorreoNuevoAsunto({
+                            usuario: abogadoAsignado,
+                            abogadoNombre:
+                                opcionSeleccionada?.textContent?.trim() || "",
+                            expediente,
+                            cliente,
+                            materia,
+                            descripcion: resumen || accion,
+                            fecha: new Date().toLocaleDateString("es-MX")
+                        });
+                }
+
+                if (resultadoCorreo?.ok) {
+                    alert(
+                        "Expediente registrado correctamente.\n\n" +
+                        "La alerta interna y el correo fueron enviados al abogado asignado."
+                    );
+                } else if (abogadoAsignado) {
+                    alert(
+                        "Expediente registrado correctamente.\n\n" +
+                        "La alerta interna fue creada, pero no se pudo confirmar el envío del correo. " +
+                        "Revisa que el abogado tenga un correo registrado y consulta la consola si el problema continúa."
+                    );
+                } else {
+                    alert(
+                        "Expediente registrado correctamente."
+                    );
+                }
             }
 
             cerrarModalAsunto();

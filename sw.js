@@ -1,4 +1,4 @@
-const CACHE_NAME = 'legaltech-v1-auth-v11';
+const CACHE_NAME = 'legaltech-v1-pdf-ejecutivo-v13';
 const ASSETS = [
   // Agregamos las rutas de Firebase para que la app cargue rápido en el cel
   'https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js',
@@ -7,9 +7,13 @@ const ASSETS = [
   // Tus archivos locales de siempre
   'index.html',
   'dashboard.html',
-  'css/style.css', 
+  'css/estilos.css', 
   'js/agenda.js',
-  'js/clientes.js'
+  'js/clientes.js',
+  'js/email.js',
+  'js/notificaciones.js',
+  'js/asuntos.js',
+  'js/pdf.js'
 ];
 
 // El resto de tu archivo sw.js (install, activate, fetch) se queda EXACTAMENTE IGUAL

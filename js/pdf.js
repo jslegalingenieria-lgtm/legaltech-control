@@ -1,6 +1,8 @@
 /**
  * JS LegalTech Control
- * Generador profesional de PDF para la Línea del Tiempo.
+ * Generador profesional de PDF para la Bitácora / Línea del Tiempo.
+ * Diseño institucional inspirado en los reportes ejecutivos de
+ * JS Legal & Ingeniería.
  *
  * Requiere en dashboard.html, antes de cargar este archivo:
  * <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -10,43 +12,198 @@
 (() => {
     "use strict";
 
+    const COLORES = {
+        azul: "#0b1d38",
+        oro: "#c5a246",
+        texto: "#1f2937",
+        gris: "#6b7280",
+        borde: "#d8d5ca",
+        fondoAlterno: "#f4f1e8"
+    };
+
     function escaparHTML(valor) {
         return String(valor ?? "")
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
             .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
+            .replace(/\"/g, "&quot;")
             .replace(/'/g, "&#039;");
     }
 
     function limpiarNombreArchivo(valor) {
         return String(valor || "Expediente")
-            .replace(/[\/\\:*?"<>|]/g, "-")
+            .replace(/[\/\\:*?\"<>|]/g, "-")
             .replace(/\s+/g, "_");
     }
 
     function esperarImagen(imagen) {
         return new Promise(resolve => {
-            if (!imagen) {
-                resolve();
-                return;
-            }
-
-            if (imagen.complete && imagen.naturalWidth > 0) {
-                resolve();
-                return;
-            }
+            if (!imagen) return resolve();
+            if (imagen.complete && imagen.naturalWidth > 0) return resolve();
 
             imagen.onload = resolve;
-
             imagen.onerror = () => {
                 console.warn("No se pudo cargar el logo del PDF.");
-                imagen.remove();
                 resolve();
             };
-
-            setTimeout(resolve, 2500);
+            setTimeout(resolve, 3000);
         });
+    }
+
+    function imagenADataURL(imagen) {
+        try {
+            const canvas = document.createElement("canvas");
+            canvas.width = imagen.naturalWidth || imagen.width;
+            canvas.height = imagen.naturalHeight || imagen.height;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(imagen, 0, 0);
+            return canvas.toDataURL("image/png");
+        } catch (error) {
+            console.warn("No fue posible convertir el logo a imagen embebida.", error);
+            return null;
+        }
+    }
+
+    function obtenerTextoExpediente(titulo) {
+        return titulo?.innerText?.trim() || "Expediente";
+    }
+
+    function prepararActuaciones(lineaTiempo) {
+        const clon = lineaTiempo.cloneNode(true);
+        clon.removeAttribute("id");
+        clon.style.cssText = "margin:0;padding:0;background:#fff;overflow:visible;height:auto;max-height:none;";
+        clon.querySelectorAll("button").forEach(boton => boton.remove());
+
+        const elementos = Array.from(clon.children);
+        elementos.forEach((elemento, indice) => {
+            elemento.style.cssText = `
+                display:block;
+                position:relative;
+                margin:0 0 14px 18px;
+                padding:14px 16px 14px 20px;
+                background:${indice % 2 === 0 ? "#ffffff" : COLORES.fondoAlterno};
+                border:1px solid ${COLORES.borde};
+                border-left:5px solid ${COLORES.oro};
+                border-radius:0;
+                box-sizing:border-box;
+                page-break-inside:avoid;
+            `;
+
+            const fecha = elemento.querySelector("span");
+            if (fecha) {
+                fecha.textContent = fecha.textContent.replace("📅", "").trim();
+                fecha.style.cssText = `
+                    display:block;
+                    margin:0 0 5px;
+                    color:${COLORES.azul};
+                    font-size:13px;
+                    font-weight:800;
+                    letter-spacing:.15px;
+                `;
+            }
+
+            const descripcion = elemento.querySelector("p");
+            if (descripcion) {
+                descripcion.style.cssText = `
+                    margin:0;
+                    color:${COLORES.texto};
+                    font-size:13px;
+                    line-height:1.55;
+                    text-align:justify;
+                `;
+            }
+
+            const punto = document.createElement("span");
+            punto.style.cssText = `
+                position:absolute;
+                left:-25px;
+                top:16px;
+                width:12px;
+                height:12px;
+                border-radius:50%;
+                background:${COLORES.azul};
+                border:3px solid ${COLORES.oro};
+                box-sizing:border-box;
+            `;
+            elemento.appendChild(punto);
+        });
+
+        clon.style.borderLeft = `2px solid ${COLORES.oro}`;
+        clon.style.marginLeft = "8px";
+        return clon;
+    }
+
+    function dibujarEncabezado(pdf, logoDataURL, anchoPagina, expediente) {
+        if (logoDataURL) {
+            const anchoLogo = 50;
+            const altoLogo = 18;
+            pdf.addImage(
+                logoDataURL,
+                "PNG",
+                (anchoPagina - anchoLogo) / 2,
+                8,
+                anchoLogo,
+                altoLogo,
+                undefined,
+                "FAST"
+            );
+        }
+
+        pdf.setDrawColor(197, 162, 70);
+        pdf.setLineWidth(0.8);
+        pdf.line(10, 30, anchoPagina - 10, 30);
+
+        pdf.setTextColor(11, 29, 56);
+        pdf.setFont("helvetica", "bold");
+        pdf.setFontSize(15);
+        pdf.text("REPORTE EJECUTIVO", anchoPagina / 2, 38, { align: "center" });
+
+        pdf.setTextColor(197, 162, 70);
+        pdf.setFontSize(10.5);
+        pdf.text(
+            "BITÁCORA Y LÍNEA DEL TIEMPO DEL EXPEDIENTE",
+            anchoPagina / 2,
+            44,
+            { align: "center" }
+        );
+
+        pdf.setTextColor(100, 100, 100);
+        pdf.setFont("helvetica", "normal");
+        pdf.setFontSize(7.5);
+        const expedienteCorto = String(expediente).slice(0, 85);
+        pdf.text(expedienteCorto, anchoPagina / 2, 48.5, { align: "center" });
+    }
+
+    function dibujarPie(pdf, anchoPagina, altoPagina, pagina, totalPaginas) {
+        const y = altoPagina - 14;
+        pdf.setDrawColor(197, 162, 70);
+        pdf.setLineWidth(0.5);
+        pdf.line(10, y, anchoPagina - 10, y);
+
+        pdf.setTextColor(11, 29, 56);
+        pdf.setFont("helvetica", "bold");
+        pdf.setFontSize(7.5);
+        pdf.text(
+            "Mtro. Jorge Sánchez Flores  |  Abogado Postulante",
+            anchoPagina / 2,
+            y + 4.5,
+            { align: "center" }
+        );
+
+        pdf.setTextColor(70, 80, 95);
+        pdf.setFont("helvetica", "normal");
+        pdf.setFontSize(6.5);
+        pdf.text(
+            "jslegal.ingenieria@gmail.com  ·  JS Legal & Ingeniería — Despacho Jurídico",
+            10,
+            y + 9
+        );
+        pdf.text(
+            `pág. ${pagina} de ${totalPaginas}`,
+            anchoPagina - 10,
+            y + 9,
+            { align: "right" }
+        );
     }
 
     async function descargarBitacoraPDF() {
@@ -73,166 +230,101 @@
             return;
         }
 
-        const expediente = titulo?.innerText?.trim() || "Expediente";
+        const expediente = obtenerTextoExpediente(titulo);
         const ahora = new Date();
-
         const fecha = ahora.toLocaleDateString("es-MX", {
             day: "2-digit",
             month: "long",
             year: "numeric"
         });
-
         const hora = ahora.toLocaleTimeString("es-MX", {
             hour: "2-digit",
             minute: "2-digit"
         });
 
-        const logoURL = new URL(
-            "img/logo-js-legal.png",
-            window.location.href
-        ).href;
+        const logoURL = new URL("img/logo-js-legal.png", window.location.href).href;
+        const logo = new Image();
+        logo.crossOrigin = "anonymous";
+        logo.src = logoURL;
+        await esperarImagen(logo);
+        const logoDataURL = logo.naturalWidth ? imagenADataURL(logo) : null;
 
         const documento = document.createElement("div");
-
         documento.id = "documento-pdf-profesional";
-
         documento.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 760px;
-            min-height: 980px;
-            padding: 34px;
-            box-sizing: border-box;
-            background: #ffffff;
-            color: #1e293b;
-            font-family: Arial, Helvetica, sans-serif;
-            z-index: 2147483647;
-            opacity: 1;
-            visibility: visible;
-            pointer-events: none;
+            position:fixed;
+            top:0;
+            left:0;
+            width:760px;
+            padding:0 6px 18px;
+            box-sizing:border-box;
+            background:#ffffff;
+            color:${COLORES.texto};
+            font-family:Arial, Helvetica, sans-serif;
+            z-index:2147483647;
+            opacity:1;
+            visibility:visible;
+            pointer-events:none;
         `;
 
         documento.innerHTML = `
-            <div style="
-                display:flex;
-                justify-content:space-between;
-                align-items:flex-start;
-                gap:24px;
-                padding-bottom:18px;
-                margin-bottom:24px;
-                border-bottom:4px solid #2563eb;
-            ">
-                <div style="flex:1;">
-                    <img
-                        id="logo-temporal-pdf"
-                        src="${logoURL}"
-                        alt="JS Legal & Ingeniería"
-                        style="
-                            width:250px;
-                            max-width:100%;
-                            height:auto;
-                            display:block;
-                            margin-bottom:12px;
-                        "
-                    >
-
-                    <div style="
-                        font-size:18px;
-                        font-weight:800;
-                        color:#2563eb;
-                        text-transform:uppercase;
-                        letter-spacing:1px;
-                    ">
-                        Reporte de actuaciones
-                    </div>
-                </div>
-
-                <div style="
-                    min-width:190px;
-                    text-align:right;
-                    font-size:11px;
-                    line-height:1.7;
-                    color:#475569;
-                ">
-                    <div>
-                        <strong>Expediente:</strong>
-                        ${escaparHTML(expediente)}
-                    </div>
-
-                    <div>
-                        <strong>Fecha:</strong>
+            <table role="presentation" style="width:100%;border-collapse:collapse;margin:0 0 24px;font-size:13px;">
+                <tr>
+                    <td style="width:31%;padding:11px 13px;background:${COLORES.azul};color:#fff;font-weight:800;border:1px solid ${COLORES.borde};">
+                        FECHA DE EMISIÓN
+                    </td>
+                    <td style="padding:11px 13px;border:1px solid ${COLORES.borde};font-weight:700;">
                         ${escaparHTML(fecha)}
-                    </div>
-
-                    <div>
-                        <strong>Hora:</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:11px 13px;background:${COLORES.azul};color:#fff;font-weight:800;border:1px solid ${COLORES.borde};">
+                        HORA DE EMISIÓN
+                    </td>
+                    <td style="padding:11px 13px;border:1px solid ${COLORES.borde};font-weight:700;">
                         ${escaparHTML(hora)}
-                    </div>
-                </div>
-            </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:11px 13px;background:${COLORES.azul};color:#fff;font-weight:800;border:1px solid ${COLORES.borde};">
+                        EXPEDIENTE
+                    </td>
+                    <td style="padding:11px 13px;border:1px solid ${COLORES.borde};font-weight:700;">
+                        ${escaparHTML(expediente)}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:11px 13px;background:${COLORES.azul};color:#fff;font-weight:800;border:1px solid ${COLORES.borde};">
+                        DOCUMENTO
+                    </td>
+                    <td style="padding:11px 13px;border:1px solid ${COLORES.borde};font-weight:700;">
+                        Reporte cronológico de actuaciones
+                    </td>
+                </tr>
+            </table>
 
-            <div style="
-                margin-bottom:18px;
-                padding-bottom:8px;
-                border-bottom:2px solid #cbd5e1;
-                font-size:16px;
-                font-weight:800;
-                color:#0f172a;
-            ">
-                Línea del Tiempo del Juicio
+            <div style="display:flex;align-items:center;gap:10px;margin:0 0 16px;padding-bottom:6px;border-bottom:2px solid ${COLORES.oro};">
+                <span style="color:${COLORES.oro};font-size:21px;font-weight:900;">I.</span>
+                <span style="color:${COLORES.azul};font-size:18px;font-weight:900;">LÍNEA DEL TIEMPO DEL JUICIO</span>
             </div>
 
             <div id="contenido-linea-tiempo-pdf"></div>
 
-            <div style="
-                display:flex;
-                justify-content:space-between;
-                gap:20px;
-                margin-top:30px;
-                padding-top:12px;
-                border-top:1px solid #cbd5e1;
-                color:#64748b;
-                font-size:9px;
-                line-height:1.5;
-            ">
-                <span>
-                    Documento generado automáticamente por
-                    <strong>JS LegalTech Control</strong>.
-                </span>
-
-                <span style="text-align:right;">
-                    JS Legal &amp; Ingeniería
-                </span>
+            <div style="margin-top:22px;padding-top:12px;border-top:1px solid ${COLORES.oro};font-size:10px;line-height:1.55;color:${COLORES.gris};font-style:italic;">
+                <strong style="color:${COLORES.azul};">Nota:</strong>
+                El presente reporte reproduce las actuaciones registradas en JS LegalTech Control y constituye un documento de seguimiento interno. La información deberá cotejarse con el expediente judicial y las constancias oficiales correspondientes.
             </div>
         `;
 
-        const clon = lineaTiempo.cloneNode(true);
-
-        clon.removeAttribute("id");
-        clon.style.maxHeight = "none";
-        clon.style.height = "auto";
-        clon.style.overflow = "visible";
-        clon.style.padding = "0";
-        clon.style.margin = "0";
-        clon.style.background = "#ffffff";
-
-        clon.querySelectorAll("button").forEach(boton => boton.remove());
-
         documento
             .querySelector("#contenido-linea-tiempo-pdf")
-            .appendChild(clon);
+            .appendChild(prepararActuaciones(lineaTiempo));
 
         document.body.appendChild(documento);
 
         try {
-            const logo = documento.querySelector("#logo-temporal-pdf");
-            await esperarImagen(logo);
-
             await new Promise(resolve => {
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(resolve);
-                });
+                requestAnimationFrame(() => requestAnimationFrame(resolve));
             });
 
             const canvas = await html2canvas(documento, {
@@ -246,9 +338,8 @@
                 windowWidth: 820
             });
 
-            const imagen = canvas.toDataURL("image/jpeg", 0.98);
+            const imagen = canvas.toDataURL("image/jpeg", 0.96);
             const { jsPDF } = window.jspdf;
-
             const pdf = new jsPDF({
                 orientation: "portrait",
                 unit: "mm",
@@ -257,62 +348,40 @@
 
             const anchoPagina = pdf.internal.pageSize.getWidth();
             const altoPagina = pdf.internal.pageSize.getHeight();
-
-            const margen = 10;
-            const anchoUtil = anchoPagina - margen * 2;
-            const altoUtil = altoPagina - margen * 2;
-
+            const margenX = 10;
+            const inicioContenido = 53;
+            const finContenido = altoPagina - 18;
+            const altoUtil = finContenido - inicioContenido;
+            const anchoUtil = anchoPagina - margenX * 2;
             const altoImagen = canvas.height * anchoUtil / canvas.width;
+            const totalPaginas = Math.max(1, Math.ceil(altoImagen / altoUtil));
 
-            let posicionY = margen;
-            let alturaRestante = altoImagen;
+            for (let pagina = 1; pagina <= totalPaginas; pagina += 1) {
+                if (pagina > 1) pdf.addPage();
 
-            pdf.addImage(
-                imagen,
-                "JPEG",
-                margen,
-                posicionY,
-                anchoUtil,
-                altoImagen
-            );
+                dibujarEncabezado(pdf, logoDataURL, anchoPagina, expediente);
 
-            alturaRestante -= altoUtil;
-
-            while (alturaRestante > 0) {
-                pdf.addPage();
-
-                posicionY = margen - (altoImagen - alturaRestante);
-
+                const desplazamiento = (pagina - 1) * altoUtil;
                 pdf.addImage(
                     imagen,
                     "JPEG",
-                    margen,
-                    posicionY,
+                    margenX,
+                    inicioContenido - desplazamiento,
                     anchoUtil,
-                    altoImagen
+                    altoImagen,
+                    undefined,
+                    "FAST"
                 );
 
-                alturaRestante -= altoUtil;
+                pdf.setFillColor(255, 255, 255);
+                pdf.rect(0, 0, anchoPagina, inicioContenido - 1, "F");
+                pdf.rect(0, finContenido, anchoPagina, altoPagina - finContenido, "F");
+
+                dibujarEncabezado(pdf, logoDataURL, anchoPagina, expediente);
+                dibujarPie(pdf, anchoPagina, altoPagina, pagina, totalPaginas);
             }
 
-            const totalPaginas = pdf.internal.getNumberOfPages();
-
-            for (let pagina = 1; pagina <= totalPaginas; pagina += 1) {
-                pdf.setPage(pagina);
-                pdf.setFontSize(8);
-                pdf.setTextColor(100);
-
-                pdf.text(
-                    `Página ${pagina} de ${totalPaginas}`,
-                    anchoPagina - 30,
-                    altoPagina - 6
-                );
-            }
-
-            pdf.save(
-                `Bitacora_${limpiarNombreArchivo(expediente)}.pdf`
-            );
-
+            pdf.save(`Bitacora_${limpiarNombreArchivo(expediente)}.pdf`);
         } catch (error) {
             console.error("Error al generar el PDF:", error);
             alert("No fue posible generar el PDF.");

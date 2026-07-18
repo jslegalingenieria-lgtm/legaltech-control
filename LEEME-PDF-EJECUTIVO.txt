@@ -1,0 +1,23 @@
+ACTUALIZACIÓN - PDF EJECUTIVO DE BITÁCORA
+
+Se rediseñó el PDF de la Línea del Tiempo con una presentación institucional similar al reporte ejecutivo proporcionado:
+
+- Encabezado centrado con logo.
+- Paleta azul marino y dorado.
+- Título "REPORTE EJECUTIVO".
+- Tabla de identificación del documento.
+- Línea del tiempo con actuaciones ordenadas y resaltadas.
+- Encabezado y pie repetidos en todas las páginas.
+- Numeración de páginas.
+- Nota de alcance al final.
+
+Archivo modificado:
+- js/pdf.js
+
+También se actualizó la versión de caché en sw.js para evitar que el navegador conserve el PDF anterior.
+
+PRUEBA
+1. Abra un expediente con actuaciones.
+2. Entre a la Bitácora / Línea del Tiempo.
+3. Presione "Descargar PDF".
+4. Si todavía aparece el diseño anterior, use Ctrl + F5 o borre los datos del sitio/PWA.
