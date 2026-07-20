@@ -75,21 +75,62 @@
             if (!inicializarEmailJS()) return { ok: false, motivo: "emailjs_no_disponible" };
 
             const parametros = {
-                correo: destinatario,
-                to_email: destinatario,
-                asunto,
-                subject: asunto,
-                cliente: cliente || "Sin especificar",
-                numeroExpediente: expediente || "Sin número",
-                expediente: expediente || "Sin número",
-                juzgado: juzgado || "Sin especificar",
-                materia: materia || "Sin especificar",
-                descripcion: descripcion || "Sin descripción",
-                mensaje: descripcion || "Sin descripción",
-                abogado: abogado || "JS Legal & Ingeniería",
-                tipo,
-                fecha: fecha || new Date().toLocaleString("es-MX")
-            };
+    correo: destinatario,
+    to_email: destinatario,
+
+    asunto,
+    subject: asunto,
+
+    titulo:
+        tipo === "bienvenida_portal"
+            ? "Bienvenido al Portal del Cliente"
+            : tipo === "nuevo_asunto"
+                ? "Nuevo asunto asignado"
+                : tipo === "termino_procesal"
+                    ? "Alerta de término procesal"
+                    : "Actualización de expediente",
+
+    destinatarioNombre:
+        tipo === "nuevo_asunto" || tipo === "termino_procesal"
+            ? (abogado || "Abogado responsable")
+            : (cliente || "Cliente"),
+
+    introduccion:
+        tipo === "bienvenida_portal"
+            ? `Le damos la bienvenida al Portal del Cliente de JS LegalTech Control.
+
+Su asunto ha sido registrado y está siendo atendido por nuestro despacho a través de JS LegalTech Control. Desde este portal podrá consultar el estado de su expediente, recibir actualizaciones y mantenerse informado sobre el avance de su asunto.`
+            : tipo === "nuevo_asunto"
+                ? "Se le informa que se le ha asignado un nuevo asunto dentro de JS LegalTech Control."
+                : tipo === "termino_procesal"
+                    ? "Se ha generado una alerta procesal relacionada con el expediente indicado."
+                    : "Existe una actualización relacionada con su expediente.",
+
+    mensajeDestacado:
+        tipo === "bienvenida_portal"
+            ? `En unos minutos recibirá un correo de Firebase Authentication con un enlace seguro para establecer su contraseña.
+
+Si no lo encuentra en su bandeja de entrada, revise la carpeta de correo no deseado (Spam).`
+            : tipo === "nuevo_asunto"
+                ? "Ingrese al sistema para consultar los detalles del expediente y dar seguimiento."
+                : "Revise el sistema para conocer más detalles.",
+
+    firma:
+        tipo === "bienvenida_portal"
+            ? (abogado || "JS Legal & Ingeniería")
+            : "Administrador del Sistema",
+
+    cliente: cliente || "Sin especificar",
+    numeroExpediente: expediente || "Sin número",
+    expediente: expediente || "Sin número",
+    juzgado: juzgado || "Sin especificar",
+    materia: materia || "Sin especificar",
+    descripcion: descripcion || "Sin descripción",
+    mensaje: descripcion || "Sin descripción",
+    abogado: abogado || "JS Legal & Ingeniería",
+    tipo,
+    fecha: fecha || new Date().toLocaleString("es-MX")
+};
 
             const respuesta = await window.emailjs.send(
                 CONFIG.serviceId,
