@@ -152,20 +152,40 @@
         });
     }
 
-    function iniciarSincronizacionAgenda() {
-        if (detenerEscucha) return;
 
-        try {
-            detenerEscucha = obtenerDB()
-                .collection(COLECCION)
-                .onSnapshot(snapshot => {
+
+
+    
+    function iniciarSincronizacionAgenda() {
+    if (detenerEscucha) return;
+
+    const usuarioActivo = obtenerUsuarioActivo();
+
+    // El cliente consulta su información desde el portal.
+    // No debe escuchar toda la agenda del despacho.
+    if (usuarioActivo?.rol === "Cliente") {
+        console.info(
+            "Sincronización general de agenda omitida para el cliente."
+        );
+        return;
+    }
+
+    try {
+        detenerEscucha = obtenerDB()
+            .collection(COLECCION)
+            .onSnapshot(
+                snapshot => {
                     const eventos = snapshot.docs
                         .map(doc =>
                             normalizarEvento(doc.id, doc.data())
                         )
                         .sort((a, b) =>
-                            new Date(`${a.fecha}T${a.hora || "00:00"}`) -
-                            new Date(`${b.fecha}T${b.hora || "00:00"}`)
+                            new Date(
+                                `${a.fecha}T${a.hora || "00:00"}`
+                            ) -
+                            new Date(
+                                `${b.fecha}T${b.hora || "00:00"}`
+                            )
                         );
 
                     guardarCache(eventos);
@@ -176,7 +196,8 @@
                             detail: eventos
                         })
                     );
-                }, error => {
+                },
+                error => {
                     console.error(
                         "Error sincronizando agenda:",
                         error
@@ -185,12 +206,18 @@
                     mostrarErrorAgenda(
                         "No fue posible sincronizar la agenda con Firebase."
                     );
-                });
-        } catch (error) {
-            console.error(error);
-            mostrarErrorAgenda(error.message);
-        }
+                }
+            );
+
+    } catch (error) {
+        console.error(
+            "No fue posible iniciar la sincronización de agenda:",
+            error
+        );
+
+        mostrarErrorAgenda(error.message);
     }
+}
 
     function obtenerSelectAsuntos() {
         return (
