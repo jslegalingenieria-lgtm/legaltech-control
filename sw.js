@@ -1,4 +1,4 @@
-const CACHE_NAME = "js-legaltech-light-v1.3";
+const CACHE_NAME = "js-legaltech-light-v1.3.1";
 const ASSETS = [
   "index.html", "dashboard.html", "css/estilos.css", "css/calendario.css",
   "js/firebase.js", "js/storage.js", "js/auth.js", "js/app.js", "js/portal.js"
