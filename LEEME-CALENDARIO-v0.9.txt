@@ -1,0 +1,22 @@
+JS LegalTech Control v0.9 — Calendario Jurídico Profesional
+
+NOVEDADES
+- Nueva opción Calendario en el menú lateral.
+- Vista mensual unificada de la colección agenda.
+- Navegación por meses y botón Hoy.
+- Filtro por tipo de evento.
+- Colores para audiencias, términos, reuniones y diligencias.
+- Resumen mensual con contadores.
+- Detalle del evento con expediente, cliente, materia, juzgado, responsable y notas.
+- Botón para abrir el expediente relacionado.
+- Adaptación para computadora y celular.
+- Conserva el dashboard con filtro y el sistema de correos.
+
+INSTALACIÓN
+1. Sustituya la carpeta anterior por esta versión completa.
+2. Abra con Live Server o publique en GitHub Pages.
+3. Presione Ctrl+F5 para limpiar la caché del navegador.
+4. Si está instalada como PWA, cierre y vuelva a abrir para que el Service Worker actualice la caché.
+
+NOTA
+El calendario utiliza la misma información de Agenda/Firestore. No duplica eventos ni requiere otra colección.

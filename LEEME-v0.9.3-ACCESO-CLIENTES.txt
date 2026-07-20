@@ -1,0 +1,26 @@
+JS LEGALTECH CONTROL LIGHT v0.9.3
+MÓDULO DE ACCESO DEL CLIENTE
+
+FUNCIONAMIENTO
+1. Al registrar un asunto nuevo, deje marcada la opción:
+   "Habilitar portal y enviar bienvenida al cliente".
+2. El sistema crea la cuenta del cliente en Firebase Authentication sin cerrar
+   la sesión del administrador.
+3. El cliente recibe:
+   - Un correo de bienvenida por EmailJS.
+   - Un correo seguro de Firebase para crear su propia contraseña.
+4. Después inicia sesión usando su correo y la contraseña que eligió.
+5. El botón 📧 de la tabla de asuntos reenvía la invitación y el enlace seguro.
+
+IMPORTANTE
+- En Firebase Console > Authentication > Templates, personalice la plantilla
+  "Password reset" para indicar que sirve para crear o restablecer la contraseña.
+- Debe estar habilitado Email/Password en Authentication > Sign-in method.
+- La edición Light no usa Firebase Storage ni almacena documentos.
+- No se envían contraseñas por correo.
+
+PRUEBA RECOMENDADA
+- Use un cliente con un correo real al que tenga acceso.
+- Registre el cliente y luego un asunto.
+- Revise bandeja de entrada y spam.
+- Abra el correo de Firebase, establezca la contraseña e ingrese al portal.

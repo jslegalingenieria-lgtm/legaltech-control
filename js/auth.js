@@ -168,12 +168,25 @@
             }
 
             if (!perfil) {
-                // Clientes conservan temporalmente el acceso anterior hasta su futura migración.
                 const cliente = await buscarPerfilCliente(entrada);
-                const passwordCliente = cliente?.password ?? cliente?.pass ?? "";
-                if (!cliente || String(passwordCliente) !== String(password)) {
+                if (!cliente) {
                     alert("❌ Usuario o contraseña incorrectos.");
                     return;
+                }
+                if ((cliente.estado || "Activo") !== "Activo") {
+                    alert("Este cliente está dado de baja. Contacte al despacho.");
+                    return;
+                }
+
+                if (cliente.portalHabilitado === true || cliente.authUid) {
+                    await auth.signInWithEmailAndPassword(cliente.correo, password);
+                } else {
+                    // Compatibilidad temporal con registros anteriores.
+                    const passwordCliente = cliente?.password ?? cliente?.pass ?? "";
+                    if (String(passwordCliente) !== String(password)) {
+                        alert("❌ Usuario o contraseña incorrectos.");
+                        return;
+                    }
                 }
                 guardarSesion(cliente, recordar);
             } else {

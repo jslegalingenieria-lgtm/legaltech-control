@@ -16,6 +16,7 @@
     let agendaCache = [];
     let detenerEscucha = null;
     let intervaloAlarmas = null;
+    let intervaloAudiencia = null;
 
     function obtenerDB() {
         if (!window.db) {
@@ -542,6 +543,41 @@
                         ✏️
                     </button>
 
+                    ${evento.tipo === "Audiencia" ? `
+
+                  <button
+                   type="button"
+                    onclick="abrirExpedienteAgenda('${evento.asuntoId}')"
+                  title="Abrir expediente"
+                   style="
+        background:#eff6ff;
+        border:none;
+        padding:.5rem .8rem;
+        border-radius:6px;
+        cursor:pointer;
+        color:#1d4ed8;
+                    ">
+                  📂
+             </button>
+
+
+                    <button
+        type="button"
+        onclick="iniciarAudienciaAgenda('${evento.asuntoId}', '${evento.id}')"
+        title="Iniciar audiencia"
+        style="
+            background:#dcfce7;
+            border:none;
+            padding:.5rem .8rem;
+            border-radius:6px;
+            cursor:pointer;
+            color:#166534;
+                     ">
+                   ▶️
+                   </button>
+                   ` : ""}
+
+
                     <button
                         type="button"
                         onclick="eliminarEvento('${evento.id}')"
@@ -562,6 +598,264 @@
         });
 
         actualizarContadoresDashboard(eventos.length);
+    }
+
+
+
+function abrirExpedienteAgenda(asuntoId) {
+
+    if (!asuntoId) {
+        alert("Este evento no tiene un expediente asociado.");
+        return;
+    }
+
+    if (typeof window.switchTab !== "function") {
+        alert("No fue posible abrir el módulo de asuntos.");
+        return;
+    }
+
+    window.switchTab("asuntos");
+
+    setTimeout(() => {
+
+        const fila = document.querySelector(
+            `tr[data-id="${asuntoId}"]`
+        );
+
+        if (!fila) {
+            alert("No fue posible localizar el expediente.");
+            return;
+        }
+
+        fila.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        fila.classList.add("expediente-destacado");
+
+        setTimeout(() => {
+            fila.classList.remove("expediente-destacado");
+        }, 4000);
+
+    }, 400);
+}
+
+
+function iniciarAudienciaAgenda(asuntoId, eventoId) {
+
+    if (!asuntoId) {
+        alert("Esta audiencia no tiene un expediente asociado.");
+        return;
+    }
+
+    const asunto = obtenerAsuntos().find(
+        item => String(item.id) === String(asuntoId)
+    );
+
+    if (!asunto) {
+        alert("No fue posible localizar el expediente de la audiencia.");
+        return;
+    }
+
+    const evento = obtenerAgenda().find(
+        item => String(item.id) === String(eventoId)
+    );
+
+    if (!evento) {
+        alert("No fue posible localizar el evento de agenda.");
+        return;
+    }
+
+    if (typeof window.switchTab !== "function") {
+        alert("No fue posible abrir el módulo de asuntos.");
+        return;
+    }
+
+    if (typeof window.abrirBitacoraAsunto !== "function") {
+        alert("El módulo de bitácora todavía no está disponible.");
+        return;
+    }
+
+    const confirmarInicio = confirm(
+        `¿Deseas iniciar esta audiencia?\n\n` +
+        `Expediente: ${asunto.expediente || "S/N"}\n` +
+        `Cliente: ${asunto.cliente || "Sin cliente"}\n` +
+        `Hora programada: ${evento.hora || "Sin hora"}`
+    );
+
+    if (!confirmarInicio) {
+        return;
+    }
+
+    sessionStorage.setItem(
+        "js_legal_audiencia_activa",
+        JSON.stringify({
+            eventoId: String(eventoId),
+            asuntoId: String(asuntoId),
+            expediente: asunto.expediente || "",
+            cliente: asunto.cliente || "",
+            juzgado: asunto.juzgado || "",
+            tipo: evento.tipo || "Audiencia",
+            notas: evento.notas || "",
+            fechaProgramada: evento.fecha || "",
+            horaProgramada: evento.hora || "",
+            inicio: new Date().toISOString()
+        })
+    );
+
+    window.switchTab("asuntos");
+
+    setTimeout(() => {
+
+        const fila = document.querySelector(
+            `tr[data-id="${asuntoId}"]`
+        );
+
+        if (fila) {
+            fila.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+            fila.classList.add("expediente-destacado");
+
+            setTimeout(() => {
+                fila.classList.remove("expediente-destacado");
+            }, 3000);
+        }
+
+        window.abrirBitacoraAsunto(asuntoId);
+
+        setTimeout(() => {
+
+            const descripcion =
+                document.getElementById("act-descripcion");
+
+            if (descripcion) {
+                descripcion.value =
+                    `Audiencia celebrada. ${evento.notas || ""}`.trim();
+
+                descripcion.focus();
+            }
+
+            const fecha =
+                document.getElementById("act-fecha");
+
+            if (fecha && evento.fecha) {
+                fecha.value = evento.fecha;
+            }
+
+            mostrarModoAudiencia();
+
+        }, 250);
+
+    }, 400);
+}
+
+    function obtenerAudienciaActiva() {
+        try {
+            const datos = sessionStorage.getItem("js_legal_audiencia_activa");
+            return datos ? JSON.parse(datos) : null;
+        } catch (error) {
+            console.error("No se pudo leer la audiencia activa:", error);
+            return null;
+        }
+    }
+
+    function formatearDuracionAudiencia(milisegundos) {
+        const totalSegundos = Math.max(0, Math.floor(milisegundos / 1000));
+        const horas = String(Math.floor(totalSegundos / 3600)).padStart(2, "0");
+        const minutos = String(Math.floor((totalSegundos % 3600) / 60)).padStart(2, "0");
+        const segundos = String(totalSegundos % 60).padStart(2, "0");
+        return `${horas}:${minutos}:${segundos}`;
+    }
+
+    function actualizarCronometroAudiencia() {
+        const audiencia = obtenerAudienciaActiva();
+        const cronometro = document.getElementById("audiencia-cronometro");
+        if (!audiencia || !cronometro) {
+            if (intervaloAudiencia) {
+                clearInterval(intervaloAudiencia);
+                intervaloAudiencia = null;
+            }
+            return;
+        }
+        const inicio = new Date(audiencia.inicio).getTime();
+        if (Number.isNaN(inicio)) {
+            cronometro.textContent = "00:00:00";
+            return;
+        }
+        cronometro.textContent = formatearDuracionAudiencia(Date.now() - inicio);
+    }
+
+    function mostrarModoAudiencia() {
+        const audiencia = obtenerAudienciaActiva();
+        const modal = document.getElementById("modal-bitacora");
+        const formulario = document.getElementById("form-actuacion");
+        if (!audiencia || !modal || !formulario) return;
+
+        let panel = document.getElementById("panel-audiencia-en-curso");
+        if (!panel) {
+            panel = document.createElement("section");
+            panel.id = "panel-audiencia-en-curso";
+            panel.className = "panel-audiencia-en-curso";
+            formulario.parentElement.insertBefore(panel, formulario);
+        }
+
+        const inicio = new Date(audiencia.inicio);
+        const horaInicio = Number.isNaN(inicio.getTime())
+            ? "Sin registro"
+            : inicio.toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit" });
+
+        panel.innerHTML = `
+            <div class="audiencia-encabezado">
+                <div>
+                    <span class="audiencia-etiqueta">⚖️ Audiencia en curso</span>
+                    <h4>Expediente: ${escaparHTML(audiencia.expediente || "S/N")}</h4>
+                </div>
+                <div id="audiencia-cronometro" class="audiencia-cronometro">00:00:00</div>
+            </div>
+            <div class="audiencia-datos">
+                <div><span>Cliente</span><strong>${escaparHTML(audiencia.cliente || "Sin cliente")}</strong></div>
+                <div><span>Juzgado</span><strong>${escaparHTML(audiencia.juzgado || "Sin juzgado")}</strong></div>
+                <div><span>Inicio</span><strong>${escaparHTML(horaInicio)}</strong></div>
+            </div>
+            <div class="audiencia-acciones">
+                <button type="button" class="btn-finalizar-audiencia" onclick="finalizarAudienciaAgenda()">⏹ Finalizar audiencia</button>
+            </div>`;
+
+        actualizarCronometroAudiencia();
+        if (intervaloAudiencia) clearInterval(intervaloAudiencia);
+        intervaloAudiencia = setInterval(actualizarCronometroAudiencia, 1000);
+    }
+
+    function finalizarAudienciaAgenda() {
+        const audiencia = obtenerAudienciaActiva();
+        if (!audiencia) {
+            alert("No hay una audiencia activa.");
+            return;
+        }
+        if (!confirm("¿Deseas finalizar la audiencia en curso?")) return;
+
+        const inicio = new Date(audiencia.inicio).getTime();
+        const fin = Date.now();
+        const duracion = Number.isNaN(inicio) ? "00:00:00" : formatearDuracionAudiencia(fin - inicio);
+        const descripcion = document.getElementById("act-descripcion");
+        if (descripcion) {
+            const textoActual = descripcion.value.trim();
+            const cierre = `Audiencia finalizada. Duración: ${duracion}.`;
+            descripcion.value = textoActual ? `${textoActual}\n\n${cierre}` : cierre;
+            descripcion.focus();
+        }
+
+        sessionStorage.removeItem("js_legal_audiencia_activa");
+        if (intervaloAudiencia) {
+            clearInterval(intervaloAudiencia);
+            intervaloAudiencia = null;
+        }
+        document.getElementById("panel-audiencia-en-curso")?.remove();
+        alert(`Audiencia finalizada.\n\nDuración: ${duracion}\n\nRevisa la descripción y agrega la actuación al historial.`);
     }
 
     async function editarEvento(id) {
@@ -756,6 +1050,10 @@
         cargarAgendaLista();
         verificarAlarmasAgenda();
 
+        if (obtenerAudienciaActiva()) {
+            mostrarModoAudiencia();
+        }
+
         if (!intervaloAlarmas) {
             intervaloAlarmas = setInterval(
                 verificarAlarmasAgenda,
@@ -773,5 +1071,9 @@
     window.cargarAgendaLista = cargarAgendaLista;
     window.editarEvento = editarEvento;
     window.eliminarEvento = eliminarEvento;
+    window.abrirExpedienteAgenda = abrirExpedienteAgenda;
+    window.iniciarAudienciaAgenda = iniciarAudienciaAgenda;
+    window.mostrarModoAudiencia = mostrarModoAudiencia;
+    window.finalizarAudienciaAgenda = finalizarAudienciaAgenda;
     window.verificarAlarmasAgenda = verificarAlarmasAgenda;
 })();

@@ -301,3 +301,101 @@
         width: 100%;
     }
 }
+
+/* Filtro global de fechas */
+.dashboard-period-filter {
+    display: grid;
+    grid-template-columns: minmax(210px, 0.8fr) minmax(0, 2fr);
+    gap: 1rem;
+    align-items: end;
+    background: #fff;
+    border: 1px solid var(--dash-border);
+    border-radius: 14px;
+    padding: 1rem 1.15rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.dashboard-period-copy strong,
+.dashboard-period-copy small {
+    display: block;
+}
+
+.dashboard-period-copy strong {
+    color: var(--dash-primary);
+    margin-bottom: .25rem;
+}
+
+.dashboard-period-copy small {
+    color: var(--dash-muted);
+    line-height: 1.35;
+}
+
+.dashboard-period-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(145px, 1fr)) auto auto;
+    gap: .7rem;
+    align-items: end;
+}
+
+.dashboard-period-controls label span {
+    display: block;
+    color: var(--dash-secondary);
+    font-size: .78rem;
+    font-weight: 800;
+    margin-bottom: .3rem;
+}
+
+.dashboard-period-controls input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--dash-border);
+    border-radius: 8px;
+    padding: .63rem .7rem;
+    color: var(--dash-primary);
+    background: #fff;
+}
+
+.dashboard-filter-button {
+    border: 1px solid var(--dash-accent);
+    border-radius: 8px;
+    padding: .68rem .85rem;
+    background: var(--dash-accent);
+    color: #fff;
+    font-weight: 800;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.dashboard-filter-secondary {
+    background: #fff;
+    color: var(--dash-accent);
+}
+
+.dashboard-period-error {
+    grid-column: 1 / -1;
+    min-height: 1em;
+    margin: 0;
+    color: #b91c1c;
+    font-size: .82rem;
+}
+
+@media (max-width: 980px) {
+    .dashboard-period-filter {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-period-controls {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .dashboard-period-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-filter-button {
+        width: 100%;
+    }
+}

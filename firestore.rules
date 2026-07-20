@@ -1,36 +1,99 @@
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    function signedIn() { return request.auth != null; }
-    function perfil() { return get(/databases/$(database)/documents/personal/$(request.auth.uid)).data; }
-    function admin() { return signedIn() && perfil().rol == 'Administrador' && perfil().estado == 'Activo'; }
-    function abogado() { return signedIn() && perfil().rol == 'Abogado' && perfil().estado == 'Activo'; }
-    function propio(registro) {
-      return registro.abogadoAsignado == request.auth.uid || registro.abogadoAsignado == perfil().usuario;
+
+    function signedIn() {
+      return request.auth != null;
     }
 
+    function perfilRef() {
+      return /databases/$(database)/documents/personal/$(request.auth.uid);
+    }
+
+    function tienePerfil() {
+      return signedIn() && exists(perfilRef());
+    }
+
+    function perfil() {
+      return get(perfilRef()).data;
+    }
+
+    function admin() {
+      return tienePerfil()
+        && perfil().rol == 'Administrador'
+        && perfil().estado == 'Activo';
+    }
+
+    function abogado() {
+      return tienePerfil()
+        && perfil().rol == 'Abogado'
+        && perfil().estado == 'Activo';
+    }
+
+    function demoActual() {
+      return resource.data.esDemo == true;
+    }
+
+    function asignadoAlAbogado(datos) {
+      return abogado() && (
+        datos.abogadoAsignado == request.auth.uid ||
+        datos.abogadoAsignado == perfil().usuario ||
+        datos.abogadoUid == request.auth.uid
+      );
+    }
+
+    // COMPATIBILIDAD TEMPORAL DE INICIO DE SESIÓN:
+    // auth.js busca el usuario/correo antes de autenticarlo.
+    // En la versión comercial debe sustituirse por una colección pública mínima
+    // de accesos o por inicio de sesión directo con correo.
     match /personal/{uid} {
-      allow read: if admin() || (signedIn() && request.auth.uid == uid);
-      allow create, update: if admin();
+      allow read: if !signedIn() || admin() || request.auth.uid == uid;
+      allow create, update: if admin() || (!exists(/databases/$(database)/documents/personal/$(uid)) && request.auth.uid == uid);
+      allow delete: if admin() && demoActual();
+    }
+
+    match /clientes/{id} {
+      // Compatibilidad temporal con el portal actual, que todavía localiza
+      // al cliente por usuario/correo antes de autenticarlo.
+      allow read: if !signedIn() || admin() || abogado();
+      allow create: if admin() || abogado();
+      allow update: if admin() || asignadoAlAbogado(resource.data);
+      allow delete: if admin() && demoActual();
+    }
+
+    match /asuntos/{id} {
+      allow read: if admin() || abogado();
+      allow create: if admin() || abogado();
+      allow update: if admin() || asignadoAlAbogado(resource.data);
+      allow delete: if admin() && demoActual();
+    }
+
+    match /agenda/{id} {
+      allow read: if admin() || abogado();
+      allow create: if admin() || abogado();
+      allow update: if admin() || asignadoAlAbogado(resource.data);
+      allow delete: if admin() && demoActual();
+    }
+
+    match /alertas/{id} {
+      allow read, create, update: if admin() || abogado();
+      allow delete: if admin() && demoActual();
+    }
+
+    match /notificaciones/{id} {
+      allow read, create, update: if admin() || abogado();
+      allow delete: if admin() && demoActual();
+    }
+
+    match /configuracion/{id} {
+      allow read, create, update: if admin() || abogado();
       allow delete: if false;
     }
-    match /clientes/{id} {
-      allow read: if admin() || (abogado() && propio(resource.data));
-      allow create: if admin() || abogado();
-      allow update: if admin() || (abogado() && propio(resource.data));
-      allow delete: if admin();
-    }
-    match /asuntos/{id} {
-      allow read: if admin() || (abogado() && propio(resource.data));
-      allow create: if admin() || abogado();
-      allow update: if admin() || (abogado() && propio(resource.data));
-      allow delete: if admin();
-    }
-    match /agenda/{id} {
-      allow read: if admin() || (abogado() && propio(resource.data));
-      allow create: if admin() || abogado();
-      allow update: if admin() || (abogado() && propio(resource.data));
-      allow delete: if admin();
+
+    // Todo lo no definido queda bloqueado.
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }

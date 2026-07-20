@@ -43,7 +43,7 @@
         tbody.innerHTML = "";
 
         if (!personalCache.length) {
-            tbody.innerHTML = '<tr><td colspan="6" style="padding:24px;text-align:center;color:#64748b;">No hay personal registrado.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="7" style="padding:24px;text-align:center;color:#64748b;">No hay personal registrado.</td></tr>';
             return;
         }
 
@@ -52,6 +52,7 @@
             const fila = document.createElement("tr");
             fila.style.borderBottom = "1px solid #e2e8f0";
             fila.innerHTML = `
+                <td style="padding:12px 24px;font-weight:700;color:#1e293b;">${escaparHTML(empleado.abogadoCodigo || "ABG-PENDIENTE")}</td>
                 <td style="padding:12px 24px;color:#1e293b;">${escaparHTML(empleado.nombre)}</td>
                 <td style="padding:12px 24px;color:#475569;">${escaparHTML(empleado.correo)}</td>
                 <td style="padding:12px 24px;color:#475569;">${escaparHTML(empleado.usuario)}</td>
@@ -59,7 +60,7 @@
                 <td style="padding:12px 24px;"><span style="padding:4px 8px;border-radius:999px;font-size:.82rem;font-weight:600;background:${estado === "Activo" ? "#dcfce7" : "#f1f5f9"};color:${estado === "Activo" ? "#166534" : "#64748b"};">${escaparHTML(estado)}</span></td>
                 <td style="padding:12px 24px;text-align:center;">
                     <button onclick="editarPersonal('${empleado.id}')" style="background:#e2e8f0;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;font-weight:600;color:#475569;margin-right:5px;">✏️ Editar</button>
-                    <button onclick="eliminarPersonal('${empleado.id}')" style="background:#fee2e2;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;font-weight:600;color:#991b1b;">🚫 Dar de baja</button>
+                    <button onclick="eliminarPersonal('${empleado.id}')" style="background:${estado === "Baja" ? "#dcfce7" : "#fee2e2"};border:none;padding:6px 12px;border-radius:4px;cursor:pointer;font-weight:600;color:${estado === "Baja" ? "#166534" : "#991b1b"};">${estado === "Baja" ? "♻️ Reactivar" : "🚫 Dar de baja"}</button>
                 </td>`;
             tbody.appendChild(fila);
         });
@@ -77,6 +78,7 @@
         document.getElementById("personal-correo").disabled = false;
         document.getElementById("personal-pass").required = true;
         document.getElementById("personal-estado").value = "Activo";
+        if (document.getElementById("personal-es-demo")) document.getElementById("personal-es-demo").checked = false;
         document.getElementById("modal-personal-titulo").textContent = "Alta de Personal";
         modal.style.display = "flex";
     }
@@ -110,6 +112,7 @@
         const password = document.getElementById("personal-pass").value;
         const rol = document.getElementById("personal-rol").value;
         const estado = document.getElementById("personal-estado").value;
+        const esDemo = document.getElementById("personal-es-demo")?.checked === true;
 
         try {
             if (!nombre || !correo || !usuario || !rol || !estado || (!id && !password)) {
@@ -126,7 +129,7 @@
             const datos = {
                 nombre, correo, usuario,
                 usuarioNormalizado: normalizar(usuario),
-                rol, estado,
+                rol, estado, activo: estado === "Activo", esDemo,
                 fechaModificacion: firebase.firestore.FieldValue.serverTimestamp()
             };
 
@@ -136,8 +139,9 @@
                 alert("Datos del personal actualizados correctamente. La contraseña no se modificó.");
             } else {
                 const uid = await crearCuentaAuth(correo, password);
+                const abogadoCodigo = await window.siguienteConsecutivo("abogados", "ABG");
                 await db.collection("personal").doc(uid).set({
-                    uid, ...datos,
+                    uid, abogadoCodigo, ...datos,
                     fechaAlta: firebase.firestore.FieldValue.serverTimestamp()
                 });
                 alert("Personal dado de alta en Authentication y Firestore.");
@@ -170,6 +174,7 @@
         document.getElementById("personal-pass").required = false;
         document.getElementById("personal-rol").value = emp.rol || "Abogado";
         document.getElementById("personal-estado").value = emp.estado || "Activo";
+        if (document.getElementById("personal-es-demo")) document.getElementById("personal-es-demo").checked = emp.esDemo === true;
         document.getElementById("personal-correo").disabled = true;
         document.getElementById("personal-usuario").disabled = true;
         document.getElementById("modal-personal-titulo").textContent = "Modificar Personal";
@@ -189,7 +194,9 @@
         if (!confirm(`¿Deseas dar de baja a ${emp.nombre}?`)) return;
         try {
             await window.db.collection("personal").doc(id).update({
-                estado: "Inactivo",
+                estado: emp.estado === "Baja" ? "Activo" : "Baja",
+                activo: emp.estado === "Baja",
+                fechaBaja: emp.estado === "Baja" ? null : firebase.firestore.FieldValue.serverTimestamp(),
                 fechaModificacion: firebase.firestore.FieldValue.serverTimestamp()
             });
             await cargarPersonal();
@@ -203,7 +210,7 @@
         cargarPersonal().catch(error => {
             console.error("Error cargando personal:", error);
             const tbody = document.getElementById("tabla-personal-cuerpo");
-            if (tbody) tbody.innerHTML = '<tr><td colspan="6" style="padding:24px;text-align:center;color:#991b1b;">No fue posible cargar el personal desde Firebase.</td></tr>';
+            if (tbody) tbody.innerHTML = '<tr><td colspan="7" style="padding:24px;text-align:center;color:#991b1b;">No fue posible cargar el personal desde Firebase.</td></tr>';
         });
     });
 

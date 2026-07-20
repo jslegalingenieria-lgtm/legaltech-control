@@ -1,0 +1,35 @@
+JS LegalTech Control — Correos de alertas e informes al cliente
+
+Funciones incluidas:
+- Envío de correo al abogado cuando se genera un término procesal.
+- Botón "Enviar informe" dentro de la bitácora del expediente.
+- Vista previa editable antes de enviar al cliente.
+- Plantillas: actualización, audiencia, solicitud de documentos y personalizado.
+- Casilla para preparar correo al cliente al guardar una actuación.
+- Historial de envíos dentro del expediente, guardado en Firestore como arreglo "correos".
+- Registro de intentos fallidos para conservar trazabilidad.
+
+EMAILJS
+El proyecto conserva:
+- Service ID: service_u5nu19m
+- Template ID inicial: template_3n49lhp
+- Public Key existente en js/email.js
+
+La plantilla de EmailJS debe usar "{{correo}}" como destinatario dinámico.
+Variables disponibles:
+{{correo}}
+{{asunto}}
+{{cliente}}
+{{numeroExpediente}}
+{{juzgado}}
+{{materia}}
+{{descripcion}}
+{{fecha}}
+{{abogado}}
+
+Para usar otra plantilla sin modificar el código, ejecute una vez en la consola:
+localStorage.setItem('js_legal_email_template_comunicaciones', 'SU_TEMPLATE_ID');
+
+IMPORTANTE
+EmailJS funciona desde el navegador. Los correos se envían al realizar una acción dentro del sistema.
+Para avisos programados aunque el sistema esté cerrado se requiere un backend o Firebase Cloud Functions.

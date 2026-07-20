@@ -27,6 +27,10 @@
             telefono: datos.telefono || "",
             correo: datos.correo || "",
             direccion: datos.direccion || "",
+            clienteCodigo: datos.clienteCodigo || datos.codigo || "",
+            estado: datos.estado || "Activo",
+            activo: datos.activo !== false && (datos.estado || "Activo") !== "Baja",
+            esDemo: datos.esDemo === true,
             abogadoAsignado: datos.abogadoAsignado || "",
             password: datos.password || "cliente123",
             fechaRegistro: datos.fechaRegistro || null,
@@ -86,6 +90,8 @@
             const direccion = document.getElementById("cli-direccion")?.value.trim() || "";
             const password = document.getElementById("cli-password")?.value || "";
             const abogadoAsignado = document.getElementById("cliente-abogado")?.value || "";
+            const estado = document.getElementById("cliente-estado")?.value || "Activo";
+            const esDemo = document.getElementById("cliente-es-demo")?.checked === true;
 
             if (!nombre || !telefono || !correo) {
                 alert("Completa nombre, teléfono y correo.");
@@ -99,6 +105,9 @@
                 correo,
                 direccion,
                 abogadoAsignado,
+                estado,
+                activo: estado === "Activo",
+                esDemo,
                 fechaActualizacion: firebase.firestore.FieldValue.serverTimestamp()
             };
 
@@ -111,6 +120,7 @@
             } else {
                 datos.password = password || "cliente123";
                 datos.fechaRegistro = firebase.firestore.FieldValue.serverTimestamp();
+                datos.clienteCodigo = await window.siguienteConsecutivo("clientes", "CLI");
 
                 await obtenerDB().collection(COLECCION).add(datos);
                 alert("Cliente registrado con éxito.");
@@ -124,14 +134,22 @@
     }
 
     async function eliminarCliente(id) {
-        if (!confirm("¿Estás seguro de que deseas eliminar este cliente?")) return;
-
+        const cliente = obtenerClientes().find(c => String(c.id) === String(id));
+        if (!cliente) return;
+        const nuevoEstado = cliente.estado === "Baja" ? "Activo" : "Baja";
+        const accion = nuevoEstado === "Baja" ? "dar de baja" : "reactivar";
+        if (!confirm(`¿Deseas ${accion} a ${cliente.nombre}? El registro no se eliminará.`)) return;
         try {
-            await obtenerDB().collection(COLECCION).doc(String(id)).delete();
-            alert("Cliente eliminado.");
+            await obtenerDB().collection(COLECCION).doc(String(id)).set({
+                estado: nuevoEstado,
+                activo: nuevoEstado === "Activo",
+                fechaBaja: nuevoEstado === "Baja" ? firebase.firestore.FieldValue.serverTimestamp() : null,
+                fechaActualizacion: firebase.firestore.FieldValue.serverTimestamp()
+            }, { merge: true });
+            alert(nuevoEstado === "Baja" ? "Cliente dado de baja." : "Cliente reactivado.");
         } catch (error) {
-            console.error("Error eliminando cliente:", error);
-            alert("No fue posible eliminar el cliente.");
+            console.error("Error cambiando estado del cliente:", error);
+            alert("No fue posible cambiar el estado del cliente.");
         }
     }
 
@@ -145,6 +163,8 @@
         formulario.reset();
         document.getElementById("cliente-id").value = "";
         document.getElementById("cli-password").value = "";
+        if (document.getElementById("cliente-estado")) document.getElementById("cliente-estado").value = "Activo";
+        if (document.getElementById("cliente-es-demo")) document.getElementById("cliente-es-demo").checked = false;
         actualizarSelectAbogadosAsignados();
     }
 
@@ -169,6 +189,8 @@
         document.getElementById("cli-correo").value = cliente.correo || "";
         document.getElementById("cli-direccion").value = cliente.direccion || "";
         document.getElementById("cli-password").value = cliente.password || "";
+        if (document.getElementById("cliente-estado")) document.getElementById("cliente-estado").value = cliente.estado || "Activo";
+        if (document.getElementById("cliente-es-demo")) document.getElementById("cliente-es-demo").checked = cliente.esDemo === true;
 
         const select = document.getElementById("cliente-abogado");
         if (select) select.value = cliente.abogadoAsignado || "";
@@ -191,20 +213,22 @@
         cuerpo.innerHTML = "";
 
         if (!clientes.length) {
-            cuerpo.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:2rem;color:#64748b;">No hay clientes registrados.</td></tr>';
+            cuerpo.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;color:#64748b;">No hay clientes registrados.</td></tr>';
             return;
         }
 
         clientes.forEach(cliente => {
             const fila = document.createElement("tr");
             fila.innerHTML = `
+                <td style="padding:1rem;font-weight:700;">${escaparHTML(cliente.clienteCodigo || "CLI-PENDIENTE")}</td>
                 <td style="padding:1rem;">${escaparHTML(cliente.nombre)}</td>
                 <td style="padding:1rem;">${escaparHTML(cliente.curp || "No provista")}</td>
                 <td style="padding:1rem;">${escaparHTML(cliente.telefono || "S/N")}</td>
                 <td style="padding:1rem;">${escaparHTML(cliente.correo || "S/N")}</td>
+                <td style="padding:1rem;"><span style="font-weight:700;color:${cliente.estado === "Baja" ? "#991b1b" : "#166534"};">${escaparHTML(cliente.estado || "Activo")}</span></td>
                 <td style="padding:1rem;text-align:center;">
                     <button type="button" onclick="editarCliente('${cliente.id}')" style="background:#3b82f6;color:white;border:none;padding:.4rem .8rem;border-radius:4px;cursor:pointer;margin-right:.4rem;">✏️ Editar</button>
-                    <button type="button" onclick="eliminarCliente('${cliente.id}')" style="background:#ef4444;color:white;border:none;padding:.4rem .8rem;border-radius:4px;cursor:pointer;">🗑️ Eliminar</button>
+                    <button type="button" onclick="eliminarCliente('${cliente.id}')" style="background:${cliente.estado === "Baja" ? "#16a34a" : "#ef4444"};color:white;border:none;padding:.4rem .8rem;border-radius:4px;cursor:pointer;">${cliente.estado === "Baja" ? "♻️ Reactivar" : "🚫 Baja"}</button>
                 </td>`;
             cuerpo.appendChild(fila);
         });

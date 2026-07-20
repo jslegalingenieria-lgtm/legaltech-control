@@ -141,6 +141,7 @@ function configurarInterfazPorRol(rol) {
     const menuClientes = document.getElementById("menu-clientes");
     const menuAsuntos = document.getElementById("menu-asuntos");
     const menuAgenda = document.getElementById("menu-agenda");
+    const menuCalendario = document.getElementById("menu-calendario");
     const menuPortal = document.getElementById("menu-portal");
     const menuLateral = document.getElementById("menu-lateral");
 
@@ -150,6 +151,9 @@ function configurarInterfazPorRol(rol) {
         if (!document.getElementById("menu-personal")) {
             menuLateral.innerHTML += `<li id="menu-personal"><a href="#" class="menu-item" onclick="switchTab('personal')">👥 Personal</a></li>`;
         }
+        if (!document.getElementById("menu-herramientas")) {
+            menuLateral.innerHTML += `<li id="menu-herramientas"><a href="#" class="menu-item" onclick="switchTab('herramientas')">🛠️ Herramientas de desarrollo</a></li>`;
+        }
     }
 
     if (rol === "Cliente") {
@@ -158,6 +162,7 @@ function configurarInterfazPorRol(rol) {
         if (menuClientes) menuClientes.style.display = "none";
         if (menuAsuntos) menuAsuntos.style.display = "none";
         if (menuAgenda) menuAgenda.style.display = "none";
+        if (menuCalendario) menuCalendario.style.display = "none";
         
         // Mostrar portal de consulta
         if (menuPortal) menuPortal.style.display = "block";
@@ -211,8 +216,12 @@ function switchTab(vista) {
     }
 
     if (vista === "clientes" && typeof cargarClientesTabla === "function") {
-    cargarClientesTabla();
-}
+        cargarClientesTabla();
+    }
+
+    if (vista === "calendario" && typeof window.renderizarCalendarioJuridico === "function") {
+        window.renderizarCalendarioJuridico();
+    }
     
     // Cambiar título superior
     const titulos = {
@@ -220,8 +229,10 @@ function switchTab(vista) {
         clientes: "Administración de Clientes",
         asuntos: "Control de Asuntos Jurídicos",
         agenda: "Agenda de Audiencias y Términos",
+        calendario: "Calendario Jurídico Profesional",
         portal: "Portal de Consulta Ciudadana",
-        personal: "Gestión de Personal y Abogados"
+        personal: "Gestión de Personal y Abogados",
+        herramientas: "Herramientas de desarrollo"
     };
     
     const viewTitle = document.getElementById("view-title");

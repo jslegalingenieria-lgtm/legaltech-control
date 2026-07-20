@@ -10,9 +10,11 @@
         asuntos: [],
         agenda: [],
         personal: [],
+        alertas: [],
         usuario: null,
         listeners: [],
-        charts: {}
+        charts: {},
+        periodo: { desde: null, hasta: null }
     };
 
     function obtenerDB() {
@@ -27,6 +29,40 @@
         const mes = String(fecha.getMonth() + 1).padStart(2, "0");
         const dia = String(fecha.getDate()).padStart(2, "0");
         return `${anio}-${mes}-${dia}`;
+    }
+
+    function periodoMesActual() {
+        const ahora = new Date();
+        return {
+            desde: new Date(ahora.getFullYear(), ahora.getMonth(), 1),
+            hasta: new Date(ahora.getFullYear(), ahora.getMonth() + 1, 0, 23, 59, 59, 999)
+        };
+    }
+
+    function establecerPeriodo(desde, hasta) {
+        const inicio = inicioDia(desde);
+        const fin = new Date(hasta);
+        fin.setHours(23, 59, 59, 999);
+        estado.periodo = { desde: inicio, hasta: fin };
+    }
+
+    function fechaDentroDelPeriodo(fecha) {
+        if (!fecha || !estado.periodo.desde || !estado.periodo.hasta) return false;
+        return fecha >= estado.periodo.desde && fecha <= estado.periodo.hasta;
+    }
+
+    function formatearPeriodo() {
+        if (!estado.periodo.desde || !estado.periodo.hasta) return "Mes actual";
+        const formato = new Intl.DateTimeFormat("es-MX", { day: "2-digit", month: "short", year: "numeric" });
+        return `${formato.format(estado.periodo.desde)} al ${formato.format(estado.periodo.hasta)}`;
+    }
+
+    function sincronizarControlesPeriodo() {
+        const desde = document.getElementById("dashboard-fecha-desde");
+        const hasta = document.getElementById("dashboard-fecha-hasta");
+        if (desde) desde.value = fechaLocalISO(estado.periodo.desde);
+        if (hasta) hasta.value = fechaLocalISO(estado.periodo.hasta);
+        establecerTexto("dashboard-periodo-texto", formatearPeriodo());
     }
 
     function convertirFecha(valor) {
@@ -117,11 +153,30 @@
         if (elemento) elemento.textContent = valor;
     }
 
+    function fechaAsunto(asunto) {
+        return convertirFecha(
+            asunto.fechaRegistro ||
+            asunto.creadoEn ||
+            asunto.fechaCreacion ||
+            asunto.fechaInicio ||
+            asunto.fecha
+        );
+    }
+
     function datosVisibles() {
         return {
             clientes: filtrarPorUsuario(estado.clientes, "clientes"),
             asuntos: filtrarPorUsuario(estado.asuntos, "asuntos"),
             agenda: filtrarPorUsuario(estado.agenda, "agenda")
+        };
+    }
+
+    function datosDelPeriodo() {
+        const visibles = datosVisibles();
+        return {
+            clientes: visibles.clientes,
+            asuntos: visibles.asuntos.filter(asunto => fechaDentroDelPeriodo(fechaAsunto(asunto))),
+            agenda: visibles.agenda.filter(evento => fechaDentroDelPeriodo(fechaEvento(evento)))
         };
     }
 
@@ -131,43 +186,23 @@
     }
 
     function actualizarMetricas() {
-        const datos = datosVisibles();
-        const ahora = new Date();
-        const hoy = fechaLocalISO(ahora);
-        const mes = ahora.getMonth();
-        const anio = ahora.getFullYear();
-
+        const visibles = datosVisibles();
+        const datos = datosDelPeriodo();
         const asuntosActivos = datos.asuntos.filter(esAsuntoActivo);
-        const eventosMes = datos.agenda.filter(evento => {
-            const fecha = fechaEvento(evento);
-            return fecha &&
-                fecha.getMonth() === mes &&
-                fecha.getFullYear() === anio;
-        });
+        const audienciasPeriodo = datos.agenda.filter(
+            evento => normalizar(evento.tipo) === "audiencia"
+        );
 
-        const eventosHoy = datos.agenda.filter(evento => evento.fecha === hoy);
-
-        establecerTexto("count-clientes", datos.clientes.length);
+        establecerTexto("count-clientes", visibles.clientes.length);
         establecerTexto("count-asuntos", asuntosActivos.length);
-        establecerTexto("count-audiencias", eventosMes.length);
-        establecerTexto("count-eventos-hoy", eventosHoy.length);
+        establecerTexto("count-audiencias", datos.agenda.length);
+        establecerTexto("count-eventos-hoy", audienciasPeriodo.length);
 
-        establecerTexto(
-            "metric-asuntos-detalle",
-            `${datos.asuntos.length} expediente(s) total`
-        );
-
-        establecerTexto(
-            "metric-agenda-detalle",
-            `${eventosMes.filter(e => normalizar(e.tipo) === "audiencia").length} audiencia(s)`
-        );
-
-        establecerTexto(
-            "metric-hoy-detalle",
-            eventosHoy.length ? "Requieren atención" : "Sin pendientes"
-        );
+        establecerTexto("metric-clientes-detalle", "Total registrados");
+        establecerTexto("metric-asuntos-detalle", `${datos.asuntos.length} expediente(s) iniciado(s) en el periodo`);
+        establecerTexto("metric-agenda-detalle", `${datos.agenda.length} evento(s) programado(s)`);
+        establecerTexto("metric-hoy-detalle", `${audienciasPeriodo.length} audiencia(s)`);
     }
-
     function crearGrafica(idCanvas, tipo, etiquetas, valores, etiqueta) {
         const canvas = document.getElementById(idCanvas);
         if (!canvas || !window.Chart) return;
@@ -227,7 +262,7 @@
     }
 
     function actualizarGraficas() {
-        const { asuntos } = datosVisibles();
+        const { asuntos } = datosDelPeriodo();
 
         const porMateria = agrupar(asuntos, asunto => asunto.materia);
         crearGrafica(
@@ -279,17 +314,15 @@
         const contenedor = document.getElementById("dashboard-proximos-eventos");
         if (!contenedor) return;
 
-        const ahora = new Date();
-
-        const eventos = datosVisibles().agenda
+        const eventos = datosDelPeriodo().agenda
             .map(evento => ({ ...evento, fechaObjeto: fechaEvento(evento) }))
-            .filter(evento => evento.fechaObjeto && evento.fechaObjeto >= ahora)
+            .filter(evento => evento.fechaObjeto)
             .sort((a, b) => a.fechaObjeto - b.fechaObjeto)
             .slice(0, 5);
 
         if (!eventos.length) {
             contenedor.innerHTML =
-                '<p class="dashboard-empty">No hay eventos próximos.</p>';
+                '<p class="dashboard-empty">No hay eventos en el periodo seleccionado.</p>';
             return;
         }
 
@@ -338,6 +371,7 @@
         });
 
         return actuaciones
+            .filter(actuacion => fechaDentroDelPeriodo(actuacion.fechaObjeto))
             .sort((a, b) => b.fechaObjeto - a.fechaObjeto)
             .slice(0, 5);
     }
@@ -350,7 +384,7 @@
 
         if (!actuaciones.length) {
             contenedor.innerHTML =
-                '<p class="dashboard-empty">No hay actuaciones registradas.</p>';
+                '<p class="dashboard-empty">No hay actuaciones en el periodo seleccionado.</p>';
             return;
         }
 
@@ -379,37 +413,125 @@
         const contenedor = document.getElementById("asistente-mensaje");
         if (!contenedor) return;
 
-        const { asuntos, agenda } = datosVisibles();
-        const hoy = fechaLocalISO();
-        const eventosHoy = agenda.filter(evento => evento.fecha === hoy);
+        const { asuntos, agenda } = datosDelPeriodo();
         const asuntosActivos = asuntos.filter(esAsuntoActivo);
+        const audiencias = agenda.filter(evento => normalizar(evento.tipo) === "audiencia").length;
+        const terminos = agenda.filter(evento => {
+            const tipo = normalizar(evento.tipo);
+            return tipo.includes("término") || tipo.includes("termino");
+        }).length;
 
-        if (!eventosHoy.length) {
-            contenedor.textContent =
-                `No tienes eventos programados para hoy. Hay ${asuntosActivos.length} asunto(s) activo(s) en seguimiento.`;
+        contenedor.textContent =
+            `Periodo ${formatearPeriodo()}: ${asuntosActivos.length} asunto(s) activo(s), ${agenda.length} evento(s), ${audiencias} audiencia(s) y ${terminos} término(s) en agenda.`;
+    }
+    function inicioDia(fecha = new Date()) {
+        const resultado = new Date(fecha);
+        resultado.setHours(0, 0, 0, 0);
+        return resultado;
+    }
+
+    function obtenerFechaVencimiento(alerta) {
+        const valor =
+            alerta?.fechaVencimiento ||
+            alerta?.fechaLimite ||
+            alerta?.fechaTermino ||
+            alerta?.fecha;
+
+        const fecha = convertirFecha(valor);
+        return fecha ? inicioDia(fecha) : null;
+    }
+
+    function alertaPerteneceAlUsuario(alerta) {
+        const usuario = estado.usuario;
+        if (!usuario || usuario.rol === "Administrador") return true;
+
+        const referenciasUsuario = [
+            alerta.usuario,
+            alerta.usuarioId,
+            alerta.abogado,
+            alerta.abogadoId,
+            alerta.abogadoAsignado,
+            alerta.creadoPor,
+            alerta.correoAbogado
+        ].map(normalizar);
+
+        const referenciasSesion = [
+            usuario.id,
+            usuario.uid,
+            usuario.usuario,
+            usuario.nombre,
+            usuario.correo,
+            usuario.email
+        ].map(normalizar).filter(Boolean);
+
+        return referenciasSesion.some(valor =>
+            referenciasUsuario.includes(valor)
+        );
+    }
+
+    function obtenerTerminosPendientes() {
+        return estado.alertas.filter(alerta => {
+            const tipo = normalizar(alerta.tipo);
+            const estadoAlerta = normalizar(alerta.estado);
+
+            return (
+                (tipo === "termino" || tipo === "término") &&
+                estadoAlerta !== "cumplido" &&
+                estadoAlerta !== "cancelado" &&
+                alertaPerteneceAlUsuario(alerta) &&
+                fechaDentroDelPeriodo(obtenerFechaVencimiento(alerta))
+            );
+        });
+    }
+
+    function actualizarPanelTerminos() {
+        const hoy = inicioDia();
+        let vencidos = 0;
+        let vencenHoy = 0;
+        let dentroPeriodo = 0;
+
+        obtenerTerminosPendientes().forEach(alerta => {
+            const fecha = obtenerFechaVencimiento(alerta);
+            if (!fecha) return;
+            if (fecha < hoy) vencidos += 1;
+            else if (fecha.getTime() === hoy.getTime()) vencenHoy += 1;
+            else dentroPeriodo += 1;
+        });
+
+        establecerTexto("count-terminos-vencidos", vencidos);
+        establecerTexto("count-terminos-hoy", vencenHoy);
+        establecerTexto("count-terminos-proximos", dentroPeriodo);
+
+        const total = vencidos + vencenHoy + dentroPeriodo;
+        establecerTexto(
+            "resumen-terminos-dashboard",
+            total
+                ? `${total} término(s) pendiente(s) con vencimiento dentro del periodo seleccionado.`
+                : "No hay términos pendientes dentro del periodo seleccionado."
+        );
+    }
+    function abrirAlertasTerminos() {
+        if (typeof window.mostrarAlertasTerminos === "function") {
+            window.mostrarAlertasTerminos();
             return;
         }
 
-        const audiencias = eventosHoy.filter(
-            evento => normalizar(evento.tipo) === "audiencia"
-        ).length;
+        const modal =
+            document.getElementById("modal-alertas-terminos") ||
+            document.getElementById("modal-terminos");
 
-        const terminos = eventosHoy.filter(
-            evento => normalizar(evento.tipo).includes("término") ||
-                      normalizar(evento.tipo).includes("termino")
-        ).length;
-
-        const partes = [];
-        if (audiencias) partes.push(`${audiencias} audiencia(s)`);
-        if (terminos) partes.push(`${terminos} término(s)`);
-        if (eventosHoy.length - audiencias - terminos > 0) {
-            partes.push(
-                `${eventosHoy.length - audiencias - terminos} actividad(es)`
-            );
+        if (modal) {
+            modal.style.display = "flex";
+            modal.classList.add("activo");
+            return;
         }
 
-        contenedor.textContent =
-            `Para hoy tienes ${eventosHoy.length} evento(s): ${partes.join(", ")}. Revisa la agenda antes de iniciar actividades.`;
+        const total = obtenerTerminosPendientes().length;
+        window.alert(
+            total
+                ? `Tienes ${total} término(s) procesal(es) pendiente(s).`
+                : "No tienes términos procesales pendientes."
+        );
     }
 
     function renderizarDashboard() {
@@ -418,6 +540,7 @@
         renderizarProximosEventos();
         renderizarActividadReciente();
         actualizarAsistente();
+        actualizarPanelTerminos();
     }
 
     function escucharColeccion(nombre) {
@@ -457,6 +580,46 @@
         });
     }
 
+    function aplicarPeriodoDesdeControles() {
+        const error = document.getElementById("dashboard-periodo-error");
+        const valorDesde = document.getElementById("dashboard-fecha-desde")?.value;
+        const valorHasta = document.getElementById("dashboard-fecha-hasta")?.value;
+        if (error) error.textContent = "";
+
+        if (!valorDesde && !valorHasta) {
+            const periodo = periodoMesActual();
+            establecerPeriodo(periodo.desde, periodo.hasta);
+            sincronizarControlesPeriodo();
+            renderizarDashboard();
+            return;
+        }
+
+        if (!valorDesde || !valorHasta) {
+            if (error) error.textContent = "Selecciona las dos fechas para aplicar el periodo.";
+            return;
+        }
+
+        const desde = new Date(`${valorDesde}T00:00:00`);
+        const hasta = new Date(`${valorHasta}T23:59:59`);
+        if (hasta < desde) {
+            if (error) error.textContent = "La fecha final no puede ser anterior a la fecha inicial.";
+            return;
+        }
+
+        establecerPeriodo(desde, hasta);
+        sincronizarControlesPeriodo();
+        renderizarDashboard();
+    }
+
+    function usarMesActual() {
+        const periodo = periodoMesActual();
+        establecerPeriodo(periodo.desde, periodo.hasta);
+        sincronizarControlesPeriodo();
+        const error = document.getElementById("dashboard-periodo-error");
+        if (error) error.textContent = "";
+        renderizarDashboard();
+    }
+
     async function iniciarDashboardEjecutivo() {
         const vista = document.getElementById("vista-dashboard");
         if (!vista) return;
@@ -468,6 +631,7 @@
 
         actualizarFechaSuperior();
         actualizarSaludo();
+        usarMesActual();
 
         try {
             await cargarChartJS();
@@ -477,7 +641,8 @@
                 escucharColeccion("clientes"),
                 escucharColeccion("asuntos"),
                 escucharColeccion("agenda"),
-                escucharColeccion("personal")
+                escucharColeccion("personal"),
+                escucharColeccion("alertas")
             ];
         } catch (error) {
             console.error("Error iniciando dashboard:", error);
@@ -490,6 +655,18 @@
         document
             .getElementById("btn-refrescar-dashboard")
             ?.addEventListener("click", renderizarDashboard);
+
+        document
+            .getElementById("btn-ver-terminos")
+            ?.addEventListener("click", abrirAlertasTerminos);
+
+        document
+            .getElementById("btn-aplicar-periodo")
+            ?.addEventListener("click", aplicarPeriodoDesdeControles);
+
+        document
+            .getElementById("btn-periodo-mes-actual")
+            ?.addEventListener("click", usarMesActual);
     }
 
     document.addEventListener("DOMContentLoaded", iniciarDashboardEjecutivo);
@@ -497,4 +674,5 @@
     window.actualizarDashboardEjecutivo = renderizarDashboard;
     window.actualizarContadoresReales = renderizarDashboard;
     window.actualizarAsistenteVirtual = actualizarAsistente;
+    window.obtenerPeriodoDashboard = () => ({ ...estado.periodo });
 })();

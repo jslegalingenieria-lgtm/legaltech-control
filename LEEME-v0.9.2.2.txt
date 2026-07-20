@@ -1,0 +1,13 @@
+JS LegalTech Control v0.9.2.2
+
+Correcciones:
+- Restablece el acceso de Abogado con las reglas compatibles con el login actual.
+- Mantiene compatibilidad temporal con el acceso del Cliente.
+- Permite al Administrador eliminar físicamente solo documentos con esDemo=true.
+- La limpieza demo ahora muestra errores de permisos claramente.
+- Limpia cachés locales después de borrar datos demo.
+
+IMPORTANTE:
+1. Publica el archivo firestore.rules incluido desde Firebase Console > Firestore Database > Rules.
+2. Presiona Ctrl+F5 después de sustituir los archivos.
+3. Estas reglas permiten una lectura previa de personal/clientes porque el login actual busca usuario antes de autenticar. Es temporal; la siguiente migración debe crear accesos Firebase Auth para clientes y usar un directorio mínimo de acceso.

@@ -113,6 +113,7 @@
         if (!window.db || !usuario) return;
 
         await window.db.collection(COLECCION_ALERTAS).add({
+            tipo: "nuevo_asunto",
             usuario: String(usuario),
             abogadoNombre,
             asuntoId: String(asuntoId || ""),
@@ -144,6 +145,7 @@
                     if (cambio.type !== "added") return;
 
                     const alerta = cambio.doc.data();
+                    if ((alerta.tipo || "nuevo_asunto") !== "nuevo_asunto") return;
                     if (alerta.leida === true) return;
 
                     const clave = `alerta_mostrada_${cambio.doc.id}`;

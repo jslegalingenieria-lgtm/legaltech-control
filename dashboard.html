@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="css/estilos.css">
 <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/dashboard-ejecutivo.css">
+<link rel="stylesheet" href="css/calendario.css">
 
 
     <!-- Librería para conversión limpia de HTML a PDF -->
@@ -38,6 +39,7 @@
                 <li id="menu-clientes"><a href="#" class="menu-item" onclick="switchTab('clientes')">👥 Clientes</a></li>
                 <li id="menu-asuntos"><a href="#" class="menu-item" onclick="switchTab('asuntos')">⚖️ Asuntos</a></li>
                 <li id="menu-agenda"><a href="#" class="menu-item" onclick="switchTab('agenda')">📅 Agenda</a></li>
+                <li id="menu-calendario"><a href="#" class="menu-item" onclick="switchTab('calendario')">🗓️ Calendario</a></li>
                 <!-- app.js inyectará aquí el botón de Personal automáticamente si el rol es Administrador -->
             </ul>
 
@@ -88,6 +90,28 @@
         </button>
     </div>
 
+    <section class="dashboard-period-filter" aria-label="Filtro general del dashboard">
+        <div class="dashboard-period-copy">
+            <span class="dashboard-panel-kicker">Periodo de consulta</span>
+            <strong id="dashboard-periodo-texto">Mes actual</strong>
+            <small>El periodo seleccionado actualiza todas las métricas, gráficas y listados.</small>
+        </div>
+
+        <div class="dashboard-period-controls">
+            <label>
+                <span>Desde</span>
+                <input type="date" id="dashboard-fecha-desde">
+            </label>
+            <label>
+                <span>Hasta</span>
+                <input type="date" id="dashboard-fecha-hasta">
+            </label>
+            <button type="button" class="dashboard-filter-button" id="btn-aplicar-periodo">Aplicar periodo</button>
+            <button type="button" class="dashboard-filter-button dashboard-filter-secondary" id="btn-periodo-mes-actual">Mes actual</button>
+        </div>
+        <p id="dashboard-periodo-error" class="dashboard-period-error" role="alert" aria-live="polite"></p>
+    </section>
+
     <div class="executive-metrics">
         <article class="executive-card">
             <div class="executive-card-icon">👥</div>
@@ -110,7 +134,7 @@
         <article class="executive-card">
             <div class="executive-card-icon">📅</div>
             <div>
-                <span class="executive-card-label">Eventos del mes</span>
+                <span class="executive-card-label">Eventos del periodo</span>
                 <strong id="count-audiencias">0</strong>
                 <small id="metric-agenda-detalle">Agenda jurídica</small>
             </div>
@@ -119,12 +143,58 @@
         <article class="executive-card">
             <div class="executive-card-icon">⏰</div>
             <div>
-                <span class="executive-card-label">Eventos de hoy</span>
+                <span class="executive-card-label">Audiencias del periodo</span>
                 <strong id="count-eventos-hoy">0</strong>
-                <small id="metric-hoy-detalle">Pendientes del día</small>
+                <small id="metric-hoy-detalle">Agenda del periodo</small>
             </div>
         </article>
     </div>
+
+    <!-- CONTROL DE TÉRMINOS PROCESALES -->
+    <section id="control-terminos-dashboard"
+             style="margin:1.25rem 0; background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:1.25rem; box-shadow:0 4px 12px rgba(15,23,42,.05);">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:1rem;">
+            <div>
+                <span style="display:block; font-size:.78rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:#64748b;">
+                    Seguimiento procesal
+                </span>
+                <h4 style="margin:.25rem 0 0; color:#1e293b; font-size:1.1rem;">
+                    ⚖️ Control de términos
+                </h4>
+            </div>
+
+            <button id="btn-ver-terminos"
+                    type="button"
+                    style="border:0; border-radius:7px; padding:.65rem .9rem; background:#334155; color:#ffffff; font-weight:700; cursor:pointer;">
+                Ver pendientes
+            </button>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.8rem;">
+            <article style="background:#fef2f2; border:1px solid #fecaca; border-radius:9px; padding:1rem;">
+                <span style="display:block; color:#991b1b; font-size:.82rem; font-weight:700;">Vencidos</span>
+                <strong id="count-terminos-vencidos"
+                        style="display:block; margin-top:.25rem; color:#b91c1c; font-size:1.8rem;">0</strong>
+            </article>
+
+            <article style="background:#fff7ed; border:1px solid #fed7aa; border-radius:9px; padding:1rem;">
+                <span style="display:block; color:#9a3412; font-size:.82rem; font-weight:700;">Vencen hoy</span>
+                <strong id="count-terminos-hoy"
+                        style="display:block; margin-top:.25rem; color:#c2410c; font-size:1.8rem;">0</strong>
+            </article>
+
+            <article style="background:#fefce8; border:1px solid #fef08a; border-radius:9px; padding:1rem;">
+                <span style="display:block; color:#854d0e; font-size:.82rem; font-weight:700;">Dentro del periodo</span>
+                <strong id="count-terminos-proximos"
+                        style="display:block; margin-top:.25rem; color:#a16207; font-size:1.8rem;">0</strong>
+            </article>
+        </div>
+
+        <p id="resumen-terminos-dashboard"
+           style="margin:.85rem 0 0; color:#64748b; font-size:.83rem;">
+            Consultando términos pendientes...
+        </p>
+    </section>
 
     <div class="dashboard-assistant">
         <div class="dashboard-assistant-icon">JS</div>
@@ -261,12 +331,20 @@
                                 <input type="text" id="cli-password" placeholder="Asigna una contraseña para el cliente">
                             </div>
                             <div class="form-group" style="margin-bottom: 0;">
+                                <label for="cliente-estado">Estado</label>
+                                <select id="cliente-estado" style="width:100%;padding:.8rem;border:1px solid #cbd5e1;border-radius:6px;background:white;">
+                                    <option value="Activo">Activo</option>
+                                    <option value="Baja">Baja</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
                                 <label for="cliente-abogado">Abogado Asignado</label>
                                 <select id="cliente-abogado" style="width: 100%; padding: 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; background: white;">
                                     <!-- Se llenará dinámicamente -->
                                 </select>
                             </div>
                         </div>
+                        <label style="display:flex;gap:.5rem;align-items:center;margin-bottom:1rem;"><input type="checkbox" id="cliente-es-demo"> Dato de demostración</label>
                         <div class="toolbar">
                             <button type="button" class="btn-primary" style="background-color: var(--text-muted); width: auto; padding: 0.6rem 1.2rem;" onclick="cerrarModalCliente()">Cancelar</button>
                             <button type="submit" class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;">Guardar Cliente</button>
@@ -279,10 +357,12 @@
                       <table>
                         <thead>
                             <tr style="background-color: #f1f5f9; border-bottom: 2px solid var(--border-color); color: var(--primary-color);">
+                                <th style="padding: 1rem;">ID</th>
                                 <th style="padding: 1rem;">Nombre</th>
                                 <th style="padding: 1rem;">CURP</th>
                                 <th style="padding: 1rem;">Teléfono</th>
                                 <th style="padding: 1rem;">Correo</th>
+                                <th style="padding: 1rem;">Estado</th>
                                 <th style="padding: 1rem; text-align: center;">Acciones</th>
 
                             </tr>
@@ -322,8 +402,8 @@
                                 </select>
                             </div>
                             <div class="form-group" style="margin-bottom: 0;">
-                                <label for="asu-expediente">Número de Expediente</label>
-                                <input type="text" id="asu-expediente" required placeholder="Ej. 1234/2026">
+                                <label for="asu-expediente">Expediente judicial</label>
+                                <input type="text" id="asu-expediente" placeholder="Pendiente de asignación por el juzgado">
                             </div>
                             <div class="form-group" style="margin-bottom: 0;">
                                 <label for="asu-juzgado">Órgano Jurisdiccional / Juzgado</label>
@@ -339,10 +419,10 @@
                             <div class="form-group" style="margin-bottom: 0;">
                                 <label for="asu-estado">Estado del Juicio</label>
                                 <select id="asu-estado" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 6px;">
-                                    <option value="En Curso">En Curso</option>
-                                    <option value="Para Sentencia">Para Sentencia</option>
-                                    <option value="Concluido">Concluido</option>
+                                    <option value="En proceso">En proceso</option>
                                     <option value="Suspendido">Suspendido</option>
+                                    <option value="Concluido">Concluido</option>
+                                    <option value="Cancelado">Cancelado</option>
                                 </select>
                             </div>
                         </div>
@@ -360,6 +440,10 @@
                         </div>
 
                        <div class="toolbar">
+                            <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;">
+                                <label style="display:flex;gap:.5rem;align-items:center;"><input type="checkbox" id="asunto-es-demo"> Dato de demostración</label>
+                                <label style="display:flex;gap:.5rem;align-items:center;"><input type="checkbox" id="asunto-enviar-bienvenida" checked> Habilitar portal y enviar bienvenida al cliente</label>
+                            </div>
                             <button type="button" class="btn-primary" style="background-color: var(--text-muted); width: auto; padding: 0.6rem 1.2rem;" onclick="cerrarModalAsunto()">Cancelar</button>
                             <button type="submit" class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;">Guardar Expediente</button>
                         </div>
@@ -377,7 +461,14 @@
                                 <span id="bitacora-expediente-titulo" style="color:#8b5cf6;"></span>
                             </h3>
 
-                            <div style="display:flex; align-items:center; gap:10px;" data-html2pdf-ignore="true">
+                            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;" data-html2pdf-ignore="true">
+                                <button id="btn-enviar-informe-cliente"
+                                        type="button"
+                                        onclick="abrirModalCorreoCliente()"
+                                        style="background:#2563eb; color:white; border:none; padding:6px 12px; border-radius:5px; cursor:pointer; font-weight:600;">
+                                    ✉️ Enviar informe
+                                </button>
+
                                 <button id="btn-descargar-pdf"
                                         type="button"
                                         onclick="descargarBitacoraPDF()"
@@ -394,33 +485,85 @@
 
                         <form id="form-actuacion"
                               data-html2pdf-ignore="true"
-                              style="background-color:#f8fafc; padding:1rem; border-radius:6px; margin:1.5rem 0; border:1px solid #e2e8f0;">
-                            <h4 style="margin:0 0 0.8rem; font-size:0.95rem; color:#475569;">
-                                📍 Registrar Nueva Actuación / Acuerdo
+                              style="background:#f8fafc; padding:1rem; border-radius:8px; margin:1.5rem 0; border:1px solid #e2e8f0;">
+                            <h4 style="margin:0 0 1rem; font-size:1rem; color:#334155;">
+                                ⚖️ Registrar actuación jurídica
                             </h4>
 
-                            <div style="margin-bottom:0.8rem;">
-                                <label for="act-fecha" style="display:block; font-size:0.85rem; font-weight:600; color:#475569; margin-bottom:0.3rem;">
-                                    Fecha del Evento (opcional; vacío usa hoy):
-                                </label>
-                                <input type="date" id="act-fecha"
-                                       style="width:100%; padding:0.4rem; border:1px solid #cbd5e1; border-radius:4px;">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:0.8rem;">
+                                <div>
+                                    <label for="act-fecha" style="display:block; font-size:0.82rem; font-weight:700; color:#475569; margin-bottom:0.3rem;">Fecha</label>
+                                    <input type="date" id="act-fecha" style="width:100%; padding:0.55rem; border:1px solid #cbd5e1; border-radius:5px; box-sizing:border-box;">
+                                </div>
+                                <div>
+                                    <label for="act-tipo" style="display:block; font-size:0.82rem; font-weight:700; color:#475569; margin-bottom:0.3rem;">Tipo de actuación</label>
+                                    <select id="act-tipo" required style="width:100%; padding:0.55rem; border:1px solid #cbd5e1; border-radius:5px; background:white; box-sizing:border-box;">
+                                        <option value="">-- Selecciona --</option>
+                                        <option value="Audiencia">⚖️ Audiencia</option>
+                                        <option value="Acuerdo">📄 Acuerdo</option>
+                                        <option value="Auto">📑 Auto</option>
+                                        <option value="Sentencia">🏛️ Sentencia</option>
+                                        <option value="Requerimiento">📌 Requerimiento</option>
+                                        <option value="Oficio">📬 Oficio</option>
+                                        <option value="Exhorto">🚚 Exhorto</option>
+                                        <option value="Promoción">📝 Promoción</option>
+                                        <option value="Notificación">📨 Notificación</option>
+                                        <option value="Convenio">🤝 Convenio</option>
+                                        <option value="Diligencia">🔎 Diligencia</option>
+                                        <option value="Otro">📂 Otro</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div id="contenedor-act-subtipo" style="display:none; margin-bottom:0.8rem;">
+                                <label for="act-subtipo" style="display:block; font-size:0.82rem; font-weight:700; color:#475569; margin-bottom:0.3rem;">Subtipo</label>
+                                <select id="act-subtipo" style="width:100%; padding:0.55rem; border:1px solid #cbd5e1; border-radius:5px; background:white; box-sizing:border-box;"></select>
                             </div>
 
                             <div style="margin-bottom:0.8rem;">
-                                <label for="act-descripcion" style="display:block; font-size:0.85rem; font-weight:600; color:#475569; margin-bottom:0.3rem;">
-                                    Descripción Jurídica / Resumen:
-                                </label>
-                                <textarea id="act-descripcion"
-                                          required
-                                          rows="3"
-                                          placeholder="Ej. Se desahogó la audiencia de ley o se publicó el acuerdo de admisión..."
-                                          style="width:100%; padding:0.5rem; border:1px solid #cbd5e1; border-radius:4px; font-family:inherit; resize:vertical;"></textarea>
+                                <label for="act-descripcion" style="display:block; font-size:0.82rem; font-weight:700; color:#475569; margin-bottom:0.3rem;">Descripción jurídica / resumen</label>
+                                <textarea id="act-descripcion" required rows="4" placeholder="Describe lo ocurrido, el acuerdo dictado o la actuación realizada..." style="width:100%; padding:0.6rem; border:1px solid #cbd5e1; border-radius:5px; font-family:inherit; resize:vertical; box-sizing:border-box;"></textarea>
                             </div>
 
-                            <button type="submit"
-                                    style="background-color:#8b5cf6; color:white; border:none; padding:0.5rem 1rem; border-radius:4px; cursor:pointer; font-weight:600; width:100%;">
-                                Agregar al Historial
+                            <div style="margin-bottom:0.8rem; padding:0.85rem; background:#fff; border:1px solid #e2e8f0; border-radius:7px;">
+                                <label style="display:flex; align-items:center; gap:0.55rem; font-size:0.87rem; font-weight:700; color:#334155; cursor:pointer; margin-bottom:0.55rem;">
+                                    <input type="checkbox" id="act-requiere-cumplimiento">
+                                    Requiere cumplimiento o seguimiento
+                                </label>
+                                <label style="display:flex; align-items:center; gap:0.55rem; font-size:0.87rem; font-weight:700; color:#5b21b6; cursor:pointer;">
+                                    <input type="checkbox" id="act-genera-termino">
+                                    Genera término procesal
+                                </label>
+                                <label style="display:flex; align-items:center; gap:0.55rem; font-size:0.87rem; font-weight:700; color:#1d4ed8; cursor:pointer; margin-top:0.55rem;">
+                                    <input type="checkbox" id="act-notificar-cliente">
+                                    Preparar correo informativo para el cliente
+                                </label>
+
+                                <div id="campos-termino" style="display:none; margin-top:0.85rem; padding-top:0.85rem; border-top:1px solid #e2e8f0;">
+                                    <div style="margin-bottom:0.7rem;">
+                                        <label for="termino-concepto" style="display:block; font-size:0.82rem; font-weight:600; color:#475569; margin-bottom:0.3rem;">Concepto del término</label>
+                                        <input type="text" id="termino-concepto" placeholder="Ej. Cumplir requerimiento" style="width:100%; padding:0.5rem; border:1px solid #cbd5e1; border-radius:5px; box-sizing:border-box;">
+                                    </div>
+                                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.7rem;">
+                                        <div>
+                                            <label for="termino-fecha" style="display:block; font-size:0.82rem; font-weight:600; color:#475569; margin-bottom:0.3rem;">Fecha límite</label>
+                                            <input type="date" id="termino-fecha" style="width:100%; padding:0.5rem; border:1px solid #cbd5e1; border-radius:5px; box-sizing:border-box;">
+                                        </div>
+                                        <div>
+                                            <label for="termino-prioridad" style="display:block; font-size:0.82rem; font-weight:600; color:#475569; margin-bottom:0.3rem;">Prioridad</label>
+                                            <select id="termino-prioridad" style="width:100%; padding:0.5rem; border:1px solid #cbd5e1; border-radius:5px; background:white; box-sizing:border-box;">
+                                                <option value="Alta">Alta</option>
+                                                <option value="Media" selected>Media</option>
+                                                <option value="Baja">Baja</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <p style="margin:0.6rem 0 0; font-size:0.76rem; color:#64748b;">La alerta se asignará al abogado responsable del expediente.</p>
+                                </div>
+                            </div>
+
+                            <button type="submit" style="background:#7c3aed; color:white; border:none; padding:0.65rem 1rem; border-radius:6px; cursor:pointer; font-weight:700; width:100%;">
+                                💾 Guardar actuación
                             </button>
                         </form>
 
@@ -430,6 +573,14 @@
 
                         <div id="bitacora-lista-historico"
                              style="max-height:400px; overflow-y:auto; padding-right:5px;"></div>
+
+                        <h4 style="margin:1.25rem 0 0.5rem; font-size:1rem; color:#1e293b;">
+                            📧 Historial de correos
+                        </h4>
+                        <div id="correos-lista-historico"
+                             style="max-height:260px; overflow-y:auto; padding-right:5px;">
+                            <p style="color:#64748b;text-align:center;padding:1rem;">No hay correos registrados.</p>
+                        </div>
 
                         <div id="pdf-pie-pagina"
                              style="display:none; text-align:center; margin-top:25px; border-top:1px solid #ddd; padding-top:10px; color:#777; font-size:12px;">
@@ -521,7 +672,53 @@
                 <div id="lista-agenda-contenedor" style="display: flex; flex-direction: column; gap: 1rem;"></div>
             </section>
 
-            <!-- VISTA 5: PORTAL DEL CLIENTE -->
+            <!-- VISTA 5: CALENDARIO JURÍDICO PROFESIONAL -->
+            <section id="vista-calendario" class="app-view" style="display:none;">
+                <div class="toolbar">
+                    <div>
+                        <h3 style="margin-bottom:.25rem;">Calendario Jurídico Profesional</h3>
+                        <p style="color:#64748b;margin:0;">Vista mensual unificada de audiencias, términos, reuniones y diligencias.</p>
+                    </div>
+                    <button type="button" class="btn-primary" style="width:auto;padding:.6rem 1.2rem;" onclick="agendarEventoDesdeCalendario()">+ Agendar evento</button>
+                </div>
+
+                <div class="calendario-resumen" aria-label="Resumen mensual del calendario">
+                    <div class="calendario-kpi"><strong id="cal-total">0</strong><span>Eventos del mes</span></div>
+                    <div class="calendario-kpi"><strong id="cal-audiencias">0</strong><span>Audiencias</span></div>
+                    <div class="calendario-kpi"><strong id="cal-terminos">0</strong><span>Términos</span></div>
+                    <div class="calendario-kpi"><strong id="cal-otros">0</strong><span>Reuniones y otros</span></div>
+                </div>
+
+                <div class="calendario-shell">
+                    <div class="calendario-toolbar">
+                        <div class="calendario-nav">
+                            <button type="button" id="cal-anterior" aria-label="Mes anterior">←</button>
+                            <div id="calendario-mes-titulo" class="calendario-mes-titulo">Mes</div>
+                            <button type="button" id="cal-siguiente" aria-label="Mes siguiente">→</button>
+                            <button type="button" id="cal-hoy">Hoy</button>
+                        </div>
+                        <div class="calendario-filtros">
+                            <label for="cal-filtro-tipo" style="font-weight:600;color:#475569;">Mostrar:</label>
+                            <select id="cal-filtro-tipo">
+                                <option value="todos">Todos los eventos</option>
+                                <option value="audiencia">Audiencias</option>
+                                <option value="termino">Términos</option>
+                                <option value="reunion">Reuniones con cliente</option>
+                                <option value="otro">Diligencias y otros</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="calendario-leyenda" aria-label="Leyenda del calendario">
+                        <span><i class="calendario-punto audiencia"></i> Audiencia</span>
+                        <span><i class="calendario-punto termino"></i> Término</span>
+                        <span><i class="calendario-punto reunion"></i> Reunión</span>
+                        <span><i class="calendario-punto otro"></i> Diligencia / otro</span>
+                    </div>
+                    <div id="calendario-grid" class="calendario-grid" aria-live="polite"></div>
+                </div>
+            </section>
+
+            <!-- VISTA 6: PORTAL DEL CLIENTE -->
             <section id="vista-portal" class="app-view" style="display: none;">
                 <div style="background: #ffffff; border: 1px solid var(--border-color); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
                     <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">Bienvenido a su Portal de Consulta Jurídica</h3>
@@ -559,6 +756,7 @@
                     <table>
                         <thead>
                             <tr style="background: #f8fafc; border-bottom: 2px solid #e2e8f0;">
+                                <th style="padding: 12px 24px; font-weight: 600; color: #475569;">ID</th>
                                 <th style="padding: 12px 24px; font-weight: 600; color: #475569;">Nombre Completo</th>
                                 <th style="padding: 12px 24px; font-weight: 600; color: #475569;">Correo Electrónico</th>
                                 <th style="padding: 12px 24px; font-weight: 600; color: #475569;">Usuario de Acceso</th>
@@ -574,10 +772,82 @@
                 </div>
             </section>
                   
+            <section id="vista-herramientas" class="app-view" style="display:none;">
+                <div class="dev-tools-card">
+                    <div class="dev-tools-heading">
+                        <span class="dev-tools-icon" aria-hidden="true">🛠️</span>
+                        <div>
+                            <h3>Herramientas de desarrollo</h3>
+                            <p>Solo se eliminan físicamente los registros marcados como datos de demostración. Los registros normales nunca se borran desde la interfaz.</p>
+                        </div>
+                    </div>
+                    <div class="dev-tools-actions">
+                        <button type="button" class="btn-dev-danger" onclick="eliminarDatosDemo()">Eliminar datos demo</button>
+                        <button type="button" class="btn-dev-secondary" onclick="reiniciarConsecutivosDemo()">Reiniciar consecutivos</button>
+                    </div>
+                    <p class="dev-tools-note"><strong>Importante:</strong> usa estas opciones únicamente durante pruebas o antes de entregar una instalación limpia.</p>
+                </div>
+            </section>
+
         </main>
     </div>
 
+    <!-- Modal de detalle del calendario -->
+    <div id="calendario-modal" class="calendario-modal" role="dialog" aria-modal="true" aria-labelledby="calendario-modal-titulo">
+        <div class="calendario-modal-contenido">
+            <div class="calendario-modal-cabecera">
+                <h3 id="calendario-modal-titulo" style="margin:0;color:#0f172a;">Detalle del evento</h3>
+                <button type="button" id="calendario-modal-cerrar" class="calendario-modal-cerrar" aria-label="Cerrar">✕</button>
+            </div>
+            <div id="calendario-modal-cuerpo"></div>
+            <div class="calendario-modal-acciones">
+                <button type="button" id="calendario-abrir-expediente" class="btn-primary" style="width:auto;padding:.6rem 1rem;">Abrir expediente</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal: Alta / Edición de Personal -->
+    <!-- Modal de correo al cliente -->
+    <div id="modal-correo-cliente" style="display:none; position:fixed; z-index:12000; inset:0; background:rgba(15,23,42,.65); padding:20px; overflow-y:auto;">
+        <div style="background:#fff; width:min(680px,100%); margin:4vh auto; border-radius:10px; padding:1.5rem; box-shadow:0 18px 45px rgba(15,23,42,.25);">
+            <div style="display:flex;justify-content:space-between;gap:1rem;align-items:center;">
+                <h3 style="margin:0;color:#1e293b;">✉️ Enviar informe al cliente</h3>
+                <button type="button" onclick="cerrarModalCorreoCliente()" aria-label="Cerrar" style="border:0;background:none;font-size:28px;cursor:pointer;color:#64748b;">&times;</button>
+            </div>
+            <p style="color:#64748b;font-size:.88rem;">Revise el contenido antes de enviarlo. El envío quedará registrado en el expediente.</p>
+            <form id="form-correo-cliente">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
+                    <div>
+                        <label for="correo-cliente-destinatario" style="display:block;font-weight:700;font-size:.82rem;margin-bottom:.3rem;">Correo del cliente</label>
+                        <input type="email" id="correo-cliente-destinatario" required style="width:100%;padding:.65rem;border:1px solid #cbd5e1;border-radius:6px;box-sizing:border-box;">
+                    </div>
+                    <div>
+                        <label for="correo-cliente-plantilla" style="display:block;font-weight:700;font-size:.82rem;margin-bottom:.3rem;">Plantilla</label>
+                        <select id="correo-cliente-plantilla" style="width:100%;padding:.65rem;border:1px solid #cbd5e1;border-radius:6px;background:white;box-sizing:border-box;">
+                            <option value="actualizacion">Actualización del expediente</option>
+                            <option value="audiencia">Recordatorio de audiencia</option>
+                            <option value="documentos">Solicitud de documentos</option>
+                            <option value="personalizado">Personalizado</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin-top:.8rem;">
+                    <label for="correo-cliente-asunto" style="display:block;font-weight:700;font-size:.82rem;margin-bottom:.3rem;">Asunto</label>
+                    <input type="text" id="correo-cliente-asunto" required style="width:100%;padding:.65rem;border:1px solid #cbd5e1;border-radius:6px;box-sizing:border-box;">
+                </div>
+                <div style="margin-top:.8rem;">
+                    <label for="correo-cliente-mensaje" style="display:block;font-weight:700;font-size:.82rem;margin-bottom:.3rem;">Mensaje</label>
+                    <textarea id="correo-cliente-mensaje" required rows="10" style="width:100%;padding:.7rem;border:1px solid #cbd5e1;border-radius:6px;box-sizing:border-box;font-family:inherit;resize:vertical;"></textarea>
+                </div>
+                <div id="correo-cliente-estado" role="status" style="min-height:1.2rem;margin-top:.7rem;font-size:.86rem;color:#475569;"></div>
+                <div style="display:flex;justify-content:flex-end;gap:.7rem;margin-top:1rem;">
+                    <button type="button" onclick="cerrarModalCorreoCliente()" style="padding:.65rem 1rem;border:1px solid #cbd5e1;border-radius:6px;background:white;cursor:pointer;">Cancelar</button>
+                    <button id="btn-confirmar-envio-correo" type="submit" style="padding:.65rem 1rem;border:0;border-radius:6px;background:#2563eb;color:white;font-weight:700;cursor:pointer;">Enviar correo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div id="modal-personal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); justify-content: center; align-items: center; z-index: 9999;">
         <div style="background: white; width: 100%; max-width: 450px; border-radius: 12px; padding: 24px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);">
             <h3 id="modal-personal-titulo" style="margin-top: 0; margin-bottom: 20px; color: #1e293b;">Alta de Personal</h3>
@@ -617,10 +887,11 @@
                     <label for="personal-estado" style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #475569;">Estado</label>
                     <select id="personal-estado" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; box-sizing: border-box;">
                         <option value="Activo">Activo</option>
-                        <option value="Inactivo">Inactivo</option>
+                        <option value="Baja">Baja</option>
                     </select>
                 </div>
                 
+                <label style="display:flex;gap:.5rem;align-items:center;margin-bottom:16px;"><input type="checkbox" id="personal-es-demo"> Dato de demostración</label>
                 <div class="toolbar">
                     <button type="button" onclick="cerrarModalPersonal()" style="background: #f1f5f9; color: #64748b; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer;">Cancelar</button>
                     <button type="submit" style="background: #2563eb; color: white; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer;">Guardar Personal</button>
@@ -644,12 +915,16 @@
 
 <!-- Módulos del sistema -->
 <script src="js/storage.js"></script>
+<script src="js/consecutivos.js"></script>
 <script src="js/auth.js"></script>
 <script src="js/clientes.js"></script>
 <script src="js/notificaciones.js"></script>
+<script src="js/alertas-terminos.js"></script>
 <script src="js/email.js"></script>
+<script src="js/acceso-clientes.js"></script>
 <script src="js/asuntos.js"></script>
 <script src="js/agenda.js"></script>
+<script src="js/calendario.js"></script>
 <script src="js/personal.js"></script>
 <script src="js/app.js"></script>
 <script src="js/dashboard-ejecutivo.js"></script>
