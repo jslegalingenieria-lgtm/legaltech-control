@@ -92,15 +92,27 @@
     }
 
     function iniciarSincronizacionAsuntos() {
-        if (detenerEscuchaAsuntos) return;
+    if (detenerEscuchaAsuntos) return;
 
-        try {
-            const db = obtenerDB();
+    const usuarioActivo = obtenerUsuarioActivo();
 
-            detenerEscuchaAsuntos = db
-                .collection(COLECCION_ASUNTOS)
-                .orderBy("fechaRegistro", "desc")
-                .onSnapshot(snapshot => {
+    // El cliente usa la consulta específica del portal.
+    // No debe intentar leer toda la colección de asuntos.
+    if (usuarioActivo?.rol === "Cliente") {
+        console.info(
+            "Sincronización general de asuntos omitida para el cliente."
+        );
+        return;
+    }
+
+    try {
+        const db = obtenerDB();
+
+        detenerEscuchaAsuntos = db
+            .collection(COLECCION_ASUNTOS)
+            .orderBy("fechaRegistro", "desc")
+            .onSnapshot(
+                snapshot => {
                     const lista = snapshot.docs.map(doc =>
                         normalizarAsunto(doc.id, doc.data())
                     );
@@ -139,10 +151,14 @@
                             cargarHistorialActuacionesLista(
                                 asuntoActual
                             );
-                            cargarHistorialCorreosLista(asuntoActual);
+
+                            cargarHistorialCorreosLista(
+                                asuntoActual
+                            );
                         }
                     }
-                }, error => {
+                },
+                error => {
                     console.error(
                         "Error sincronizando asuntos:",
                         error
@@ -151,12 +167,16 @@
                     alert(
                         "No fue posible sincronizar los asuntos con Firebase."
                     );
-                });
+                }
+            );
 
-        } catch (error) {
-            console.error(error);
-        }
+    } catch (error) {
+        console.error(
+            "No fue posible iniciar la sincronización de asuntos:",
+            error
+        );
     }
+}
 
     function obtenerUsuarioActivo() {
         try {
