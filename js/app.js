@@ -21,11 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
         configurarInterfazPorRol(usuarioActivo.rol);
     }
     
-    // Inicializar contadores dinámicos del Dashboard desde LocalStorage
-    actualizarContadoresReales();
-
-    // Activar el Asistente Virtual Inteligente
-    actualizarAsistenteVirtual();
+    // El cliente utiliza exclusivamente su portal y no consulta módulos administrativos.
+    if (usuarioActivo?.rol !== "Cliente") {
+        actualizarContadoresReales();
+        actualizarAsistenteVirtual();
+    }
 });
 
 // Función para hacer que los contadores del panel sean 100% reales

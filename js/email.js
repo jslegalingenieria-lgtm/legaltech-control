@@ -116,8 +116,8 @@ Si no lo encuentra en su bandeja de entrada, revise la carpeta de correo no dese
                 : "Revise el sistema para conocer más detalles.",
 
     firma:
-        tipo === "bienvenida_portal"
-            ? (abogado || "JS Legal & Ingeniería")
+        tipo === "bienvenida_portal" || tipo === "informe_cliente"
+            ? "JS Legal & Ingeniería"
             : "Administrador del Sistema",
 
     cliente: cliente || "Sin especificar",
@@ -185,7 +185,8 @@ Si no lo encuentra en su bandeja de entrada, revise la carpeta de correo no dese
             juzgado: datos.juzgado,
             materia: datos.materia,
             descripcion: datos.descripcion,
-            abogado: datos.abogado,
+            // En correos al cliente nunca se usa el nombre del abogado como destinatario o firma.
+            abogado: "JS Legal & Ingeniería",
             tipo: datos.tipo || "informe_cliente",
             fecha: datos.fecha
         });

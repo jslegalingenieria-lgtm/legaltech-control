@@ -109,7 +109,7 @@
             juzgado: asunto.juzgado,
             materia: asunto.materia,
             descripcion,
-            abogado: abogadoNombre || "JS Legal & Ingeniería",
+            abogado: "JS Legal & Ingeniería",
             tipo: "bienvenida_portal",
             fecha: new Date().toLocaleString("es-MX")
         });

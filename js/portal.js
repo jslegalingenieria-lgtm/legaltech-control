@@ -44,36 +44,33 @@ document.addEventListener("DOMContentLoaded", () => {
     ejecutarCargaPortal();
 });
 
+let cancelarEscuchaPortal = null;
+
 setTimeout(ejecutarCargaPortal, 200);
 
 function ejecutarCargaPortal() {
     inicializarModalBitacoraPortal();
-    const usuarioActivo = JSON.parse(sessionStorage.getItem("js_legal_usuario"));
-    if (usuarioActivo && usuarioActivo.rol === "Cliente") {
+    let usuarioActivo = null;
+    try {
+        usuarioActivo = JSON.parse(
+            sessionStorage.getItem("js_legal_usuario") ||
+            localStorage.getItem("js_legal_session") ||
+            "null"
+        );
+    } catch (_) {}
+
+    if (usuarioActivo?.rol === "Cliente") {
         cargarExpedientesClientePortal(usuarioActivo.id, usuarioActivo.nombre);
     }
 }
 
-function cargarExpedientesClientePortal(clienteId, clienteNombre) {
+function renderizarExpedientesCliente(misAsuntos) {
     const tablaCuerpo = document.getElementById("tabla-portal-cuerpo");
     if (!tablaCuerpo) return;
-
-    const asuntos = JSON.parse(localStorage.getItem("js_legal_asuntos")) || [];
-    
-    const misAsuntos = asuntos.filter(a => {
-        const matchId = a.clienteId && String(a.clienteId).trim() === String(clienteId).trim();
-        const matchNombre = a.cliente && clienteNombre && String(a.cliente).toLowerCase().trim() === String(clienteNombre).toLowerCase().trim();
-        return matchId || matchNombre;
-    });
-
-    if (misAsuntos.length > 0 && tablaCuerpo.children.length === misAsuntos.length) {
-        return; 
-    }
-
     tablaCuerpo.innerHTML = "";
 
-    if (misAsuntos.length === 0) {
-        tablaCuerpo.innerHTML = `<tr><td colspan="6" style="text-align: center; padding: 3rem;">No hay expedientes vinculados a su cuenta.</td></tr>`;
+    if (!misAsuntos.length) {
+        tablaCuerpo.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:3rem;">No hay expedientes vinculados a su cuenta.</td></tr>`;
         return;
     }
 
@@ -101,12 +98,39 @@ function cargarExpedientesClientePortal(clienteId, clienteNombre) {
     });
 }
 
+function cargarExpedientesClientePortal(clienteId, clienteNombre) {
+    if (!window.db || !clienteId) return;
+    if (cancelarEscuchaPortal) return;
+
+    const tablaCuerpo = document.getElementById("tabla-portal-cuerpo");
+    if (tablaCuerpo) {
+        tablaCuerpo.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:3rem;">Consultando sus expedientes...</td></tr>`;
+    }
+
+    cancelarEscuchaPortal = window.db
+        .collection("asuntos")
+        .where("clienteId", "==", String(clienteId))
+        .onSnapshot(snapshot => {
+            const asuntos = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            localStorage.setItem("js_legal_asuntos_cliente", JSON.stringify(asuntos));
+            renderizarExpedientesCliente(asuntos);
+        }, error => {
+            console.error("Error consultando expedientes del cliente:", error);
+            const cache = JSON.parse(localStorage.getItem("js_legal_asuntos_cliente") || "[]");
+            if (cache.length) {
+                renderizarExpedientesCliente(cache);
+            } else if (tablaCuerpo) {
+                tablaCuerpo.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:3rem;color:#991b1b;">No fue posible consultar sus expedientes.</td></tr>`;
+            }
+        });
+}
+
 let expedienteActivoParaPDF = "expediente";
 
 function abrirBitacoraClientePortal(asuntoId) {
     inicializarModalBitacoraPortal();
 
-    const asuntos = JSON.parse(localStorage.getItem("js_legal_asuntos")) || [];
+    const asuntos = JSON.parse(localStorage.getItem("js_legal_asuntos_cliente") || "[]");
     const asunto = asuntos.find(a => String(a.id) === String(asuntoId) || String(a.expediente) === String(asuntoId));
     
     if (!asunto) return;
@@ -126,6 +150,7 @@ function abrirBitacoraClientePortal(asuntoId) {
 function renderizarActuacionesPortal(actuaciones) {
    const listaHistorico = document.getElementById("portal-lista-historico") ||
                        document.getElementById("bitacora-lista-historico");
+    const lista = listaHistorico;
     if (!lista) return;
     lista.innerHTML = "";
     
@@ -184,8 +209,8 @@ window.cerrarModalBitacoraPortal = cerrarModalBitacoraPortal;
 
 // 3. Función del Motor de Generación de PDF
 async function descargarBitacoraPDF() {
-    const lineaTiempo = document.getElementById("bitacora-lista-historico");
-    const titulo = document.getElementById("bitacora-expediente-titulo");
+    const lineaTiempo = document.getElementById("portal-lista-historico");
+    const titulo = document.getElementById("portal-expediente-titulo");
 
     if (!lineaTiempo) {
         alert("No se encontró la Línea del Tiempo.");

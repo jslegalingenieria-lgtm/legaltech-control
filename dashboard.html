@@ -913,24 +913,43 @@
 <!-- EmailJS para alertas por correo -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-<!-- Módulos del sistema -->
+<!-- Módulos del sistema: carga separada por rol -->
 <script src="js/storage.js"></script>
-<script src="js/consecutivos.js"></script>
 <script src="js/auth.js"></script>
-<script src="js/clientes.js"></script>
-<script src="js/notificaciones.js"></script>
-<script src="js/alertas-terminos.js"></script>
-<script src="js/email.js"></script>
-<script src="js/acceso-clientes.js"></script>
-<script src="js/asuntos.js"></script>
-<script src="js/agenda.js"></script>
-<script src="js/calendario.js"></script>
-<script src="js/personal.js"></script>
-<script src="js/app.js"></script>
-<script src="js/dashboard-ejecutivo.js"></script>
+<script>
+    (() => {
+        const sesionRaw = sessionStorage.getItem("js_legal_usuario") || localStorage.getItem("js_legal_session");
+        let sesion = null;
+        try { sesion = sesionRaw ? JSON.parse(sesionRaw) : null; } catch (_) {}
+
+        const esCliente = sesion?.rol === "Cliente";
+        const modulosCliente = [
+            "js/app.js",
+            "js/portal.js"
+        ];
+        const modulosDespacho = [
+            "js/consecutivos.js",
+            "js/clientes.js",
+            "js/notificaciones.js",
+            "js/alertas-terminos.js",
+            "js/email.js",
+            "js/acceso-clientes.js",
+            "js/asuntos.js",
+            "js/agenda.js",
+            "js/calendario.js",
+            "js/personal.js",
+            "js/app.js",
+            "js/dashboard-ejecutivo.js",
+            "js/pdf.js"
+        ];
+
+        (esCliente ? modulosCliente : modulosDespacho).forEach(src => {
+            document.write(`<script src="${src}"><\/script>`);
+        });
+    })();
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="js/pdf.js"></script>
 
     <script>
         if ("serviceWorker" in navigator) {

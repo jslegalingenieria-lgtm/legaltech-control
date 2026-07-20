@@ -1,0 +1,14 @@
+JS LegalTech Control Light v1.3
+
+CAMBIOS PRINCIPALES
+- Separación real de módulos por rol en dashboard.html.
+- El cliente ya no carga clientes.js, asuntos.js, agenda.js, personal.js, alertas ni dashboard ejecutivo.
+- Portal del cliente consulta únicamente sus asuntos en Firestore.
+- Correos al cliente usan su nombre como destinatario y la firma JS Legal & Ingeniería; no muestran al abogado como destinatario.
+- Corrección de la línea de tiempo y descarga PDF del portal.
+- Service Worker actualizado a v1.3 con estrategia network-first.
+- firestore.rules permite al cliente autenticado leer únicamente su propio registro y sus asuntos.
+
+IMPORTANTE
+Publique también firestore.rules en Firebase Console o mediante Firebase CLI.
+Después de subir a GitHub Pages, recargue una vez con Ctrl+F5.
