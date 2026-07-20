@@ -543,25 +543,61 @@
         actualizarPanelTerminos();
     }
 
+
+function obtenerUsuarioActivo() {
+    try {
+        const sesion =
+            sessionStorage.getItem("js_legal_usuario") ||
+            localStorage.getItem("js_legal_session");
+
+        return sesion ? JSON.parse(sesion) : null;
+    } catch (error) {
+        console.error("No se pudo leer la sesión:", error);
+        return null;
+    }
+}
+
+
+
+
     function escucharColeccion(nombre) {
-        return obtenerDB()
-            .collection(nombre)
-            .onSnapshot(snapshot => {
+    const usuarioActivo = obtenerUsuarioActivo();
+
+    // El cliente no debe escuchar colecciones administrativas completas.
+    if (
+        usuarioActivo?.rol === "Cliente" &&
+        ["asuntos", "clientes", "personal", "alertas"].includes(nombre)
+    ) {
+        console.info(
+            `La colección ${nombre} no se escucha de forma general para clientes.`
+        );
+        return null;
+    }
+
+    return obtenerDB()
+        .collection(nombre)
+        .onSnapshot(
+            snapshot => {
                 estado[nombre] = snapshot.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
                 }));
 
                 renderizarDashboard();
-            }, error => {
+            },
+            error => {
                 console.error(`Error escuchando ${nombre}:`, error);
-                const asistente = document.getElementById("asistente-mensaje");
+
+                const asistente =
+                    document.getElementById("asistente-mensaje");
+
                 if (asistente) {
                     asistente.textContent =
                         `No fue posible consultar la colección ${nombre}.`;
                 }
-            });
-    }
+            }
+        );
+}
 
     function cargarChartJS() {
         return new Promise((resolve, reject) => {
@@ -633,25 +669,45 @@
         actualizarSaludo();
         usarMesActual();
 
-        try {
-            await cargarChartJS();
+       try {
+    const usuarioActivo = obtenerUsuarioActivo();
 
-            estado.listeners.forEach(cancelar => cancelar());
-            estado.listeners = [
-                escucharColeccion("clientes"),
-                escucharColeccion("asuntos"),
-                escucharColeccion("agenda"),
-                escucharColeccion("personal"),
-                escucharColeccion("alertas")
-            ];
-        } catch (error) {
-            console.error("Error iniciando dashboard:", error);
-            establecerTexto(
-                "asistente-mensaje",
-                "No fue posible iniciar el Dashboard Ejecutivo."
-            );
+    // Cancelar listeners anteriores de forma segura.
+    estado.listeners.forEach(cancelar => {
+        if (typeof cancelar === "function") {
+            cancelar();
         }
+    });
 
+    estado.listeners = [];
+
+    // El cliente utiliza exclusivamente el módulo portal.js.
+    // No debe iniciar las consultas generales del Dashboard Ejecutivo.
+    if (usuarioActivo?.rol === "Cliente") {
+        console.info(
+            "Dashboard Ejecutivo omitido para el usuario cliente."
+        );
+        return;
+    }
+
+    await cargarChartJS();
+
+    estado.listeners = [
+        escucharColeccion("clientes"),
+        escucharColeccion("asuntos"),
+        escucharColeccion("agenda"),
+        escucharColeccion("personal"),
+        escucharColeccion("alertas")
+    ].filter(cancelar => typeof cancelar === "function");
+
+} catch (error) {
+    console.error("Error iniciando dashboard:", error);
+
+    establecerTexto(
+        "asistente-mensaje",
+        "No fue posible iniciar el Dashboard Ejecutivo."
+    );
+}
         document
             .getElementById("btn-refrescar-dashboard")
             ?.addEventListener("click", renderizarDashboard);
