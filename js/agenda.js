@@ -153,7 +153,18 @@
     }
 
 
+function obtenerUsuarioActivo() {
+    try {
+        const sesionRaw =
+            sessionStorage.getItem("js_legal_usuario") ||
+            localStorage.getItem("js_legal_session");
 
+        return sesionRaw ? JSON.parse(sesionRaw) : null;
+    } catch (error) {
+        console.error("No fue posible leer la sesión activa:", error);
+        return null;
+    }
+}
 
     
     function iniciarSincronizacionAgenda() {
