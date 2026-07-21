@@ -80,12 +80,12 @@ service cloud.firestore {
       allow delete: if admin() && demoActual();
     }
 
-    match /agenda/{id} {
-      allow read: if admin() || abogado() || esAsuntoDelCliente(resource.data);
-      allow create: if admin() || abogado();
-      allow update: if admin() || asignadoAlAbogado(resource.data);
-      allow delete: if admin() && demoActual();
-    }
+match /agenda/{id} {
+  allow read: if admin() || abogado() || esAsuntoDelCliente(resource.data);
+  allow create: if admin() || abogado();
+  allow update: if admin() || asignadoAlAbogado(resource.data);
+  allow delete: if admin() || asignadoAlAbogado(resource.data);
+}
 
     match /alertas/{id} {
       allow read, create, update: if admin() || abogado();
