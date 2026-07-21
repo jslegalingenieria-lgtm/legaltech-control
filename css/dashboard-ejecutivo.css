@@ -399,3 +399,41 @@
         width: 100%;
     }
 }
+
+
+/* Exportación de respaldo en Excel */
+.dashboard-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: .65rem;
+    flex-wrap: wrap;
+}
+
+.dashboard-export {
+    border: 1px solid #15803d;
+    border-radius: 9px;
+    padding: .68rem .95rem;
+    background: #15803d;
+    color: #fff;
+    font-weight: 800;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 5px 14px rgba(21, 128, 61, .18);
+}
+
+.dashboard-export:hover:not(:disabled) {
+    background: #166534;
+}
+
+.dashboard-export:disabled {
+    cursor: wait;
+    opacity: .7;
+}
+
+@media (max-width: 560px) {
+    .dashboard-actions,
+    .dashboard-actions button {
+        width: 100%;
+    }
+}

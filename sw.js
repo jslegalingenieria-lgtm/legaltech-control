@@ -1,7 +1,8 @@
-const CACHE_NAME = "js-legaltech-light-v1.3.1";
+const CACHE_NAME = "js-legaltech-light-v1.3.2";
 const ASSETS = [
   "index.html", "dashboard.html", "css/estilos.css", "css/calendario.css",
-  "js/firebase.js", "js/storage.js", "js/auth.js", "js/app.js", "js/portal.js"
+  "js/firebase.js", "js/storage.js", "js/auth.js", "js/app.js", "js/portal.js",
+  "js/exportar-excel.js", "css/dashboard-ejecutivo.css"
 ];
 
 self.addEventListener("install", event => {

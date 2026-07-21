@@ -1,0 +1,19 @@
+JS LEGALTECH CONTROL LIGHT v1.3.2
+
+NUEVA FUNCIÓN: RESPALDO EN EXCEL
+
+1. Inicia sesión como Administrador.
+2. En el Dashboard presiona “Exportar Excel”.
+3. Se descargará un archivo con las hojas Resumen, Clientes, Asuntos, Agenda, Personal y Actuaciones.
+4. Por seguridad, la exportación excluye contraseñas y tokens.
+
+ARCHIVOS MODIFICADOS:
+- dashboard.html
+- css/dashboard-ejecutivo.css
+- sw.js
+
+ARCHIVO NUEVO:
+- js/exportar-excel.js
+
+IMPORTANTE:
+Se requiere conexión a internet para leer Firestore y cargar SheetJS desde el CDN la primera vez.

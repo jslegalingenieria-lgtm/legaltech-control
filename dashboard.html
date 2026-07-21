@@ -80,14 +80,26 @@
             </p>
         </div>
 
-        <button
-            type="button"
-            class="dashboard-refresh"
-            id="btn-refrescar-dashboard"
-            title="Actualizar información"
-        >
-            ↻ Actualizar
-        </button>
+        <div class="dashboard-actions">
+            <button
+                type="button"
+                class="dashboard-export"
+                id="btn-exportar-excel"
+                title="Descargar respaldo de la base de datos en Excel"
+                hidden
+            >
+                📥 Exportar Excel
+            </button>
+
+            <button
+                type="button"
+                class="dashboard-refresh"
+                id="btn-refrescar-dashboard"
+                title="Actualizar información"
+            >
+                ↻ Actualizar
+            </button>
+        </div>
     </div>
 
     <section class="dashboard-period-filter" aria-label="Filtro general del dashboard">
@@ -913,6 +925,9 @@
 <!-- EmailJS para alertas por correo -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
+<!-- Librería para generar archivos Excel -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
 <!-- Módulos del sistema -->
 <script src="js/storage.js"></script>
 <script src="js/auth.js"></script>
@@ -928,6 +943,7 @@
 <script src="js/personal.js"></script>
 <script src="js/app.js"></script>
 <script src="js/dashboard-ejecutivo.js"></script>
+<script src="js/exportar-excel.js"></script>
 <script src="js/portal.js"></script>
 <script src="js/pdf.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
