@@ -78,7 +78,6 @@
         document.getElementById("personal-correo").disabled = false;
         document.getElementById("personal-pass").required = true;
         document.getElementById("personal-estado").value = "Activo";
-        if (document.getElementById("personal-es-demo")) document.getElementById("personal-es-demo").checked = false;
         document.getElementById("modal-personal-titulo").textContent = "Alta de Personal";
         modal.style.display = "flex";
     }
@@ -112,7 +111,6 @@
         const password = document.getElementById("personal-pass").value;
         const rol = document.getElementById("personal-rol").value;
         const estado = document.getElementById("personal-estado").value;
-        const esDemo = document.getElementById("personal-es-demo")?.checked === true;
 
         try {
             if (!nombre || !correo || !usuario || !rol || !estado || (!id && !password)) {
@@ -129,7 +127,7 @@
             const datos = {
                 nombre, correo, usuario,
                 usuarioNormalizado: normalizar(usuario),
-                rol, estado, activo: estado === "Activo", esDemo,
+                rol, estado, activo: estado === "Activo",
                 fechaModificacion: firebase.firestore.FieldValue.serverTimestamp()
             };
 
@@ -174,7 +172,6 @@
         document.getElementById("personal-pass").required = false;
         document.getElementById("personal-rol").value = emp.rol || "Abogado";
         document.getElementById("personal-estado").value = emp.estado || "Activo";
-        if (document.getElementById("personal-es-demo")) document.getElementById("personal-es-demo").checked = emp.esDemo === true;
         document.getElementById("personal-correo").disabled = true;
         document.getElementById("personal-usuario").disabled = true;
         document.getElementById("modal-personal-titulo").textContent = "Modificar Personal";

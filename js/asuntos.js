@@ -39,7 +39,6 @@
             folioInterno: datos.folioInterno || datos.codigo || "",
             estado: datos.estado || "En proceso",
             activo: !["Concluido", "Cancelado"].includes(datos.estado || "En proceso"),
-            esDemo: datos.esDemo === true,
             resumen: datos.resumen || "",
             abogadoAsignado: datos.abogadoAsignado || "",
             fechaRegistro: datos.fechaRegistro || null,
@@ -331,7 +330,6 @@
         }
 
         if (document.getElementById("asu-estado")) document.getElementById("asu-estado").value = "En proceso";
-        if (document.getElementById("asunto-es-demo")) document.getElementById("asunto-es-demo").checked = false;
         poblarSelectClientes();
         cargarAbogadosEnAsuntos();
 
@@ -387,8 +385,6 @@
 
             const abogadoAsignado =
                 selectAbogado?.value || "";
-
-            const esDemo = document.getElementById("asunto-es-demo")?.checked === true;
             const enviarBienvenida = document.getElementById("asunto-enviar-bienvenida")?.checked !== false;
 
             if (
@@ -415,7 +411,6 @@
                 accion,
                 estado,
                 activo: !["Concluido", "Cancelado"].includes(estado),
-                esDemo,
                 resumen,
                 abogadoAsignado,
                 fechaActualizacion:
@@ -577,7 +572,6 @@
 
         document.getElementById("asu-estado").value =
             asunto.estado || "En proceso";
-        if (document.getElementById("asunto-es-demo")) document.getElementById("asunto-es-demo").checked = asunto.esDemo === true;
 
         document.getElementById("asu-resumen").value =
             asunto.resumen || "";

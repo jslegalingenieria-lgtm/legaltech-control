@@ -30,7 +30,6 @@
             clienteCodigo: datos.clienteCodigo || datos.codigo || "",
             estado: datos.estado || "Activo",
             activo: datos.activo !== false && (datos.estado || "Activo") !== "Baja",
-            esDemo: datos.esDemo === true,
             abogadoAsignado: datos.abogadoAsignado || "",
             password: datos.password || "cliente123",
             fechaRegistro: datos.fechaRegistro || null,
@@ -91,7 +90,6 @@
             const password = document.getElementById("cli-password")?.value || "";
             const abogadoAsignado = document.getElementById("cliente-abogado")?.value || "";
             const estado = document.getElementById("cliente-estado")?.value || "Activo";
-            const esDemo = document.getElementById("cliente-es-demo")?.checked === true;
 
             if (!nombre || !telefono || !correo) {
                 alert("Completa nombre, teléfono y correo.");
@@ -107,7 +105,6 @@
                 abogadoAsignado,
                 estado,
                 activo: estado === "Activo",
-                esDemo,
                 fechaActualizacion: firebase.firestore.FieldValue.serverTimestamp()
             };
 
@@ -164,7 +161,6 @@
         document.getElementById("cliente-id").value = "";
         document.getElementById("cli-password").value = "";
         if (document.getElementById("cliente-estado")) document.getElementById("cliente-estado").value = "Activo";
-        if (document.getElementById("cliente-es-demo")) document.getElementById("cliente-es-demo").checked = false;
         actualizarSelectAbogadosAsignados();
     }
 
@@ -190,7 +186,6 @@
         document.getElementById("cli-direccion").value = cliente.direccion || "";
         document.getElementById("cli-password").value = cliente.password || "";
         if (document.getElementById("cliente-estado")) document.getElementById("cliente-estado").value = cliente.estado || "Activo";
-        if (document.getElementById("cliente-es-demo")) document.getElementById("cliente-es-demo").checked = cliente.esDemo === true;
 
         const select = document.getElementById("cliente-abogado");
         if (select) select.value = cliente.abogadoAsignado || "";

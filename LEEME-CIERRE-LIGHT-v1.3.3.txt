@@ -1,0 +1,10 @@
+JS LegalTech Control Light v1.3.3
+
+Cambios finales:
+- Se eliminó el botón y la vista de herramientas de demostración.
+- Se eliminaron los campos de demostración en clientes, asuntos y personal.
+- Se eliminó la lógica especial de limpieza de datos de prueba.
+- Firestore ya no depende de marcas especiales para autorizar eliminaciones.
+- Se conservó la generación de consecutivos.
+
+Esta versión queda cerrada para mantenimiento correctivo.

@@ -31,10 +31,6 @@ service cloud.firestore {
         && perfil().estado == 'Activo';
     }
 
-    function demoActual() {
-      return resource.data.esDemo == true;
-    }
-
     function esClientePropietario(datosCliente) {
       return signedIn() && datosCliente.authUid == request.auth.uid;
     }
@@ -61,7 +57,7 @@ service cloud.firestore {
     match /personal/{uid} {
       allow read: if !signedIn() || admin() || request.auth.uid == uid;
       allow create, update: if admin() || (!exists(/databases/$(database)/documents/personal/$(uid)) && request.auth.uid == uid);
-      allow delete: if admin() && demoActual();
+      allow delete: if admin();
     }
 
     match /clientes/{id} {
@@ -70,14 +66,14 @@ service cloud.firestore {
       allow read: if !signedIn() || admin() || abogado() || esClientePropietario(resource.data);
       allow create: if admin() || abogado();
       allow update: if admin() || asignadoAlAbogado(resource.data);
-      allow delete: if admin() && demoActual();
+      allow delete: if admin();
     }
 
     match /asuntos/{id} {
       allow read: if admin() || abogado() || esAsuntoDelCliente(resource.data);
       allow create: if admin() || abogado();
       allow update: if admin() || asignadoAlAbogado(resource.data);
-      allow delete: if admin() && demoActual();
+      allow delete: if admin();
     }
 
 match /agenda/{id} {
@@ -89,12 +85,12 @@ match /agenda/{id} {
 
     match /alertas/{id} {
       allow read, create, update: if admin() || abogado();
-      allow delete: if admin() && demoActual();
+      allow delete: if admin();
     }
 
     match /notificaciones/{id} {
       allow read, create, update: if admin() || abogado();
-      allow delete: if admin() && demoActual();
+      allow delete: if admin();
     }
 
     match /configuracion/{id} {

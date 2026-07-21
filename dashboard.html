@@ -356,7 +356,6 @@
                                 </select>
                             </div>
                         </div>
-                        <label style="display:flex;gap:.5rem;align-items:center;margin-bottom:1rem;"><input type="checkbox" id="cliente-es-demo"> Dato de demostración</label>
                         <div class="toolbar">
                             <button type="button" class="btn-primary" style="background-color: var(--text-muted); width: auto; padding: 0.6rem 1.2rem;" onclick="cerrarModalCliente()">Cancelar</button>
                             <button type="submit" class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;">Guardar Cliente</button>
@@ -453,7 +452,6 @@
 
                        <div class="toolbar">
                             <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;">
-                                <label style="display:flex;gap:.5rem;align-items:center;"><input type="checkbox" id="asunto-es-demo"> Dato de demostración</label>
                                 <label style="display:flex;gap:.5rem;align-items:center;"><input type="checkbox" id="asunto-enviar-bienvenida" checked> Habilitar portal y enviar bienvenida al cliente</label>
                             </div>
                             <button type="button" class="btn-primary" style="background-color: var(--text-muted); width: auto; padding: 0.6rem 1.2rem;" onclick="cerrarModalAsunto()">Cancelar</button>
@@ -783,25 +781,7 @@
                     </table>
                 </div>
             </section>
-                  
-            <section id="vista-herramientas" class="app-view" style="display:none;">
-                <div class="dev-tools-card">
-                    <div class="dev-tools-heading">
-                        <span class="dev-tools-icon" aria-hidden="true">🛠️</span>
-                        <div>
-                            <h3>Herramientas de desarrollo</h3>
-                            <p>Solo se eliminan físicamente los registros marcados como datos de demostración. Los registros normales nunca se borran desde la interfaz.</p>
-                        </div>
-                    </div>
-                    <div class="dev-tools-actions">
-                        <button type="button" class="btn-dev-danger" onclick="eliminarDatosDemo()">Eliminar datos demo</button>
-                        <button type="button" class="btn-dev-secondary" onclick="reiniciarConsecutivosDemo()">Reiniciar consecutivos</button>
-                    </div>
-                    <p class="dev-tools-note"><strong>Importante:</strong> usa estas opciones únicamente durante pruebas o antes de entregar una instalación limpia.</p>
-                </div>
-            </section>
-
-        </main>
+</main>
     </div>
 
     <!-- Modal de detalle del calendario -->
@@ -902,8 +882,6 @@
                         <option value="Baja">Baja</option>
                     </select>
                 </div>
-                
-                <label style="display:flex;gap:.5rem;align-items:center;margin-bottom:16px;"><input type="checkbox" id="personal-es-demo"> Dato de demostración</label>
                 <div class="toolbar">
                     <button type="button" onclick="cerrarModalPersonal()" style="background: #f1f5f9; color: #64748b; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer;">Cancelar</button>
                     <button type="submit" style="background: #2563eb; color: white; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer;">Guardar Personal</button>

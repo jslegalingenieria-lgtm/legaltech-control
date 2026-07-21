@@ -151,9 +151,6 @@ function configurarInterfazPorRol(rol) {
         if (!document.getElementById("menu-personal")) {
             menuLateral.innerHTML += `<li id="menu-personal"><a href="#" class="menu-item" onclick="switchTab('personal')">👥 Personal</a></li>`;
         }
-        if (!document.getElementById("menu-herramientas")) {
-            menuLateral.innerHTML += `<li id="menu-herramientas"><a href="#" class="menu-item" onclick="switchTab('herramientas')">🛠️ Herramientas de desarrollo</a></li>`;
-        }
     }
 
     if (rol === "Cliente") {
@@ -231,8 +228,7 @@ function switchTab(vista) {
         agenda: "Agenda de Audiencias y Términos",
         calendario: "Calendario Jurídico Profesional",
         portal: "Portal de Consulta Ciudadana",
-        personal: "Gestión de Personal y Abogados",
-        herramientas: "Herramientas de desarrollo"
+        personal: "Gestión de Personal y Abogados"
     };
     
     const viewTitle = document.getElementById("view-title");
