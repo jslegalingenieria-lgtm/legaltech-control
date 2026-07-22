@@ -506,7 +506,7 @@ function escaparHTMLPDF(valor) {
         .replace(/'/g, "&#039;");
 }
 
-window.descargarBitacoraPDF = descargarBitacoraPDF;
+// El generador global unificado se publica desde js/pdf.js.
 
 
 

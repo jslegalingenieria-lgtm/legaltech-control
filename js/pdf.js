@@ -68,6 +68,47 @@
         return titulo?.innerText?.trim() || "Expediente";
     }
 
+    /**
+     * Devuelve la bitácora que corresponde al modal actualmente abierto.
+     * Administrador/Abogado usan los IDs "bitacora-*" y el portal del
+     * cliente usa los IDs "portal-*".
+     */
+    function obtenerContextoBitacora() {
+        const contextos = [
+            {
+                modal: document.getElementById("modal-bitacora-portal"),
+                lineaTiempo: document.getElementById("portal-lista-historico"),
+                titulo: document.getElementById("portal-expediente-titulo")
+            },
+            {
+                modal: document.getElementById("modal-bitacora"),
+                lineaTiempo: document.getElementById("bitacora-lista-historico"),
+                titulo: document.getElementById("bitacora-expediente-titulo")
+            }
+        ];
+
+        const estaVisible = elemento => {
+            if (!elemento) return false;
+            const estilo = window.getComputedStyle(elemento);
+            return estilo.display !== "none" && estilo.visibility !== "hidden";
+        };
+
+        // Primero usa el modal que realmente está abierto.
+        const visible = contextos.find(contexto =>
+            estaVisible(contexto.modal) && contexto.lineaTiempo
+        );
+        if (visible) return visible;
+
+        // Respaldo: usa el contenedor que sí tenga actuaciones.
+        const conActuaciones = contextos.find(contexto =>
+            contexto.lineaTiempo?.children?.length > 0
+        );
+        if (conActuaciones) return conActuaciones;
+
+        // Último respaldo para conservar mensajes claros de error.
+        return contextos.find(contexto => contexto.lineaTiempo) || {};
+    }
+
     function prepararActuaciones(lineaTiempo) {
         const clon = lineaTiempo.cloneNode(true);
         clon.removeAttribute("id");
@@ -217,21 +258,7 @@
             return;
         }
 
-        // Usa el mismo generador profesional para Administrador, Abogado y Cliente.
-        // En el portal del cliente la línea de tiempo y el título tienen IDs propios.
-        const modalPortal = document.getElementById("modal-bitacora-portal");
-        const portalVisible = modalPortal && getComputedStyle(modalPortal).display !== "none";
-
-        const lineaTiempoPortal = document.getElementById("portal-lista-historico");
-        const lineaTiempoGeneral = document.getElementById("bitacora-lista-historico");
-
-        const lineaTiempo = portalVisible
-            ? (lineaTiempoPortal || lineaTiempoGeneral)
-            : (lineaTiempoGeneral || lineaTiempoPortal);
-
-        const titulo = portalVisible
-            ? (document.getElementById("portal-expediente-titulo") || document.getElementById("bitacora-expediente-titulo"))
-            : (document.getElementById("bitacora-expediente-titulo") || document.getElementById("portal-expediente-titulo"));
+        const { lineaTiempo, titulo } = obtenerContextoBitacora();
 
         if (!lineaTiempo) {
             alert("No se encontró la Línea del Tiempo.");
