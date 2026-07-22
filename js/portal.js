@@ -98,13 +98,36 @@ function renderizarExpedientesCliente(misAsuntos) {
     });
 }
 
-function cargarExpedientesClientePortal(clienteId, clienteNombre) {
+async function esperarAutenticacionCliente() {
+    if (!window.firebaseAuth) throw new Error("Firebase Authentication no está disponible.");
+    if (window.firebaseAuth.currentUser) return window.firebaseAuth.currentUser;
+
+    return new Promise((resolve, reject) => {
+        const cancelar = window.firebaseAuth.onAuthStateChanged(usuario => {
+            cancelar();
+            if (usuario) resolve(usuario);
+            else reject(new Error("La sesión de Firebase todavía no está activa."));
+        }, reject);
+    });
+}
+
+async function cargarExpedientesClientePortal(clienteId, clienteNombre) {
     if (!window.db || !clienteId) return;
     if (cancelarEscuchaPortal) return;
 
     const tablaCuerpo = document.getElementById("tabla-portal-cuerpo");
     if (tablaCuerpo) {
         tablaCuerpo.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:3rem;">Consultando sus expedientes...</td></tr>`;
+    }
+
+    try {
+        await esperarAutenticacionCliente();
+    } catch (error) {
+        console.error("No se pudo confirmar la sesión del cliente:", error);
+        if (tablaCuerpo) {
+            tablaCuerpo.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:3rem;color:#991b1b;">Su sesión no pudo sincronizarse. Cierre sesión e ingrese nuevamente.</td></tr>`;
+        }
+        return;
     }
 
     cancelarEscuchaPortal = window.db

@@ -31,7 +31,6 @@
             estado: datos.estado || "Activo",
             activo: datos.activo !== false && (datos.estado || "Activo") !== "Baja",
             abogadoAsignado: datos.abogadoAsignado || "",
-            password: datos.password || "cliente123",
             fechaRegistro: datos.fechaRegistro || null,
             fechaActualizacion: datos.fechaActualizacion || null
         };
@@ -87,7 +86,6 @@
             const telefono = document.getElementById("cli-telefono")?.value.trim() || "";
             const correo = document.getElementById("cli-correo")?.value.trim() || "";
             const direccion = document.getElementById("cli-direccion")?.value.trim() || "";
-            const password = document.getElementById("cli-password")?.value || "";
             const abogadoAsignado = document.getElementById("cliente-abogado")?.value || "";
             const estado = document.getElementById("cliente-estado")?.value || "Activo";
 
@@ -109,13 +107,9 @@
             };
 
             if (id) {
-                const anterior = obtenerClientes().find(c => String(c.id) === String(id));
-                datos.password = password || anterior?.password || "cliente123";
-
                 await obtenerDB().collection(COLECCION).doc(String(id)).set(datos, { merge: true });
                 alert("Cliente actualizado con éxito.");
             } else {
-                datos.password = password || "cliente123";
                 datos.fechaRegistro = firebase.firestore.FieldValue.serverTimestamp();
                 datos.clienteCodigo = await window.siguienteConsecutivo("clientes", "CLI");
 
@@ -159,7 +153,6 @@
         document.getElementById("modal-titulo").innerText = "Registrar Nuevo Cliente";
         formulario.reset();
         document.getElementById("cliente-id").value = "";
-        document.getElementById("cli-password").value = "";
         if (document.getElementById("cliente-estado")) document.getElementById("cliente-estado").value = "Activo";
         actualizarSelectAbogadosAsignados();
     }
@@ -184,7 +177,6 @@
         document.getElementById("cli-telefono").value = cliente.telefono || "";
         document.getElementById("cli-correo").value = cliente.correo || "";
         document.getElementById("cli-direccion").value = cliente.direccion || "";
-        document.getElementById("cli-password").value = cliente.password || "";
         if (document.getElementById("cliente-estado")) document.getElementById("cliente-estado").value = cliente.estado || "Activo";
 
         const select = document.getElementById("cliente-abogado");
@@ -340,9 +332,23 @@
 
     document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("form-cliente")?.addEventListener("submit", guardarCliente);
+
+        let sesion = null;
+        try {
+            sesion = JSON.parse(
+                sessionStorage.getItem("js_legal_usuario") ||
+                localStorage.getItem("js_legal_session") ||
+                "null"
+            );
+        } catch (_) {}
+
+        if (sesion?.rol === "Cliente") {
+            console.info("Sincronización general de clientes omitida para el cliente.");
+            return;
+        }
+
         iniciarSincronizacionClientes();
         cargarClientesTabla();
-        cargarAsuntosConsultaCiudadana();
     });
 
     window.obtenerClientes = obtenerClientes;

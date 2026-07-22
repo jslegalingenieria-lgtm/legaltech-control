@@ -179,7 +179,17 @@
                 }
 
                 if (cliente.portalHabilitado === true || cliente.authUid) {
-                    await auth.signInWithEmailAndPassword(cliente.correo, password);
+                    const credencialCliente = await auth.signInWithEmailAndPassword(cliente.correo, password);
+                    const uidAutenticado = credencialCliente.user.uid;
+
+                    // Repara automáticamente clientes anteriores que no tenían authUid.
+                    if (cliente.authUid !== uidAutenticado) {
+                        await obtenerServicios().db.collection("clientes").doc(String(cliente.id)).set({
+                            authUid: uidAutenticado,
+                            fechaActualizacion: firebase.firestore.FieldValue.serverTimestamp()
+                        }, { merge: true });
+                        cliente.authUid = uidAutenticado;
+                    }
                 } else {
                     // Compatibilidad temporal con registros anteriores.
                     const passwordCliente = cliente?.password ?? cliente?.pass ?? "";

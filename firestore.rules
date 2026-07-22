@@ -32,14 +32,19 @@ service cloud.firestore {
     }
 
     function esClientePropietario(datosCliente) {
-      return signedIn() && datosCliente.authUid == request.auth.uid;
+      return signedIn() && (
+        datosCliente.authUid == request.auth.uid ||
+        (request.auth.token.email != null && datosCliente.correo == request.auth.token.email)
+      );
     }
 
     function esAsuntoDelCliente(datosAsunto) {
       return signedIn()
         && datosAsunto.clienteId is string
         && exists(/databases/$(database)/documents/clientes/$(datosAsunto.clienteId))
-        && get(/databases/$(database)/documents/clientes/$(datosAsunto.clienteId)).data.authUid == request.auth.uid;
+        && esClientePropietario(
+          get(/databases/$(database)/documents/clientes/$(datosAsunto.clienteId)).data
+        );
     }
 
     function asignadoAlAbogado(datos) {
@@ -65,7 +70,12 @@ service cloud.firestore {
       // al cliente por usuario/correo antes de autenticarlo.
       allow read: if !signedIn() || admin() || abogado() || esClientePropietario(resource.data);
       allow create: if admin() || abogado();
-      allow update: if admin() || asignadoAlAbogado(resource.data);
+      allow update: if admin() || asignadoAlAbogado(resource.data) || (
+        esClientePropietario(resource.data)
+        && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['authUid', 'fechaActualizacion'])
+        && request.resource.data.authUid == request.auth.uid
+      );
       allow delete: if admin();
     }
 

@@ -204,6 +204,20 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+        let sesion = null;
+        try {
+            sesion = JSON.parse(
+                sessionStorage.getItem("js_legal_usuario") ||
+                localStorage.getItem("js_legal_session") ||
+                "null"
+            );
+        } catch (_) {}
+
+        if (sesion?.rol === "Cliente") {
+            console.info("Sincronización de personal omitida para el cliente.");
+            return;
+        }
+
         cargarPersonal().catch(error => {
             console.error("Error cargando personal:", error);
             const tbody = document.getElementById("tabla-personal-cuerpo");
