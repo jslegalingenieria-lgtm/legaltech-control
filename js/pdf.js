@@ -217,8 +217,21 @@
             return;
         }
 
-        const lineaTiempo = document.getElementById("bitacora-lista-historico");
-        const titulo = document.getElementById("bitacora-expediente-titulo");
+        // Usa el mismo generador profesional para Administrador, Abogado y Cliente.
+        // En el portal del cliente la línea de tiempo y el título tienen IDs propios.
+        const modalPortal = document.getElementById("modal-bitacora-portal");
+        const portalVisible = modalPortal && getComputedStyle(modalPortal).display !== "none";
+
+        const lineaTiempoPortal = document.getElementById("portal-lista-historico");
+        const lineaTiempoGeneral = document.getElementById("bitacora-lista-historico");
+
+        const lineaTiempo = portalVisible
+            ? (lineaTiempoPortal || lineaTiempoGeneral)
+            : (lineaTiempoGeneral || lineaTiempoPortal);
+
+        const titulo = portalVisible
+            ? (document.getElementById("portal-expediente-titulo") || document.getElementById("bitacora-expediente-titulo"))
+            : (document.getElementById("bitacora-expediente-titulo") || document.getElementById("portal-expediente-titulo"));
 
         if (!lineaTiempo) {
             alert("No se encontró la Línea del Tiempo.");

@@ -1,0 +1,11 @@
+CORRECCIÓN PDF DEL PORTAL DEL CLIENTE
+
+Se actualizó js/pdf.js para que el mismo generador profesional utilizado por
+Administrador y Abogado también detecte la línea de tiempo del portal del Cliente.
+
+El generador ahora selecciona automáticamente:
+- bitacora-lista-historico / bitacora-expediente-titulo para Administrador y Abogado.
+- portal-lista-historico / portal-expediente-titulo para Cliente.
+
+No es necesario modificar las reglas de Firestore para esta corrección.
+Después de subir los archivos a GitHub, recarga la página con Ctrl + F5.
