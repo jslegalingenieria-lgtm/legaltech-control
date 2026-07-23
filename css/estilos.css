@@ -51,6 +51,25 @@ body {
     margin-bottom: 2rem;
 }
 
+.login-lexgear-logo {
+    display: block;
+    width: 104px;
+    height: 104px;
+    object-fit: contain;
+    margin: 0 auto 0.55rem;
+    border-radius: 14px;
+}
+
+.login-symbol-name {
+    display: block;
+    color: #b58a18;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+}
+
 .login-header h1 {
     color: var(--primary-color);
     font-size: 1.8rem;
@@ -62,6 +81,13 @@ body {
     color: var(--text-muted);
     font-size: 0.9rem;
     margin-top: 0.5rem;
+}
+
+.login-header .login-developed {
+    color: #8a6a13;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-top: 0.7rem;
 }
 
 .form-group {
@@ -135,13 +161,41 @@ body {
 }
 
 .sidebar-brand {
-    padding: 1.5rem;
-    font-size: 1.3rem;
-    font-weight: 700;
+    padding: 1.15rem 1rem;
     border-bottom: 1px solid #334155;
-    letter-spacing: 0.5px;
     text-align: center;
     background-color: #0f172a;
+}
+
+.sidebar-lexgear-logo {
+    display: block;
+    width: 76px;
+    height: 76px;
+    object-fit: contain;
+    margin: 0 auto 0.5rem;
+    border-radius: 10px;
+}
+
+.sidebar-brand-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.sidebar-symbol-name {
+    color: #d4af37;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.sidebar-brand-copy strong {
+    color: #ffffff;
+    font-size: 1.05rem;
+    line-height: 1.2;
+    letter-spacing: 0.35px;
 }
 
 .sidebar-menu {

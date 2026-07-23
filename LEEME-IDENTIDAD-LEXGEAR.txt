@@ -1,0 +1,22 @@
+ACTUALIZACIÓN DE IDENTIDAD VISUAL
+
+Se integró la identidad oficial del sistema:
+
+- Símbolo: LexGear
+- Producto: JS LegalTech Control
+- Firma: Developed by JS Legal & Ingeniería
+
+Cambios realizados:
+1. Página de inicio de sesión:
+   - Se agregó LexGear.
+   - Se agregó el nombre JS LegalTech Control.
+   - Se agregó la leyenda Developed by JS Legal & Ingeniería.
+
+2. Menú lateral:
+   - Se agregó LexGear en la parte superior.
+   - Se conserva JS LegalTech Control como nombre del sistema.
+
+Archivos modificados:
+- index.html
+- dashboard.html
+- css/estilos.css
