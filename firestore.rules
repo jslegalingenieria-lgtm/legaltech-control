@@ -2,115 +2,120 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function perfilPath() { return /databases/$(database)/documents/personal/$(request.auth.uid); }
+    function tienePerfil() { return signedIn() && exists(perfilPath()); }
+    function perfil() { return get(perfilPath()).data; }
+    function activo() { return tienePerfil() && perfil().estado == 'Activo'; }
 
-    function signedIn() {
-      return request.auth != null;
+    function superadmin() { return activo() && perfil().rol == 'Superadministrador'; }
+    function admin() { return activo() && perfil().rol == 'Administrador'; }
+    function auxiliar() { return activo() && perfil().rol == 'Auxiliar Jurídico'; }
+    function abogado() { return activo() && perfil().rol == 'Abogado'; }
+    function pasante() { return activo() && perfil().rol == 'Pasante'; }
+    function gestionTotal() { return superadmin() || admin(); }
+    function operacionGeneral() { return gestionTotal() || auxiliar(); }
+
+    function responsableUsuario() {
+      return abogado() ? perfil().usuario :
+        (pasante() ? perfil().abogadoSupervisorUsuario : '');
     }
 
-    function perfilRef() {
-      return /databases/$(database)/documents/personal/$(request.auth.uid);
+    function asignado(datos) {
+      return (abogado() || pasante()) && (
+        datos.abogadoAsignado == responsableUsuario() ||
+        (datos.colaboradorIds is list && datos.colaboradorIds.hasAny([request.auth.uid, perfil().usuario, request.auth.token.email])) ||
+        datos.abogadoUid == request.auth.uid ||
+        (pasante() && datos.abogadoUid == perfil().abogadoSupervisorUid)
+      );
     }
 
-    function tienePerfil() {
-      return signedIn() && exists(perfilRef());
-    }
-
-    function perfil() {
-      return get(perfilRef()).data;
-    }
-
-    function admin() {
-      return tienePerfil()
-        && perfil().rol == 'Administrador'
-        && perfil().estado == 'Activo';
-    }
-
-    function abogado() {
-      return tienePerfil()
-        && perfil().rol == 'Abogado'
-        && perfil().estado == 'Activo';
-    }
-
-    function esClientePropietario(datosCliente) {
+    function clientePropietario(datosCliente) {
       return signedIn() && (
         datosCliente.authUid == request.auth.uid ||
         (request.auth.token.email != null && datosCliente.correo == request.auth.token.email)
       );
     }
 
-    function esAsuntoDelCliente(datosAsunto) {
+    function asuntoDelCliente(datosAsunto) {
       return signedIn()
         && datosAsunto.clienteId is string
         && exists(/databases/$(database)/documents/clientes/$(datosAsunto.clienteId))
-        && esClientePropietario(
-          get(/databases/$(database)/documents/clientes/$(datosAsunto.clienteId)).data
-        );
+        && clientePropietario(get(/databases/$(database)/documents/clientes/$(datosAsunto.clienteId)).data);
     }
 
-    function asignadoAlAbogado(datos) {
-      return abogado() && (
-        datos.abogadoAsignado == request.auth.uid ||
-        datos.abogadoAsignado == perfil().usuario ||
-        datos.abogadoUid == request.auth.uid
-      );
-    }
-
-    // COMPATIBILIDAD TEMPORAL DE INICIO DE SESIÓN:
-    // auth.js busca el usuario/correo antes de autenticarlo.
-    // En la versión comercial debe sustituirse por una colección pública mínima
-    // de accesos o por inicio de sesión directo con correo.
     match /personal/{uid} {
-      allow read: if !signedIn() || admin() || request.auth.uid == uid;
-      allow create, update: if admin() || (!exists(/databases/$(database)/documents/personal/$(uid)) && request.auth.uid == uid);
-      allow delete: if admin();
-    }
-
-    match /clientes/{id} {
-      // Compatibilidad temporal con el portal actual, que todavía localiza
-      // al cliente por usuario/correo antes de autenticarlo.
-      allow read: if !signedIn() || admin() || abogado() || esClientePropietario(resource.data);
-      allow create: if admin() || abogado();
-      allow update: if admin() || asignadoAlAbogado(resource.data) || (
-        esClientePropietario(resource.data)
-        && request.resource.data.diff(resource.data).affectedKeys()
-          .hasOnly(['authUid', 'fechaActualizacion'])
-        && request.resource.data.authUid == request.auth.uid
+      // Compatibilidad temporal del login por nombre de usuario.
+      allow read: if !signedIn() || operacionGeneral() || request.auth.uid == uid;
+      allow create: if superadmin()
+        || (admin() && request.resource.data.rol != 'Superadministrador')
+        || (auxiliar() && request.resource.data.rol in ['Auxiliar Jurídico', 'Abogado', 'Pasante'])
+        || (!exists(/databases/$(database)/documents/personal/$(uid)) && request.auth.uid == uid);
+      allow update: if gestionTotal() || request.auth.uid == uid || (
+        auxiliar()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'nombre','correo','usuario','usuarioNormalizado','rol','abogadoSupervisorUid',
+          'abogadoSupervisorUsuario','fechaModificacion'
+        ])
       );
-      allow delete: if admin();
-    }
-
-    match /asuntos/{id} {
-      allow read: if admin() || abogado() || esAsuntoDelCliente(resource.data);
-      allow create: if admin() || abogado();
-      allow update: if admin() || asignadoAlAbogado(resource.data);
-      allow delete: if admin();
-    }
-
-match /agenda/{id} {
-  allow read: if admin() || abogado() || esAsuntoDelCliente(resource.data);
-  allow create: if admin() || abogado();
-  allow update: if admin() || asignadoAlAbogado(resource.data);
-  allow delete: if admin() || asignadoAlAbogado(resource.data);
-}
-
-    match /alertas/{id} {
-      allow read, create, update: if admin() || abogado();
-      allow delete: if admin();
-    }
-
-    match /notificaciones/{id} {
-      allow read, create, update: if admin() || abogado();
-      allow delete: if admin();
-    }
-
-    match /configuracion/{id} {
-      allow read, create, update: if admin() || abogado();
       allow delete: if false;
     }
 
-    // Todo lo no definido queda bloqueado.
-    match /{document=**} {
-      allow read, write: if false;
+    match /clientes/{id} {
+      // Compatibilidad temporal del acceso de clientes por usuario/correo.
+      allow read: if !signedIn() || operacionGeneral() || asignado(resource.data) || clientePropietario(resource.data);
+      allow create: if operacionGeneral() || (
+        (abogado() || pasante()) && request.resource.data.abogadoAsignado == responsableUsuario()
+      );
+      allow update: if gestionTotal() || (
+        auxiliar() && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['nombre','curp','telefono','correo','direccion','abogadoAsignado','fechaActualizacion'])
+      ) || (
+        asignado(resource.data)
+        && (abogado() || request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['nombre','curp','telefono','correo','direccion','fechaActualizacion']))
+      ) || (
+        clientePropietario(resource.data)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['authUid','fechaActualizacion'])
+        && request.resource.data.authUid == request.auth.uid
+      );
+      allow delete: if false;
     }
+
+    match /asuntos/{id} {
+      allow read: if operacionGeneral() || asignado(resource.data) || asuntoDelCliente(resource.data);
+      allow create: if operacionGeneral() || (
+        (abogado() || pasante()) && request.resource.data.abogadoAsignado == responsableUsuario()
+      );
+      allow update: if gestionTotal() || auxiliar() || asignado(resource.data);
+      allow delete: if false;
+    }
+
+    match /agenda/{id} {
+      allow read: if operacionGeneral() || asignado(resource.data) || asuntoDelCliente(resource.data);
+      allow create: if operacionGeneral() || (
+        (abogado() || pasante()) && request.resource.data.abogadoAsignado == responsableUsuario()
+      );
+      allow update: if operacionGeneral() || asignado(resource.data);
+      allow delete: if gestionTotal() || asignado(resource.data);
+    }
+
+    match /alertas/{id} {
+      allow read, create, update: if operacionGeneral() || abogado() || pasante();
+      allow delete: if gestionTotal();
+    }
+
+    match /notificaciones/{id} {
+      allow read, create, update: if operacionGeneral() || abogado() || pasante();
+      allow delete: if gestionTotal();
+    }
+
+    match /configuracion/{id} {
+      allow read: if activo();
+      allow create, update: if gestionTotal();
+      allow delete: if false;
+    }
+
+    match /{document=**} { allow read, write: if false; }
   }
 }

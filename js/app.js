@@ -83,7 +83,7 @@ async function actualizarAsistenteVirtual() {
 
 
         // Si es abogado solo muestra sus eventos
-        if (usuarioActivo && usuarioActivo.rol === "Abogado") {
+        if (usuarioActivo && ["Abogado", "Pasante"].includes(usuarioActivo.rol)) {
 
             eventosDeHoy = eventosDeHoy.filter(ev =>
                 String(ev.abogadoAsignado) === String(usuarioActivo.usuario)
@@ -137,41 +137,32 @@ async function actualizarAsistenteVirtual() {
 
 // Oculta o muestra módulos dependiendo de quién inició sesión
 function configurarInterfazPorRol(rol) {
-    const menuDashboard = document.getElementById("menu-dashboard");
-    const menuClientes = document.getElementById("menu-clientes");
-    const menuAsuntos = document.getElementById("menu-asuntos");
-    const menuAgenda = document.getElementById("menu-agenda");
-    const menuCalendario = document.getElementById("menu-calendario");
-    const menuPortal = document.getElementById("menu-portal");
+    const R = window.JSLegalRoles;
+    const puede = permiso => R?.tienePermiso(permiso) === true;
     const menuLateral = document.getElementById("menu-lateral");
+    const mostrar = (id, visible) => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = visible ? "block" : "none";
+    };
 
-    // Inyectar dinámicamente el botón de Personal de forma limpia si es Administrador
-    if (rol === "Administrador" && menuLateral) {
-        // Evitamos duplicar el botón si ya existe
-        if (!document.getElementById("menu-personal")) {
-            menuLateral.innerHTML += `<li id="menu-personal"><a href="#" class="menu-item" onclick="switchTab('personal')">👥 Personal</a></li>`;
-        }
+    mostrar("menu-dashboard", rol !== "Cliente");
+    mostrar("menu-clientes", rol !== "Cliente");
+    mostrar("menu-asuntos", rol !== "Cliente");
+    mostrar("menu-agenda", rol !== "Cliente");
+    mostrar("menu-calendario", rol !== "Cliente");
+    mostrar("menu-portal", rol === "Cliente");
+
+    if (puede("gestionar_personal") && menuLateral && !document.getElementById("menu-personal")) {
+        menuLateral.insertAdjacentHTML("beforeend", `<li id="menu-personal"><a href="#" class="menu-item" onclick="switchTab('personal')">👥 Personal</a></li>`);
     }
 
     if (rol === "Cliente") {
-        // Ocultar herramientas de abogado
-        if (menuDashboard) menuDashboard.style.display = "none";
-        if (menuClientes) menuClientes.style.display = "none";
-        if (menuAsuntos) menuAsuntos.style.display = "none";
-        if (menuAgenda) menuAgenda.style.display = "none";
-        if (menuCalendario) menuCalendario.style.display = "none";
-        
-        // Mostrar portal de consulta
-        if (menuPortal) menuPortal.style.display = "block";
-        
-        // Usar la referencia global segura corregida
-        if (usuarioActivoGlobal && typeof cargarExpedientesClientePortal === 'function') {
+        if (usuarioActivoGlobal && typeof cargarExpedientesClientePortal === "function") {
             cargarExpedientesClientePortal(usuarioActivoGlobal.id);
-        } else if (usuarioActivoGlobal && typeof cargarPortalCliente === 'function') {
+        } else if (usuarioActivoGlobal && typeof cargarPortalCliente === "function") {
             cargarPortalCliente();
         }
-        
-        switchTab('portal');
+        switchTab("portal");
     }
 }
 

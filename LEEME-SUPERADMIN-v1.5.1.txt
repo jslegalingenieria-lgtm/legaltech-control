@@ -1,0 +1,24 @@
+JS LEGALTECH CONTROL v1.5.1
+CONFIGURACIÓN INICIAL DEL SUPERADMINISTRADOR
+
+1. En el primer acceso usa temporalmente:
+   Usuario: Administrador
+   Contraseña: admin2026
+
+2. El sistema no abrirá el dashboard. Mostrará el formulario obligatorio de configuración inicial.
+
+3. El responsable designado por el despacho debe escribir:
+   - Nombre completo
+   - Usuario definitivo
+   - Correo electrónico real
+   - Contraseña definitiva de al menos 8 caracteres
+
+4. Al guardar, Firebase Authentication cambia el correo y la contraseña.
+   La contraseña admin2026 deja de funcionar.
+
+5. La contraseña definitiva no se guarda en Firestore ni en el código fuente.
+
+IMPORTANTE PARA ESTA INSTALACIÓN
+Si ya ingresaste anteriormente con Administrador / admin2026, vuelve a cerrar sesión y entra nuevamente con esos datos. El sistema detectará el correo temporal terminado en .local y mostrará el formulario.
+
+No publiques ni compartas la credencial temporal después de terminar la configuración.

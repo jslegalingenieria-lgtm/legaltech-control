@@ -41,6 +41,8 @@
             activo: !["Concluido", "Cancelado"].includes(datos.estado || "En proceso"),
             resumen: datos.resumen || "",
             abogadoAsignado: datos.abogadoAsignado || "",
+            colaboradores: Array.isArray(datos.colaboradores) ? datos.colaboradores : [],
+            colaboradorIds: Array.isArray(datos.colaboradorIds) ? datos.colaboradorIds : [],
             fechaRegistro: datos.fechaRegistro || null,
             fechaActualizacion: datos.fechaActualizacion || null,
             actuaciones: Array.isArray(datos.actuaciones)
@@ -90,6 +92,21 @@
         }
     }
 
+    function responsableParaSesion(sesion = obtenerUsuarioActivo()) {
+        if (!sesion) return "";
+        if (sesion.rol === "Pasante") return sesion.abogadoSupervisorUsuario || "";
+        if (sesion.rol === "Abogado") return sesion.usuario || "";
+        return "";
+    }
+
+    function consultaAsuntosPorRol() {
+        const sesion = obtenerUsuarioActivo();
+        let consulta = obtenerDB().collection(COLECCION_ASUNTOS);
+        const responsable = responsableParaSesion(sesion);
+        if (responsable) return consulta.where("abogadoAsignado", "==", responsable);
+        return consulta.orderBy("fechaRegistro", "desc");
+    }
+
     function iniciarSincronizacionAsuntos() {
     if (detenerEscuchaAsuntos) return;
 
@@ -107,14 +124,16 @@
     try {
         const db = obtenerDB();
 
-        detenerEscuchaAsuntos = db
-            .collection(COLECCION_ASUNTOS)
-            .orderBy("fechaRegistro", "desc")
+        detenerEscuchaAsuntos = consultaAsuntosPorRol()
             .onSnapshot(
                 snapshot => {
                     const lista = snapshot.docs.map(doc =>
                         normalizarAsunto(doc.id, doc.data())
-                    );
+                    ).sort((a, b) => {
+                        const fa = a.fechaRegistro?.toMillis?.() || 0;
+                        const fb = b.fechaRegistro?.toMillis?.() || 0;
+                        return fb - fa;
+                    });
 
                     guardarCacheLocal(lista);
                     cargarAsuntosTabla();
@@ -286,10 +305,9 @@
             lista = [...base, ...dinamico];
         }
 
-        const abogados = lista.filter(
-            empleado =>
-                empleado.rol === "Abogado" ||
-                empleado.rol === "Administrador"
+        const abogados = lista.filter(empleado =>
+            ["Superadministrador", "Administrador", "Abogado"].includes(empleado.rol)
+            && empleado.estado !== "Baja"
         );
 
         select.innerHTML =
@@ -308,7 +326,54 @@
         });
     }
 
-    function abrirModalAsunto() {
+    function identificadorPersonal(persona = {}) {
+        return String(persona.uid || persona.id || persona.usuario || persona.correo || "").trim();
+    }
+
+    function obtenerPersonalDisponible() {
+        const lista = typeof window.obtenerListaCompletaPersonal === "function"
+            ? window.obtenerListaCompletaPersonal()
+            : JSON.parse(localStorage.getItem("js_legal_personal") || "[]");
+        return lista.filter(persona => persona.estado !== "Baja" &&
+            ["Superadministrador", "Administrador", "Auxiliar Jurídico", "Abogado", "Pasante"].includes(persona.rol));
+    }
+
+    function poblarColaboradores(seleccionados = []) {
+        const select = document.getElementById("asunto-colaboradores");
+        if (!select) return;
+        const seleccion = new Set((seleccionados || []).map(String));
+        select.innerHTML = "";
+        obtenerPersonalDisponible().forEach(persona => {
+            const id = identificadorPersonal(persona);
+            if (!id) return;
+            const opcion = document.createElement("option");
+            opcion.value = id;
+            opcion.textContent = `${persona.nombre || persona.usuario || id} — ${persona.rol || "Personal"}`;
+            opcion.dataset.nombre = persona.nombre || persona.usuario || id;
+            opcion.dataset.rol = persona.rol || "";
+            opcion.selected = seleccion.has(id);
+            select.appendChild(opcion);
+        });
+    }
+
+    function actualizarColaboradoresEnAsuntos() {
+        const select = document.getElementById("asunto-colaboradores");
+        if (!select) return;
+        const seleccionados = [...select.selectedOptions].map(opcion => opcion.value);
+        poblarColaboradores(seleccionados);
+    }
+
+    function obtenerColaboradoresSeleccionados() {
+        const select = document.getElementById("asunto-colaboradores");
+        if (!select) return [];
+        return [...select.selectedOptions].map(opcion => ({
+            id: opcion.value,
+            nombre: opcion.dataset.nombre || opcion.textContent,
+            rol: opcion.dataset.rol || ""
+        }));
+    }
+
+    async function abrirModalAsunto() {
         const modal = document.getElementById("modal-asunto");
         const formulario =
             document.getElementById("form-asunto");
@@ -316,6 +381,16 @@
         if (!modal || !formulario) return;
 
         formulario.reset();
+
+        // Asegura que el catálogo de personal esté disponible antes de
+        // construir los selectores de responsable y colaboradores.
+        if (typeof window.cargarPersonal === "function") {
+            try {
+                await window.cargarPersonal();
+            } catch (error) {
+                console.error("No fue posible cargar el personal para el asunto:", error);
+            }
+        }
 
         const id = document.getElementById("asunto-id");
         const titulo =
@@ -332,6 +407,23 @@
         if (document.getElementById("asu-estado")) document.getElementById("asu-estado").value = "En proceso";
         poblarSelectClientes();
         cargarAbogadosEnAsuntos();
+        poblarColaboradores([]);
+        const contenedorColaboradores = document.getElementById("contenedor-colaboradores");
+        if (contenedorColaboradores) contenedorColaboradores.style.display = "none";
+        const responsable = responsableParaSesion();
+        const selectResponsable = obtenerSelectAbogadoElemento();
+        if (selectResponsable && responsable) {
+            if (![...selectResponsable.options].some(o => o.value === responsable)) {
+                const opcion = document.createElement("option");
+                opcion.value = responsable;
+                opcion.textContent = obtenerUsuarioActivo()?.rol === "Pasante" ? "Abogado responsable" : (obtenerUsuarioActivo()?.nombre || responsable);
+                selectResponsable.appendChild(opcion);
+            }
+            selectResponsable.value = responsable;
+            selectResponsable.disabled = true;
+        } else if (selectResponsable) {
+            selectResponsable.disabled = false;
+        }
 
         modal.style.display = "block";
     }
@@ -383,9 +475,15 @@
             const selectAbogado =
                 obtenerSelectAbogadoElemento();
 
-            const abogadoAsignado =
+            let abogadoAsignado =
                 selectAbogado?.value || "";
+            const sesionActiva = obtenerUsuarioActivo();
+            const responsableSesion = responsableParaSesion(sesionActiva);
+            if (responsableSesion) abogadoAsignado = responsableSesion;
             const enviarBienvenida = document.getElementById("asunto-enviar-bienvenida")?.checked !== false;
+            const colaboradores = obtenerColaboradoresSeleccionados()
+                .filter(persona => String(persona.id) !== String(abogadoAsignado));
+            const colaboradorIds = colaboradores.map(persona => String(persona.id));
 
             if (
                 !clienteId ||
@@ -413,6 +511,8 @@
                 activo: !["Concluido", "Cancelado"].includes(estado),
                 resumen,
                 abogadoAsignado,
+                colaboradores,
+                colaboradorIds,
                 fechaActualizacion:
                     firebase.firestore.FieldValue.serverTimestamp()
             };
@@ -580,12 +680,20 @@
             obtenerSelectAbogadoElemento();
 
         if (selectAbogado) {
-            selectAbogado.value =
-                asunto.abogadoAsignado || "";
+            selectAbogado.value = asunto.abogadoAsignado || "";
         }
+
+        const idsColaboradores = (asunto.colaboradorIds || asunto.colaboradores?.map(c => c.id) || []).map(String);
+        poblarColaboradores(idsColaboradores);
+        const contenedorColaboradores = document.getElementById("contenedor-colaboradores");
+        if (contenedorColaboradores) contenedorColaboradores.style.display = idsColaboradores.length ? "block" : "none";
     }
 
     async function eliminarAsunto(id) {
+        if (!window.JSLegalRoles?.tienePermiso("cancelar_asuntos")) {
+            alert("Tu rol no permite concluir, suspender o cancelar asuntos.");
+            return;
+        }
         const asunto = obtenerAsuntos().find(a => String(a.id) === String(id));
         if (!asunto) return;
         const opciones = ["En proceso", "Suspendido", "Concluido", "Cancelado"];
@@ -618,16 +726,10 @@
         const usuarioActivo = obtenerUsuarioActivo();
         let asuntos = obtenerAsuntos();
 
-        if (
-            usuarioActivo &&
-            usuarioActivo.rol === "Abogado"
-        ) {
-            asuntos = asuntos.filter(
-                asunto =>
-                    String(
-                        asunto.abogadoAsignado || ""
-                    ) ===
-                    String(usuarioActivo.usuario || "")
+        const responsable = responsableParaSesion(usuarioActivo);
+        if (responsable) {
+            asuntos = asuntos.filter(asunto =>
+                String(asunto.abogadoAsignado || "") === String(responsable)
             );
         }
 
@@ -697,12 +799,12 @@
                         📧
                     </button>
 
-                    <button
+                    ${window.JSLegalRoles?.tienePermiso("cancelar_asuntos") ? `<button
                         type="button"
                         onclick="eliminarAsunto('${asunto.id}')"
                         style="color:#ef4444;background:none;border:none;cursor:pointer;">
                         🔄 Estado
-                    </button>
+                    </button>` : ""}
                 </td>
             `;
 
@@ -822,6 +924,9 @@
             const etiquetas = [];
             if (actuacion.requiereCumplimiento) etiquetas.push('<span style="background:#fff7ed;color:#9a3412;padding:.2rem .45rem;border-radius:999px;font-size:.72rem;font-weight:700;">✓ Requiere seguimiento</span>');
             if (actuacion.generaTermino) etiquetas.push('<span style="background:#fef2f2;color:#b91c1c;padding:.2rem .45rem;border-radius:999px;font-size:.72rem;font-weight:700;">⏰ Término generado</span>');
+            etiquetas.push(actuacion.visibleCliente
+                ? '<span style="background:#ecfdf5;color:#047857;padding:.2rem .45rem;border-radius:999px;font-size:.72rem;font-weight:700;">👁 Visible al cliente</span>'
+                : '<span style="background:#f1f5f9;color:#475569;padding:.2rem .45rem;border-radius:999px;font-size:.72rem;font-weight:700;">🔒 Uso interno</span>');
 
             elemento.innerHTML = `
                 <div style="display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;">
@@ -880,7 +985,8 @@
         const fechaInput = document.getElementById("act-fecha")?.value || "";
         const requiereCumplimiento = document.getElementById("act-requiere-cumplimiento")?.checked === true;
         const generaTermino = document.getElementById("act-genera-termino")?.checked === true;
-        const notificarCliente = document.getElementById("act-notificar-cliente")?.checked === true;
+        const visibleCliente = document.getElementById("act-visible-cliente")?.checked === true;
+        const notificarCliente = visibleCliente && document.getElementById("act-notificar-cliente")?.checked === true;
         const conceptoTermino = document.getElementById("termino-concepto")?.value.trim() || "";
         const fechaVencimiento = document.getElementById("termino-fecha")?.value || "";
         const prioridadTermino = document.getElementById("termino-prioridad")?.value || "Media";
@@ -909,6 +1015,7 @@
         }
 
         const actuaciones = Array.isArray(asunto.actuaciones) ? [...asunto.actuaciones] : [];
+        const sesion = obtenerUsuarioActivo();
         actuaciones.push({
             fecha,
             tipo,
@@ -916,7 +1023,11 @@
             descripcion,
             requiereCumplimiento,
             generaTermino,
+            visibleCliente,
             notificarCliente,
+            creadoPor: sesion?.uid || sesion?.usuario || sesion?.correo || "",
+            creadoPorNombre: sesion?.nombre || sesion?.usuario || "Usuario",
+            creadoPorRol: sesion?.rol || "",
             creadoEn: new Date().toISOString()
         });
 
@@ -950,6 +1061,28 @@
                     if (!resultadoAlerta.ok) {
                         console.warn("El término se creó, pero no se confirmó el correo al abogado:", resultadoAlerta.motivo);
                     }
+                }
+            }
+
+            let correoClienteEnviado = false;
+            if (notificarCliente && window.JSLegalEmail?.enviarCorreoCliente) {
+                const clientes = typeof window.obtenerClientes === "function" ? window.obtenerClientes() : JSON.parse(localStorage.getItem("js_legal_clientes") || "[]");
+                const cliente = clientes.find(item => String(item.id) === String(asunto.clienteId));
+                if (cliente?.correo) {
+                    const resultado = await window.JSLegalEmail.enviarCorreoCliente({
+                        correo: cliente.correo,
+                        cliente: asunto.cliente,
+                        expediente: asunto.expediente,
+                        juzgado: asunto.juzgado,
+                        materia: asunto.materia,
+                        descripcion,
+                        asunto: `Actualización de su expediente ${asunto.expediente || ""}`,
+                        tipo: "informe_cliente",
+                        fecha
+                    });
+                    correoClienteEnviado = resultado.ok === true;
+                } else {
+                    console.warn("La actuación se publicó, pero el cliente no tiene correo registrado.");
                 }
             }
 
@@ -1206,11 +1339,18 @@
         const camposTermino = document.getElementById("campos-termino");
         if (subtipos) subtipos.style.display = "none";
         if (camposTermino) camposTermino.style.display = "none";
+        const filaNotificar = document.getElementById("fila-act-notificar-cliente");
+        if (filaNotificar) filaNotificar.style.display = "none";
     }
 
     document.addEventListener(
         "DOMContentLoaded",
         () => {
+            window.addEventListener("personalActualizado", () => {
+                cargarAbogadosEnAsuntos();
+                actualizarColaboradoresEnAsuntos();
+            });
+
             document
                 .getElementById("form-asunto")
                 ?.addEventListener(
@@ -1220,10 +1360,20 @@
 
             document
                 .getElementById("form-actuacion")
-                ?.addEventListener(
-                    "submit",
-                    guardarActuacion
-                );
+                ?.addEventListener("submit", guardarActuacion);
+
+            document.getElementById("btn-agregar-colaborador")?.addEventListener("click", () => {
+                const contenedor = document.getElementById("contenedor-colaboradores");
+                if (!contenedor) return;
+                contenedor.style.display = contenedor.style.display === "none" ? "block" : "none";
+            });
+
+            document.getElementById("act-visible-cliente")?.addEventListener("change", event => {
+                const fila = document.getElementById("fila-act-notificar-cliente");
+                const notificar = document.getElementById("act-notificar-cliente");
+                if (fila) fila.style.display = event.target.checked ? "flex" : "none";
+                if (!event.target.checked && notificar) notificar.checked = false;
+            });
 
             document
                 .getElementById("form-correo-cliente")
@@ -1284,6 +1434,8 @@
         cargarHistorialActuacionesLista;
     window.cargarAbogadosEnAsuntos =
         cargarAbogadosEnAsuntos;
+    window.actualizarColaboradoresEnAsuntos =
+        actualizarColaboradoresEnAsuntos;
     window.actualizarSubtiposActuacion = actualizarSubtiposActuacion;
     window.poblarSelectClientes =
         poblarSelectClientes;

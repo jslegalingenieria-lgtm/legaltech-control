@@ -1,0 +1,11 @@
+JS LegalTech Control v1.6.1
+Corrección del catálogo de responsables y colaboradores
+
+- El formulario de asuntos espera a que Firestore cargue la colección personal.
+- Se expone un catálogo único de personal para todos los módulos.
+- El catálogo se actualiza automáticamente después de altas, ediciones o bajas.
+- Los selectores de abogado responsable y personal colaborador se refrescan sin recargar la página.
+- Se conserva una caché local únicamente como respaldo temporal; Firestore sigue siendo la fuente principal.
+
+Nota sobre el usuario administrador@jslegaltech.local:
+El proyecto no contiene código que cree esa cuenta. Si aparece, todavía existe en Firebase Authentication y/o en la colección personal de Firestore. Debe eliminarse en ambos lugares.

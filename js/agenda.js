@@ -109,14 +109,16 @@
 
         if (!usuario) return [];
 
-        if (usuario.rol === "Administrador") {
+        if (["Superadministrador", "Administrador", "Auxiliar Jurídico"].includes(usuario.rol)) {
             return eventos;
         }
 
-        if (usuario.rol === "Abogado") {
+        if (["Abogado", "Pasante"].includes(usuario.rol)) {
             const identificadores = [
                 usuario.id,
-                usuario.usuario
+                usuario.usuario,
+                usuario.abogadoSupervisorUid,
+                usuario.abogadoSupervisorUsuario
             ]
                 .filter(Boolean)
                 .map(valor =>
@@ -167,6 +169,16 @@ function obtenerUsuarioActivo() {
 }
 
     
+    function consultaAgendaPorRol() {
+        const usuario = obtenerUsuarioActivo();
+        let consulta = obtenerDB().collection(COLECCION);
+        let responsable = "";
+        if (usuario?.rol === "Abogado") responsable = usuario.usuario || "";
+        if (usuario?.rol === "Pasante") responsable = usuario.abogadoSupervisorUsuario || "";
+        if (responsable) consulta = consulta.where("abogadoAsignado", "==", responsable);
+        return consulta;
+    }
+
     function iniciarSincronizacionAgenda() {
     if (detenerEscucha) return;
 
@@ -182,8 +194,7 @@ function obtenerUsuarioActivo() {
     }
 
     try {
-        detenerEscucha = obtenerDB()
-            .collection(COLECCION)
+        detenerEscucha = consultaAgendaPorRol()
             .onSnapshot(
                 snapshot => {
                     const eventos = snapshot.docs
@@ -254,7 +265,9 @@ function obtenerUsuarioActivo() {
         if (usuario?.rol === "Abogado") {
             const identificadores = [
                 usuario.id,
-                usuario.usuario
+                usuario.usuario,
+                usuario.abogadoSupervisorUid,
+                usuario.abogadoSupervisorUsuario
             ]
                 .filter(Boolean)
                 .map(valor =>
@@ -298,7 +311,7 @@ function obtenerUsuarioActivo() {
 
         const usuario = obtenerUsuarioSesion();
 
-        if (usuario?.rol !== "Administrador") {
+        if (!["Superadministrador", "Administrador", "Auxiliar Jurídico"].includes(usuario?.rol)) {
             contenedor.style.display = "none";
             select.required = false;
             select.innerHTML = '<option value="">-- Selecciona un abogado --</option>';
@@ -388,13 +401,13 @@ function obtenerUsuarioActivo() {
         const abogadoSeleccionado =
             document.getElementById("age-abogado")?.value || "";
 
-        if (usuario?.rol === "Administrador" && !abogadoSeleccionado) {
+        if (["Superadministrador", "Administrador", "Auxiliar Jurídico"].includes(usuario?.rol) && !abogadoSeleccionado) {
             alert("Selecciona el abogado responsable del evento.");
             return;
         }
 
         const abogadoAsignado =
-            usuario?.rol === "Administrador"
+            ["Superadministrador", "Administrador", "Auxiliar Jurídico"].includes(usuario?.rol)
                 ? abogadoSeleccionado
                 : (usuario?.usuario || usuario?.id || "");
 

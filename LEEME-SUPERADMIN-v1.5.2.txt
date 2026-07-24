@@ -1,0 +1,25 @@
+JS LegalTech Control v1.5.2
+Corrección definitiva del primer acceso del Superadministrador
+
+CAMBIOS
+- Se eliminó la cuenta temporal "Administrador / admin2026" del código.
+- Se eliminó el correo ficticio administrador@jslegaltech.local.
+- El sistema ya no intenta cambiar el correo ni la contraseña en Firebase.
+- El inicio de sesión ahora se realiza directamente con el correo real creado en Firebase Authentication.
+- Si personal/{UID} no existe en Firestore, aparece el asistente inicial.
+- El asistente crea personal/{UID} con rol Superadministrador y estado Activo.
+- El correo se toma directamente de Firebase Authentication y no puede editarse en el asistente.
+
+PRUEBA
+1. En Firebase Authentication debe existir la cuenta real del Superadministrador.
+2. No crees manualmente el documento en Firestore.
+3. Abre index.html con Live Server.
+4. Inicia sesión con el correo y contraseña creados en Firebase.
+5. Completa nombre, usuario, teléfono opcional y nombre del despacho.
+6. Pulsa "Guardar perfil y entrar".
+7. Verifica en Firestore la colección personal y el documento cuyo ID coincide con el UID de Authentication.
+
+IMPORTANTE
+- Esta instalación confía en que solo el responsable autorizado puede crear cuentas desde la consola de Firebase.
+- No debe habilitarse el registro público de usuarios.
+- Para instalaciones comerciales futuras se añadirá un flujo seguro mediante backend/Cloud Functions.

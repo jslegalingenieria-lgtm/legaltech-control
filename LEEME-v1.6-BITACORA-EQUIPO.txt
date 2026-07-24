@@ -1,0 +1,21 @@
+JS LegalTech Control v1.6
+Implementación: equipo colaborador, bitácora interna y portal del cliente
+
+CAMBIOS PRINCIPALES
+1. Cada asunto conserva un abogado responsable.
+2. El formulario permite desplegar opcionalmente "Personal colaborador".
+3. Solo aparecen campos adicionales cuando se presiona "+ Agregar personal colaborador".
+4. Se pueden seleccionar abogados, administradores, superadministradores, auxiliares y pasantes activos.
+5. Cada actuación registra automáticamente autor, rol y fecha de creación.
+6. Toda actuación es interna por defecto.
+7. La casilla "Mostrar esta actuación en el Portal del Cliente" publica únicamente la actuación seleccionada.
+8. La opción de correo solo aparece cuando la actuación será visible al cliente.
+9. La notificación al cliente se limita por ahora a EmailJS/correo electrónico.
+10. El portal filtra y muestra exclusivamente actuaciones con visibleCliente=true.
+11. Se corrigió la duplicación visual de actuaciones en el portal.
+12. Firestore reconoce como asignados al abogado responsable y al personal incluido en colaboradorIds.
+
+IMPORTANTE
+- Antes de usar el envío de correo, debe mantenerse configurado EmailJS en js/email.js.
+- Después de subir esta versión, publique también firestore.rules en Firebase.
+- Los registros antiguos sin el campo visibleCliente permanecen privados y no aparecen al cliente.

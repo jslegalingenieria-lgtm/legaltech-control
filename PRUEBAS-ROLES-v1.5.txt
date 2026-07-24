@@ -1,0 +1,40 @@
+PRUEBAS MÍNIMAS — ROLES v1.5
+
+1. Superadministrador
+[ ] Inicia sesión.
+[ ] Ve todos los módulos.
+[ ] Puede crear Administrador, Auxiliar, Abogado y Pasante.
+
+2. Administrador
+[ ] Ve todos los clientes, asuntos y agendas.
+[ ] Puede dar de alta y de baja personal.
+[ ] No puede crear Superadministrador.
+
+3. Auxiliar Jurídico
+[ ] Ve y opera todos los clientes, asuntos y agendas.
+[ ] Puede crear Auxiliar, Abogado y Pasante.
+[ ] No ve botones de baja de personal ni clientes.
+[ ] No puede crear Administrador o Superadministrador.
+
+4. Abogado
+[ ] Solo ve sus clientes, asuntos y agenda.
+[ ] Puede modificar y dar de baja sus clientes.
+[ ] Puede cambiar estado/cancelar sus asuntos.
+[ ] No ve el módulo Personal.
+
+5. Pasante
+[ ] Al crearlo se exige abogado responsable.
+[ ] Solo ve los clientes, asuntos y agenda del abogado responsable.
+[ ] No puede dar de baja clientes.
+[ ] No puede cancelar asuntos.
+[ ] No ve el módulo Personal.
+
+6. Cliente
+[ ] Entra directamente al portal.
+[ ] Solo ve sus asuntos y su línea de tiempo.
+[ ] No ve módulos administrativos.
+
+7. Seguridad
+[ ] Publicar firestore.rules en Firebase.
+[ ] Confirmar que no se eliminan físicamente clientes, asuntos ni personal.
+[ ] Probar cada rol con una cuenta distinta.

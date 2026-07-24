@@ -1,0 +1,24 @@
+JS LEGALTECH CONTROL — ROLES v1.5
+
+SUPERADMINISTRADOR
+Persona designada por el despacho como enlace con JS Legal & Ingeniería para la implementación.
+Administra la infraestructura técnica: Firebase, facturación, Storage, servicios externos y configuración inicial.
+
+ADMINISTRADOR
+Control operativo total dentro de la plataforma. Puede administrar personal, clientes, asuntos, agenda y configuraciones funcionales.
+
+AUXILIAR JURÍDICO / PARALEGAL
+Puede dar de alta personal operativo, clientes, asuntos, citas y actuaciones. No puede dar de baja ni reactivar personal o clientes.
+
+ABOGADO
+Solo accede a sus clientes, asuntos y agenda. Puede trabajar la bitácora y cambiar el estado de sus asuntos y clientes, sin eliminarlos físicamente.
+
+PASANTE
+Debe estar asignado a un abogado. Puede apoyar en los clientes, asuntos, citas y bitácoras de ese abogado, pero no puede cancelar asuntos ni dar de baja clientes o personal.
+
+CLIENTE
+Solo consulta su expediente, línea de tiempo, citas y documentos autorizados.
+
+IMPORTANTE
+Las bajas son lógicas. Las reglas bloquean la eliminación física de clientes, asuntos y personal.
+Antes de publicar, despliega el archivo firestore.rules actualizado en Firebase Console.

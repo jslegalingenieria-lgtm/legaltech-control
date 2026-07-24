@@ -19,6 +19,28 @@
         return window.db;
     }
 
+    function obtenerSesion() {
+        try {
+            const raw = sessionStorage.getItem("js_legal_usuario") || localStorage.getItem("js_legal_session");
+            return raw ? JSON.parse(raw) : null;
+        } catch (_) { return null; }
+    }
+
+    function responsableParaSesion(sesion = obtenerSesion()) {
+        if (!sesion) return "";
+        if (sesion.rol === "Pasante") return sesion.abogadoSupervisorUsuario || "";
+        if (sesion.rol === "Abogado") return sesion.usuario || "";
+        return "";
+    }
+
+    function consultaClientesPorRol() {
+        const sesion = obtenerSesion();
+        let consulta = obtenerDB().collection(COLECCION);
+        const responsable = responsableParaSesion(sesion);
+        if (responsable) return consulta.where("abogadoAsignado", "==", responsable);
+        return consulta.orderBy("nombre");
+    }
+
     function normalizarCliente(id, datos = {}) {
         return {
             id: String(id),
@@ -54,13 +76,11 @@
     function iniciarSincronizacionClientes() {
         if (cancelarEscucha) return;
 
-        cancelarEscucha = obtenerDB()
-            .collection(COLECCION)
-            .orderBy("nombre")
+        cancelarEscucha = consultaClientesPorRol()
             .onSnapshot(snapshot => {
                 const clientes = snapshot.docs.map(doc =>
                     normalizarCliente(doc.id, doc.data())
-                );
+                ).sort((a, b) => String(a.nombre).localeCompare(String(b.nombre), "es"));
 
                 guardarCache(clientes);
                 cargarClientesTabla();
@@ -86,7 +106,10 @@
             const telefono = document.getElementById("cli-telefono")?.value.trim() || "";
             const correo = document.getElementById("cli-correo")?.value.trim() || "";
             const direccion = document.getElementById("cli-direccion")?.value.trim() || "";
-            const abogadoAsignado = document.getElementById("cliente-abogado")?.value || "";
+            let abogadoAsignado = document.getElementById("cliente-abogado")?.value || "";
+            const sesion = obtenerSesion();
+            const responsableSesion = responsableParaSesion(sesion);
+            if (responsableSesion) abogadoAsignado = responsableSesion;
             const estado = document.getElementById("cliente-estado")?.value || "Activo";
 
             if (!nombre || !telefono || !correo) {
@@ -125,6 +148,10 @@
     }
 
     async function eliminarCliente(id) {
+        if (!window.JSLegalRoles?.tienePermiso("baja_clientes")) {
+            alert("Tu rol no permite dar de baja o reactivar clientes.");
+            return;
+        }
         const cliente = obtenerClientes().find(c => String(c.id) === String(id));
         if (!cliente) return;
         const nuevoEstado = cliente.estado === "Baja" ? "Activo" : "Baja";
@@ -215,7 +242,7 @@
                 <td style="padding:1rem;"><span style="font-weight:700;color:${cliente.estado === "Baja" ? "#991b1b" : "#166534"};">${escaparHTML(cliente.estado || "Activo")}</span></td>
                 <td style="padding:1rem;text-align:center;">
                     <button type="button" onclick="editarCliente('${cliente.id}')" style="background:#3b82f6;color:white;border:none;padding:.4rem .8rem;border-radius:4px;cursor:pointer;margin-right:.4rem;">✏️ Editar</button>
-                    <button type="button" onclick="eliminarCliente('${cliente.id}')" style="background:${cliente.estado === "Baja" ? "#16a34a" : "#ef4444"};color:white;border:none;padding:.4rem .8rem;border-radius:4px;cursor:pointer;">${cliente.estado === "Baja" ? "♻️ Reactivar" : "🚫 Baja"}</button>
+                    ${window.JSLegalRoles?.tienePermiso("baja_clientes") ? `<button type="button" onclick="eliminarCliente('${cliente.id}')" style="background:${cliente.estado === "Baja" ? "#16a34a" : "#ef4444"};color:white;border:none;padding:.4rem .8rem;border-radius:4px;cursor:pointer;">${cliente.estado === "Baja" ? "♻️ Reactivar" : "🚫 Baja"}</button>` : ""}
                 </td>`;
             cuerpo.appendChild(fila);
         });
@@ -319,7 +346,7 @@
         }
 
         const base = typeof window.USUARIOS_MOCK !== "undefined" ? window.USUARIOS_MOCK : [];
-        const abogados = [...base, ...personal].filter(emp => emp.rol === "Abogado" || emp.rol === "Administrador");
+        const abogados = [...base, ...personal].filter(emp => emp.rol === "Abogado" && (emp.estado || "Activo") === "Activo");
 
         select.innerHTML = '<option value="">-- Sin abogado asignado --</option>';
         abogados.forEach(abogado => {
@@ -328,6 +355,19 @@
             opcion.textContent = abogado.nombre;
             select.appendChild(opcion);
         });
+        const responsable = responsableParaSesion();
+        if (responsable) {
+            if (![...select.options].some(o => o.value === responsable)) {
+                const opcion = document.createElement("option");
+                opcion.value = responsable;
+                opcion.textContent = obtenerSesion()?.rol === "Pasante" ? "Abogado responsable" : (obtenerSesion()?.nombre || responsable);
+                select.appendChild(opcion);
+            }
+            select.value = responsable;
+            select.disabled = true;
+        } else {
+            select.disabled = false;
+        }
     }
 
     document.addEventListener("DOMContentLoaded", () => {

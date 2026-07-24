@@ -165,7 +165,8 @@ function abrirBitacoraClientePortal(asuntoId) {
         document.getElementById("portal-expediente-titulo").innerText = expedienteActivoParaPDF;
         modal.style.display = "block";
         
-        const historialActuaciones = asunto.actuaciones || asunto.bitacora || [];
+        const historialActuaciones = (asunto.actuaciones || asunto.bitacora || [])
+            .filter(actuacion => actuacion.visibleCliente === true);
         renderizarActuacionesPortal(historialActuaciones);
     }
 }
