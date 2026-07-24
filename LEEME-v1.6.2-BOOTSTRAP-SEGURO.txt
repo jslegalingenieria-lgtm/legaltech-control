@@ -1,0 +1,20 @@
+JS LegalTech Control v1.6.2
+Corrección del asistente inicial y asignación de roles
+
+PROBLEMA CORREGIDO
+Antes, cualquier cuenta existente en Firebase Authentication que no tuviera un documento en Firestore personal/{UID} veía el formulario de configuración inicial y podía convertirse en Superadministrador.
+
+NUEVO COMPORTAMIENTO
+1. El formulario de Superadministrador solo aparece cuando la instalación todavía no está marcada como inicializada.
+2. Al entrar un Superadministrador válido, el sistema crea automáticamente configuracion/instalacion con inicializada=true.
+3. Si después inicia sesión una cuenta sin perfil, el sistema cierra la sesión y muestra un aviso para que el Administrador la registre desde Personal.
+4. Los usuarios creados desde Personal conservan el rol asignado y entran directamente con correo y contraseña.
+
+PASOS OBLIGATORIOS AL PUBLICAR
+1. Publica el nuevo firestore.rules en Firebase.
+2. Entra primero con el Superadministrador legítimo. Esto creará el marcador configuracion/instalacion.
+3. Elimina de Authentication y de Firestore los Superadministradores creados por error.
+4. Prueba después con Abogado y Cliente.
+
+IMPORTANTE
+No pruebes primero con una cuenta sin perfil justo después de publicar, porque una instalación antigua todavía no tiene el marcador hasta que ingrese el Superadministrador legítimo.
