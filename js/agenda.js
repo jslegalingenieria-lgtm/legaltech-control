@@ -325,21 +325,31 @@ function obtenerUsuarioActivo() {
         try {
             const snapshot = await obtenerDB()
                 .collection("personal")
-                .where("rol", "==", "Abogado")
                 .get();
 
-            const abogados = snapshot.docs
-                .map(doc => ({ id: doc.id, ...doc.data() }))
-                .filter(item => String(item.estado || "Activo").toLowerCase() === "activo")
-                .sort((a, b) => String(a.nombre || a.usuario || "").localeCompare(
+            const responsablesPorId = new Map();
+            snapshot.docs
+                .map(doc => ({ id: doc.id, uid: doc.id, ...doc.data() }))
+                .filter(item =>
+                    ["Superadministrador", "Administrador", "Abogado"].includes(item.rol) &&
+                    String(item.estado || "Activo").toLowerCase() === "activo"
+                )
+                .forEach(item => {
+                    const id = String(item.usuario || item.uid || item.id || item.correo || "").trim();
+                    if (id && !responsablesPorId.has(id)) responsablesPorId.set(id, item);
+                });
+
+            const responsables = [...responsablesPorId.values()].sort((a, b) =>
+                String(a.nombre || a.usuario || "").localeCompare(
                     String(b.nombre || b.usuario || ""),
                     "es"
-                ));
+                )
+            );
 
-            abogados.forEach(abogado => {
+            responsables.forEach(responsable => {
                 const option = document.createElement("option");
-                option.value = abogado.usuario || abogado.uid || abogado.id;
-                option.textContent = abogado.nombre || abogado.usuario || abogado.correo || "Abogado";
+                option.value = responsable.usuario || responsable.uid || responsable.id;
+                option.textContent = responsable.nombre || responsable.usuario || responsable.correo || "Responsable";
                 select.appendChild(option);
             });
 

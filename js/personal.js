@@ -72,7 +72,7 @@
                 <td style="padding:12px 24px;"><span style="padding:4px 8px;border-radius:4px;font-size:.85rem;font-weight:600;background:${empleado.rol === "Administrador" ? "#fee2e2" : "#dbeafe"};color:${empleado.rol === "Administrador" ? "#991b1b" : "#1e40af"};">${escaparHTML(empleado.rol)}</span></td>
                 <td style="padding:12px 24px;"><span style="padding:4px 8px;border-radius:999px;font-size:.82rem;font-weight:600;background:${estado === "Activo" ? "#dcfce7" : "#f1f5f9"};color:${estado === "Activo" ? "#166534" : "#64748b"};">${escaparHTML(estado)}</span></td>
                 <td style="padding:12px 24px;text-align:center;">
-                    ${puede("gestionar_personal") ? `<button onclick="editarPersonal('${empleado.id}')" style="background:#e2e8f0;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;font-weight:600;color:#475569;margin-right:5px;">✏️ Editar</button>` : ""}
+                    ${puede("gestionar_personal") ? `<button onclick="editarPersonal('${empleado.id}')" style="background:#e2e8f0;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;font-weight:600;color:#475569;margin-right:5px;">✏️ Editar</button><button onclick="restablecerPasswordTemporal('${empleado.id}')" style="background:#fef3c7;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;font-weight:600;color:#92400e;margin-right:5px;">🔑 Contraseña temporal</button>` : ""}
                     ${puede("baja_personal") ? `<button onclick="eliminarPersonal('${empleado.id}')" style="background:${estado === "Baja" ? "#dcfce7" : "#fee2e2"};border:none;padding:6px 12px;border-radius:4px;cursor:pointer;font-weight:600;color:${estado === "Baja" ? "#166534" : "#991b1b"};">${estado === "Baja" ? "♻️ Reactivar" : "🚫 Dar de baja"}</button>` : ""}
                 </td>`;
             tbody.appendChild(fila);
@@ -138,15 +138,35 @@
         document.getElementById("form-alta-personal")?.reset();
     }
 
-    async function crearCuentaAuth(correo, password) {
-        const nombreApp = `PersonalAdmin-${Date.now()}`;
-        const appSecundaria = firebase.initializeApp(window.FIREBASE_CONFIG, nombreApp);
+    async function crearCuentaSegura(datosUsuario) {
+        if (!window.firebaseFunctions) {
+            throw new Error("Cloud Functions no está disponible. Despliega la carpeta functions y vuelve a cargar la página.");
+        }
+        const crearUsuario = window.firebaseFunctions.httpsCallable("crearUsuarioDelSistema");
+        const resultado = await crearUsuario(datosUsuario);
+        if (!resultado?.data?.uid) throw new Error("El servidor no devolvió el UID del usuario creado.");
+        return resultado.data.uid;
+    }
+
+    async function restablecerPasswordTemporal(id) {
+        if (!puede("gestionar_personal")) return alert("Tu rol no permite restablecer contraseñas.");
+        const emp = personalCache.find(item => item.id === id);
+        if (!emp) return;
+        const temporal = prompt(`Escribe una nueva contraseña temporal para ${emp.nombre}.
+
+Debe contener al menos 8 caracteres:`);
+        if (!temporal) return;
+        if (temporal.length < 8) return alert("La contraseña temporal debe tener al menos 8 caracteres.");
+        if (!confirm("El usuario deberá cambiar esta contraseña en su siguiente inicio de sesión. ¿Continuar?")) return;
         try {
-            const credencial = await appSecundaria.auth().createUserWithEmailAndPassword(correo, password);
-            await appSecundaria.auth().signOut();
-            return credencial.user.uid;
-        } finally {
-            await appSecundaria.delete();
+            if (!window.firebaseFunctions) throw new Error("Cloud Functions no está disponible.");
+            const funcion = window.firebaseFunctions.httpsCallable("restablecerPasswordTemporal");
+            await funcion({ uid: id, passwordTemporal: temporal });
+            alert("Contraseña temporal actualizada. El usuario deberá cambiarla al iniciar sesión.");
+            await cargarPersonal();
+        } catch (error) {
+            console.error(error);
+            alert(error?.message || "No fue posible restablecer la contraseña.");
         }
     }
 
@@ -171,7 +191,7 @@
             if (!nombre || !correo || !usuario || !rol || !estado || (!id && !password)) {
                 throw new Error("Completa todos los campos obligatorios.");
             }
-            if (!id && password.length < 6) throw new Error("La contraseña debe tener al menos 6 caracteres.");
+            if (!id && password.length < 8) throw new Error("La contraseña temporal debe tener al menos 8 caracteres.");
             if (rol === "Pasante" && !abogadoSupervisorUid) throw new Error("Asigna el pasante a un abogado responsable.");
             const rolSesion = roles()?.sesionActual()?.rol;
             if (rolSesion === "Auxiliar Jurídico" && !["Auxiliar Jurídico", "Abogado", "Pasante"].includes(rol)) throw new Error("El auxiliar no puede crear administradores ni superadministradores.");
@@ -197,13 +217,14 @@
                 await db.collection("personal").doc(id).update(datos);
                 alert("Datos del personal actualizados correctamente. La contraseña no se modificó.");
             } else {
-                const uid = await crearCuentaAuth(correo, password);
                 const abogadoCodigo = await window.siguienteConsecutivo("abogados", "ABG");
-                await db.collection("personal").doc(uid).set({
-                    uid, abogadoCodigo, ...datos,
-                    fechaAlta: firebase.firestore.FieldValue.serverTimestamp()
+                const uid = await crearCuentaSegura({
+                    nombre, correo, usuario, passwordTemporal: password,
+                    rol, estado, abogadoCodigo,
+                    abogadoSupervisorUid: rol === "Pasante" ? abogadoSupervisorUid : "",
+                    abogadoSupervisorUsuario: rol === "Pasante" ? abogadoSupervisorUsuario : ""
                 });
-                alert("Personal dado de alta en Authentication y Firestore.");
+                alert("Personal dado de alta de forma segura. Deberá cambiar su contraseña temporal al iniciar sesión.");
             }
 
             cerrarModalPersonal();
@@ -213,7 +234,7 @@
             const mensajes = {
                 "auth/email-already-in-use": "Ese correo ya existe en Firebase Authentication.",
                 "auth/invalid-email": "El correo electrónico no es válido.",
-                "auth/weak-password": "La contraseña debe tener al menos 6 caracteres.",
+                "auth/weak-password": "La contraseña temporal debe tener al menos 8 caracteres.",
                 "auth/operation-not-allowed": "Activa Email/Password en Firebase Authentication."
             };
             alert(mensajes[error.code] || error.message || "No fue posible guardar el personal.");
@@ -295,6 +316,6 @@
     Object.assign(window, {
         cargarPersonal, obtenerPersonal, obtenerListaCompletaPersonal, renderizarTablaPersonal,
         abrirModalPersonal, cerrarModalPersonal, guardarPersonal,
-        editarPersonal, eliminarPersonal
+        editarPersonal, eliminarPersonal, restablecerPasswordTemporal
     });
 })();

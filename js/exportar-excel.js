@@ -3,7 +3,7 @@
  * Respaldo administrativo de Firestore en formato Excel.
  *
  * Seguridad:
- * - El botón solo se habilita para el rol Administrador.
+ * - El botón solo se habilita para Administrador o Superadministrador.
  * - No exporta contraseñas ni otros secretos de autenticación.
  */
 (() => {
@@ -24,7 +24,7 @@
     }
 
     function esAdministrador() {
-        return obtenerUsuarioActivo()?.rol === "Administrador";
+        return ["Administrador", "Superadministrador"].includes(obtenerUsuarioActivo()?.rol);
     }
 
     function normalizarFecha(valor) {
@@ -170,7 +170,7 @@
         const usuario = obtenerUsuarioActivo();
 
         if (!esAdministrador()) {
-            alert("Solo el administrador puede descargar el respaldo de la base de datos.");
+            alert("Solo el Administrador o Superadministrador puede descargar el respaldo de la base de datos.");
             return;
         }
         if (!window.db) {
@@ -242,12 +242,22 @@
         }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    function actualizarVisibilidadBoton() {
         const boton = document.getElementById("btn-exportar-excel");
         if (!boton) return;
         boton.hidden = !esAdministrador();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const boton = document.getElementById("btn-exportar-excel");
+        if (!boton) return;
+        actualizarVisibilidadBoton();
         boton.addEventListener("click", exportarBaseDatosExcel);
+        // La sesión ya existe al entrar al dashboard, pero se vuelve a comprobar
+        // después de cargar todos los módulos para evitar condiciones de carrera.
+        setTimeout(actualizarVisibilidadBoton, 250);
     });
+    window.addEventListener("storage", actualizarVisibilidadBoton);
 
     window.exportarBaseDatosExcel = exportarBaseDatosExcel;
 })();

@@ -60,7 +60,7 @@ function ejecutarCargaPortal() {
     } catch (_) {}
 
     if (usuarioActivo?.rol === "Cliente") {
-        cargarExpedientesClientePortal(usuarioActivo.id, usuarioActivo.nombre);
+        cargarExpedientesClientePortal(usuarioActivo.clienteId || usuarioActivo.id, usuarioActivo.nombre);
     }
 }
 

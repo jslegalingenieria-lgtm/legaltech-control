@@ -84,41 +84,29 @@
             </button>
         </form>
 
-        <form id="configuracion-inicial" hidden autocomplete="off">
+        <form id="cambio-password-form" hidden autocomplete="off">
             <div style="margin-bottom:1rem;padding:12px;border-radius:8px;background:#eff6ff;color:#1e3a8a;font-size:.9rem;line-height:1.45;">
-                <strong>Configuración inicial del Superadministrador</strong><br>
-                La cuenta ya fue creada en Firebase Authentication. Completa únicamente el perfil de la persona responsable de infraestructura.
-            </div>
-
-            <input type="hidden" id="setup-uid">
-
-            <div class="form-group">
-                <label for="setup-correo-autenticado">Correo autenticado</label>
-                <input type="email" id="setup-correo-autenticado" readonly tabindex="-1">
+                <strong>Cambio obligatorio de contraseña</strong><br>
+                Estás usando una contraseña temporal. Define una contraseña personal antes de entrar al sistema.
             </div>
 
             <div class="form-group">
-                <label for="setup-nombre">Nombre completo</label>
-                <input type="text" id="setup-nombre" required autocomplete="name">
+                <label for="cambio-correo">Correo autenticado</label>
+                <input type="email" id="cambio-correo" readonly tabindex="-1">
             </div>
 
             <div class="form-group">
-                <label for="setup-usuario">Usuario dentro del sistema</label>
-                <input type="text" id="setup-usuario" required minlength="3" autocomplete="username" placeholder="jorge.sanchez">
+                <label for="nueva-password">Nueva contraseña</label>
+                <input type="password" id="nueva-password" required minlength="8" autocomplete="new-password" placeholder="Mínimo 8 caracteres">
             </div>
 
             <div class="form-group">
-                <label for="setup-telefono">Teléfono <span style="font-weight:400;">(opcional)</span></label>
-                <input type="tel" id="setup-telefono" autocomplete="tel">
+                <label for="confirmar-password">Confirmar nueva contraseña</label>
+                <input type="password" id="confirmar-password" required minlength="8" autocomplete="new-password">
             </div>
 
-            <div class="form-group">
-                <label for="setup-despacho">Nombre del despacho</label>
-                <input type="text" id="setup-despacho" required autocomplete="organization" value="JS Legal &amp; Ingeniería">
-            </div>
-
-            <button type="submit" class="btn-primary">Guardar perfil y entrar</button>
-            <button type="button" id="cancelar-configuracion" style="width:100%;margin-top:.65rem;padding:.75rem;border:1px solid #cbd5e1;border-radius:6px;background:white;cursor:pointer;">Cancelar y cerrar sesión</button>
+            <button type="submit" class="btn-primary">Guardar nueva contraseña</button>
+            <button type="button" id="cancelar-cambio-password" style="width:100%;margin-top:.65rem;padding:.75rem;border:1px solid #cbd5e1;border-radius:6px;background:white;cursor:pointer;">Cancelar y cerrar sesión</button>
         </form>
 
         <div class="login-footer">

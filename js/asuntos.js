@@ -101,10 +101,15 @@
 
     function consultaAsuntosPorRol() {
         const sesion = obtenerUsuarioActivo();
-        let consulta = obtenerDB().collection(COLECCION_ASUNTOS);
+        const coleccion = obtenerDB().collection(COLECCION_ASUNTOS);
         const responsable = responsableParaSesion(sesion);
-        if (responsable) return consulta.where("abogadoAsignado", "==", responsable);
-        return consulta.orderBy("fechaRegistro", "desc");
+
+        if (sesion?.rol === "Abogado" || sesion?.rol === "Pasante") {
+            // Seguridad por defecto: si falta la asignación del responsable,
+            // no se descarga la colección completa.
+            return coleccion.where("abogadoAsignado", "==", responsable || "__SIN_RESPONSABLE__");
+        }
+        return coleccion.orderBy("fechaRegistro", "desc");
     }
 
     function iniciarSincronizacionAsuntos() {
@@ -633,7 +638,7 @@
         }
     }
 
-    function editarAsunto(id) {
+    async function editarAsunto(id) {
         const asunto = obtenerAsuntos().find(
             item =>
                 String(item.id) === String(id)
@@ -644,7 +649,7 @@
             return;
         }
 
-        abrirModalAsunto();
+        await abrirModalAsunto();
 
         document.getElementById(
             "asunto-modal-titulo"
@@ -689,6 +694,38 @@
         if (contenedorColaboradores) contenedorColaboradores.style.display = idsColaboradores.length ? "block" : "none";
     }
 
+    function solicitarEstadoAsunto(asunto) {
+        return new Promise(resolve => {
+            const anterior = document.getElementById("modal-cambiar-estado-asunto");
+            if (anterior) anterior.remove();
+
+            const modal = document.createElement("div");
+            modal.id = "modal-cambiar-estado-asunto";
+            modal.style.cssText = "position:fixed;inset:0;z-index:2000;background:rgba(15,23,42,.55);display:flex;align-items:center;justify-content:center;padding:1rem;";
+            modal.innerHTML = `
+                <div style="background:white;width:min(430px,100%);padding:1.5rem;border-radius:12px;box-shadow:0 20px 45px rgba(0,0,0,.25)">
+                    <h3 style="margin:0 0 .5rem;color:#0f172a">Cambiar estado del asunto</h3>
+                    <p style="margin:0 0 1rem;color:#64748b">${escaparHTML(asunto.expediente || asunto.folioInterno || "Expediente")}</p>
+                    <label for="selector-estado-asunto" style="display:block;font-weight:700;margin-bottom:.4rem">Nuevo estado</label>
+                    <select id="selector-estado-asunto" style="width:100%;padding:.75rem;border:1px solid #cbd5e1;border-radius:6px">
+                        ${["En proceso", "Suspendido", "Concluido", "Cancelado"].map(estado =>
+                            `<option value="${estado}" ${estado === (asunto.estado || "En proceso") ? "selected" : ""}>${estado}</option>`
+                        ).join("")}
+                    </select>
+                    <div style="display:flex;justify-content:flex-end;gap:.75rem;margin-top:1.25rem">
+                        <button type="button" id="cancelar-estado-asunto" style="padding:.65rem 1rem;border:1px solid #cbd5e1;background:white;border-radius:6px;cursor:pointer">Cancelar</button>
+                        <button type="button" id="confirmar-estado-asunto" style="padding:.65rem 1rem;border:0;background:#2563eb;color:white;border-radius:6px;cursor:pointer;font-weight:700">Actualizar</button>
+                    </div>
+                </div>`;
+            document.body.appendChild(modal);
+
+            const cerrar = valor => { modal.remove(); resolve(valor); };
+            modal.querySelector("#cancelar-estado-asunto").addEventListener("click", () => cerrar(""));
+            modal.querySelector("#confirmar-estado-asunto").addEventListener("click", () => cerrar(modal.querySelector("#selector-estado-asunto").value));
+            modal.addEventListener("click", event => { if (event.target === modal) cerrar(""); });
+        });
+    }
+
     async function eliminarAsunto(id) {
         if (!window.JSLegalRoles?.tienePermiso("cancelar_asuntos")) {
             alert("Tu rol no permite concluir, suspender o cancelar asuntos.");
@@ -696,9 +733,8 @@
         }
         const asunto = obtenerAsuntos().find(a => String(a.id) === String(id));
         if (!asunto) return;
-        const opciones = ["En proceso", "Suspendido", "Concluido", "Cancelado"];
-        const nuevoEstado = prompt(`Estado actual: ${asunto.estado || "En proceso"}\nEscribe uno de estos estados:\n${opciones.join(" | ")}`, asunto.estado || "En proceso");
-        if (!nuevoEstado || !opciones.includes(nuevoEstado)) return alert("Estado no válido. No se realizaron cambios.");
+        const nuevoEstado = await solicitarEstadoAsunto(asunto);
+        if (!nuevoEstado) return;
         try {
             await obtenerDB().collection(COLECCION_ASUNTOS).doc(String(id)).set({
                 estado: nuevoEstado,

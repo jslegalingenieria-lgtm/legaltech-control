@@ -888,7 +888,7 @@
                 
                 <div style="margin-bottom: 16px;">
                     <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #475569;">Contraseña <small style="font-weight:400;">(solo obligatoria en alta)</small></label>
-                    <input type="password" id="personal-pass" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;">
+                    <input type="password" id="personal-pass" required minlength="8" autocomplete="new-password" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;">
                 </div>
                 
                 <div style="margin-bottom: 16px;">
@@ -930,6 +930,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-functions-compat.js"></script>
 
 <!-- Configuración de Firebase -->
 <script src="js/firebase.js"></script>

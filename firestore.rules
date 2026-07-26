@@ -18,7 +18,8 @@ service cloud.firestore {
 
     function responsableUsuario() {
       return abogado() ? perfil().usuario :
-        (pasante() ? perfil().abogadoSupervisorUsuario : '');
+        (pasante() && perfil().abogadoSupervisorUsuario is string
+          ? perfil().abogadoSupervisorUsuario : '');
     }
 
     function asignado(datos) {
@@ -45,25 +46,29 @@ service cloud.firestore {
     }
 
     match /personal/{uid} {
-      // Compatibilidad temporal del login por nombre de usuario.
-      allow read: if !signedIn() || operacionGeneral() || request.auth.uid == uid;
-      allow create: if superadmin()
-        || (admin() && request.resource.data.rol != 'Superadministrador')
-        || (auxiliar() && request.resource.data.rol in ['Auxiliar Jurídico', 'Abogado', 'Pasante'])
-        || (!exists(/databases/$(database)/documents/personal/$(uid)) && request.auth.uid == uid);
-      allow update: if gestionTotal() || request.auth.uid == uid || (
+      allow read: if operacionGeneral() || request.auth.uid == uid;
+      // Las altas se realizan exclusivamente mediante Cloud Functions con Admin SDK.
+      allow create: if false;
+      allow update: if gestionTotal() || (
+        request.auth.uid == uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'debeCambiarPassword','ultimoCambioPassword','fechaModificacion'
+        ])
+        && request.resource.data.rol == resource.data.rol
+        && request.resource.data.estado == resource.data.estado
+      ) || (
         auxiliar()
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
-          'nombre','correo','usuario','usuarioNormalizado','rol','abogadoSupervisorUid',
+          'nombre','correo','usuario','usuarioNormalizado','abogadoSupervisorUid',
           'abogadoSupervisorUsuario','fechaModificacion'
         ])
+        && request.resource.data.rol == resource.data.rol
       );
       allow delete: if false;
     }
 
     match /clientes/{id} {
-      // Compatibilidad temporal del acceso de clientes por usuario/correo.
-      allow read: if !signedIn() || operacionGeneral() || asignado(resource.data) || clientePropietario(resource.data);
+      allow read: if operacionGeneral() || asignado(resource.data) || clientePropietario(resource.data);
       allow create: if operacionGeneral() || (
         (abogado() || pasante()) && request.resource.data.abogadoAsignado == responsableUsuario()
       );
@@ -76,7 +81,9 @@ service cloud.firestore {
           .hasOnly(['nombre','curp','telefono','correo','direccion','fechaActualizacion']))
       ) || (
         clientePropietario(resource.data)
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['authUid','fechaActualizacion'])
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'authUid','debeCambiarPassword','ultimoCambioPassword','fechaActualizacion'
+        ])
         && request.resource.data.authUid == request.auth.uid
       );
       allow delete: if false;

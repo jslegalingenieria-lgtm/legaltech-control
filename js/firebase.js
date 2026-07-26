@@ -27,6 +27,7 @@
 
     const db = firebase.firestore();
     const auth = firebase.auth();
+    const functions = typeof firebase.functions === "function" ? firebase.functions() : null;
 
     db.enablePersistence({ synchronizeTabs: true }).catch(error => {
         if (error.code === "failed-precondition") {
@@ -42,6 +43,7 @@
     window.db = db;
     window.firebaseDB = db;
     window.firebaseAuth = auth;
+    window.firebaseFunctions = functions;
 
-    console.log("✅ Firebase Authentication y Firestore conectados.");
+    console.log(`✅ Firebase Authentication y Firestore conectados${functions ? "; Cloud Functions disponible" : ""}.`);
 })();

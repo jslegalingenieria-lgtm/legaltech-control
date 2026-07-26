@@ -21,3 +21,11 @@
 - Se actualizaron las reglas de Firestore para reflejar los nuevos roles y evitar eliminaciones físicas.
 - Se actualizó el Service Worker y la caché de la PWA.
 - Se confirmó `favicon3.png` como icono de instalación móvil.
+
+
+## 2.0.1 Beta - Correcciones de validación
+- Restaurado y robustecido el botón de respaldo para Administrador y Superadministrador.
+- Corregida la edición de asuntos (espera la carga del modal antes de rellenar campos).
+- Sustituido el ingreso manual del estado por un selector controlado.
+- Corregido el portal del cliente para consultar por clienteId real.
+- Consultas de Abogado y Pasante configuradas en modo seguro cuando falta responsable/supervisor.

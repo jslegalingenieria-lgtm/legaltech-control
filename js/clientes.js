@@ -35,10 +35,14 @@
 
     function consultaClientesPorRol() {
         const sesion = obtenerSesion();
-        let consulta = obtenerDB().collection(COLECCION);
+        const coleccion = obtenerDB().collection(COLECCION);
         const responsable = responsableParaSesion(sesion);
-        if (responsable) return consulta.where("abogadoAsignado", "==", responsable);
-        return consulta.orderBy("nombre");
+        if (sesion?.rol === "Abogado" || sesion?.rol === "Pasante") {
+            // Si el pasante no tiene supervisor configurado, no debe ver
+            // accidentalmente la cartera completa del despacho.
+            return coleccion.where("abogadoAsignado", "==", responsable || "__SIN_RESPONSABLE__");
+        }
+        return coleccion.orderBy("nombre");
     }
 
     function normalizarCliente(id, datos = {}) {
@@ -346,13 +350,36 @@
         }
 
         const base = typeof window.USUARIOS_MOCK !== "undefined" ? window.USUARIOS_MOCK : [];
-        const abogados = [...base, ...personal].filter(emp => emp.rol === "Abogado" && (emp.estado || "Activo") === "Activo");
+        const lista = typeof window.obtenerListaCompletaPersonal === "function"
+            ? window.obtenerListaCompletaPersonal()
+            : [...base, ...personal];
+
+        // En clientes pueden fungir como responsables el superadministrador,
+        // el administrador y el abogado. Se eliminan duplicados usando el
+        // identificador que realmente se guarda en cliente.abogadoAsignado.
+        const responsablesPorId = new Map();
+        lista
+            .filter(emp =>
+                ["Superadministrador", "Administrador", "Abogado"].includes(emp.rol) &&
+                String(emp.estado || "Activo").toLowerCase() === "activo"
+            )
+            .forEach(emp => {
+                const id = String(emp.usuario || emp.uid || emp.id || emp.correo || "").trim();
+                if (id && !responsablesPorId.has(id)) responsablesPorId.set(id, emp);
+            });
+
+        const responsables = [...responsablesPorId.values()].sort((a, b) =>
+            String(a.nombre || a.usuario || "").localeCompare(
+                String(b.nombre || b.usuario || ""),
+                "es"
+            )
+        );
 
         select.innerHTML = '<option value="">-- Sin abogado asignado --</option>';
-        abogados.forEach(abogado => {
+        responsables.forEach(responsableItem => {
             const opcion = document.createElement("option");
-            opcion.value = abogado.usuario || abogado.id;
-            opcion.textContent = abogado.nombre;
+            opcion.value = responsableItem.usuario || responsableItem.uid || responsableItem.id;
+            opcion.textContent = responsableItem.nombre || responsableItem.usuario || responsableItem.correo;
             select.appendChild(opcion);
         });
         const responsable = responsableParaSesion();
