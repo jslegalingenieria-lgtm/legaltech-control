@@ -538,3 +538,25 @@ RESPONSIVE
 .btn-finalizar-audiencia { padding:.7rem 1rem; border:none; border-radius:7px; background:#dc2626; color:#fff; font-weight:700; cursor:pointer; }
 .btn-finalizar-audiencia:hover { background:#b91c1c; }
 @media (max-width:768px) { .audiencia-encabezado { align-items:stretch; flex-direction:column; } .audiencia-cronometro { width:100%; } .audiencia-datos { grid-template-columns:1fr; } .btn-finalizar-audiencia { width:100%; } }
+
+/*====================================================
+  MANTENIMIENTO DE CONSECUTIVOS
+====================================================*/
+.mantenimiento-encabezado { margin-bottom:1.25rem; padding:1.25rem; border:1px solid #e2e8f0; border-left:6px solid #7c3aed; border-radius:12px; background:linear-gradient(135deg,#f5f3ff,#fff); box-shadow:0 6px 18px rgba(76,29,149,.08); }
+.mantenimiento-encabezado h3 { margin:0 0 .35rem; color:#2e1065; }
+.mantenimiento-encabezado p { margin:0; color:#64748b; }
+.mantenimiento-aviso { margin-top:.9rem; padding:.75rem .9rem; border-radius:8px; background:#fff7ed; border:1px solid #fed7aa; color:#9a3412; font-size:.88rem; font-weight:600; }
+.mantenimiento-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
+.mantenimiento-card { padding:1.15rem; border:1px solid #e2e8f0; border-radius:12px; background:#fff; box-shadow:0 6px 18px rgba(15,23,42,.06); }
+.mantenimiento-card h4 { margin:0 0 .85rem; color:#1e293b; font-size:1.05rem; }
+.mantenimiento-metricas { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.55rem; margin-bottom:1rem; }
+.mantenimiento-metrica { padding:.65rem; border-radius:8px; background:#f8fafc; text-align:center; }
+.mantenimiento-metrica span { display:block; color:#64748b; font-size:.72rem; font-weight:700; text-transform:uppercase; }
+.mantenimiento-metrica strong { display:block; margin-top:.2rem; color:#0f172a; font-size:1.25rem; }
+.mantenimiento-card label { display:block; margin:.7rem 0 .3rem; color:#334155; font-size:.82rem; font-weight:700; }
+.mantenimiento-card input { width:100%; box-sizing:border-box; padding:.65rem .7rem; border:1px solid #cbd5e1; border-radius:7px; }
+.mantenimiento-ayuda { min-height:2.6rem; margin:.45rem 0 .8rem; color:#64748b; font-size:.78rem; line-height:1.35; }
+.mantenimiento-boton { width:100%; padding:.7rem .9rem; border:0; border-radius:7px; background:#7c3aed; color:#fff; font-weight:800; cursor:pointer; }
+.mantenimiento-boton:hover { background:#6d28d9; }
+.mantenimiento-estado { margin-top:1rem; color:#64748b; font-size:.84rem; }
+@media (max-width:1000px) { .mantenimiento-grid { grid-template-columns:1fr; } }

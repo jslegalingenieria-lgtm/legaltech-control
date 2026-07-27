@@ -167,6 +167,11 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    match /auditoriaSistema/{id} {
+      allow read, create: if superadmin();
+      allow update, delete: if false;
+    }
+
     match /{document=**} { allow read, write: if false; }
   }
 }

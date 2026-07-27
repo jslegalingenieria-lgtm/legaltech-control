@@ -36,3 +36,11 @@
 - Solicitudes de cita sujetas a confirmación del despacho y aviso de posibles honorarios.
 - Gestión de citas: confirmar, proponer fecha, rechazar y convertir citas confirmadas en eventos de Agenda.
 - Reglas de Firestore para `mensajes` y `solicitudesCitas` según rol y propiedad del cliente.
+
+## v2.1 - Mantenimiento de consecutivos
+- Se agregó un módulo exclusivo para Superadministrador.
+- Permite sincronizar o reiniciar los consecutivos de personal, clientes y asuntos.
+- Impide establecer un valor menor al código máximo que todavía exista en la base.
+- Requiere escribir REINICIAR y aceptar una confirmación antes de guardar.
+- Registra cada cambio en la colección `auditoriaSistema`.
+- No elimina registros ni reutiliza números mientras existan códigos superiores.

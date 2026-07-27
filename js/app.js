@@ -161,6 +161,10 @@ function configurarInterfazPorRol(rol) {
         menuLateral.insertAdjacentHTML("beforeend", `<li id="menu-personal"><a href="#" class="menu-item" onclick="switchTab('personal')">👥 Personal</a></li>`);
     }
 
+    if (rol === "Superadministrador" && menuLateral && !document.getElementById("menu-mantenimiento")) {
+        menuLateral.insertAdjacentHTML("beforeend", `<li id="menu-mantenimiento"><a href="#" class="menu-item" onclick="switchTab('mantenimiento')">🛠️ Mantenimiento</a></li>`);
+    }
+
     if (rol === "Cliente") {
         if (usuarioActivoGlobal && typeof cargarExpedientesClientePortal === "function") {
             cargarExpedientesClientePortal(usuarioActivoGlobal.id);
@@ -176,6 +180,10 @@ function switchTab(vista) {
     const usuarioActual = (() => { try { return JSON.parse(sessionStorage.getItem("js_legal_usuario") || localStorage.getItem("js_legal_session") || "null"); } catch (_) { return null; } })();
     if (vista === "comunicacion" && !["Superadministrador", "Administrador", "Auxiliar Jurídico", "Abogado"].includes(usuarioActual?.rol)) {
         alert("No tienes permiso para acceder al Centro de Comunicación.");
+        return;
+    }
+    if (vista === "mantenimiento" && usuarioActual?.rol !== "Superadministrador") {
+        alert("El mantenimiento de consecutivos es exclusivo del Superadministrador.");
         return;
     }
     // Ocultar todas las vistas primero
@@ -224,6 +232,10 @@ function switchTab(vista) {
     if (vista === "comunicacion" && typeof window.cargarCentroComunicacion === "function") {
         window.cargarCentroComunicacion();
     }
+
+    if (vista === "mantenimiento" && typeof window.cargarMantenimientoConsecutivos === "function") {
+        window.cargarMantenimientoConsecutivos();
+    }
     
     // Cambiar título superior
     const titulos = {
@@ -234,7 +246,8 @@ function switchTab(vista) {
         calendario: "Calendario Jurídico Profesional",
         portal: "Portal de Consulta Ciudadana",
         comunicacion: "Centro de Comunicación",
-        personal: "Gestión de Personal y Abogados"
+        personal: "Gestión de Personal y Abogados",
+        mantenimiento: "Mantenimiento de Consecutivos"
     };
     
     const viewTitle = document.getElementById("view-title");

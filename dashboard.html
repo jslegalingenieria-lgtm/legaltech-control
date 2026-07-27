@@ -840,6 +840,66 @@
                     </table>
                 </div>
             </section>
+
+            <!-- VISTA 7: MANTENIMIENTO DE CONSECUTIVOS (Solo Superadministrador) -->
+            <section id="vista-mantenimiento" class="app-view" style="display:none;">
+                <div class="mantenimiento-encabezado">
+                    <h3>🛠️ Mantenimiento de consecutivos</h3>
+                    <p>Sincroniza los números de personal, clientes y asuntos después de depurar datos de prueba.</p>
+                    <div class="mantenimiento-aviso">
+                        Esta herramienta no elimina registros. Solo determina el número que se asignará al siguiente registro.
+                    </div>
+                </div>
+
+                <div class="mantenimiento-grid">
+                    <article class="mantenimiento-card">
+                        <h4>👥 Personal</h4>
+                        <div class="mantenimiento-metricas">
+                            <div class="mantenimiento-metrica"><span>Contador</span><strong id="mant-actual-abogados">—</strong></div>
+                            <div class="mantenimiento-metrica"><span>Máximo</span><strong id="mant-maximo-abogados">—</strong></div>
+                            <div class="mantenimiento-metrica"><span>Registros</span><strong id="mant-total-abogados">—</strong></div>
+                        </div>
+                        <label for="mant-nuevo-abogados">Nuevo valor del contador</label>
+                        <input id="mant-nuevo-abogados" type="number" min="0" step="1">
+                        <p id="mant-ayuda-abogados" class="mantenimiento-ayuda"></p>
+                        <label for="mant-confirmacion-abogados">Confirmación</label>
+                        <input id="mant-confirmacion-abogados" type="text" placeholder="Escribe REINICIAR" autocomplete="off">
+                        <button type="button" class="mantenimiento-boton" onclick="reiniciarConsecutivo('abogados')">Guardar consecutivo</button>
+                    </article>
+
+                    <article class="mantenimiento-card">
+                        <h4>👤 Clientes</h4>
+                        <div class="mantenimiento-metricas">
+                            <div class="mantenimiento-metrica"><span>Contador</span><strong id="mant-actual-clientes">—</strong></div>
+                            <div class="mantenimiento-metrica"><span>Máximo</span><strong id="mant-maximo-clientes">—</strong></div>
+                            <div class="mantenimiento-metrica"><span>Registros</span><strong id="mant-total-clientes">—</strong></div>
+                        </div>
+                        <label for="mant-nuevo-clientes">Nuevo valor del contador</label>
+                        <input id="mant-nuevo-clientes" type="number" min="0" step="1">
+                        <p id="mant-ayuda-clientes" class="mantenimiento-ayuda"></p>
+                        <label for="mant-confirmacion-clientes">Confirmación</label>
+                        <input id="mant-confirmacion-clientes" type="text" placeholder="Escribe REINICIAR" autocomplete="off">
+                        <button type="button" class="mantenimiento-boton" onclick="reiniciarConsecutivo('clientes')">Guardar consecutivo</button>
+                    </article>
+
+                    <article class="mantenimiento-card">
+                        <h4>⚖️ Asuntos</h4>
+                        <div class="mantenimiento-metricas">
+                            <div class="mantenimiento-metrica"><span>Contador</span><strong id="mant-actual-asuntos">—</strong></div>
+                            <div class="mantenimiento-metrica"><span>Máximo</span><strong id="mant-maximo-asuntos">—</strong></div>
+                            <div class="mantenimiento-metrica"><span>Registros</span><strong id="mant-total-asuntos">—</strong></div>
+                        </div>
+                        <label for="mant-nuevo-asuntos">Nuevo valor del contador</label>
+                        <input id="mant-nuevo-asuntos" type="number" min="0" step="1">
+                        <p id="mant-ayuda-asuntos" class="mantenimiento-ayuda"></p>
+                        <label for="mant-confirmacion-asuntos">Confirmación</label>
+                        <input id="mant-confirmacion-asuntos" type="text" placeholder="Escribe REINICIAR" autocomplete="off">
+                        <button type="button" class="mantenimiento-boton" onclick="reiniciarConsecutivo('asuntos')">Guardar consecutivo</button>
+                    </article>
+                </div>
+                <p id="mant-estado-general" class="mantenimiento-estado" role="status"></p>
+            </section>
+
 </main>
     </div>
 
@@ -981,6 +1041,7 @@
 <script src="js/roles.js"></script>
 <script src="js/auth.js"></script>
 <script src="js/consecutivos.js"></script>
+<script src="js/mantenimiento.js"></script>
 <script src="js/clientes.js"></script>
 <script src="js/notificaciones.js"></script>
 <script src="js/alertas-terminos.js"></script>
