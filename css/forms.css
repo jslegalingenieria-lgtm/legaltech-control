@@ -1,0 +1,68 @@
+
+/* Selector claro de colaboradores del asunto */
+.lista-colaboradores{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:.7rem;
+    max-height:300px;
+    overflow:auto;
+    padding:.2rem;
+}
+.form-group .colaborador-opcion{
+    display:grid !important;
+    grid-template-columns:26px 1fr;
+    grid-template-areas:"check datos";
+    align-items:center;
+    gap:.75rem;
+    margin:0 !important;
+    padding:.8rem .9rem;
+    border:2px solid #cbd5e1;
+    border-radius:10px;
+    background:#fff;
+    cursor:pointer;
+    user-select:none;
+    transition:border-color .18s, background .18s, box-shadow .18s;
+}
+.form-group .colaborador-opcion:hover{border-color:#93c5fd;background:#f8fbff;}
+.form-group .colaborador-opcion.seleccionado{
+    border-color:#2563eb;
+    background:#eff6ff;
+    box-shadow:0 0 0 2px rgba(37,99,235,.08);
+}
+.form-group .asunto-colaborador-check{
+    position:absolute !important;
+    opacity:0 !important;
+    pointer-events:none;
+    width:1px !important;
+    height:1px !important;
+    padding:0 !important;
+    margin:0 !important;
+}
+.colaborador-marcador{
+    grid-area:check;
+    width:24px;
+    height:24px;
+    border:2px solid #94a3b8;
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#fff;
+    color:#fff;
+    font-weight:900;
+    line-height:1;
+    box-sizing:border-box;
+}
+.colaborador-opcion.seleccionado .colaborador-marcador{
+    background:#2563eb;
+    border-color:#2563eb;
+}
+.colaborador-datos{grid-area:datos;min-width:0;display:flex;flex-direction:column;gap:.15rem;}
+.colaborador-datos strong{font-size:.98rem;color:#0f172a;white-space:normal;overflow-wrap:anywhere;}
+.colaborador-datos small{font-size:.82rem;color:#64748b;}
+.colaboradores-pie{display:flex;justify-content:space-between;gap:1rem;align-items:center;margin-top:.7rem;color:#64748b;flex-wrap:wrap;}
+.colaboradores-pie strong{color:#1d4ed8;font-size:.88rem;}
+@media (max-width:640px){
+    .lista-colaboradores{grid-template-columns:1fr;max-height:340px;}
+    .colaboradores-pie{align-items:flex-start;flex-direction:column;gap:.35rem;}
+}

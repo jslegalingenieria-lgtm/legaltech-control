@@ -464,8 +464,11 @@
                                     <strong>Personal colaborador del asunto</strong>
                                     <small style="color:#64748b;">Marca o desmarca cada persona</small>
                                 </div>
-                                <div id="asunto-colaboradores" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.55rem;max-height:260px;overflow:auto;padding:.15rem;"></div>
-                                <small style="display:block;margin-top:.55rem;color:#64748b;">Las casillas azules indican quiénes tienen acceso como colaboradores.</small>
+                                <div id="asunto-colaboradores" class="lista-colaboradores"></div>
+                                <div class="colaboradores-pie">
+                                    <small>La persona marcada podrá ver este asunto aunque no sea el abogado titular.</small>
+                                    <strong id="resumen-colaboradores">0 colaboradores seleccionados</strong>
+                                </div>
                             </div>
                         </div>
 

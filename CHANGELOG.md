@@ -1,3 +1,10 @@
+## v2.1.3 — Selección y acceso de colaboradores
+- Se incorporaron casillas visibles para marcar y desmarcar colaboradores.
+- Cada selección muestra nombre, rol y contador de colaboradores.
+- Un abogado marcado puede consultar el asunto aunque no sea el titular.
+- El acceso se reconoce por UID, identificador, usuario o correo para conservar compatibilidad.
+- Se actualizó la caché PWA.
+
 
 ## v2.1.1 — Responsable del pasante por rol
 - El pasante puede asignarse a un Abogado, Administrador o Superadministrador activo.

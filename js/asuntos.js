@@ -111,10 +111,16 @@
 
             // Un abogado colaborador también debe recibir el asunto aunque no sea
             // el responsable principal. Los colaboradores se guardan por UID.
-            const uid = String(sesion.uid || sesion.id || "").trim();
-            if (uid) {
-                consultas.push(coleccion.where("colaboradorIds", "array-contains", uid));
-            }
+            const llavesAcceso = [...new Set([
+                sesion.uid,
+                sesion.id,
+                sesion.usuario,
+                sesion.correo
+            ].filter(Boolean).map(valor => String(valor).trim()))];
+
+            llavesAcceso.forEach(llave => {
+                consultas.push(coleccion.where("colaboradorIds", "array-contains", llave));
+            });
 
             return consultas;
         }
@@ -357,7 +363,6 @@
 
             const etiqueta = document.createElement("label");
             etiqueta.className = "colaborador-opcion";
-            etiqueta.style.cssText = "display:flex;align-items:center;gap:.7rem;padding:.7rem .8rem;border:1px solid #cbd5e1;border-radius:7px;background:white;cursor:pointer;user-select:none;";
 
             const casilla = document.createElement("input");
             casilla.type = "checkbox";
@@ -366,19 +371,27 @@
             casilla.checked = seleccion.has(id);
             casilla.dataset.nombre = persona.nombre || persona.usuario || id;
             casilla.dataset.rol = persona.rol || "";
-            casilla.style.cssText = "width:18px;height:18px;accent-color:#2563eb;flex:0 0 auto;";
+            casilla.dataset.uid = persona.uid || "";
+            casilla.dataset.usuario = persona.usuario || "";
+            casilla.dataset.correo = persona.correo || "";
+
+            const marcador = document.createElement("span");
+            marcador.className = "colaborador-marcador";
+            marcador.setAttribute("aria-hidden", "true");
 
             const texto = document.createElement("span");
-            texto.innerHTML = `<strong>${escaparHTML(persona.nombre || persona.usuario || id)}</strong><br><small style="color:#64748b;">${escaparHTML(persona.rol || "Personal")}</small>`;
+            texto.className = "colaborador-datos";
+            texto.innerHTML = `<strong>${escaparHTML(persona.nombre || persona.usuario || id)}</strong><small>${escaparHTML(persona.rol || "Personal")}</small>`;
 
             const actualizarApariencia = () => {
-                etiqueta.style.borderColor = casilla.checked ? "#2563eb" : "#cbd5e1";
-                etiqueta.style.background = casilla.checked ? "#eff6ff" : "#ffffff";
+                etiqueta.classList.toggle("seleccionado", casilla.checked);
+                marcador.textContent = casilla.checked ? "✓" : "";
+                actualizarResumenColaboradores();
             };
             casilla.addEventListener("change", actualizarApariencia);
             actualizarApariencia();
 
-            etiqueta.append(casilla, texto);
+            etiqueta.append(casilla, marcador, texto);
             contenedor.appendChild(etiqueta);
         });
     }
@@ -388,11 +401,20 @@
         poblarColaboradores(seleccionados);
     }
 
+    function actualizarResumenColaboradores() {
+        const total = document.querySelectorAll("#asunto-colaboradores .asunto-colaborador-check:checked").length;
+        const resumen = document.getElementById("resumen-colaboradores");
+        if (resumen) resumen.textContent = `${total} colaborador${total === 1 ? "" : "es"} seleccionado${total === 1 ? "" : "s"}`;
+    }
+
     function obtenerColaboradoresSeleccionados() {
         const contenedor = document.getElementById("asunto-colaboradores");
         if (!contenedor) return [];
         return [...contenedor.querySelectorAll(".asunto-colaborador-check:checked")].map(casilla => ({
             id: casilla.value,
+            uid: casilla.dataset.uid || "",
+            usuario: casilla.dataset.usuario || "",
+            correo: casilla.dataset.correo || "",
             nombre: casilla.dataset.nombre || casilla.value,
             rol: casilla.dataset.rol || ""
         }));
@@ -508,7 +530,12 @@
             const enviarBienvenida = document.getElementById("asunto-enviar-bienvenida")?.checked !== false;
             const colaboradores = obtenerColaboradoresSeleccionados()
                 .filter(persona => String(persona.id) !== String(abogadoAsignado));
-            const colaboradorIds = colaboradores.map(persona => String(persona.id));
+            const colaboradorIds = [...new Set(colaboradores.flatMap(persona => [
+                persona.id,
+                persona.uid,
+                persona.usuario,
+                persona.correo
+            ]).filter(Boolean).map(String))];
 
             if (
                 !clienteId ||
