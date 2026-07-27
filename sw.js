@@ -1,8 +1,8 @@
-const CACHE_NAME = "js-legaltech-v2.0-enterprise-comunicacion";
+const CACHE_NAME = "js-legaltech-v2.0-final-terminos-portal-spacing";
 const ASSETS = [
   "index.html", "dashboard.html", "css/estilos.css", "css/calendario.css",
   "js/firebase.js", "js/storage.js", "js/roles.js", "js/auth.js", "js/app.js", "js/portal.js",
-  "js/exportar-excel.js", "css/dashboard-ejecutivo.css", "js/comunicacion.js", "css/comunicacion.css", "css/responsive.css"
+  "js/exportar-excel.js", "js/alertas-terminos.js", "css/dashboard-ejecutivo.css", "js/comunicacion.js", "css/comunicacion.css", "css/responsive.css"
 ];
 
 self.addEventListener("install", event => {

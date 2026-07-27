@@ -23,6 +23,54 @@
         }
     }
 
+
+    function normalizarTexto(valor) {
+        return String(valor ?? "")
+            .trim()
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function rolPermitido(sesion) {
+        const rol = normalizarTexto(sesion?.rol).replace(/\s+/g, "");
+        return ["abogado", "administrador", "superadministrador"].includes(rol);
+    }
+
+    function esAbogado(sesion) {
+        return normalizarTexto(sesion?.rol).replace(/\s+/g, "") === "abogado";
+    }
+
+    async function esperarFirebase() {
+        if (!window.db) throw new Error("Firestore no está disponible.");
+        if (!window.firebaseAuth) return null;
+        if (window.firebaseAuth.currentUser) return window.firebaseAuth.currentUser;
+
+        return new Promise((resolve, reject) => {
+            let finalizado = false;
+            const temporizador = setTimeout(() => {
+                if (finalizado) return;
+                finalizado = true;
+                cancelar?.();
+                reject(new Error("La sesión de Firebase todavía no está activa."));
+            }, 5000);
+
+            const cancelar = window.firebaseAuth.onAuthStateChanged(usuario => {
+                if (finalizado) return;
+                finalizado = true;
+                clearTimeout(temporizador);
+                cancelar();
+                usuario ? resolve(usuario) : reject(new Error("No existe una sesión autenticada en Firebase."));
+            }, error => {
+                if (finalizado) return;
+                finalizado = true;
+                clearTimeout(temporizador);
+                cancelar?.();
+                reject(error);
+            });
+        });
+    }
+
     function escaparHTML(valor) {
         return String(valor ?? "")
             .replace(/&/g, "&amp;")
@@ -174,7 +222,7 @@
 
     function iniciarAlertasTerminos() {
         const sesion = obtenerSesion();
-        if (!window.db || !sesion || !["Abogado", "Administrador"].includes(sesion.rol) || !sesion.usuario || detenerEscucha) return;
+        if (!window.db || !sesion || !rolPermitido(sesion) || !sesion.usuario || detenerEscucha) return;
 
         detenerEscucha = window.db.collection(COLECCION)
             .where("usuario", "==", String(sesion.usuario))
@@ -187,15 +235,16 @@
     async function mostrarAlertasTerminosManualmente() {
         const sesion = obtenerSesion();
 
-        if (!window.db || !sesion || !["Abogado", "Administrador"].includes(sesion.rol)) {
+        if (!window.db || !sesion || !rolPermitido(sesion)) {
             alert("No fue posible consultar los términos procesales.");
             return;
         }
 
         try {
+            await esperarFirebase();
             let consulta = window.db.collection(COLECCION);
 
-            if (sesion.rol === "Abogado") {
+            if (esAbogado(sesion)) {
                 if (!sesion.usuario) {
                     alert("No se encontró el usuario de la sesión.");
                     return;
@@ -218,7 +267,10 @@
             mostrarModal(alertas);
         } catch (error) {
             console.error("No se pudieron abrir los términos pendientes:", error);
-            alert("No fue posible consultar los términos procesales.");
+            const detalle = error?.code === "permission-denied"
+                ? " Tu sesión no tiene permiso de lectura en Firestore; revisa que el perfil esté activo y que el rol sea Administrador o Superadministrador."
+                : "";
+            alert("No fue posible consultar los términos procesales." + detalle);
         }
     }
 
