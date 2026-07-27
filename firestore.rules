@@ -70,7 +70,8 @@ service cloud.firestore {
     }
 
     match /clientes/{id} {
-      allow read: if operacionGeneral() || asignado(resource.data) || clientePropietario(resource.data);
+      allow read: if operacionGeneral() || asignado(resource.data) || clientePropietario(resource.data)
+        || (pasante() && resource.data.abogadoAsignado == perfil().abogadoSupervisorUsuario);
       allow create: if operacionGeneral() || (
         (abogado() || pasante()) && request.resource.data.abogadoAsignado == responsableUsuario()
       );

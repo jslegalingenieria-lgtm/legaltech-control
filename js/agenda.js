@@ -65,6 +65,7 @@
             hora: datos.hora || "",
             notas: datos.notas || datos.notes || "",
             abogadoAsignado: datos.abogadoAsignado || "",
+            colaboradorIds: Array.isArray(datos.colaboradorIds) ? datos.colaboradorIds : [],
             notificado: Boolean(datos.notificado),
             fechaRegistro: datos.fechaRegistro || null,
             fechaActualizacion: datos.fechaActualizacion || null
@@ -172,10 +173,16 @@ function obtenerUsuarioActivo() {
     function consultaAgendaPorRol() {
         const usuario = obtenerUsuarioActivo();
         let consulta = obtenerDB().collection(COLECCION);
-        let responsable = "";
-        if (usuario?.rol === "Abogado") responsable = usuario.usuario || "";
-        if (usuario?.rol === "Pasante") responsable = usuario.abogadoSupervisorUsuario || "";
-        if (responsable) consulta = consulta.where("abogadoAsignado", "==", responsable);
+
+        if (usuario?.rol === "Abogado") {
+            return consulta.where("abogadoAsignado", "==", usuario.usuario || "__SIN_RESPONSABLE__");
+        }
+
+        if (usuario?.rol === "Pasante") {
+            const uid = firebase.auth()?.currentUser?.uid || usuario.uid || usuario.id || "__SIN_COLABORADOR__";
+            return consulta.where("colaboradorIds", "array-contains", String(uid));
+        }
+
         return consulta;
     }
 
@@ -421,6 +428,13 @@ function obtenerUsuarioActivo() {
                 ? abogadoSeleccionado
                 : (usuario?.usuario || usuario?.id || "");
 
+        const asuntoRelacionado = obtenerAsuntos().find(
+            asunto => String(asunto.id) === String(asuntoId)
+        );
+        const colaboradorIds = Array.isArray(asuntoRelacionado?.colaboradorIds)
+            ? asuntoRelacionado.colaboradorIds
+            : [];
+
         try {
             const db = obtenerDB();
 
@@ -444,6 +458,7 @@ function obtenerUsuarioActivo() {
                         hora,
                         notas,
                         abogadoAsignado,
+                        colaboradorIds,
                         notificado: cambioFechaHora
                             ? false
                             : Boolean(eventoAnterior?.notificado),
@@ -462,6 +477,7 @@ function obtenerUsuarioActivo() {
                         hora,
                         notas,
                         abogadoAsignado,
+                        colaboradorIds,
                         notificado: false,
                         fechaRegistro:
                             firebase.firestore.FieldValue.serverTimestamp(),

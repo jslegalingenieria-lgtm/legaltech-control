@@ -227,7 +227,42 @@
         const cuerpo = document.getElementById("tabla-clientes-cuerpo");
         if (!cuerpo) return;
 
-        const clientes = obtenerClientes();
+        const sesion = obtenerSesion();
+        let clientes = obtenerClientes();
+
+        // El pasante solo debe ver clientes relacionados con asuntos en los
+        // que fue seleccionado expresamente como colaborador.
+        if (sesion?.rol === "Pasante") {
+            let asuntos = [];
+            try {
+                asuntos = JSON.parse(localStorage.getItem("js_legal_asuntos")) || [];
+            } catch (_) {
+                asuntos = [];
+            }
+
+            const llaves = [
+                firebase.auth()?.currentUser?.uid,
+                sesion.uid,
+                sesion.id,
+                sesion.usuario,
+                sesion.correo
+            ].filter(Boolean).map(valor => String(valor).trim().toLowerCase());
+
+            const clientesPermitidos = new Set(
+                asuntos
+                    .filter(asunto => {
+                        const colaboradores = Array.isArray(asunto.colaboradorIds)
+                            ? asunto.colaboradorIds.map(valor => String(valor).trim().toLowerCase())
+                            : [];
+                        return llaves.some(llave => colaboradores.includes(llave));
+                    })
+                    .map(asunto => String(asunto.clienteId || ""))
+                    .filter(Boolean)
+            );
+
+            clientes = clientes.filter(cliente => clientesPermitidos.has(String(cliente.id)));
+        }
+
         cuerpo.innerHTML = "";
 
         if (!clientes.length) {

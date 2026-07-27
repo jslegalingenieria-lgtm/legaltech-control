@@ -505,6 +505,25 @@
         if (modal) modal.style.display = "none";
     }
 
+
+    async function sincronizarColaboradoresEnAgenda(asuntoId, colaboradorIds) {
+        if (!asuntoId) return;
+        const snapshot = await obtenerDB()
+            .collection("agenda")
+            .where("asuntoId", "==", String(asuntoId))
+            .get();
+
+        if (snapshot.empty) return;
+        const batch = obtenerDB().batch();
+        snapshot.docs.forEach(documento => {
+            batch.set(documento.ref, {
+                colaboradorIds: Array.isArray(colaboradorIds) ? colaboradorIds : [],
+                fechaActualizacion: firebase.firestore.FieldValue.serverTimestamp()
+            }, { merge: true });
+        });
+        await batch.commit();
+    }
+
     async function guardarAsunto(event) {
         event.preventDefault();
 
@@ -599,6 +618,8 @@
                     .doc(String(id))
                     .set(datos, { merge: true });
 
+                await sincronizarColaboradoresEnAgenda(id, colaboradorIds);
+
                 alert(
                     "Expediente actualizado correctamente."
                 );
@@ -611,6 +632,8 @@
                 const documentoCreado = await db
                     .collection(COLECCION_ASUNTOS)
                     .add(datos);
+
+                await sincronizarColaboradoresEnAgenda(documentoCreado.id, colaboradorIds);
 
                 const opcionSeleccionada =
                     selectAbogado?.options[selectAbogado.selectedIndex];

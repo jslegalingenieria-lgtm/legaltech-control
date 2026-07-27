@@ -105,13 +105,53 @@
                     item.abogado ||
                     item.usuarioAbogado ||
                     "";
+                const llaves = [usuario.uid, usuario.id, usuario.usuario, usuario.correo]
+                    .filter(Boolean).map(normalizar);
+                const colaboradores = Array.isArray(item.colaboradorIds)
+                    ? item.colaboradorIds.map(normalizar)
+                    : [];
 
                 return (
                     normalizar(asignado) === normalizar(usuario.usuario) ||
                     normalizar(asignado) === normalizar(usuario.nombre) ||
-                    String(item.abogadoId || "") === String(usuario.id)
+                    String(item.abogadoId || "") === String(usuario.id) ||
+                    llaves.some(llave => colaboradores.includes(llave))
                 );
             });
+        }
+
+        if (usuario.rol === "Pasante") {
+            const llaves = [
+                firebase.auth()?.currentUser?.uid,
+                usuario.uid,
+                usuario.id,
+                usuario.usuario,
+                usuario.correo
+            ].filter(Boolean).map(normalizar);
+
+            const asuntosPermitidos = estado.asuntos.filter(asunto => {
+                const colaboradores = Array.isArray(asunto.colaboradorIds)
+                    ? asunto.colaboradorIds.map(normalizar)
+                    : [];
+                return llaves.some(llave => colaboradores.includes(llave));
+            });
+            const asuntoIds = new Set(asuntosPermitidos.map(asunto => String(asunto.id)));
+            const clienteIds = new Set(asuntosPermitidos.map(asunto => String(asunto.clienteId || "")));
+
+            if (tipo === "asuntos") return asuntosPermitidos;
+            if (tipo === "agenda") {
+                return datos.filter(item => {
+                    const colaboradores = Array.isArray(item.colaboradorIds)
+                        ? item.colaboradorIds.map(normalizar)
+                        : [];
+                    return asuntoIds.has(String(item.asuntoId || "")) ||
+                        llaves.some(llave => colaboradores.includes(llave));
+                });
+            }
+            if (tipo === "clientes") {
+                return datos.filter(item => clienteIds.has(String(item.id)));
+            }
+            return [];
         }
 
         return datos;

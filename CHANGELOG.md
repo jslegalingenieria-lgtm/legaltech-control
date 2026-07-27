@@ -1,3 +1,12 @@
+# v2.1.7
+
+- Corrige la sincronización de clientes para pasantes.
+- El pasante solo visualiza clientes vinculados con asuntos donde fue seleccionado.
+- La agenda del pasante muestra únicamente eventos de esos asuntos.
+- Los eventos nuevos heredan los colaboradores del asunto.
+- Al guardar un asunto se sincronizan sus colaboradores con los eventos existentes.
+- Actualiza reglas de Firestore y caché PWA.
+
 # v2.1.6
 
 - Los pasantes ya no heredan automáticamente todos los asuntos de su responsable.
