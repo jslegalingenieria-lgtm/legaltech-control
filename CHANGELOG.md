@@ -1,3 +1,10 @@
+# JS LegalTech Control v2.1.8
+
+- Corrige la carga de agenda en la sesión de pasante.
+- La consulta espera a que Firebase Authentication confirme el UID antes de consultar eventos.
+- Mantiene el acceso únicamente a eventos de asuntos donde el pasante fue seleccionado.
+- Actualiza la caché de la PWA.
+
 # v2.1.7
 
 - Corrige la sincronización de clientes para pasantes.

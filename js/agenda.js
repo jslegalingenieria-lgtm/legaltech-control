@@ -170,7 +170,22 @@ function obtenerUsuarioActivo() {
 }
 
     
-    function consultaAgendaPorRol() {
+    function esperarUsuarioFirebase() {
+        const auth = firebase.auth();
+
+        if (auth.currentUser) {
+            return Promise.resolve(auth.currentUser);
+        }
+
+        return new Promise(resolve => {
+            const cancelar = auth.onAuthStateChanged(usuario => {
+                cancelar();
+                resolve(usuario || null);
+            });
+        });
+    }
+
+    async function consultaAgendaPorRol() {
         const usuario = obtenerUsuarioActivo();
         let consulta = obtenerDB().collection(COLECCION);
 
@@ -179,14 +194,20 @@ function obtenerUsuarioActivo() {
         }
 
         if (usuario?.rol === "Pasante") {
-            const uid = firebase.auth()?.currentUser?.uid || usuario.uid || usuario.id || "__SIN_COLABORADOR__";
+            const usuarioFirebase = await esperarUsuarioFirebase();
+            const uid = usuarioFirebase?.uid || usuario.uid || usuario.authUid || usuario.id;
+
+            if (!uid) {
+                throw new Error("No fue posible identificar la sesión del pasante.");
+            }
+
             return consulta.where("colaboradorIds", "array-contains", String(uid));
         }
 
         return consulta;
     }
 
-    function iniciarSincronizacionAgenda() {
+    async function iniciarSincronizacionAgenda() {
     if (detenerEscucha) return;
 
     const usuarioActivo = obtenerUsuarioActivo();
@@ -201,8 +222,8 @@ function obtenerUsuarioActivo() {
     }
 
     try {
-        detenerEscucha = consultaAgendaPorRol()
-            .onSnapshot(
+        const consulta = await consultaAgendaPorRol();
+        detenerEscucha = consulta.onSnapshot(
                 snapshot => {
                     const eventos = snapshot.docs
                         .map(doc =>
