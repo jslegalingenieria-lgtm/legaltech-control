@@ -1,3 +1,8 @@
+
+## v2.1.1 — Responsable del pasante por rol
+- El pasante puede asignarse a un Abogado, Administrador o Superadministrador activo.
+- El selector muestra el nombre y rol del responsable.
+- Se conserva la estructura interna de supervisor para mantener compatibilidad con permisos y registros existentes.
 ## v1.5.1 — Configuración inicial del Superadministrador
 
 - Se conserva una credencial temporal únicamente para abrir la primera configuración.

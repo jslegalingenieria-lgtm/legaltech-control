@@ -84,9 +84,12 @@
     function actualizarAbogadosSupervisores(seleccionado = "") {
         const select = document.getElementById("personal-abogado-supervisor");
         if (!select) return;
-        const abogados = personalCache.filter(p => p.rol === "Abogado" && (p.estado || "Activo") === "Activo");
-        select.innerHTML = '<option value="">Seleccione un abogado</option>' + abogados.map(a =>
-            `<option value="${escaparHTML(a.uid || a.id)}">${escaparHTML(a.nombre)}</option>`
+        const rolesResponsables = ["Abogado", "Administrador", "Superadministrador"];
+        const responsables = personalCache.filter(p =>
+            rolesResponsables.includes(p.rol) && (p.estado || "Activo") === "Activo"
+        );
+        select.innerHTML = '<option value="">Seleccione un responsable</option>' + responsables.map(persona =>
+            `<option value="${escaparHTML(persona.uid || persona.id)}">${escaparHTML(persona.nombre)} — ${escaparHTML(persona.rol)}</option>`
         ).join("");
         select.value = seleccionado || "";
     }
@@ -192,7 +195,7 @@ Debe contener al menos 8 caracteres:`);
                 throw new Error("Completa todos los campos obligatorios.");
             }
             if (!id && password.length < 8) throw new Error("La contraseña temporal debe tener al menos 8 caracteres.");
-            if (rol === "Pasante" && !abogadoSupervisorUid) throw new Error("Asigna el pasante a un abogado responsable.");
+            if (rol === "Pasante" && !abogadoSupervisorUid) throw new Error("Asigna el pasante a un responsable activo.");
             const rolSesion = roles()?.sesionActual()?.rol;
             if (rolSesion === "Auxiliar Jurídico" && !["Auxiliar Jurídico", "Abogado", "Pasante"].includes(rol)) throw new Error("El auxiliar no puede crear administradores ni superadministradores.");
             if (rolSesion === "Administrador" && rol === "Superadministrador") throw new Error("Solo el superadministrador puede crear otro superadministrador.");
