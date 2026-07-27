@@ -133,8 +133,25 @@
         }
 
         if (sesion?.rol === "Pasante") {
-            // El pasante conserva únicamente el ámbito de su responsable.
-            return [coleccion.where("abogadoAsignado", "==", responsable || "__SIN_RESPONSABLE__")];
+            // El pasante solo recibe asuntos donde fue seleccionado expresamente
+            // como colaborador. Ya no hereda todos los asuntos de su responsable.
+            const usuarioFirebase = window.firebaseAuth?.currentUser ||
+                (window.firebase?.auth ? firebase.auth().currentUser : null);
+
+            const llavesAcceso = [...new Set([
+                usuarioFirebase?.uid,
+                usuarioFirebase?.email,
+                sesion.uid,
+                sesion.id,
+                sesion.usuario,
+                sesion.correo
+            ].filter(Boolean).map(valor => String(valor).trim()))];
+
+            return llavesAcceso.length
+                ? llavesAcceso.map(llave =>
+                    coleccion.where("colaboradorIds", "array-contains", llave)
+                )
+                : [coleccion.where("colaboradorIds", "array-contains", "__SIN_COLABORADOR__")];
         }
 
         return [coleccion.orderBy("fechaRegistro", "desc")];
@@ -834,9 +851,6 @@
                 const esTitular =
                     String(asunto.abogadoAsignado || "") === String(responsable);
 
-                // Los pasantes conservan únicamente los asuntos de su responsable.
-                if (usuarioActivo?.rol !== "Abogado") return esTitular;
-
                 const idsColaboradores = [
                     ...(Array.isArray(asunto.colaboradorIds) ? asunto.colaboradorIds : []),
                     ...(Array.isArray(asunto.colaboradores)
@@ -850,6 +864,10 @@
                 ].filter(Boolean).map(valor => String(valor).trim());
 
                 const esColaborador = idsColaboradores.some(id => llavesSesion.has(id));
+
+                // El abogado titular conserva acceso a sus asuntos. El pasante
+                // únicamente accede cuando fue marcado como colaborador.
+                if (usuarioActivo?.rol === "Pasante") return esColaborador;
                 return esTitular || esColaborador;
             });
         }

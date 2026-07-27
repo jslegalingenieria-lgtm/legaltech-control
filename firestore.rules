@@ -23,11 +23,13 @@ service cloud.firestore {
     }
 
     function asignado(datos) {
-      return (abogado() || pasante()) && (
+      return abogado() && (
         datos.abogadoAsignado == responsableUsuario() ||
         (datos.colaboradorIds is list && datos.colaboradorIds.hasAny([request.auth.uid, perfil().usuario, request.auth.token.email])) ||
-        datos.abogadoUid == request.auth.uid ||
-        (pasante() && datos.abogadoUid == perfil().abogadoSupervisorUid)
+        datos.abogadoUid == request.auth.uid
+      ) || pasante() && (
+        datos.colaboradorIds is list
+        && datos.colaboradorIds.hasAny([request.auth.uid, perfil().usuario, request.auth.token.email])
       );
     }
 

@@ -1,3 +1,9 @@
+# v2.1.6
+
+- Los pasantes ya no heredan automáticamente todos los asuntos de su responsable.
+- Un pasante solo puede consultar un asunto cuando está seleccionado expresamente como colaborador.
+- Se reforzaron las reglas de Firestore para aplicar el mismo criterio.
+
 # v2.1.5
 
 - Corrige el filtrado final de la tabla de asuntos para incluir asuntos donde el abogado está marcado como colaborador.
