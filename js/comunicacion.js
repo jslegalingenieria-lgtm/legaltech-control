@@ -87,7 +87,11 @@
         </section>
       </div>`;
     const tabla = vista.querySelector(".table-responsive");
-    vista.insertBefore(bloque, tabla || null);
+    if (tabla) {
+      tabla.insertAdjacentElement("afterend", bloque);
+    } else {
+      vista.appendChild(bloque);
+    }
     document.getElementById("btn-portal-mensaje")?.addEventListener("click", () => abrirModalCliente("mensaje"));
     document.getElementById("btn-portal-cita")?.addEventListener("click", () => abrirModalCliente("cita"));
   }
