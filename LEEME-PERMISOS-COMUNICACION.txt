@@ -1,0 +1,20 @@
+CORRECCIÓN DE PERMISOS DEL CENTRO DE COMUNICACIÓN
+
+1. Superadministrador y Administrador:
+   Pueden consultar y gestionar todos los mensajes y solicitudes de cita.
+
+2. Auxiliar Jurídico:
+   Solo puede consultar y atender comunicaciones generales dirigidas a Administración.
+
+3. Abogado:
+   Solo puede consultar y atender mensajes y citas cuyo campo abogadoAsignado coincida con su usuario.
+   No puede ver ni modificar comunicaciones asignadas a otros abogados.
+
+4. Pasante:
+   No tiene acceso al Centro de Comunicación.
+   El bloqueo se aplica en el menú, la navegación interna, las funciones de gestión y las reglas de Firestore.
+
+IMPORTANTE:
+Después de reemplazar el proyecto, publique las reglas actualizadas con:
+
+firebase deploy --only firestore:rules

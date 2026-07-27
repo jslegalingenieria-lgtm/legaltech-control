@@ -787,12 +787,29 @@
                     </div>
                     <button type="button" class="btn-primary" onclick="window.cargarCentroComunicacion?.()">↻ Actualizar</button>
                 </div>
-                <div class="comunicacion-tabs" role="tablist">
-                    <button type="button" class="com-tab active" data-com-tab="mensajes">💬 Mensajes <span id="badge-mensajes"></span></button>
-                    <button type="button" class="com-tab" data-com-tab="citas">📅 Solicitudes de cita <span id="badge-citas"></span></button>
+                <div class="comunicacion-seguimiento-grid">
+                    <section class="comunicacion-seguimiento-columna" aria-labelledby="titulo-staff-mensajes">
+                        <div class="comunicacion-seguimiento-header">
+                            <div>
+                                <h3 id="titulo-staff-mensajes">💬 Seguimiento a mensajes</h3>
+                                <p>Consultas enviadas por los clientes y respuestas del despacho.</p>
+                            </div>
+                            <span class="com-contador" title="Mensajes pendientes"><span id="badge-mensajes">0</span> pendientes</span>
+                        </div>
+                        <div id="panel-com-mensajes" class="com-panel comunicacion-historial" aria-live="polite"></div>
+                    </section>
+
+                    <section class="comunicacion-seguimiento-columna" aria-labelledby="titulo-staff-citas">
+                        <div class="comunicacion-seguimiento-header">
+                            <div>
+                                <h3 id="titulo-staff-citas">📅 Seguimiento a citas</h3>
+                                <p>Solicitudes, propuestas, confirmaciones y rechazos.</p>
+                            </div>
+                            <span class="com-contador" title="Citas pendientes"><span id="badge-citas">0</span> pendientes</span>
+                        </div>
+                        <div id="panel-com-citas" class="com-panel comunicacion-historial" aria-live="polite"></div>
+                    </section>
                 </div>
-                <div id="panel-com-mensajes" class="com-panel"></div>
-                <div id="panel-com-citas" class="com-panel" hidden></div>
             </section>
 
             <!-- VISTA 6: GESTIÓN DE PERSONAL (Solo visible para Administradores) -->

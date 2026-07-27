@@ -53,23 +53,38 @@
     bloque.id = "portal-centro-atencion";
     bloque.className = "portal-atencion";
     bloque.innerHTML = `
-      <h3>Centro de Atención</h3>
-      <p>Comuníquese con el despacho o envíe una solicitud de cita.</p>
-      <div class="portal-atencion-grid">
-        <article class="portal-atencion-card">
-          <h4>💬 Mensajes</h4>
-          <p>Envíe una consulta relacionada con su expediente y consulte la respuesta del despacho.</p>
-          <button type="button" class="btn-primary" id="btn-portal-mensaje">Enviar mensaje</button>
-        </article>
-        <article class="portal-atencion-card">
-          <h4>📅 Solicitar cita</h4>
-          <p>Proponga una fecha y horario. La solicitud quedará sujeta a confirmación del despacho.</p>
-          <button type="button" class="btn-primary" id="btn-portal-cita">Solicitar cita</button>
-        </article>
+      <div class="portal-atencion-encabezado">
+        <div>
+          <h3>Centro de Atención</h3>
+          <p>Consulte sus conversaciones y el estado de sus citas en una sola pantalla.</p>
+        </div>
       </div>
-      <div style="margin-top:1.25rem">
-        <h4 style="margin-bottom:.7rem">Seguimiento de solicitudes y mensajes</h4>
-        <div id="portal-comunicacion-historial" class="com-panel"><div class="com-empty">Cargando comunicación...</div></div>
+      <div class="portal-seguimiento-grid">
+        <section class="portal-seguimiento-columna" aria-labelledby="titulo-seguimiento-mensajes">
+          <div class="portal-seguimiento-header">
+            <div>
+              <h4 id="titulo-seguimiento-mensajes">💬 Seguimiento a mensajes</h4>
+              <p>Conversaciones relacionadas con sus asuntos.</p>
+            </div>
+            <button type="button" class="btn-primary" id="btn-portal-mensaje">Enviar mensaje</button>
+          </div>
+          <div id="portal-historial-mensajes" class="portal-historial portal-chat" aria-live="polite">
+            <div class="com-empty">Cargando mensajes...</div>
+          </div>
+        </section>
+
+        <section class="portal-seguimiento-columna" aria-labelledby="titulo-seguimiento-citas">
+          <div class="portal-seguimiento-header">
+            <div>
+              <h4 id="titulo-seguimiento-citas">📅 Seguimiento a citas</h4>
+              <p>Solicitudes, propuestas y confirmaciones.</p>
+            </div>
+            <button type="button" class="btn-primary" id="btn-portal-cita">Solicitar cita</button>
+          </div>
+          <div id="portal-historial-citas" class="portal-historial portal-citas" aria-live="polite">
+            <div class="com-empty">Cargando citas...</div>
+          </div>
+        </section>
       </div>`;
     const tabla = vista.querySelector(".table-responsive");
     vista.insertBefore(bloque, tabla || null);
@@ -192,12 +207,76 @@
     else window.firebaseAuth?.onAuthStateChanged(usuario => { if (usuario) iniciar(usuario); });
   }
 
+  function claseEstado(estado) {
+    const valor = String(estado || "Pendiente").toLowerCase();
+    if (valor.includes("confirm")) return "estado-confirmada";
+    if (valor.includes("rechaz") || valor.includes("cancel")) return "estado-rechazada";
+    if (valor.includes("respond")) return "estado-respondido";
+    if (valor.includes("propuesta")) return "estado-propuesta";
+    return "estado-pendiente";
+  }
+
   function renderPortalHistorial() {
-    const panel=document.getElementById("portal-comunicacion-historial"); if(!panel)return;
-    const items=[...mensajesCache.map(x=>({...x,_tipo:"mensaje"})),...citasCache.map(x=>({...x,_tipo:"cita"}))]
-      .sort((a,b)=>(b.fechaCreacion?.seconds||0)-(a.fechaCreacion?.seconds||0));
-    if(!items.length){panel.innerHTML='<div class="com-empty">Todavía no ha enviado mensajes ni solicitudes de cita.</div>';return;}
-    panel.innerHTML=items.map(x=>`<article class="com-card"><div class="com-card-head"><div><h4>${x._tipo==="mensaje"?"💬 Mensaje":"📅 Solicitud de cita"} ${x.expediente?"— "+esc(x.expediente):"— Consulta general"}</h4><div class="com-meta">${fechaLegible(x.fechaCreacion)}</div></div><span class="com-status">${esc(x.estado||"Pendiente")}</span></div><div class="com-texto">${esc(x.mensaje||x.motivo||"")}</div>${x._tipo==="cita"?`<div class="com-meta">Sugerencia: ${esc(x.fechaSugerida)} · ${esc(x.horarioPreferido)} · ${esc(x.modalidad)}</div>`:""}${x.respuesta?`<div class="com-respuesta"><strong>Respuesta del despacho:</strong><br>${esc(x.respuesta)}${x.fechaConfirmada?`<br><strong>Fecha propuesta/confirmada:</strong> ${esc(x.fechaConfirmada)} ${esc(x.horaConfirmada||"")}`:""}</div>`:""}</article>`).join("");
+    renderPortalMensajes();
+    renderPortalCitas();
+  }
+
+  function renderPortalMensajes() {
+    const panel = document.getElementById("portal-historial-mensajes");
+    if (!panel) return;
+    const mensajes = mensajesCache.slice().sort((a,b)=>(a.fechaCreacion?.seconds||0)-(b.fechaCreacion?.seconds||0));
+    if (!mensajes.length) {
+      panel.innerHTML = '<div class="com-empty">Todavía no ha enviado mensajes.</div>';
+      return;
+    }
+    panel.innerHTML = mensajes.map(x => `
+      <article class="portal-conversacion">
+        <div class="portal-conversacion-meta">
+          <strong>${x.expediente ? "Expediente " + esc(x.expediente) : "Consulta general"}</strong>
+          <span class="com-status ${claseEstado(x.estado)}">${esc(x.estado || "Pendiente")}</span>
+        </div>
+        <div class="burbuja-chat burbuja-cliente">
+          <div class="burbuja-autor">Usted</div>
+          <div>${esc(x.mensaje || "")}</div>
+          <time>${fechaLegible(x.fechaCreacion)}</time>
+        </div>
+        ${x.respuesta ? `
+          <div class="burbuja-chat burbuja-despacho">
+            <div class="burbuja-autor">Despacho Jurídico</div>
+            <div>${esc(x.respuesta)}</div>
+            <time>${fechaLegible(x.fechaActualizacion || x.fechaCreacion)}</time>
+          </div>` : `
+          <div class="portal-espera-respuesta">En espera de respuesta del despacho.</div>`}
+      </article>`).join("");
+    panel.scrollTop = panel.scrollHeight;
+  }
+
+  function renderPortalCitas() {
+    const panel = document.getElementById("portal-historial-citas");
+    if (!panel) return;
+    const citas = citasCache.slice().sort((a,b)=>(b.fechaCreacion?.seconds||0)-(a.fechaCreacion?.seconds||0));
+    if (!citas.length) {
+      panel.innerHTML = '<div class="com-empty">Todavía no ha solicitado citas.</div>';
+      return;
+    }
+    panel.innerHTML = citas.map(x => `
+      <article class="portal-cita-card ${claseEstado(x.estado)}">
+        <div class="portal-cita-head">
+          <div>
+            <h5>${x.expediente ? "Expediente " + esc(x.expediente) : "Consulta general"}</h5>
+            <span class="com-meta">${fechaLegible(x.fechaCreacion)}</span>
+          </div>
+          <span class="com-status ${claseEstado(x.estado)}">${esc(x.estado || "Pendiente")}</span>
+        </div>
+        <p class="portal-cita-motivo">${esc(x.motivo || "Sin motivo registrado")}</p>
+        <dl class="portal-cita-datos">
+          <div><dt>Fecha solicitada</dt><dd>${esc(x.fechaSugerida || "Sin fecha")}</dd></div>
+          <div><dt>Horario</dt><dd>${esc(x.horarioPreferido || "Sin horario")}</dd></div>
+          <div><dt>Modalidad</dt><dd>${esc(x.modalidad || "No especificada")}</dd></div>
+          ${x.fechaConfirmada ? `<div><dt>Fecha propuesta</dt><dd>${esc(x.fechaConfirmada)} ${esc(x.horaConfirmada || "")}</dd></div>` : ""}
+        </dl>
+        ${x.respuesta ? `<div class="portal-cita-respuesta"><strong>Respuesta del despacho</strong><span>${esc(x.respuesta)}</span></div>` : ""}
+      </article>`).join("");
   }
 
   function prepararTabs() {
@@ -220,17 +299,28 @@
   }
 
   function cargarCentroComunicacion() {
-    const u=obtenerSesion(); if(!u||!ROLES_GESTION.includes(u.rol)||!window.db)return;
+    const u = obtenerSesion();
+    if (!u || !window.db) return;
+    if (!ROLES_GESTION.includes(u.rol)) {
+      if (u.rol === "Pasante") {
+        document.getElementById("vista-comunicacion")?.setAttribute("style", "display:none");
+      }
+      return;
+    }
     cancelarMensajes?.(); cancelarCitas?.();
     cancelarMensajes=consultaComunicacionPorRol("mensajes").onSnapshot(s=>{mensajesCache=s.docs.map(d=>({id:d.id,...d.data()})).filter(usuarioEsResponsable);renderMensajesStaff();},error=>{console.error(error);document.getElementById("panel-com-mensajes").innerHTML='<div class="com-empty">No fue posible consultar los mensajes.</div>';});
     cancelarCitas=consultaComunicacionPorRol("solicitudesCitas").onSnapshot(s=>{citasCache=s.docs.map(d=>({id:d.id,...d.data()})).filter(usuarioEsResponsable);renderCitasStaff();},error=>{console.error(error);document.getElementById("panel-com-citas").innerHTML='<div class="com-empty">No fue posible consultar las solicitudes.</div>';});
   }
 
-  function renderMensajesStaff(){const p=document.getElementById("panel-com-mensajes");if(!p)return;const a=mensajesCache.sort((x,y)=>(y.fechaCreacion?.seconds||0)-(x.fechaCreacion?.seconds||0));document.getElementById("badge-mensajes").textContent=a.filter(x=>x.estado==="Pendiente").length||"";p.innerHTML=a.length?a.map(x=>`<article class="com-card"><div class="com-card-head"><div><h4>${esc(x.clienteNombre)} ${x.expediente?"— "+esc(x.expediente):""}</h4><div class="com-meta">${fechaLegible(x.fechaCreacion)} · ${esc(x.clienteCorreo)}</div></div><span class="com-status">${esc(x.estado)}</span></div><div class="com-texto">${esc(x.mensaje)}</div>${x.respuesta?`<div class="com-respuesta"><strong>Respuesta:</strong><br>${esc(x.respuesta)}</div>`:""}<div class="com-actions"><button class="btn-primary" onclick="window.responderMensaje('${x.id}')">Responder</button></div></article>`).join(""):'<div class="com-empty">No hay mensajes para atender.</div>'}
+  function renderMensajesStaff(){const p=document.getElementById("panel-com-mensajes");if(!p)return;const a=mensajesCache.sort((x,y)=>(y.fechaCreacion?.seconds||0)-(x.fechaCreacion?.seconds||0));document.getElementById("badge-mensajes").textContent=a.filter(x=>x.estado==="Pendiente").length;p.innerHTML=a.length?a.map(x=>`<article class="com-card"><div class="com-card-head"><div><h4>${esc(x.clienteNombre)} ${x.expediente?"— "+esc(x.expediente):""}</h4><div class="com-meta">${fechaLegible(x.fechaCreacion)} · ${esc(x.clienteCorreo)}</div></div><span class="com-status estado-${String(x.estado||"pendiente").toLowerCase().replaceAll(" ","-")}">${esc(x.estado)}</span></div><div class="com-texto">${esc(x.mensaje)}</div>${x.respuesta?`<div class="com-respuesta"><strong>Respuesta:</strong><br>${esc(x.respuesta)}</div>`:""}<div class="com-actions"><button class="btn-primary" onclick="window.responderMensaje('${x.id}')">Responder</button></div></article>`).join(""):'<div class="com-empty">No hay mensajes para atender.</div>'}
 
-  async function responderMensaje(id){const x=mensajesCache.find(m=>m.id===id);if(!x)return;const r=prompt("Respuesta para el cliente:",x.respuesta||"");if(r===null||!r.trim())return;await db.collection("mensajes").doc(id).set({respuesta:r.trim(),estado:"Respondido",leido:true,respondidoPor:obtenerSesion()?.nombre||"Despacho",fechaActualizacion:firebase.firestore.FieldValue.serverTimestamp()},{merge:true});}
+  async function responderMensaje(id){
+    const u = obtenerSesion();
+    if (!u || !ROLES_GESTION.includes(u.rol) || u.rol === "Pasante") return alert("No tienes permiso para acceder al Centro de Comunicación.");
+    const x=mensajesCache.find(m=>m.id===id);
+    if(!x || !usuarioEsResponsable(x)) return alert("No tienes permiso para responder este mensaje.");const r=prompt("Respuesta para el cliente:",x.respuesta||"");if(r===null||!r.trim())return;await db.collection("mensajes").doc(id).set({respuesta:r.trim(),estado:"Respondido",leido:true,respondidoPor:obtenerSesion()?.nombre||"Despacho",fechaActualizacion:firebase.firestore.FieldValue.serverTimestamp()},{merge:true});}
 
-  function renderCitasStaff(){const p=document.getElementById("panel-com-citas");if(!p)return;const a=citasCache.sort((x,y)=>(y.fechaCreacion?.seconds||0)-(x.fechaCreacion?.seconds||0));document.getElementById("badge-citas").textContent=a.filter(x=>x.estado==="Pendiente").length||"";p.innerHTML=a.length?a.map(x=>`<article class="com-card"><div class="com-card-head"><div><h4>${esc(x.clienteNombre)} ${x.expediente?"— "+esc(x.expediente):"— Consulta general"}</h4><div class="com-meta">${fechaLegible(x.fechaCreacion)}</div></div><span class="com-status">${esc(x.estado)}</span></div><div class="com-texto">${esc(x.motivo)}</div><div class="com-meta">Solicita: ${esc(x.fechaSugerida)} · ${esc(x.horarioPreferido)} · ${esc(x.modalidad)}</div>${x.respuesta?`<div class="com-respuesta">${esc(x.respuesta)}${x.fechaConfirmada?`<br><strong>Fecha:</strong> ${esc(x.fechaConfirmada)} ${esc(x.horaConfirmada||"")}`:""}</div>`:""}<div class="com-actions"><button class="btn-primary" onclick="window.gestionarCita('${x.id}','Confirmada')">Confirmar</button><button class="btn-secondary" onclick="window.gestionarCita('${x.id}','Fecha propuesta')">Proponer fecha</button><button class="btn-secondary" onclick="window.gestionarCita('${x.id}','Rechazada')">Rechazar</button>${x.estado==="Confirmada"&&!x.eventoAgendaId?`<button class="btn-primary" onclick="window.crearAgendaDesdeCita('${x.id}')">Crear evento en Agenda</button>`:""}</div></article>`).join(""):'<div class="com-empty">No hay solicitudes de cita para atender.</div>'}
+  function renderCitasStaff(){const p=document.getElementById("panel-com-citas");if(!p)return;const a=citasCache.sort((x,y)=>(y.fechaCreacion?.seconds||0)-(x.fechaCreacion?.seconds||0));document.getElementById("badge-citas").textContent=a.filter(x=>x.estado==="Pendiente").length;p.innerHTML=a.length?a.map(x=>`<article class="com-card"><div class="com-card-head"><div><h4>${esc(x.clienteNombre)} ${x.expediente?"— "+esc(x.expediente):"— Consulta general"}</h4><div class="com-meta">${fechaLegible(x.fechaCreacion)}</div></div><span class="com-status estado-${String(x.estado||"pendiente").toLowerCase().replaceAll(" ","-")}">${esc(x.estado)}</span></div><div class="com-texto">${esc(x.motivo)}</div><div class="com-meta">Solicita: ${esc(x.fechaSugerida)} · ${esc(x.horarioPreferido)} · ${esc(x.modalidad)}</div>${x.respuesta?`<div class="com-respuesta">${esc(x.respuesta)}${x.fechaConfirmada?`<br><strong>Fecha:</strong> ${esc(x.fechaConfirmada)} ${esc(x.horaConfirmada||"")}`:""}</div>`:""}<div class="com-actions"><button class="btn-primary" onclick="window.gestionarCita('${x.id}','Confirmada')">Confirmar</button><button class="btn-secondary" onclick="window.gestionarCita('${x.id}','Fecha propuesta')">Proponer fecha</button><button class="btn-secondary" onclick="window.gestionarCita('${x.id}','Rechazada')">Rechazar</button>${x.estado==="Confirmada"&&!x.eventoAgendaId?`<button class="btn-primary" onclick="window.crearAgendaDesdeCita('${x.id}')">Crear evento en Agenda</button>`:""}</div></article>`).join(""):'<div class="com-empty">No hay solicitudes de cita para atender.</div>'}
 
   function abrirGestorCita(cita, estado) {
     return new Promise(resolve => {
@@ -333,8 +423,10 @@
   }
 
   async function gestionarCita(id, estado) {
+    const u = obtenerSesion();
+    if (!u || !ROLES_GESTION.includes(u.rol) || u.rol === "Pasante") return alert("No tienes permiso para acceder al Centro de Comunicación.");
     const cita = citasCache.find(c => c.id === id);
-    if (!cita) return;
+    if (!cita || !usuarioEsResponsable(cita)) return alert("No tienes permiso para gestionar esta cita.");
     const datos = await abrirGestorCita(cita, estado);
     if (!datos) return;
     try {
@@ -352,7 +444,12 @@
     }
   }
 
-  async function crearAgendaDesdeCita(id){const x=citasCache.find(c=>c.id===id);if(!x||x.estado!=="Confirmada")return alert("Primero confirma la cita.");if(!x.asuntoId)return alert("La consulta general no tiene expediente asociado. Créala manualmente en la Agenda.");const ref=await db.collection("agenda").add({asuntoId:x.asuntoId,tipo:"Reunión con cliente",fecha:x.fechaConfirmada,hora:x.horaConfirmada,notas:`Cita solicitada por ${x.clienteNombre}. ${x.motivo}`,abogadoAsignado:x.abogadoAsignado||obtenerSesion()?.usuario||"",notificado:false,origenSolicitudCitaId:x.id,fechaRegistro:firebase.firestore.FieldValue.serverTimestamp(),fechaActualizacion:firebase.firestore.FieldValue.serverTimestamp()});await db.collection("solicitudesCitas").doc(id).set({eventoAgendaId:ref.id,fechaActualizacion:firebase.firestore.FieldValue.serverTimestamp()},{merge:true});alert("La cita fue agregada a la Agenda.");}
+  async function crearAgendaDesdeCita(id){
+    const u = obtenerSesion();
+    if (!u || !ROLES_GESTION.includes(u.rol) || u.rol === "Pasante") return alert("No tienes permiso para acceder al Centro de Comunicación.");
+    const x=citasCache.find(c=>c.id===id);
+    if(!x || !usuarioEsResponsable(x)) return alert("No tienes permiso para gestionar esta cita.");
+    if(x.estado!=="Confirmada")return alert("Primero confirma la cita.");if(!x.asuntoId)return alert("La consulta general no tiene expediente asociado. Créala manualmente en la Agenda.");const ref=await db.collection("agenda").add({asuntoId:x.asuntoId,tipo:"Reunión con cliente",fecha:x.fechaConfirmada,hora:x.horaConfirmada,notas:`Cita solicitada por ${x.clienteNombre}. ${x.motivo}`,abogadoAsignado:x.abogadoAsignado||obtenerSesion()?.usuario||"",notificado:false,origenSolicitudCitaId:x.id,fechaRegistro:firebase.firestore.FieldValue.serverTimestamp(),fechaActualizacion:firebase.firestore.FieldValue.serverTimestamp()});await db.collection("solicitudesCitas").doc(id).set({eventoAgendaId:ref.id,fechaActualizacion:firebase.firestore.FieldValue.serverTimestamp()},{merge:true});alert("La cita fue agregada a la Agenda.");}
 
   document.addEventListener("DOMContentLoaded",()=>{inyectarModal();prepararTabs();const u=obtenerSesion();if(u?.rol==="Cliente"){inyectarPortal();setTimeout(escucharPortalCliente,500);}});
   window.cargarCentroComunicacion=cargarCentroComunicacion;

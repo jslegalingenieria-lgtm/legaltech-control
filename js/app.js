@@ -173,6 +173,11 @@ function configurarInterfazPorRol(rol) {
 
 // Cambiar de pantallas (SPA) y gestionar estados activos
 function switchTab(vista) {
+    const usuarioActual = (() => { try { return JSON.parse(sessionStorage.getItem("js_legal_usuario") || localStorage.getItem("js_legal_session") || "null"); } catch (_) { return null; } })();
+    if (vista === "comunicacion" && !["Superadministrador", "Administrador", "Auxiliar Jurídico", "Abogado"].includes(usuarioActual?.rol)) {
+        alert("No tienes permiso para acceder al Centro de Comunicación.");
+        return;
+    }
     // Ocultar todas las vistas primero
     document.querySelectorAll('.app-view').forEach(section => {
         section.style.display = 'none';

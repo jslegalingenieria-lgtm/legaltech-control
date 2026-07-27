@@ -8,3 +8,45 @@
 /* Selector profesional para confirmar o proponer citas */
 .com-modal-head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;margin-bottom:1rem}.com-modal-head h3{margin:0 0 .25rem}.com-modal-head p{margin:0;color:#64748b}.com-cerrar-modal{border:0;background:transparent;font-size:1.7rem;line-height:1;cursor:pointer;color:#475569}.com-cita-box{max-width:680px}.com-resumen-cita{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;padding:1rem;border:1px solid #e2e8f0;border-radius:9px;background:#f8fafc}.com-resumen-cita>div{display:flex;flex-direction:column;gap:.2rem}.com-resumen-cita strong{font-size:.78rem;color:#475569;text-transform:uppercase}.com-resumen-cita span{color:#0f172a}.com-fecha-hora-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.com-conflicto{margin-top:.75rem;padding:.75rem;border:1px solid #f59e0b;border-radius:8px;background:#fffbeb;color:#92400e;font-size:.9rem;line-height:1.4}
 @media(max-width:600px){.com-cita-box{margin:1.5vh auto}.com-resumen-cita,.com-fecha-hora-grid{grid-template-columns:1fr}.com-modal-head{align-items:flex-start}.com-modal-box{padding:1rem}.com-actions>button{flex:1}}
+
+/* Portal del cliente: seguimiento simultáneo de mensajes y citas */
+.portal-atencion-encabezado{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1rem}
+.portal-atencion-encabezado h3{margin:0 0 .35rem}.portal-atencion-encabezado p{margin:0;color:#64748b}
+.portal-seguimiento-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem;align-items:start}
+.portal-seguimiento-columna{min-width:0;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden}
+.portal-seguimiento-header{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding:1rem;background:#fff;border-bottom:1px solid #e2e8f0}
+.portal-seguimiento-header h4{margin:0 0 .25rem;color:#1e293b;font-size:1rem}.portal-seguimiento-header p{margin:0;color:#64748b;font-size:.82rem}
+.portal-seguimiento-header .btn-primary{white-space:nowrap}
+.portal-historial{display:grid;gap:1rem;padding:1rem;max-height:560px;overflow-y:auto}
+.portal-conversacion{display:grid;gap:.7rem;padding-bottom:1rem;border-bottom:1px solid #e2e8f0}.portal-conversacion:last-child{border-bottom:0;padding-bottom:0}
+.portal-conversacion-meta,.portal-cita-head{display:flex;justify-content:space-between;align-items:flex-start;gap:.8rem}.portal-conversacion-meta strong{font-size:.82rem;color:#475569}
+.burbuja-chat{max-width:88%;padding:.75rem .85rem;border-radius:12px;line-height:1.45;font-size:.9rem;box-shadow:0 1px 3px rgba(15,23,42,.06)}
+.burbuja-chat time{display:block;margin-top:.35rem;font-size:.7rem;opacity:.7}.burbuja-autor{font-weight:700;font-size:.76rem;margin-bottom:.25rem}
+.burbuja-cliente{justify-self:end;background:#e0e7ff;color:#1e1b4b;border-bottom-right-radius:4px}.burbuja-despacho{justify-self:start;background:#fff;color:#1e293b;border:1px solid #dbeafe;border-bottom-left-radius:4px}
+.portal-espera-respuesta{font-size:.78rem;color:#92400e;background:#fffbeb;border:1px solid #fde68a;border-radius:7px;padding:.55rem .7rem}
+.portal-cita-card{background:#fff;border:1px solid #e2e8f0;border-left-width:5px;border-radius:10px;padding:1rem;box-shadow:0 2px 7px rgba(15,23,42,.04)}
+.portal-cita-card h5{margin:0 0 .2rem;font-size:.95rem;color:#1e293b}.portal-cita-motivo{margin:.8rem 0;color:#334155;line-height:1.45}
+.portal-cita-datos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;margin:0}.portal-cita-datos div{background:#f8fafc;border-radius:7px;padding:.6rem}.portal-cita-datos dt{font-size:.7rem;text-transform:uppercase;font-weight:700;color:#64748b}.portal-cita-datos dd{margin:.2rem 0 0;color:#0f172a;font-size:.86rem}
+.portal-cita-respuesta{display:grid;gap:.25rem;margin-top:.8rem;padding:.7rem;background:#eff6ff;border-radius:7px;color:#1e3a8a;font-size:.85rem}
+.com-status.estado-confirmada{background:#dcfce7;color:#166534}.com-status.estado-pendiente{background:#fef3c7;color:#92400e}.com-status.estado-respondido{background:#dbeafe;color:#1d4ed8}.com-status.estado-rechazada{background:#fee2e2;color:#991b1b}.com-status.estado-propuesta{background:#ede9fe;color:#6d28d9}
+.portal-cita-card.estado-confirmada{border-left-color:#22c55e}.portal-cita-card.estado-pendiente{border-left-color:#f59e0b}.portal-cita-card.estado-rechazada{border-left-color:#ef4444}.portal-cita-card.estado-propuesta{border-left-color:#8b5cf6}
+@media(max-width:900px){.portal-seguimiento-grid{grid-template-columns:1fr}.portal-historial{max-height:none}.portal-seguimiento-header{position:static}}
+@media(max-width:560px){.portal-atencion{padding:.85rem}.portal-seguimiento-header{flex-direction:column}.portal-seguimiento-header .btn-primary{width:100%}.portal-cita-datos{grid-template-columns:1fr}.burbuja-chat{max-width:94%}}
+
+
+/* Centro de comunicación interno: vista simultánea para personal autorizado */
+.comunicacion-seguimiento-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem;align-items:start;margin-top:1rem}
+.comunicacion-seguimiento-columna{min-width:0;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 3px 10px rgba(15,23,42,.04)}
+.comunicacion-seguimiento-header{position:sticky;top:0;z-index:6;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding:1rem;background:#fff;border-bottom:1px solid #e2e8f0}
+.comunicacion-seguimiento-header h3{margin:0 0 .3rem;color:#1e293b;font-size:1.05rem}
+.comunicacion-seguimiento-header p{margin:0;color:#64748b;font-size:.82rem;line-height:1.4}
+.com-contador{flex:0 0 auto;display:inline-flex;align-items:center;gap:.3rem;padding:.35rem .6rem;border-radius:999px;background:#fff7ed;color:#9a3412;border:1px solid #fed7aa;font-size:.74rem;font-weight:700;white-space:nowrap}
+.comunicacion-historial{padding:1rem;max-height:650px;overflow-y:auto;align-content:start}
+.comunicacion-historial .com-card{margin:0}
+.comunicacion-historial .com-status.estado-confirmada{background:#dcfce7;color:#166534}
+.comunicacion-historial .com-status.estado-pendiente{background:#fef3c7;color:#92400e}
+.comunicacion-historial .com-status.estado-respondido{background:#dbeafe;color:#1d4ed8}
+.comunicacion-historial .com-status.estado-rechazada{background:#fee2e2;color:#991b1b}
+.comunicacion-historial .com-status.estado-fecha-propuesta{background:#ede9fe;color:#6d28d9}
+@media(max-width:1000px){.comunicacion-seguimiento-grid{grid-template-columns:1fr}.comunicacion-historial{max-height:none}.comunicacion-seguimiento-header{position:static}}
+@media(max-width:560px){.comunicacion-seguimiento-header{flex-direction:column}.com-contador{align-self:flex-start}.comunicacion-historial{padding:.75rem}.comunicacion-historial .com-actions>button{flex:1 1 145px}}

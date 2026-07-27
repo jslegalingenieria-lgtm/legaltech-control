@@ -126,8 +126,16 @@ service cloud.firestore {
         && request.resource.data.clienteUid == request.auth.uid
         && request.resource.data.estado == 'Pendiente';
       allow update: if gestionTotal()
-        || (auxiliar() && resource.data.destinatarioTipo == 'Administracion')
-        || (abogado() && resource.data.abogadoAsignado == perfil().usuario);
+        || (auxiliar()
+          && resource.data.destinatarioTipo == 'Administracion'
+          && request.resource.data.destinatarioTipo == resource.data.destinatarioTipo
+          && request.resource.data.abogadoAsignado == resource.data.abogadoAsignado)
+        || (abogado()
+          && resource.data.abogadoAsignado == perfil().usuario
+          && request.resource.data.abogadoAsignado == resource.data.abogadoAsignado
+          && request.resource.data.abogadoUid == resource.data.abogadoUid
+          && request.resource.data.clienteUid == resource.data.clienteUid
+          && request.resource.data.clienteId == resource.data.clienteId);
       allow delete: if false;
     }
 
@@ -140,8 +148,16 @@ service cloud.firestore {
         && request.resource.data.clienteUid == request.auth.uid
         && request.resource.data.estado == 'Pendiente';
       allow update: if gestionTotal()
-        || (auxiliar() && resource.data.destinatarioTipo == 'Administracion')
-        || (abogado() && resource.data.abogadoAsignado == perfil().usuario);
+        || (auxiliar()
+          && resource.data.destinatarioTipo == 'Administracion'
+          && request.resource.data.destinatarioTipo == resource.data.destinatarioTipo
+          && request.resource.data.abogadoAsignado == resource.data.abogadoAsignado)
+        || (abogado()
+          && resource.data.abogadoAsignado == perfil().usuario
+          && request.resource.data.abogadoAsignado == resource.data.abogadoAsignado
+          && request.resource.data.abogadoUid == resource.data.abogadoUid
+          && request.resource.data.clienteUid == resource.data.clienteUid
+          && request.resource.data.clienteId == resource.data.clienteId);
       allow delete: if false;
     }
 
