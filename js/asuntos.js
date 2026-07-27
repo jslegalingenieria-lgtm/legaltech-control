@@ -818,9 +818,40 @@
 
         const responsable = responsableParaSesion(usuarioActivo);
         if (responsable) {
-            asuntos = asuntos.filter(asunto =>
-                String(asunto.abogadoAsignado || "") === String(responsable)
-            );
+            const usuarioFirebase = window.firebaseAuth?.currentUser ||
+                (window.firebase?.auth ? firebase.auth().currentUser : null);
+
+            const llavesSesion = new Set([
+                usuarioFirebase?.uid,
+                usuarioFirebase?.email,
+                usuarioActivo?.uid,
+                usuarioActivo?.id,
+                usuarioActivo?.usuario,
+                usuarioActivo?.correo
+            ].filter(Boolean).map(valor => String(valor).trim()));
+
+            asuntos = asuntos.filter(asunto => {
+                const esTitular =
+                    String(asunto.abogadoAsignado || "") === String(responsable);
+
+                // Los pasantes conservan únicamente los asuntos de su responsable.
+                if (usuarioActivo?.rol !== "Abogado") return esTitular;
+
+                const idsColaboradores = [
+                    ...(Array.isArray(asunto.colaboradorIds) ? asunto.colaboradorIds : []),
+                    ...(Array.isArray(asunto.colaboradores)
+                        ? asunto.colaboradores.flatMap(persona => [
+                            persona?.id,
+                            persona?.uid,
+                            persona?.usuario,
+                            persona?.correo
+                        ])
+                        : [])
+                ].filter(Boolean).map(valor => String(valor).trim());
+
+                const esColaborador = idsColaboradores.some(id => llavesSesion.has(id));
+                return esTitular || esColaborador;
+            });
         }
 
         cuerpo.innerHTML = "";

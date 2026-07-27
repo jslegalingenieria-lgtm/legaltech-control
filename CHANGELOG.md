@@ -1,3 +1,9 @@
+# v2.1.5
+
+- Corrige el filtrado final de la tabla de asuntos para incluir asuntos donde el abogado está marcado como colaborador.
+- Conserva la restricción de pasantes únicamente a los asuntos de su responsable.
+- Actualiza la caché PWA.
+
 # Versión 2.1.4
 
 - Corrige la consulta de asuntos compartidos usando el UID real de Firebase Authentication.
