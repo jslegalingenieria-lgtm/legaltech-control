@@ -460,9 +460,12 @@
                         <div class="form-group" style="margin-bottom:1.5rem;">
                             <button type="button" id="btn-agregar-colaborador" style="border:1px dashed #94a3b8;background:#f8fafc;color:#334155;padding:.65rem .9rem;border-radius:6px;cursor:pointer;font-weight:700;">+ Agregar personal colaborador</button>
                             <div id="contenedor-colaboradores" style="display:none;margin-top:.8rem;padding:1rem;border:1px solid #e2e8f0;border-radius:8px;background:#f8fafc;">
-                                <label for="asunto-colaboradores" style="display:block;font-weight:700;margin-bottom:.45rem;">Personal colaborador del asunto</label>
-                                <select id="asunto-colaboradores" multiple size="6" style="width:100%;padding:.7rem;border:1px solid #cbd5e1;border-radius:6px;background:white;"></select>
-                                <small style="display:block;margin-top:.45rem;color:#64748b;">Selecciona únicamente al personal que participará. Mantén presionada Ctrl para elegir varias personas.</small>
+                                <div style="display:flex;justify-content:space-between;align-items:center;gap:.75rem;margin-bottom:.55rem;">
+                                    <strong>Personal colaborador del asunto</strong>
+                                    <small style="color:#64748b;">Marca o desmarca cada persona</small>
+                                </div>
+                                <div id="asunto-colaboradores" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.55rem;max-height:260px;overflow:auto;padding:.15rem;"></div>
+                                <small style="display:block;margin-top:.55rem;color:#64748b;">Las casillas azules indican quiénes tienen acceso como colaboradores.</small>
                             </div>
                         </div>
 

@@ -49,3 +49,11 @@
 - Requiere escribir REINICIAR y aceptar una confirmación antes de guardar.
 - Registra cada cambio en la colección `auditoriaSistema`.
 - No elimina registros ni reutiliza números mientras existan códigos superiores.
+
+
+## v2.1.2 - Colaboradores de asuntos
+- Los abogados asignados como colaboradores ahora visualizan el asunto compartido, aunque no sean el responsable principal.
+- La consulta combina asuntos propios y colaboraciones sin duplicar registros.
+- El selector múltiple ambiguo fue sustituido por casillas visibles para marcar y desmarcar colaboradores.
+- Los pasantes conservan el acceso únicamente mediante su responsable.
+- Se renovó la caché de la PWA.

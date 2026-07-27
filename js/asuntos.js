@@ -99,107 +99,102 @@
         return "";
     }
 
-    function consultaAsuntosPorRol() {
+    function consultasAsuntosPorRol() {
         const sesion = obtenerUsuarioActivo();
         const coleccion = obtenerDB().collection(COLECCION_ASUNTOS);
         const responsable = responsableParaSesion(sesion);
 
-        if (sesion?.rol === "Abogado" || sesion?.rol === "Pasante") {
-            // Seguridad por defecto: si falta la asignación del responsable,
-            // no se descarga la colección completa.
-            return coleccion.where("abogadoAsignado", "==", responsable || "__SIN_RESPONSABLE__");
+        if (sesion?.rol === "Abogado") {
+            const consultas = [
+                coleccion.where("abogadoAsignado", "==", responsable || "__SIN_RESPONSABLE__")
+            ];
+
+            // Un abogado colaborador también debe recibir el asunto aunque no sea
+            // el responsable principal. Los colaboradores se guardan por UID.
+            const uid = String(sesion.uid || sesion.id || "").trim();
+            if (uid) {
+                consultas.push(coleccion.where("colaboradorIds", "array-contains", uid));
+            }
+
+            return consultas;
         }
-        return coleccion.orderBy("fechaRegistro", "desc");
+
+        if (sesion?.rol === "Pasante") {
+            // El pasante conserva únicamente el ámbito de su responsable.
+            return [coleccion.where("abogadoAsignado", "==", responsable || "__SIN_RESPONSABLE__")];
+        }
+
+        return [coleccion.orderBy("fechaRegistro", "desc")];
     }
 
     function iniciarSincronizacionAsuntos() {
-    if (detenerEscuchaAsuntos) return;
+        if (detenerEscuchaAsuntos) return;
 
-    const usuarioActivo = obtenerUsuarioActivo();
+        const usuarioActivo = obtenerUsuarioActivo();
 
-    // El cliente usa la consulta específica del portal.
-    // No debe intentar leer toda la colección de asuntos.
-    if (usuarioActivo?.rol === "Cliente") {
-        console.info(
-            "Sincronización general de asuntos omitida para el cliente."
-        );
-        return;
-    }
+        // El cliente usa la consulta específica del portal.
+        if (usuarioActivo?.rol === "Cliente") {
+            console.info("Sincronización general de asuntos omitida para el cliente.");
+            return;
+        }
 
-    try {
-        const db = obtenerDB();
+        try {
+            const consultas = consultasAsuntosPorRol();
+            const resultadosPorConsulta = new Map();
+            const cancelaciones = [];
 
-        detenerEscuchaAsuntos = consultaAsuntosPorRol()
-            .onSnapshot(
-                snapshot => {
-                    const lista = snapshot.docs.map(doc =>
-                        normalizarAsunto(doc.id, doc.data())
-                    ).sort((a, b) => {
-                        const fa = a.fechaRegistro?.toMillis?.() || 0;
-                        const fb = b.fechaRegistro?.toMillis?.() || 0;
-                        return fb - fa;
-                    });
+            const publicarLista = () => {
+                const documentos = new Map();
 
-                    guardarCacheLocal(lista);
-                    cargarAsuntosTabla();
+                resultadosPorConsulta.forEach(lista => {
+                    lista.forEach(item => documentos.set(String(item.id), item));
+                });
 
-                    if (
-                        typeof window.cargarAsuntosConsultaCiudadana ===
-                        "function"
-                    ) {
-                        window.cargarAsuntosConsultaCiudadana();
-                    }
+                const lista = [...documentos.values()].sort((a, b) => {
+                    const fa = a.fechaRegistro?.toMillis?.() || 0;
+                    const fb = b.fechaRegistro?.toMillis?.() || 0;
+                    return fb - fa;
+                });
 
-                    if (
-                        typeof window.actualizarContadoresReales ===
-                        "function"
-                    ) {
-                        window.actualizarContadoresReales();
-                    }
+                guardarCacheLocal(lista);
+                cargarAsuntosTabla();
+                window.cargarAsuntosConsultaCiudadana?.();
+                window.actualizarContadoresReales?.();
 
-                    window.dispatchEvent(
-                        new CustomEvent("asuntosActualizados", {
-                            detail: lista
-                        })
+                window.dispatchEvent(new CustomEvent("asuntosActualizados", { detail: lista }));
+
+                if (asuntoHistorialIdSeleccionado) {
+                    const asuntoActual = lista.find(asunto =>
+                        String(asunto.id) === String(asuntoHistorialIdSeleccionado)
                     );
-
-                    if (asuntoHistorialIdSeleccionado) {
-                        const asuntoActual = lista.find(
-                            asunto =>
-                                String(asunto.id) ===
-                                String(asuntoHistorialIdSeleccionado)
-                        );
-
-                        if (asuntoActual) {
-                            cargarHistorialActuacionesLista(
-                                asuntoActual
-                            );
-
-                            cargarHistorialCorreosLista(
-                                asuntoActual
-                            );
-                        }
+                    if (asuntoActual) {
+                        cargarHistorialActuacionesLista(asuntoActual);
+                        cargarHistorialCorreosLista(asuntoActual);
                     }
-                },
-                error => {
-                    console.error(
-                        "Error sincronizando asuntos:",
-                        error
-                    );
-
-                    alert(
-                        "No fue posible sincronizar los asuntos con Firebase."
-                    );
                 }
-            );
+            };
 
-    } catch (error) {
-        console.error(
-            "No fue posible iniciar la sincronización de asuntos:",
-            error
-        );
+            consultas.forEach((consulta, indice) => {
+                const cancelar = consulta.onSnapshot(
+                    snapshot => {
+                        resultadosPorConsulta.set(
+                            indice,
+                            snapshot.docs.map(doc => normalizarAsunto(doc.id, doc.data()))
+                        );
+                        publicarLista();
+                    },
+                    error => {
+                        console.error(`Error sincronizando asuntos (consulta ${indice + 1}):`, error);
+                    }
+                );
+                cancelaciones.push(cancelar);
+            });
+
+            detenerEscuchaAsuntos = () => cancelaciones.forEach(cancelar => cancelar?.());
+        } catch (error) {
+            console.error("No fue posible iniciar la sincronización de asuntos:", error);
+        }
     }
-}
 
     function obtenerUsuarioActivo() {
         try {
@@ -344,37 +339,62 @@
     }
 
     function poblarColaboradores(seleccionados = []) {
-        const select = document.getElementById("asunto-colaboradores");
-        if (!select) return;
+        const contenedor = document.getElementById("asunto-colaboradores");
+        if (!contenedor) return;
+
         const seleccion = new Set((seleccionados || []).map(String));
-        select.innerHTML = "";
-        obtenerPersonalDisponible().forEach(persona => {
+        contenedor.innerHTML = "";
+
+        const personal = obtenerPersonalDisponible();
+        if (!personal.length) {
+            contenedor.innerHTML = '<p style="margin:0;color:#64748b;">No hay personal activo disponible.</p>';
+            return;
+        }
+
+        personal.forEach(persona => {
             const id = identificadorPersonal(persona);
             if (!id) return;
-            const opcion = document.createElement("option");
-            opcion.value = id;
-            opcion.textContent = `${persona.nombre || persona.usuario || id} — ${persona.rol || "Personal"}`;
-            opcion.dataset.nombre = persona.nombre || persona.usuario || id;
-            opcion.dataset.rol = persona.rol || "";
-            opcion.selected = seleccion.has(id);
-            select.appendChild(opcion);
+
+            const etiqueta = document.createElement("label");
+            etiqueta.className = "colaborador-opcion";
+            etiqueta.style.cssText = "display:flex;align-items:center;gap:.7rem;padding:.7rem .8rem;border:1px solid #cbd5e1;border-radius:7px;background:white;cursor:pointer;user-select:none;";
+
+            const casilla = document.createElement("input");
+            casilla.type = "checkbox";
+            casilla.className = "asunto-colaborador-check";
+            casilla.value = id;
+            casilla.checked = seleccion.has(id);
+            casilla.dataset.nombre = persona.nombre || persona.usuario || id;
+            casilla.dataset.rol = persona.rol || "";
+            casilla.style.cssText = "width:18px;height:18px;accent-color:#2563eb;flex:0 0 auto;";
+
+            const texto = document.createElement("span");
+            texto.innerHTML = `<strong>${escaparHTML(persona.nombre || persona.usuario || id)}</strong><br><small style="color:#64748b;">${escaparHTML(persona.rol || "Personal")}</small>`;
+
+            const actualizarApariencia = () => {
+                etiqueta.style.borderColor = casilla.checked ? "#2563eb" : "#cbd5e1";
+                etiqueta.style.background = casilla.checked ? "#eff6ff" : "#ffffff";
+            };
+            casilla.addEventListener("change", actualizarApariencia);
+            actualizarApariencia();
+
+            etiqueta.append(casilla, texto);
+            contenedor.appendChild(etiqueta);
         });
     }
 
     function actualizarColaboradoresEnAsuntos() {
-        const select = document.getElementById("asunto-colaboradores");
-        if (!select) return;
-        const seleccionados = [...select.selectedOptions].map(opcion => opcion.value);
+        const seleccionados = obtenerColaboradoresSeleccionados().map(persona => persona.id);
         poblarColaboradores(seleccionados);
     }
 
     function obtenerColaboradoresSeleccionados() {
-        const select = document.getElementById("asunto-colaboradores");
-        if (!select) return [];
-        return [...select.selectedOptions].map(opcion => ({
-            id: opcion.value,
-            nombre: opcion.dataset.nombre || opcion.textContent,
-            rol: opcion.dataset.rol || ""
+        const contenedor = document.getElementById("asunto-colaboradores");
+        if (!contenedor) return [];
+        return [...contenedor.querySelectorAll(".asunto-colaborador-check:checked")].map(casilla => ({
+            id: casilla.value,
+            nombre: casilla.dataset.nombre || casilla.value,
+            rol: casilla.dataset.rol || ""
         }));
     }
 
