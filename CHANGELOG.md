@@ -1,3 +1,9 @@
+# Versión 2.1.4
+
+- Corrige la consulta de asuntos compartidos usando el UID real de Firebase Authentication.
+- Conserva compatibilidad con usuario, correo e identificadores anteriores.
+- Actualiza la caché de la PWA.
+
 ## v2.1.3 — Selección y acceso de colaboradores
 - Se incorporaron casillas visibles para marcar y desmarcar colaboradores.
 - Cada selección muestra nombre, rol y contador de colaboradores.

@@ -111,7 +111,14 @@
 
             // Un abogado colaborador también debe recibir el asunto aunque no sea
             // el responsable principal. Los colaboradores se guardan por UID.
+            // El UID real de Firebase es la llave principal de acceso.
+            // La sesión local puede no contenerlo o conservar un identificador anterior.
+            const usuarioFirebase = window.firebaseAuth?.currentUser ||
+                (window.firebase?.auth ? firebase.auth().currentUser : null);
+
             const llavesAcceso = [...new Set([
+                usuarioFirebase?.uid,
+                usuarioFirebase?.email,
                 sesion.uid,
                 sesion.id,
                 sesion.usuario,
