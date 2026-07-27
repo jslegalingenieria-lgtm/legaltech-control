@@ -1,8 +1,8 @@
-const CACHE_NAME = "js-legaltech-v1.5.2-superadmin-firebase-profile";
+const CACHE_NAME = "js-legaltech-v2.0-enterprise-comunicacion";
 const ASSETS = [
   "index.html", "dashboard.html", "css/estilos.css", "css/calendario.css",
   "js/firebase.js", "js/storage.js", "js/roles.js", "js/auth.js", "js/app.js", "js/portal.js",
-  "js/exportar-excel.js", "css/dashboard-ejecutivo.css"
+  "js/exportar-excel.js", "css/dashboard-ejecutivo.css", "js/comunicacion.js", "css/comunicacion.css", "css/responsive.css"
 ];
 
 self.addEventListener("install", event => {

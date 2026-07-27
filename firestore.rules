@@ -117,6 +117,34 @@ service cloud.firestore {
       allow delete: if gestionTotal();
     }
 
+    match /mensajes/{id} {
+      allow read: if gestionTotal()
+        || (auxiliar() && resource.data.destinatarioTipo == 'Administracion')
+        || (abogado() && resource.data.abogadoAsignado == perfil().usuario)
+        || (signedIn() && resource.data.clienteUid == request.auth.uid);
+      allow create: if signedIn()
+        && request.resource.data.clienteUid == request.auth.uid
+        && request.resource.data.estado == 'Pendiente';
+      allow update: if gestionTotal()
+        || (auxiliar() && resource.data.destinatarioTipo == 'Administracion')
+        || (abogado() && resource.data.abogadoAsignado == perfil().usuario);
+      allow delete: if false;
+    }
+
+    match /solicitudesCitas/{id} {
+      allow read: if gestionTotal()
+        || (auxiliar() && resource.data.destinatarioTipo == 'Administracion')
+        || (abogado() && resource.data.abogadoAsignado == perfil().usuario)
+        || (signedIn() && resource.data.clienteUid == request.auth.uid);
+      allow create: if signedIn()
+        && request.resource.data.clienteUid == request.auth.uid
+        && request.resource.data.estado == 'Pendiente';
+      allow update: if gestionTotal()
+        || (auxiliar() && resource.data.destinatarioTipo == 'Administracion')
+        || (abogado() && resource.data.abogadoAsignado == perfil().usuario);
+      allow delete: if false;
+    }
+
     match /configuracion/{id} {
       allow read: if activo();
       allow create, update: if gestionTotal();

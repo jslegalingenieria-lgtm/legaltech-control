@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/dashboard-ejecutivo.css">
 <link rel="stylesheet" href="css/calendario.css">
+<link rel="stylesheet" href="css/comunicacion.css">
 
 
     <!-- Librería para conversión limpia de HTML a PDF -->
@@ -777,6 +778,23 @@
                 </div>
             </section>
 
+            <!-- VISTA: COMUNICACIÓN CON CLIENTES -->
+            <section id="vista-comunicacion" class="app-view" style="display:none;">
+                <div class="toolbar comunicacion-toolbar">
+                    <div>
+                        <h2>Centro de Comunicación</h2>
+                        <p>Mensajes y solicitudes de cita enviados desde el portal del cliente.</p>
+                    </div>
+                    <button type="button" class="btn-primary" onclick="window.cargarCentroComunicacion?.()">↻ Actualizar</button>
+                </div>
+                <div class="comunicacion-tabs" role="tablist">
+                    <button type="button" class="com-tab active" data-com-tab="mensajes">💬 Mensajes <span id="badge-mensajes"></span></button>
+                    <button type="button" class="com-tab" data-com-tab="citas">📅 Solicitudes de cita <span id="badge-citas"></span></button>
+                </div>
+                <div id="panel-com-mensajes" class="com-panel"></div>
+                <div id="panel-com-citas" class="com-panel" hidden></div>
+            </section>
+
             <!-- VISTA 6: GESTIÓN DE PERSONAL (Solo visible para Administradores) -->
             <section id="vista-personal" class="app-view" style="display: none;">
                 <div class="toolbar">
@@ -955,6 +973,7 @@
 <script src="js/agenda.js"></script>
 <script src="js/calendario.js"></script>
 <script src="js/personal.js"></script>
+<script src="js/comunicacion.js"></script>
 <script src="js/app.js"></script>
 <script src="js/dashboard-ejecutivo.js"></script>
 <script src="js/exportar-excel.js"></script>

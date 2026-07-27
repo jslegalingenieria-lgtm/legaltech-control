@@ -152,6 +152,11 @@ function configurarInterfazPorRol(rol) {
     mostrar("menu-calendario", rol !== "Cliente");
     mostrar("menu-portal", rol === "Cliente");
 
+    const rolesComunicacion = ["Superadministrador", "Administrador", "Auxiliar Jurídico", "Abogado"];
+    if (rolesComunicacion.includes(rol) && menuLateral && !document.getElementById("menu-comunicacion")) {
+        menuLateral.insertAdjacentHTML("beforeend", `<li id="menu-comunicacion"><a href="#" class="menu-item" onclick="switchTab('comunicacion')">💬 Comunicación</a></li>`);
+    }
+
     if (puede("gestionar_personal") && menuLateral && !document.getElementById("menu-personal")) {
         menuLateral.insertAdjacentHTML("beforeend", `<li id="menu-personal"><a href="#" class="menu-item" onclick="switchTab('personal')">👥 Personal</a></li>`);
     }
@@ -210,6 +215,10 @@ function switchTab(vista) {
     if (vista === "calendario" && typeof window.renderizarCalendarioJuridico === "function") {
         window.renderizarCalendarioJuridico();
     }
+
+    if (vista === "comunicacion" && typeof window.cargarCentroComunicacion === "function") {
+        window.cargarCentroComunicacion();
+    }
     
     // Cambiar título superior
     const titulos = {
@@ -219,6 +228,7 @@ function switchTab(vista) {
         agenda: "Agenda de Audiencias y Términos",
         calendario: "Calendario Jurídico Profesional",
         portal: "Portal de Consulta Ciudadana",
+        comunicacion: "Centro de Comunicación",
         personal: "Gestión de Personal y Abogados"
     };
     

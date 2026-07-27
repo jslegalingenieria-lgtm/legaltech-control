@@ -96,3 +96,21 @@
     }
 
 }
+/* v2.0 Enterprise: encabezado móvil siempre accesible */
+@media (max-width:768px){
+  .top-bar{
+    position:fixed !important;
+    top:0;left:0;right:0;
+    width:auto !important;
+    min-height:70px;
+    z-index:5000 !important;
+    background:#fff;
+    box-shadow:0 2px 10px rgba(15,23,42,.12);
+    padding:8px 12px;
+    box-sizing:border-box;
+  }
+  .main-content{padding-top:90px !important;}
+  .top-bar #view-title{font-size:1rem;line-height:1.15;margin:0;flex:1;}
+  .top-bar .date-display{font-size:.72rem;white-space:nowrap;text-align:right;}
+  #menu-toggle{flex:0 0 auto;margin-right:8px !important;}
+}

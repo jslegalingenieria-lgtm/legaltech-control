@@ -29,3 +29,10 @@
 - Sustituido el ingreso manual del estado por un selector controlado.
 - Corregido el portal del cliente para consultar por clienteId real.
 - Consultas de Abogado y Pasante configuradas en modo seguro cuando falta responsable/supervisor.
+
+## v2.0 Enterprise - Centro de Atención
+- Encabezado móvil fijo con menú, título y fecha siempre visibles.
+- Mensajería entre cliente, abogado responsable y administración.
+- Solicitudes de cita sujetas a confirmación del despacho y aviso de posibles honorarios.
+- Gestión de citas: confirmar, proponer fecha, rechazar y convertir citas confirmadas en eventos de Agenda.
+- Reglas de Firestore para `mensajes` y `solicitudesCitas` según rol y propiedad del cliente.
