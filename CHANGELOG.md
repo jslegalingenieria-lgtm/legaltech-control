@@ -106,3 +106,8 @@
 - El selector múltiple ambiguo fue sustituido por casillas visibles para marcar y desmarcar colaboradores.
 - Los pasantes conservan el acceso únicamente mediante su responsable.
 - Se renovó la caché de la PWA.
+
+## v2.1.10 - Agenda de pasantes
+- La agenda del pasante se consulta directamente mediante `colaboradorIds`.
+- Se elimina la consulta indirecta por `asuntoId` que podía ser rechazada por Firestore.
+- El pasante solo recibe eventos de asuntos donde fue seleccionado expresamente.

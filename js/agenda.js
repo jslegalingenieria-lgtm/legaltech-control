@@ -234,27 +234,19 @@ function obtenerUsuarioActivo() {
             ]
                 .filter(Boolean)
                 .map(valor => String(valor).trim())
-                .filter((valor, indice, lista) => lista.indexOf(valor) === indice)
-                .slice(0, 10);
+                .filter((valor, indice, lista) => lista.indexOf(valor) === indice);
 
             if (!identificadores.length) {
                 throw new Error("No fue posible identificar la sesión del pasante.");
             }
 
-            // Primero se consultan los asuntos donde el pasante fue marcado.
-            // Después la agenda se consulta por asuntoId. Esto también funciona
-            // con eventos antiguos que todavía no tengan colaboradorIds.
-            const asuntosSnapshot = await db
-                .collection("asuntos")
-                .where("colaboradorIds", "array-contains-any", identificadores)
-                .get();
-
-            const asuntoIds = asuntosSnapshot.docs.map(doc => String(doc.id));
-
+            // La agenda se consulta directamente por los identificadores guardados
+            // en colaboradorIds. Esto coincide con las reglas de Firestore y evita
+            // consultas indirectas por asuntoId que podían ser rechazadas.
             return {
                 tipo: "multiple",
-                consultas: dividirEnBloques(asuntoIds, 10).map(bloque =>
-                    consulta.where("asuntoId", "in", bloque)
+                consultas: identificadores.map(identificador =>
+                    consulta.where("colaboradorIds", "array-contains", identificador)
                 )
             };
         }
