@@ -223,31 +223,21 @@ function obtenerUsuarioActivo() {
 
         if (usuario?.rol === "Pasante") {
             const usuarioFirebase = await esperarUsuarioFirebase();
-            const identificadores = [
-                usuarioFirebase?.uid,
-                usuario?.uid,
-                usuario?.authUid,
-                usuario?.id,
-                usuario?.usuario,
-                usuarioFirebase?.email,
-                usuario?.correo
-            ]
-                .filter(Boolean)
-                .map(valor => String(valor).trim())
-                .filter((valor, indice, lista) => lista.indexOf(valor) === indice);
+            const uid = String(usuarioFirebase?.uid || "").trim();
 
-            if (!identificadores.length) {
+            if (!uid) {
                 throw new Error("No fue posible identificar la sesión del pasante.");
             }
 
-            // La agenda se consulta directamente por los identificadores guardados
-            // en colaboradorIds. Esto coincide con las reglas de Firestore y evita
-            // consultas indirectas por asuntoId que podían ser rechazadas.
+            // Usamos únicamente el UID autenticado. Los asuntos guardan este UID
+            // dentro de colaboradorIds y las reglas de Firestore pueden validar
+            // esta consulta sin ambigüedad. Consultar además por id, usuario o correo
+            // generaba listeners rechazados aunque otro listener sí cargara eventos.
             return {
-                tipo: "multiple",
-                consultas: identificadores.map(identificador =>
-                    consulta.where("colaboradorIds", "array-contains", identificador)
-                )
+                tipo: "simple",
+                consultas: [
+                    consulta.where("colaboradorIds", "array-contains", uid)
+                ]
             };
         }
 
@@ -306,7 +296,12 @@ function obtenerUsuarioActivo() {
                     },
                     error => {
                         console.error("Error sincronizando agenda:", error);
-                        if (!errorMostrado) {
+                        // No sustituir información ya recibida por otro listener.
+                        // Solo mostrar el error cuando todavía no existe ningún
+                        // resultado válido ni datos disponibles en la caché.
+                        const hayResultados = [...resultadosPorConsulta.values()]
+                            .some(lista => Array.isArray(lista));
+                        if (!errorMostrado && !hayResultados && !obtenerAgenda().length) {
                             errorMostrado = true;
                             mostrarErrorAgenda("No fue posible sincronizar la agenda con Firebase.");
                         }

@@ -1,3 +1,9 @@
+# v2.1.11 — Agenda de pasantes
+
+- La Agenda consulta eventos del pasante únicamente mediante su UID autenticado.
+- Se elimina el falso error provocado por consultas auxiliares rechazadas.
+- Un error secundario ya no reemplaza eventos que sí fueron sincronizados.
+
 # JS LegalTech Control v2.1.9
 
 - Corrige definitivamente la agenda de pasantes.
