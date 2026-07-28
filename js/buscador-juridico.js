@@ -31,7 +31,7 @@
       titulo: "Legislación federal",
       descripcion: "Leyes federales vigentes publicadas por la Cámara de Diputados.",
       icono: "📚",
-      url: "https://www.diputados.gob.mx/LeyesBiblio/"
+      url: "https://www.diputados.gob.mx/LeyesBiblio/index.htm"
     },
     dof: {
       titulo: "Diario Oficial de la Federación",
