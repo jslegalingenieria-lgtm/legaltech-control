@@ -47,6 +47,15 @@ service cloud.firestore {
         && clientePropietario(get(/databases/$(database)/documents/clientes/$(datosAsunto.clienteId)).data);
     }
 
+    function pasanteEnAsunto(asuntoId) {
+      return pasante()
+        && asuntoId is string
+        && exists(/databases/$(database)/documents/asuntos/$(asuntoId))
+        && get(/databases/$(database)/documents/asuntos/$(asuntoId)).data.colaboradorIds is list
+        && get(/databases/$(database)/documents/asuntos/$(asuntoId)).data.colaboradorIds
+          .hasAny([request.auth.uid, perfil().usuario, request.auth.token.email]);
+    }
+
     match /personal/{uid} {
       allow read: if operacionGeneral() || request.auth.uid == uid;
       // Las altas se realizan exclusivamente mediante Cloud Functions con Admin SDK.
@@ -102,7 +111,7 @@ service cloud.firestore {
     }
 
     match /agenda/{id} {
-      allow read: if operacionGeneral() || asignado(resource.data) || asuntoDelCliente(resource.data);
+      allow read: if operacionGeneral() || asignado(resource.data) || pasanteEnAsunto(resource.data.asuntoId) || asuntoDelCliente(resource.data);
       allow create: if operacionGeneral() || (
         (abogado() || pasante()) && request.resource.data.abogadoAsignado == responsableUsuario()
       );

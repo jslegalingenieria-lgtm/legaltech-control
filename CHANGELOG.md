@@ -1,3 +1,11 @@
+# JS LegalTech Control v2.1.9
+
+- Corrige definitivamente la agenda de pasantes.
+- La agenda se consulta por los asuntos donde el pasante fue seleccionado.
+- Los eventos antiguos se muestran aunque todavía no tengan colaboradorIds sincronizado.
+- Se agrega validación de acceso mediante el asunto relacionado en Firestore.
+- Actualiza la caché de la PWA.
+
 # JS LegalTech Control v2.1.8
 
 - Corrige la carga de agenda en la sesión de pasante.

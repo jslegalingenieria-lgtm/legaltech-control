@@ -114,25 +114,35 @@
             return eventos;
         }
 
-        if (["Abogado", "Pasante"].includes(usuario.rol)) {
+        if (usuario.rol === "Abogado") {
             const identificadores = [
+                usuario.uid,
+                usuario.authUid,
                 usuario.id,
                 usuario.usuario,
-                usuario.abogadoSupervisorUid,
-                usuario.abogadoSupervisorUsuario
+                usuario.correo
             ]
                 .filter(Boolean)
-                .map(valor =>
-                    String(valor).trim().toLowerCase()
-                );
+                .map(valor => String(valor).trim().toLowerCase());
 
-            return eventos.filter(evento =>
-                identificadores.includes(
-                    String(evento.abogadoAsignado || "")
-                        .trim()
-                        .toLowerCase()
-                )
-            );
+            return eventos.filter(evento => {
+                const responsable = String(evento.abogadoAsignado || "")
+                    .trim()
+                    .toLowerCase();
+                const colaboradores = Array.isArray(evento.colaboradorIds)
+                    ? evento.colaboradorIds.map(valor => String(valor).trim().toLowerCase())
+                    : [];
+
+                return identificadores.includes(responsable) ||
+                    colaboradores.some(valor => identificadores.includes(valor));
+            });
+        }
+
+        if (usuario.rol === "Pasante") {
+            // La consulta a Firestore ya se limita a los asuntoId autorizados.
+            // No se vuelve a filtrar con la caché local, porque los asuntos y la
+            // agenda pueden terminar de sincronizar en momentos distintos.
+            return eventos;
         }
 
         const asuntos = obtenerAsuntos();
@@ -185,89 +195,140 @@ function obtenerUsuarioActivo() {
         });
     }
 
+    function dividirEnBloques(lista, tamano = 10) {
+        const bloques = [];
+        for (let i = 0; i < lista.length; i += tamano) {
+            bloques.push(lista.slice(i, i + tamano));
+        }
+        return bloques;
+    }
+
     async function consultaAgendaPorRol() {
         const usuario = obtenerUsuarioActivo();
-        let consulta = obtenerDB().collection(COLECCION);
+        const db = obtenerDB();
+        const consulta = db.collection(COLECCION);
 
         if (usuario?.rol === "Abogado") {
-            return consulta.where("abogadoAsignado", "==", usuario.usuario || "__SIN_RESPONSABLE__");
+            return {
+                tipo: "simple",
+                consultas: [
+                    consulta.where(
+                        "abogadoAsignado",
+                        "==",
+                        usuario.usuario || "__SIN_RESPONSABLE__"
+                    )
+                ]
+            };
         }
 
         if (usuario?.rol === "Pasante") {
             const usuarioFirebase = await esperarUsuarioFirebase();
-            const uid = usuarioFirebase?.uid || usuario.uid || usuario.authUid || usuario.id;
+            const identificadores = [
+                usuarioFirebase?.uid,
+                usuario?.uid,
+                usuario?.authUid,
+                usuario?.id,
+                usuario?.usuario,
+                usuarioFirebase?.email,
+                usuario?.correo
+            ]
+                .filter(Boolean)
+                .map(valor => String(valor).trim())
+                .filter((valor, indice, lista) => lista.indexOf(valor) === indice)
+                .slice(0, 10);
 
-            if (!uid) {
+            if (!identificadores.length) {
                 throw new Error("No fue posible identificar la sesión del pasante.");
             }
 
-            return consulta.where("colaboradorIds", "array-contains", String(uid));
+            // Primero se consultan los asuntos donde el pasante fue marcado.
+            // Después la agenda se consulta por asuntoId. Esto también funciona
+            // con eventos antiguos que todavía no tengan colaboradorIds.
+            const asuntosSnapshot = await db
+                .collection("asuntos")
+                .where("colaboradorIds", "array-contains-any", identificadores)
+                .get();
+
+            const asuntoIds = asuntosSnapshot.docs.map(doc => String(doc.id));
+
+            return {
+                tipo: "multiple",
+                consultas: dividirEnBloques(asuntoIds, 10).map(bloque =>
+                    consulta.where("asuntoId", "in", bloque)
+                )
+            };
         }
 
-        return consulta;
+        return { tipo: "simple", consultas: [consulta] };
     }
 
     async function iniciarSincronizacionAgenda() {
-    if (detenerEscucha) return;
+        if (detenerEscucha) return;
 
-    const usuarioActivo = obtenerUsuarioActivo();
+        const usuarioActivo = obtenerUsuarioActivo();
 
-    // El cliente consulta su información desde el portal.
-    // No debe escuchar toda la agenda del despacho.
-    if (usuarioActivo?.rol === "Cliente") {
-        console.info(
-            "Sincronización general de agenda omitida para el cliente."
-        );
-        return;
-    }
+        if (usuarioActivo?.rol === "Cliente") {
+            console.info("Sincronización general de agenda omitida para el cliente.");
+            return;
+        }
 
-    try {
-        const consulta = await consultaAgendaPorRol();
-        detenerEscucha = consulta.onSnapshot(
-                snapshot => {
-                    const eventos = snapshot.docs
-                        .map(doc =>
-                            normalizarEvento(doc.id, doc.data())
-                        )
-                        .sort((a, b) =>
-                            new Date(
-                                `${a.fecha}T${a.hora || "00:00"}`
-                            ) -
-                            new Date(
-                                `${b.fecha}T${b.hora || "00:00"}`
-                            )
+        try {
+            const resultado = await consultaAgendaPorRol();
+            const consultas = resultado.consultas || [];
+
+            if (!consultas.length) {
+                guardarCache([]);
+                cargarAgendaLista();
+                detenerEscucha = () => {};
+                return;
+            }
+
+            const resultadosPorConsulta = new Map();
+            const cancelaciones = [];
+            let errorMostrado = false;
+
+            const actualizarVista = () => {
+                const eventosPorId = new Map();
+                resultadosPorConsulta.forEach(eventos => {
+                    eventos.forEach(evento => eventosPorId.set(evento.id, evento));
+                });
+
+                const eventos = [...eventosPorId.values()].sort((a, b) =>
+                    new Date(`${a.fecha}T${a.hora || "00:00"}`) -
+                    new Date(`${b.fecha}T${b.hora || "00:00"}`)
+                );
+
+                guardarCache(eventos);
+                cargarAgendaLista();
+                window.dispatchEvent(new CustomEvent("agendaActualizada", { detail: eventos }));
+            };
+
+            consultas.forEach((consulta, indice) => {
+                const cancelar = consulta.onSnapshot(
+                    snapshot => {
+                        resultadosPorConsulta.set(
+                            indice,
+                            snapshot.docs.map(doc => normalizarEvento(doc.id, doc.data()))
                         );
+                        actualizarVista();
+                    },
+                    error => {
+                        console.error("Error sincronizando agenda:", error);
+                        if (!errorMostrado) {
+                            errorMostrado = true;
+                            mostrarErrorAgenda("No fue posible sincronizar la agenda con Firebase.");
+                        }
+                    }
+                );
+                cancelaciones.push(cancelar);
+            });
 
-                    guardarCache(eventos);
-                    cargarAgendaLista();
-
-                    window.dispatchEvent(
-                        new CustomEvent("agendaActualizada", {
-                            detail: eventos
-                        })
-                    );
-                },
-                error => {
-                    console.error(
-                        "Error sincronizando agenda:",
-                        error
-                    );
-
-                    mostrarErrorAgenda(
-                        "No fue posible sincronizar la agenda con Firebase."
-                    );
-                }
-            );
-
-    } catch (error) {
-        console.error(
-            "No fue posible iniciar la sincronización de agenda:",
-            error
-        );
-
-        mostrarErrorAgenda(error.message);
+            detenerEscucha = () => cancelaciones.forEach(cancelar => cancelar());
+        } catch (error) {
+            console.error("No fue posible iniciar la sincronización de agenda:", error);
+            mostrarErrorAgenda(error.message || "No fue posible sincronizar la agenda con Firebase.");
+        }
     }
-}
 
     function obtenerSelectAsuntos() {
         return (
