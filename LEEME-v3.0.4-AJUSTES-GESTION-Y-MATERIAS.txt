@@ -1,0 +1,9 @@
+JS LegalTech Control v3.0.4
+
+Cambios incluidos:
+- Gestión documental aparece antes del botón Exportar Excel.
+- Al activar Gestión documental, el control cambia a verde y se muestra un aviso tipo globo durante 9 segundos.
+- El aviso desaparece automáticamente y vuelve a mostrarse cada vez que se activa la función.
+- Al desactivar, el control conserva su estado gris y el aviso se oculta.
+- Materias jurídicas disponibles: Civil, Familiar, Laboral, Penal, Administrativa, Amparo y Otra.
+- Caché del Service Worker actualizada a v3.0.4.

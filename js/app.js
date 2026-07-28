@@ -148,6 +148,7 @@ function configurarInterfazPorRol(rol) {
     mostrar("menu-dashboard", rol !== "Cliente");
     mostrar("menu-clientes", rol !== "Cliente");
     mostrar("menu-asuntos", rol !== "Cliente");
+    mostrar("menu-expedientes", rol !== "Cliente");
     mostrar("menu-agenda", rol !== "Cliente");
     mostrar("menu-calendario", rol !== "Cliente");
     mostrar("menu-portal", rol === "Cliente");
@@ -180,6 +181,10 @@ function switchTab(vista) {
     const usuarioActual = (() => { try { return JSON.parse(sessionStorage.getItem("js_legal_usuario") || localStorage.getItem("js_legal_session") || "null"); } catch (_) { return null; } })();
     if (vista === "comunicacion" && !["Superadministrador", "Administrador", "Auxiliar Jurídico", "Abogado"].includes(usuarioActual?.rol)) {
         alert("No tienes permiso para acceder al Centro de Comunicación.");
+        return;
+    }
+    if (vista === "expedientes" && usuarioActual?.rol === "Cliente") {
+        alert("El módulo de Expedientes es exclusivo para personal autorizado del despacho.");
         return;
     }
     if (vista === "mantenimiento" && usuarioActual?.rol !== "Superadministrador") {
@@ -221,6 +226,10 @@ function switchTab(vista) {
         renderizarTablaPersonal();
     }
 
+    if (vista === "expedientes" && typeof window.cargarExpedientes === "function") {
+        window.cargarExpedientes();
+    }
+
     if (vista === "clientes" && typeof cargarClientesTabla === "function") {
         cargarClientesTabla();
     }
@@ -242,6 +251,7 @@ function switchTab(vista) {
         dashboard: "Dashboard Informativo",
         clientes: "Administración de Clientes",
         asuntos: "Control de Asuntos Jurídicos",
+        expedientes: "Expedientes Electrónicos",
         agenda: "Agenda de Audiencias y Términos",
         calendario: "Calendario Jurídico Profesional",
         portal: "Portal de Consulta Ciudadana",

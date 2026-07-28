@@ -1,3 +1,9 @@
+## 3.0.2 - Corrección documental y adjuntos en actuaciones
+- Toggle trasladado al Dashboard del Superadministrador.
+- Adjuntos en captura de actuaciones.
+- Reglas Storage corregidas.
+- Archivos ocultos al Portal Cliente.
+
 # v2.1.11 — Agenda de pasantes
 
 - La Agenda consulta eventos del pasante únicamente mediante su UID autenticado.
@@ -117,3 +123,19 @@
 - La agenda del pasante se consulta directamente mediante `colaboradorIds`.
 - Se elimina la consulta indirecta por `asuntoId` que podía ser rechazada por Firestore.
 - El pasante solo recibe eventos de asuntos donde fue seleccionado expresamente.
+
+## 3.0.0 - Expedientes electrónicos
+- Se añadió el módulo Expedientes como consulta separada de Asuntos.
+- Tabla de asuntos por renglón con filtros y ordenamiento.
+- Vista detallada con línea del tiempo y relación de archivos.
+- Acceso restringido al personal interno conforme a los asuntos ya autorizados por rol.
+- Se preparó la interfaz para la siguiente etapa de gestión documental.
+
+## 3.0.1 — Gestión documental
+- Firebase Storage integrado.
+- Carga de PDF, JPG, JPEG y PNG desde Expedientes.
+- Validación de 10 MB por archivo y 20 archivos activos por expediente.
+- Vista, descarga, papelera, restauración y eliminación definitiva por Superadministrador.
+- Interruptor de gestión documental controlado por Superadministrador.
+- Metadatos documentales almacenados en Firestore.
+- Reglas de Firestore y Storage incluidas.

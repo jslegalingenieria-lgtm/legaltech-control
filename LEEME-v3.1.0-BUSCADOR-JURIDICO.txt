@@ -1,0 +1,25 @@
+JS LegalTech Control v3.1.0
+
+NOVEDADES
+- Nuevo módulo Buscador Jurídico Inteligente.
+- Pestañas: Tesis y jurisprudencia, CJF, Legislación de Jalisco, Legislación federal, DOF, Corte IDH y Búsqueda integral.
+- Búsqueda directa en portales oficiales sin consumo de tokens.
+- Análisis opcional con IA mediante Firebase Functions.
+- Gemini como proveedor principal; OpenRouter y DeepSeek como respaldos.
+- Cambio automático configurable por el Superadministrador.
+- Las claves API se protegen como secretos de Firebase Functions.
+- Corrección del contador: al abrir sesión se consultan las subcolecciones documentos y se muestran los totales sin tener que abrir el expediente.
+
+CONFIGURACIÓN DE SECRETOS (una sola vez)
+Desde la carpeta del proyecto ejecute:
+  firebase functions:secrets:set GEMINI_API_KEY
+  firebase functions:secrets:set OPENROUTER_API_KEY
+  firebase functions:secrets:set DEEPSEEK_API_KEY
+
+Puede configurar únicamente Gemini al principio. Los respaldos se usarán solo cuando sus claves existan.
+
+DESPLIEGUE
+  firebase deploy --only functions,firestore:rules
+
+IMPORTANTE
+La primera versión prepara estrategias y abre las fuentes oficiales. No extrae ni certifica automáticamente el contenido de los portales. Todo criterio, artículo y vigencia debe verificarse en la fuente oficial.

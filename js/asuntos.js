@@ -10,6 +10,11 @@
 (() => {
     "use strict";
 
+    let archivosActuacionPendientes = [];
+    const MAX_ARCHIVOS_ACTUACION = 20;
+    const MAX_BYTES_DOCUMENTO = 10 * 1024 * 1024;
+    const TIPOS_DOCUMENTO = ["application/pdf", "image/jpeg", "image/png"];
+
     const COLECCION_ASUNTOS = "asuntos";
     const CACHE_ASUNTOS = "js_legal_asuntos";
 
@@ -1133,6 +1138,33 @@
         });
     }
 
+    function renderizarColaArchivosActuacion() {
+        const lista = document.getElementById("act-archivos-cola");
+        if (!lista) return;
+        lista.innerHTML = archivosActuacionPendientes.length
+            ? archivosActuacionPendientes.map((archivo, i) => `<div style="display:flex;justify-content:space-between;gap:.5rem;align-items:center;padding:.45rem .55rem;margin-top:.35rem;background:#f8fafc;border-radius:5px;font-size:.8rem;"><span>📎 ${escaparHTML(archivo.name)} · ${(archivo.size/1024/1024).toFixed(2)} MB</span><button type="button" data-quitar-archivo-act="${i}" style="border:0;background:none;color:#dc2626;cursor:pointer;font-weight:700;">Quitar</button></div>`).join("")
+            : "";
+    }
+
+    function agregarArchivosActuacion(fileList) {
+        const nuevos = Array.from(fileList || []);
+        for (const archivo of nuevos) {
+            if (!TIPOS_DOCUMENTO.includes(archivo.type)) { alert(`${archivo.name}: formato no permitido.`); continue; }
+            if (archivo.size > MAX_BYTES_DOCUMENTO) { alert(`${archivo.name}: supera 10 MB.`); continue; }
+            if (archivosActuacionPendientes.length >= MAX_ARCHIVOS_ACTUACION) { alert("Máximo 20 archivos por actuación."); break; }
+            archivosActuacionPendientes.push(archivo);
+        }
+        renderizarColaArchivosActuacion();
+    }
+
+    function actualizarEstadoCargaActuacion() {
+        const habilitada = window.JSLegalDocumentos?.estaHabilitada?.() === true;
+        const botones = document.getElementById("act-documentos-botones");
+        const estado = document.getElementById("act-documentos-estado");
+        if (botones) botones.hidden = !habilitada;
+        if (estado) estado.textContent = habilitada ? "Puedes adjuntar hasta 20 archivos de 10 MB." : "La gestión documental está desactivada por el Superadministrador.";
+    }
+
     async function guardarActuacion(event) {
         event.preventDefault();
 
@@ -1178,7 +1210,9 @@
 
         const actuaciones = Array.isArray(asunto.actuaciones) ? [...asunto.actuaciones] : [];
         const sesion = obtenerUsuarioActivo();
+        const actuacionId = `ACT-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
         actuaciones.push({
+            id: actuacionId,
             fecha,
             tipo,
             subtipo,
@@ -1200,6 +1234,26 @@
                 resumen: descripcion,
                 fechaActualizacion: firebase.firestore.FieldValue.serverTimestamp()
             });
+
+            if (archivosActuacionPendientes.length) {
+                if (!window.JSLegalDocumentos?.subirArchivoActuacion) {
+                    throw new Error("El módulo documental no está disponible.");
+                }
+                const resultados = await Promise.allSettled(
+                    archivosActuacionPendientes.map(archivo =>
+                        window.JSLegalDocumentos.subirArchivoActuacion(asuntoHistorialIdSeleccionado, actuacionId, archivo)
+                    )
+                );
+                const fallidos = resultados.filter(r => r.status === "rejected");
+                if (fallidos.length) {
+                    const motivo = fallidos[0].reason?.code === "storage/unauthorized"
+                        ? "Firebase Storage rechazó la carga. Despliega storage.rules y vuelve a iniciar sesión."
+                        : (fallidos[0].reason?.message || "Error desconocido");
+                    alert(`La actuación se guardó, pero ${fallidos.length} archivo(s) no pudieron subirse. ${motivo}`);
+                }
+                archivosActuacionPendientes = [];
+                renderizarColaArchivosActuacion();
+            }
 
             if (generaTermino) {
                 await crearAlertaTermino(db, asunto, {
@@ -1601,4 +1655,22 @@
     window.actualizarSubtiposActuacion = actualizarSubtiposActuacion;
     window.poblarSelectClientes =
         poblarSelectClientes;
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("act-input-pdf")?.addEventListener("change", event => {
+            agregarArchivosActuacion(event.target.files); event.target.value = "";
+        });
+        document.getElementById("act-input-imagen")?.addEventListener("change", event => {
+            agregarArchivosActuacion(event.target.files); event.target.value = "";
+        });
+        document.getElementById("act-archivos-cola")?.addEventListener("click", event => {
+            const boton = event.target.closest("button[data-quitar-archivo-act]");
+            if (!boton) return;
+            archivosActuacionPendientes.splice(Number(boton.dataset.quitarArchivoAct), 1);
+            renderizarColaArchivosActuacion();
+        });
+        setTimeout(actualizarEstadoCargaActuacion, 900);
+    });
+    window.addEventListener("gestionDocumentalActualizada", actualizarEstadoCargaActuacion);
 })();

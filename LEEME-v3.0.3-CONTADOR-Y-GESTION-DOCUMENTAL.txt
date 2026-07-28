@@ -1,0 +1,21 @@
+JS LEGALTECH CONTROL v3.0.3
+
+CAMBIOS INCLUIDOS
+
+1. Se corrigió el contador de archivos de cada expediente.
+   - Cuenta los documentos activos reales de la subcolección documentos.
+   - Se actualiza al subir, enviar a papelera, restaurar o eliminar definitivamente.
+   - También se actualiza con archivos cargados desde una actuación.
+
+2. Se mejoró el control de Gestión documental para el Superadministrador.
+   - Activada: interruptor y tarjeta en color verde.
+   - Desactivada: interruptor y tarjeta en color gris.
+   - El aviso sobre posibles costos de Firebase Storage solo aparece cuando está activada.
+
+3. Se actualizó la caché del Service Worker a v3.0.3.
+
+PRUEBA RECOMENDADA
+- Abrir el sistema con Ctrl + F5.
+- Activar Gestión documental y verificar el aviso.
+- Subir un documento y comprobar que el contador cambie sin recargar.
+- Enviar el documento a la papelera y comprobar que el contador disminuya.

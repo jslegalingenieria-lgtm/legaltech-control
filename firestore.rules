@@ -173,6 +173,24 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+
+    match /asuntos/{asuntoId}/documentos/{documentoId} {
+      allow read: if operacionGeneral()
+        || (exists(/databases/$(database)/documents/asuntos/$(asuntoId))
+          && asignado(get(/databases/$(database)/documents/asuntos/$(asuntoId)).data));
+      allow create: if activo()
+        && (operacionGeneral()
+          || (exists(/databases/$(database)/documents/asuntos/$(asuntoId))
+            && asignado(get(/databases/$(database)/documents/asuntos/$(asuntoId)).data)))
+        && exists(/databases/$(database)/documents/configuracion/sistema)
+        && get(/databases/$(database)/documents/configuracion/sistema).data.gestionDocumentalHabilitada == true;
+      allow update: if activo()
+        && (operacionGeneral()
+          || (exists(/databases/$(database)/documents/asuntos/$(asuntoId))
+            && asignado(get(/databases/$(database)/documents/asuntos/$(asuntoId)).data)));
+      allow delete: if superadmin();
+    }
+
     match /configuracion/{id} {
       allow read: if activo();
       allow create, update: if gestionTotal();

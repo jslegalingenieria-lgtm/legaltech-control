@@ -1,0 +1,14 @@
+JS LegalTech Control v3.0.2
+
+CAMBIOS
+- Corrige reglas de Firebase Storage usando rol de token y perfil como respaldo.
+- El interruptor Gestión documental ahora aparece en el Dashboard, junto a Exportar Excel, solo para Superadministrador.
+- La captura de actuaciones permite adjuntar PDF, JPG, JPEG y PNG.
+- Los archivos de actuaciones son internos y nunca se muestran al cliente.
+- Expedientes conserva la carga directa de archivos generales.
+
+DESPLIEGUE OBLIGATORIO
+1. Abre una terminal en esta carpeta.
+2. Ejecuta: firebase deploy --only storage,firestore:rules
+3. Cierra sesión en la aplicación y vuelve a ingresar para renovar el token de permisos.
+4. En Live Server, usa Ctrl+F5 o elimina el Service Worker anterior si ves archivos en caché.

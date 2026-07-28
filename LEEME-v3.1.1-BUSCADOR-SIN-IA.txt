@@ -1,0 +1,23 @@
+JS LEGALTECH CONTROL v3.1.1
+BUSCADOR JURÍDICO SIN INTELIGENCIA ARTIFICIAL
+
+CAMBIOS PRINCIPALES
+- Se agregó el módulo Buscador Jurídico al menú lateral.
+- Incluye accesos a Tesis y Jurisprudencia, CJF, Legislación de Jalisco, Legislación federal, DOF y Corte IDH.
+- La Búsqueda integral muestra todas las fuentes para abrir solamente las necesarias.
+- La consulta se copia automáticamente para pegarla en el portal oficial.
+- Incluye filtros orientativos por materia y tipo de documento.
+- Guarda localmente las últimas ocho búsquedas.
+- No utiliza Gemini, OpenRouter, DeepSeek ni ninguna API de inteligencia artificial.
+- No requiere claves API, facturación, tarjeta bancaria ni despliegue de Cloud Functions para el buscador.
+- Se conserva la corrección del contador documental para calcular los documentos al cargar los expedientes.
+
+IMPORTANTE
+Los portales oficiales tienen buscadores diferentes y no todos aceptan la consulta mediante parámetros URL. Por eso el sistema copia el texto y abre el portal correspondiente. El usuario debe pegar la consulta en el buscador oficial.
+
+DESPLIEGUE
+Para publicar únicamente la aplicación web:
+  firebase deploy --only hosting
+
+Si también modificaste reglas en tu instalación:
+  firebase deploy --only hosting,firestore:rules,storage

@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="css/dashboard-ejecutivo.css">
 <link rel="stylesheet" href="css/calendario.css">
 <link rel="stylesheet" href="css/comunicacion.css">
+    <link rel="stylesheet" href="css/expedientes.css">
+    <link rel="stylesheet" href="css/buscador-juridico.css">
 
 
     <!-- Librería para conversión limpia de HTML a PDF -->
@@ -48,6 +50,8 @@
                 <li id="menu-dashboard"><a href="#" class="menu-item" onclick="switchTab('dashboard')">🏠 Dashboard</a></li>
                 <li id="menu-clientes"><a href="#" class="menu-item" onclick="switchTab('clientes')">👥 Clientes</a></li>
                 <li id="menu-asuntos"><a href="#" class="menu-item" onclick="switchTab('asuntos')">⚖️ Asuntos</a></li>
+                <li id="menu-expedientes"><a href="#" class="menu-item" onclick="switchTab('expedientes')">📂 Expedientes</a></li>
+                <li id="menu-buscador-juridico"><a href="#" class="menu-item" onclick="switchTab('buscador-juridico')">🔎 Buscador jurídico</a></li>
                 <li id="menu-agenda"><a href="#" class="menu-item" onclick="switchTab('agenda')">📅 Agenda</a></li>
                 <li id="menu-calendario"><a href="#" class="menu-item" onclick="switchTab('calendario')">🗓️ Calendario</a></li>
                 <!-- app.js inyectará aquí el botón de Personal automáticamente si el rol es Administrador -->
@@ -91,6 +95,23 @@
         </div>
 
         <div class="dashboard-actions">
+            <div id="dashboard-gestion-documental" class="gestion-documental-card" hidden style="display:none;">
+                <div class="gestion-documental-control">
+                    <div class="gestion-documental-texto">
+                        <strong>📎 Gestión documental</strong>
+                        <span id="dashboard-storage-estado">Desactivada</span>
+                    </div>
+                    <label class="gestion-documental-switch" title="Habilitar o deshabilitar la carga de archivos en todo el sistema">
+                        <input type="checkbox" id="dashboard-storage-habilitado" aria-describedby="dashboard-storage-aviso">
+                        <span class="gestion-documental-slider" aria-hidden="true"></span>
+                    </label>
+                </div>
+                <div id="dashboard-storage-aviso" class="gestion-documental-aviso" hidden>
+                    <strong>⚠ Aviso sobre almacenamiento</strong>
+                    <span>Los documentos se almacenan en Firebase Storage. El servicio puede generar costos cuando el consumo supere los límites incluidos en el plan gratuito.</span>
+                </div>
+            </div>
+
             <button
                 type="button"
                 class="dashboard-export"
@@ -395,6 +416,140 @@
                 </div>
             </section>
 
+            <!-- VISTA 3.0: EXPEDIENTES ELECTRÓNICOS -->
+            <section id="vista-expedientes" class="app-view" style="display:none;">
+                <div class="expedientes-encabezado">
+                    <div>
+                        <span class="expedientes-etiqueta">Versión 3.0</span>
+                        <h3>Expedientes electrónicos</h3>
+                        <p>Consulta integral de los asuntos autorizados para tu usuario.</p>
+                    </div>
+                    <div class="expedientes-contador" id="expedientes-contador">0 expedientes</div>
+                </div>
+
+                <div class="expedientes-filtros">
+                    <label>
+                        Buscar
+                        <input id="exp-filtro-texto" type="search" placeholder="Expediente, cliente, juzgado o juicio">
+                    </label>
+                    <label>
+                        Materia
+                        <select id="exp-filtro-materia"><option value="">Todas</option></select>
+                    </label>
+                    <label>
+                        Estado
+                        <select id="exp-filtro-estado"><option value="">Todos</option></select>
+                    </label>
+                    <label>
+                        Orden
+                        <select id="exp-orden">
+                            <option value="reciente">Más recientes</option>
+                            <option value="antiguo">Más antiguos</option>
+                            <option value="expediente">Por expediente</option>
+                            <option value="cliente">Por cliente</option>
+                        </select>
+                    </label>
+                    <button type="button" class="btn-secondary" id="exp-limpiar-filtros">Limpiar</button>
+                </div>
+
+                <div class="table-container expedientes-tabla-contenedor">
+                    <table class="expedientes-tabla">
+                        <thead><tr>
+                            <th># Expediente</th><th>Expediente judicial</th><th>Cliente</th><th>Materia</th>
+                            <th>Demanda o juicio</th><th>Juzgado</th><th>Estado</th><th>Bitácora</th><th>Archivos</th>
+                        </tr></thead>
+                        <tbody id="expedientes-tabla-cuerpo"></tbody>
+                    </table>
+                </div>
+                <div id="expedientes-vacio" class="expedientes-vacio" hidden>No se encontraron expedientes con los filtros seleccionados.</div>
+
+                <div id="expediente-detalle" class="expediente-detalle" hidden>
+                    <div class="expediente-detalle-cabecera">
+                        <div><span class="expedientes-etiqueta">Expediente electrónico</span><h3 id="exp-detalle-titulo">Detalle</h3></div>
+                        <button type="button" class="btn-secondary" id="exp-cerrar-detalle">Cerrar</button>
+                    </div>
+                    <div id="exp-detalle-datos" class="expediente-datos"></div>
+                    <h4>Línea del tiempo</h4>
+                    <div id="exp-detalle-actuaciones" class="expediente-actuaciones"></div>
+                    <div class="exp-documentos-cabecera">
+                        <div>
+                            <h4>Archivos adjuntos</h4>
+                            <p id="exp-documentos-resumen">0 de 20 archivos</p>
+                        </div>
+                    </div>
+                    <div id="exp-carga-documental" class="exp-carga-documental" hidden>
+                        <label class="exp-boton-archivo">📄 Agregar PDF
+                            <input id="exp-input-pdf" type="file" accept="application/pdf" hidden>
+                        </label>
+                        <label class="exp-boton-archivo">📷 Agregar fotografía
+                            <input id="exp-input-imagen" type="file" accept="image/jpeg,image/png" hidden>
+                        </label>
+                        <small>Formatos permitidos: PDF, JPG, JPEG y PNG. Máximo 10 MB por archivo y 20 archivos por expediente.</small>
+                        <div id="exp-progreso" class="exp-progreso" hidden><span></span></div>
+                    </div>
+                    <div id="exp-documentos-aviso" class="exp-documentos-aviso" hidden></div>
+                    <div id="exp-detalle-archivos" class="expediente-archivos"></div>
+                    <details id="exp-papelera" class="exp-papelera" hidden>
+                        <summary>🗑️ Papelera documental (<span id="exp-papelera-contador">0</span>)</summary>
+                        <div id="exp-papelera-lista"></div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- BUSCADOR JURÍDICO EN FUENTES OFICIALES -->
+            <section id="vista-buscador-juridico" class="app-view buscador-juridico" style="display:none;">
+                <div class="bj-encabezado">
+                    <div>
+                        <span class="bj-kicker">Investigación en fuentes oficiales</span>
+                        <h3>Buscador Jurídico</h3>
+                        <p>Prepara la consulta y abre directamente los portales jurídicos oficiales. No utiliza inteligencia artificial, claves API, tarjetas ni servicios de pago.</p>
+                    </div>
+                    <span class="bj-sello">✓ Sin IA y sin costo</span>
+                </div>
+
+                <div class="bj-tabs" role="tablist" aria-label="Fuentes jurídicas">
+                    <button type="button" class="bj-tab activa" data-bj-tab="jurisprudencia" role="tab">Tesis y jurisprudencia</button>
+                    <button type="button" class="bj-tab" data-bj-tab="cjf" role="tab">CJF</button>
+                    <button type="button" class="bj-tab" data-bj-tab="jalisco" role="tab">Legislación de Jalisco</button>
+                    <button type="button" class="bj-tab" data-bj-tab="federal" role="tab">Legislación federal</button>
+                    <button type="button" class="bj-tab" data-bj-tab="dof" role="tab">DOF</button>
+                    <button type="button" class="bj-tab" data-bj-tab="corteidh" role="tab">Corte IDH</button>
+                    <button type="button" class="bj-tab bj-tab-integral" data-bj-tab="integral" role="tab">Búsqueda integral</button>
+                </div>
+
+                <div class="bj-panel-busqueda">
+                    <div class="bj-fuente-actual">
+                        <span id="bj-fuente-icono">⚖️</span>
+                        <div><strong id="bj-fuente-titulo">Tesis y jurisprudencia</strong><small id="bj-fuente-descripcion">Semanario Judicial de la Federación de la SCJN.</small></div>
+                    </div>
+                    <label for="bj-consulta">Consulta jurídica</label>
+                    <textarea id="bj-consulta" rows="4" maxlength="1200" placeholder="Ejemplo: compensación económica en divorcio cuando uno de los cónyuges se dedicó preponderantemente al hogar"></textarea>
+                    <div class="bj-opciones">
+                        <label>Materia
+                            <select id="bj-materia"><option value="">Todas</option><option>Civil</option><option>Familiar</option><option>Laboral</option><option>Penal</option><option>Administrativa</option><option>Amparo</option><option>Constitucional</option><option>Fiscal</option></select>
+                        </label>
+                        <label>Tipo de documento o criterio
+                            <select id="bj-tipo-documento"><option value="">Cualquiera</option><option value="jurisprudencia">Jurisprudencia</option><option value="tesis aislada">Tesis aislada</option><option value="ley vigente">Ley vigente</option><option value="reforma">Reforma</option><option value="sentencia">Sentencia</option><option value="opinión consultiva">Opinión consultiva</option></select>
+                        </label>
+                    </div>
+                    <div class="bj-acciones">
+                        <button type="button" id="bj-btn-buscar" class="bj-btn-principal">🔎 Abrir fuente oficial</button>
+                        <button type="button" id="bj-btn-limpiar" class="bj-btn-secundario">Limpiar</button>
+                    </div>
+                    <p class="bj-nota">La consulta se copia automáticamente. Al abrir el portal oficial, pégala en su campo de búsqueda. Atajo: Ctrl + Enter.</p>
+                    <div id="bj-enlaces-integrales" class="bj-enlaces-integrales" hidden></div>
+                </div>
+
+                <div id="bj-estado" class="bj-estado" hidden></div>
+
+                <section class="bj-historial">
+                    <div class="bj-historial-cabecera"><h4>Búsquedas recientes</h4><button type="button" id="bj-borrar-historial" class="bj-btn-secundario">Borrar historial</button></div>
+                    <div id="bj-historial-lista" class="bj-historial-lista"></div>
+                </section>
+
+                <div class="bj-advertencia">Verifica siempre la vigencia, fecha de publicación, registro digital y texto completo directamente en la fuente oficial antes de citar el resultado en un escrito.</div>
+            </section>
+
             <!-- VISTA 3: ASUNTOS -->
             <section id="vista-asuntos" class="app-view" style="display: none;">
                 <div class="toolbar">
@@ -421,7 +576,10 @@
                                     <option value="Civil">Civil</option>
                                     <option value="Familiar">Familiar</option>
                                     <option value="Laboral">Laboral</option>
-                                    <option value="Amparo">Amparo / Otra</option>
+                                    <option value="Penal">Penal</option>
+                                    <option value="Administrativa">Administrativa</option>
+                                    <option value="Amparo">Amparo</option>
+                                    <option value="Otra">Otra</option>
                                 </select>
                             </div>
                             <div class="form-group" style="margin-bottom: 0;">
@@ -601,6 +759,27 @@
                                     </div>
                                     <p style="margin:0.6rem 0 0; font-size:0.76rem; color:#64748b;">La alerta se asignará al abogado responsable del expediente.</p>
                                 </div>
+                            </div>
+
+                            <div id="act-documentos-panel" style="margin-bottom:.9rem;padding:.85rem;background:#fff;border:1px solid #dbeafe;border-radius:7px;">
+                                <div style="display:flex;justify-content:space-between;gap:.75rem;align-items:center;flex-wrap:wrap;">
+                                    <div>
+                                        <strong style="color:#1e3a8a;">📎 Archivos de la actuación</strong>
+                                        <div id="act-documentos-estado" style="font-size:.76rem;color:#64748b;margin-top:.2rem;">Consulta la configuración documental.</div>
+                                    </div>
+                                    <div id="act-documentos-botones" style="display:flex;gap:.5rem;flex-wrap:wrap;" hidden>
+                                        <label style="background:#2563eb;color:#fff;padding:.5rem .75rem;border-radius:6px;cursor:pointer;font-size:.82rem;font-weight:700;">
+                                            📄 Agregar PDF
+                                            <input id="act-input-pdf" type="file" accept="application/pdf" multiple hidden>
+                                        </label>
+                                        <label style="background:#0f766e;color:#fff;padding:.5rem .75rem;border-radius:6px;cursor:pointer;font-size:.82rem;font-weight:700;">
+                                            📷 Agregar fotos
+                                            <input id="act-input-imagen" type="file" accept="image/jpeg,image/png" multiple hidden>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="act-archivos-cola" style="margin-top:.7rem;"></div>
+                                <small style="display:block;margin-top:.55rem;color:#64748b;">Los archivos son internos: nunca se mostrarán en el Portal del Cliente, aunque la actuación sea visible.</small>
                             </div>
 
                             <button type="submit" style="background:#7c3aed; color:white; border:none; padding:0.65rem 1rem; border-radius:6px; cursor:pointer; font-weight:700; width:100%;">
@@ -1031,6 +1210,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-functions-compat.js"></script>
 
 <!-- Configuración de Firebase -->
@@ -1054,6 +1234,8 @@
 <script src="js/email.js"></script>
 <script src="js/acceso-clientes.js"></script>
 <script src="js/asuntos.js"></script>
+<script src="js/expedientes.js"></script>
+<script src="js/buscador-juridico.js"></script>
 <script src="js/agenda.js"></script>
 <script src="js/calendario.js"></script>
 <script src="js/personal.js"></script>

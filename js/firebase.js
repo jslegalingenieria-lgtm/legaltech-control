@@ -28,6 +28,7 @@
     const db = firebase.firestore();
     const auth = firebase.auth();
     const functions = typeof firebase.functions === "function" ? firebase.functions() : null;
+    const storage = typeof firebase.storage === "function" ? firebase.storage() : null;
 
     db.enablePersistence({ synchronizeTabs: true }).catch(error => {
         if (error.code === "failed-precondition") {
@@ -44,6 +45,7 @@
     window.firebaseDB = db;
     window.firebaseAuth = auth;
     window.firebaseFunctions = functions;
+    window.firebaseStorage = storage;
 
-    console.log(`✅ Firebase Authentication y Firestore conectados${functions ? "; Cloud Functions disponible" : ""}.`);
+    console.log(`✅ Firebase Authentication, Firestore${storage ? " y Storage" : ""} conectados${functions ? "; Cloud Functions disponible" : ""}.`);
 })();

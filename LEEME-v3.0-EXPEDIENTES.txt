@@ -1,0 +1,28 @@
+JS LEGALTECH CONTROL 3.0.0
+ETAPA 3.1 — EXPEDIENTES ELECTRÓNICOS
+
+NOVEDADES
+- Nuevo módulo "Expedientes" en el menú lateral.
+- Muestra un asunto por renglón.
+- Columnas: expediente interno, expediente judicial, cliente, materia, juicio,
+  juzgado, estado, bitácora y archivos.
+- Filtros por texto, materia y estado.
+- Orden por fecha, expediente o cliente.
+- Detalle electrónico con datos generales, línea del tiempo y adjuntos.
+- Respeta la lista de asuntos que Firestore entrega según el rol actual.
+- El cliente no tiene acceso a este módulo.
+
+ARCHIVOS NUEVOS
+- js/expedientes.js
+- css/expedientes.css
+
+ARCHIVOS MODIFICADOS
+- dashboard.html
+- js/app.js
+- js/roles.js
+- sw.js
+
+IMPORTANTE
+Esta entrega inicia la versión 3.0 y conserva intacto el módulo Asuntos.
+La carga a Firebase Storage, papelera documental y límites de archivos se
+incorporarán en la siguiente etapa de Gestión Documental.

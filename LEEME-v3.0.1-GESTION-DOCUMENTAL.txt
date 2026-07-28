@@ -1,0 +1,16 @@
+JS LEGALTECH CONTROL 3.0.1 — GESTIÓN DOCUMENTAL
+
+1. Antes de probar cargas, despliega las reglas:
+   firebase deploy --only firestore:rules,storage
+
+2. Ingresa como Superadministrador, abre Expedientes y activa:
+   "Habilitar gestión documental".
+
+3. Abre un expediente. Podrás cargar PDF, JPG, JPEG o PNG.
+   Límites: 10 MB por archivo y 20 archivos activos por expediente.
+
+4. Eliminar envía el archivo a la papelera. Restaurar lo devuelve.
+   Solo el Superadministrador puede borrarlo definitivamente de Storage.
+
+5. Live Server permite probar la interfaz, pero la carga requiere que Firebase
+   Storage esté habilitado en el proyecto y que sus reglas se hayan desplegado.
