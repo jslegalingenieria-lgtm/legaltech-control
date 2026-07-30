@@ -1,0 +1,11 @@
+JS LegalTech Control v4.0.1
+
+CAMBIOS
+- Encabezado superior fijo en computadora y celular.
+- El título del módulo y la fecha permanecen visibles al desplazarse.
+- La marca LexGear permanece fija en la parte superior del menú lateral.
+- Las opciones, usuario y botón Cerrar sesión se desplazan verticalmente.
+- Se eliminó Calendario como opción independiente: Agenda incluye vista de lista y calendario.
+- Mantenimiento dejó de mostrarse en el menú.
+- Se incorporó Configuración para Administrador y Superadministrador.
+- Menú reordenado conforme al flujo jurídico.

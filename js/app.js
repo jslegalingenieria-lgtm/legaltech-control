@@ -152,7 +152,6 @@ function configurarInterfazPorRol(rol) {
     mostrar("menu-expedientes", rol !== "Cliente");
     mostrar("menu-constructor-documentos", rol !== "Cliente");
     mostrar("menu-agenda", rol !== "Cliente");
-    mostrar("menu-calendario", rol !== "Cliente");
     mostrar("menu-portal", rol === "Cliente");
 
     const rolesComunicacion = ["Superadministrador", "Administrador", "Auxiliar Jurídico", "Abogado"];
@@ -164,8 +163,8 @@ function configurarInterfazPorRol(rol) {
         menuLateral.insertAdjacentHTML("beforeend", `<li id="menu-personal"><a href="#" class="menu-item" onclick="switchTab('personal')">👥 Personal</a></li>`);
     }
 
-    if (rol === "Superadministrador" && menuLateral && !document.getElementById("menu-mantenimiento")) {
-        menuLateral.insertAdjacentHTML("beforeend", `<li id="menu-mantenimiento"><a href="#" class="menu-item" onclick="switchTab('mantenimiento')">🛠️ Mantenimiento</a></li>`);
+    if (["Superadministrador", "Administrador"].includes(rol) && menuLateral && !document.getElementById("menu-configuracion")) {
+        menuLateral.insertAdjacentHTML("beforeend", `<li id="menu-configuracion"><a href="#" class="menu-item" onclick="switchTab('configuracion')">⚙️ Configuración</a></li>`);
     }
 
     if (rol === "Cliente") {
@@ -177,6 +176,20 @@ function configurarInterfazPorRol(rol) {
         switchTab("portal");
     }
 }
+
+// Alterna la Agenda entre lista y calendario sin duplicar opciones en el menú.
+function mostrarVistaAgenda(modo = "lista") {
+    const vista = modo === "calendario" ? "calendario" : "agenda";
+    switchTab(vista);
+    document.getElementById("menu-calendario")?.classList.remove("active");
+    document.getElementById("menu-agenda")?.classList.add("active");
+    document.querySelectorAll(".agenda-view-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.agendaView === modo);
+    });
+    const titulo = document.getElementById("view-title");
+    if (titulo) titulo.innerText = modo === "calendario" ? "Agenda — Vista de calendario" : "Agenda — Vista de lista";
+}
+window.mostrarVistaAgenda = mostrarVistaAgenda;
 
 // Cambiar de pantallas (SPA) y gestionar estados activos
 function switchTab(vista) {
@@ -191,6 +204,10 @@ function switchTab(vista) {
     }
     if (vista === "mantenimiento" && usuarioActual?.rol !== "Superadministrador") {
         alert("El mantenimiento de consecutivos es exclusivo del Superadministrador.");
+        return;
+    }
+    if (vista === "configuracion" && !["Superadministrador", "Administrador"].includes(usuarioActual?.rol)) {
+        alert("La configuración es exclusiva de la administración del despacho.");
         return;
     }
     // Ocultar todas las vistas primero
@@ -259,6 +276,7 @@ function switchTab(vista) {
         portal: "Portal de Consulta Ciudadana",
         comunicacion: "Centro de Comunicación",
         personal: "Gestión de Personal y Abogados",
+        configuracion: "Configuración del Despacho",
         mantenimiento: "Mantenimiento de Consecutivos"
     };
     

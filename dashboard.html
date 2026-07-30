@@ -49,26 +49,27 @@
                 </div>
             </div>
             
-            <!-- Menú Lateral -->
-            <ul class="sidebar-menu" id="menu-lateral">
-                <li id="menu-dashboard"><a href="#" class="menu-item" onclick="switchTab('dashboard')">🏠 Dashboard</a></li>
-                <li id="menu-clientes"><a href="#" class="menu-item" onclick="switchTab('clientes')">👥 Clientes</a></li>
-                <li id="menu-entrevistas"><a href="#" class="menu-item" onclick="switchTab('entrevistas'); cargarEntrevistas?.()">📝 Entrevistas</a></li>
-                <li id="menu-asuntos"><a href="#" class="menu-item" onclick="switchTab('asuntos')">⚖️ Asuntos</a></li>
-                <li id="menu-expedientes"><a href="#" class="menu-item" onclick="switchTab('expedientes')">📂 Expedientes</a></li>
-                <li id="menu-constructor-documentos"><a href="#" class="menu-item" onclick="switchTab('constructor-documentos')">📄 Constructor de documentos</a></li>
-                <li id="menu-biblioteca-juridica"><a href="#" class="menu-item" onclick="switchTab('biblioteca-juridica')">📚 Biblioteca jurídica</a></li>
-                <li id="menu-conocimiento-juridico"><a href="#" class="menu-item" onclick="switchTab('conocimiento-juridico')">🧭 Conocimiento procesal</a></li>
-                <li id="menu-buscador-juridico"><a href="#" class="menu-item" onclick="switchTab('buscador-juridico')">🔎 Buscador jurídico</a></li>
-                <li id="menu-agenda"><a href="#" class="menu-item" onclick="switchTab('agenda')">📅 Agenda</a></li>
-                <li id="menu-calendario"><a href="#" class="menu-item" onclick="switchTab('calendario')">🗓️ Calendario</a></li>
-                <!-- app.js inyectará aquí el botón de Personal automáticamente si el rol es Administrador -->
-            </ul>
+            <!-- Menú lateral: la marca permanece fija; las opciones y el cierre de sesión se desplazan -->
+            <div class="sidebar-scroll" id="sidebar-scroll">
+                <ul class="sidebar-menu" id="menu-lateral">
+                    <li id="menu-dashboard"><a href="#" class="menu-item" onclick="switchTab('dashboard')">🏠 Dashboard</a></li>
+                    <li id="menu-entrevistas"><a href="#" class="menu-item" onclick="switchTab('entrevistas'); cargarEntrevistas?.()">📝 Entrevistas</a></li>
+                    <li id="menu-clientes"><a href="#" class="menu-item" onclick="switchTab('clientes')">👥 Clientes</a></li>
+                    <li id="menu-asuntos"><a href="#" class="menu-item" onclick="switchTab('asuntos')">⚖️ Asuntos</a></li>
+                    <li id="menu-expedientes"><a href="#" class="menu-item" onclick="switchTab('expedientes')">📂 Expedientes</a></li>
+                    <li id="menu-agenda"><a href="#" class="menu-item" onclick="mostrarVistaAgenda('lista')">📅 Agenda</a></li>
+                    <li id="menu-constructor-documentos"><a href="#" class="menu-item" onclick="switchTab('constructor-documentos')">📄 Constructor de documentos</a></li>
+                    <li id="menu-conocimiento-juridico"><a href="#" class="menu-item" onclick="switchTab('conocimiento-juridico')">🧭 Conocimiento procesal</a></li>
+                    <li id="menu-biblioteca-juridica"><a href="#" class="menu-item" onclick="switchTab('biblioteca-juridica')">📚 Biblioteca jurídica</a></li>
+                    <li id="menu-buscador-juridico"><a href="#" class="menu-item" onclick="switchTab('buscador-juridico')">🔎 Buscador jurídico</a></li>
+                    <!-- Comunicación, Personal y Configuración se insertan según el rol -->
+                </ul>
 
-            <div class="sidebar-footer">
-                <span id="user-display">Usuario: ...</span><br>
-                <small id="role-display" style="color: #60a5fa;">Rol</small><br>
-                <button onclick="cerrarSesion()" class="btn-logout">🚪 Cerrar Sesión</button>
+                <div class="sidebar-footer">
+                    <span id="user-display">Usuario: ...</span><br>
+                    <small id="role-display" style="color: #60a5fa;">Rol</small><br>
+                    <button onclick="cerrarSesion()" class="btn-logout">🚪 Cerrar sesión</button>
+                </div>
             </div>
         </aside>
 
@@ -994,6 +995,10 @@
 
             <!-- VISTA 4: AGENDA JURÍDICA -->
             <section id="vista-agenda" class="app-view" style="display: none;">
+                <div class="agenda-view-switch" role="group" aria-label="Vista de agenda">
+                    <button type="button" class="agenda-view-btn active" data-agenda-view="lista" onclick="mostrarVistaAgenda('lista')">☷ Vista de lista</button>
+                    <button type="button" class="agenda-view-btn" data-agenda-view="calendario" onclick="mostrarVistaAgenda('calendario')">🗓 Vista de calendario</button>
+                </div>
                 <div class="toolbar">
                     <h3>Agenda de Audiencias y Términos</h3>
                     <button class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;" onclick="abrirModalAgenda()">+ Agendar Evento</button>
@@ -1058,6 +1063,10 @@
 
             <!-- VISTA 5: CALENDARIO JURÍDICO PROFESIONAL -->
             <section id="vista-calendario" class="app-view" style="display:none;">
+                <div class="agenda-view-switch" role="group" aria-label="Vista de agenda">
+                    <button type="button" class="agenda-view-btn" data-agenda-view="lista" onclick="mostrarVistaAgenda('lista')">☷ Vista de lista</button>
+                    <button type="button" class="agenda-view-btn active" data-agenda-view="calendario" onclick="mostrarVistaAgenda('calendario')">🗓 Vista de calendario</button>
+                </div>
                 <div class="toolbar">
                     <div>
                         <h3 style="margin-bottom:.25rem;">Calendario Jurídico Profesional</h3>
@@ -1187,6 +1196,24 @@
                             <!-- Se llena dinámicamente con JS -->
                         </tbody>
                     </table>
+                </div>
+            </section>
+
+            <!-- CONFIGURACIÓN DEL DESPACHO -->
+            <section id="vista-configuracion" class="app-view" style="display:none;">
+                <div class="configuracion-panel">
+                    <span class="configuracion-etiqueta">Administración</span>
+                    <h3>⚙️ Configuración</h3>
+                    <p>Personaliza los datos generales, preferencias, folios, catálogos, notificaciones y apariencia del despacho.</p>
+                    <div class="configuracion-grid">
+                        <article><strong>🏢 Datos del despacho</strong><span>Identidad, domicilio, contacto y logotipo.</span></article>
+                        <article><strong>🔢 Folios y consecutivos</strong><span>Formato y prefijos. Los contadores permanecen protegidos.</span></article>
+                        <article><strong>📚 Catálogos</strong><span>Materias, estatus, actuaciones y conceptos.</span></article>
+                        <article><strong>🔔 Agenda y notificaciones</strong><span>Alertas, anticipación y horario laboral.</span></article>
+                        <article><strong>🎨 Apariencia</strong><span>Nombre, logotipo y preferencias visuales.</span></article>
+                        <article><strong>🔐 Seguridad</strong><span>Sesión, permisos y registro de accesos.</span></article>
+                    </div>
+                    <div class="configuracion-aviso">El mantenimiento técnico y el reinicio de contadores no se muestran a los usuarios del despacho.</div>
                 </div>
             </section>
 

@@ -1,3 +1,9 @@
+## v4.0.1 — Encabezado fijo, menú desplazable y Configuración
+- Encabezado fijo en escritorio y móvil.
+- Navegación lateral desplazable con LexGear fijo.
+- Agenda con vistas lista/calendario.
+- Configuración sustituye a Mantenimiento en el menú.
+
 # v4.0.0 — Integración Mercantil
 
 - Nueva materia Mercantil en Conocimiento Procesal.
