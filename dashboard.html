@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/constructor-documentos.css">
     <link rel="stylesheet" href="css/biblioteca-juridica.css">
     <link rel="stylesheet" href="css/conocimiento-juridico.css">
+    <link rel="stylesheet" href="css/centro-conocimiento.css">
     <link rel="stylesheet" href="css/entrevistas.css">
 
 
@@ -58,9 +59,7 @@
                     <li id="menu-asuntos"><a href="#" class="menu-item" onclick="switchTab('asuntos')">⚖️ Asuntos</a></li>
                     <li id="menu-expedientes"><a href="#" class="menu-item" onclick="switchTab('expedientes')">📂 Expedientes</a></li>
                     <li id="menu-agenda"><a href="#" class="menu-item" onclick="mostrarVistaAgenda('lista')">📅 Agenda</a></li>
-                    <li id="menu-constructor-documentos"><a href="#" class="menu-item" onclick="switchTab('constructor-documentos')">📄 Constructor de documentos</a></li>
-                    <li id="menu-conocimiento-juridico"><a href="#" class="menu-item" onclick="switchTab('conocimiento-juridico')">🧭 Conocimiento procesal</a></li>
-                    <li id="menu-biblioteca-juridica"><a href="#" class="menu-item" onclick="switchTab('biblioteca-juridica')">📚 Biblioteca jurídica</a></li>
+                    <li id="menu-centro-conocimiento"><a href="#" class="menu-item" onclick="switchTab('centro-conocimiento')">🧠 Centro de conocimiento</a></li>
                     <li id="menu-buscador-juridico"><a href="#" class="menu-item" onclick="switchTab('buscador-juridico')">🔎 Buscador jurídico</a></li>
                     <!-- Comunicación, Personal y Configuración se insertan según el rol -->
                 </ul>
@@ -908,6 +907,67 @@
                 </div>
             </section>
 
+            <section id="vista-centro-conocimiento" class="app-view centro-conocimiento" style="display:none;">
+                <div class="cc-hero">
+                    <div>
+                        <span class="cc-eyebrow">LexGear · Arquitectura jurídica unificada</span>
+                        <h3>Centro de Conocimiento Jurídico</h3>
+                        <p>Consulta teoría, ruta procesal, legislación, modelos y herramientas desde un mismo tema jurídico.</p>
+                    </div>
+                    <div class="cc-hero-badge"><strong>Versión piloto</strong><span>Derecho Familiar</span></div>
+                </div>
+
+                <div class="cc-searchbar">
+                    <div class="form-group">
+                        <label for="cc-buscar">¿Qué necesitas resolver?</label>
+                        <input id="cc-buscar" type="search" placeholder="Ej. divorcio, alimentos, custodia, sociedad legal...">
+                    </div>
+                    <button class="btn-primary" type="button" onclick="buscarCentroConocimiento()">Buscar</button>
+                </div>
+
+                <div class="cc-modulos" aria-label="Módulos del Centro de Conocimiento">
+                    <button type="button" class="cc-modulo" data-cc-modulo="biblioteca" onclick="abrirModuloCentro('biblioteca')"><span>📚</span><strong>Biblioteca Jurídica</strong><small>Explicaciones y fundamentos</small></button>
+                    <button type="button" class="cc-modulo" data-cc-modulo="procesal" onclick="abrirModuloCentro('procesal')"><span>⚖️</span><strong>Conocimiento Procesal</strong><small>Ruta práctica de litigación</small></button>
+                    <button type="button" class="cc-modulo" data-cc-modulo="documentos" onclick="abrirModuloCentro('documentos')"><span>📄</span><strong>Constructor de Documentos</strong><small>Generación de escritos</small></button>
+                    <button type="button" class="cc-modulo" data-cc-modulo="formularios" onclick="abrirModuloCentro('formularios')"><span>📝</span><strong>Formularios Inteligentes</strong><small>Entrevistas guiadas</small></button>
+                    <button type="button" class="cc-modulo" data-cc-modulo="legislacion" onclick="abrirModuloCentro('legislacion')"><span>📖</span><strong>Legislación</strong><small>Normas relacionadas</small></button>
+                    <button type="button" class="cc-modulo" data-cc-modulo="jurisprudencia" onclick="abrirModuloCentro('jurisprudencia')"><span>🔎</span><strong>Jurisprudencia</strong><small>Criterios y tesis</small></button>
+                    <button type="button" class="cc-modulo" data-cc-modulo="estrategia" onclick="abrirModuloCentro('estrategia')"><span>🎯</span><strong>Estrategia Procesal</strong><small>Riesgos y decisiones</small></button>
+                    <button type="button" class="cc-modulo" data-cc-modulo="calculadoras" onclick="abrirModuloCentro('calculadoras')"><span>🧮</span><strong>Calculadoras Jurídicas</strong><small>Herramientas de apoyo</small></button>
+                </div>
+
+                <div class="cc-layout">
+                    <aside class="cc-materias">
+                        <div class="cc-panel-title"><strong>Materias</strong><span id="cc-materias-contador">0 activas</span></div>
+                        <div id="cc-lista-materias"></div>
+                    </aside>
+
+                    <div class="cc-contenido">
+                        <div class="cc-panel-title"><div><strong id="cc-titulo-materia">Temas de Derecho Familiar</strong><p>Selecciona un objeto jurídico para ver todos sus recursos relacionados.</p></div><span id="cc-contador">0 temas</span></div>
+                        <div id="cc-resultados" class="cc-temas"></div>
+                    </div>
+                </div>
+
+                <div id="cc-ficha" class="cc-ficha" hidden>
+                    <div class="cc-ficha-header">
+                        <div><span id="cc-ficha-materia" class="cc-tag">Derecho Familiar</span><h3 id="cc-ficha-titulo">Tema</h3><p id="cc-ficha-resumen"></p></div>
+                        <button class="btn-secundario" type="button" onclick="cerrarFichaCentro()">Cerrar ficha</button>
+                    </div>
+                    <div id="cc-ficha-indicadores" class="cc-indicadores"></div>
+                    <div class="cc-tabs" role="tablist">
+                        <button class="activo" data-cc-tab="explicacion" onclick="cambiarTabCentro('explicacion')">Explicación</button>
+                        <button data-cc-tab="procesal" onclick="cambiarTabCentro('procesal')">Cómo litigar</button>
+                        <button data-cc-tab="legislacion" onclick="cambiarTabCentro('legislacion')">Legislación</button>
+                        <button data-cc-tab="documentos" onclick="cambiarTabCentro('documentos')">Documentos</button>
+                        <button data-cc-tab="checklist" onclick="cambiarTabCentro('checklist')">Checklist</button>
+                        <button data-cc-tab="estrategia" onclick="cambiarTabCentro('estrategia')">Estrategia</button>
+                        <button data-cc-tab="recomendaciones" onclick="cambiarTabCentro('recomendaciones')">Recomendaciones</button>
+                        <button data-cc-tab="casos" onclick="cambiarTabCentro('casos')">Casos del despacho</button>
+                    </div>
+                    <div id="cc-ficha-panel" class="cc-ficha-panel"></div>
+                </div>
+            </section>
+
             <section id="vista-constructor-documentos" class="app-view constructor-documentos" style="display:none;">
                 <div class="toolbar constructor-cabecera">
                     <div><h3>Constructor de Documentos Jurídicos</h3><p>Genera, edita y guarda escritos usando los datos del asunto.</p></div>
@@ -1433,6 +1493,8 @@
 <script src="js/biblioteca-juridica.js"></script>
 <script src="js/conocimiento-juridico-data.js"></script>
 <script src="js/conocimiento-juridico.js"></script>
+<script src="js/centro-conocimiento-data.js"></script>
+<script src="js/centro-conocimiento.js"></script>
 <script src="js/agenda.js"></script>
 <script src="js/calendario.js"></script>
 <script src="js/personal.js"></script>

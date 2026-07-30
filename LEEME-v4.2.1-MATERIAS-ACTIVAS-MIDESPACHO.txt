@@ -1,0 +1,10 @@
+LEXGEAR v4.2.1 — MATERIAS ACTIVAS Y AMPLIACIÓN DE FORMATOS
+
+1. Se corrigió el panel Materias del Centro de Conocimiento.
+2. Todas las materias integradas se muestran activas y filtran sus propios temas.
+3. El contador de materias y temas es dinámico.
+4. Se añadieron 53 nuevas plantillas estructurales a partir de nombres y categorías visibles en la biblioteca pública de MiDespacho.
+5. No se copiaron literalmente los textos de terceros: cada opción genera una estructura original, editable y revisable de LexGear.
+6. El flujo Abrir tema > Documentos > Usar conserva la plantilla seleccionada en el Constructor.
+
+Total esperado del constructor: 209 plantillas.

@@ -95,6 +95,25 @@ const PLANTILLAS = {
 
 Object.assign(PLANTILLAS, window.PLANTILLAS_BASE || {});
 
+// Compatibilidad con identificadores usados por el Centro de Conocimiento.
+const ALIAS_PLANTILLAS = {
+    "fam-divorcio-incausado":"demanda-divorcio",
+    "fam-convenio-divorcio":"escrito-libre",
+    "promocion-generica":"escrito-libre",
+    "fam-demanda-alimentos":"demanda-alimentos",
+    "fam-alimentos-provisionales":"demanda-alimentos",
+    "incidente-generico":"estructura-juicio-civil-incidente-de-liquidacion-de-sentencia",
+    "fam-guarda-custodia":"contestacion-familiar",
+    "fam-medidas-provisionales":"escrito-libre",
+    "fam-convivencias":"escrito-libre",
+    "fam-liquidacion-sociedad":"estructura-juicio-civil-incidente-de-liquidacion-de-sentencia",
+    "fam-inventario-avaluo":"escrito-libre"
+};
+function resolverPlantilla(id){
+    const resuelta = ALIAS_PLANTILLAS[id] || id;
+    return PLANTILLAS[resuelta] ? resuelta : "";
+}
+
 function contratoBase(a, titulo, clausulas){
     const ac=actor(a), de=demandado(a);
     return `<h2>${esc(titulo)}</h2><p>QUE CELEBRAN, POR UNA PARTE, <strong>${comparecencia(ac,false)}</strong>, A QUIEN EN LO SUCESIVO SE LE DENOMINARÁ “LA PRIMERA PARTE”, Y POR LA OTRA <strong>${comparecencia(de,false)}</strong>, A QUIEN SE LE DENOMINARÁ “LA SEGUNDA PARTE”, AL TENOR DE LAS SIGUIENTES:</p><h3>D E C L A R A C I O N E S</h3><p><strong>I. Declara la primera parte:</strong></p><ol><li>[Identidad, capacidad, domicilio y datos fiscales.]</li><li>[Titularidad o facultades relacionadas con el objeto.]</li></ol><p><strong>II. Declara la segunda parte:</strong></p><ol><li>[Identidad, capacidad, domicilio y datos fiscales.]</li><li>[Interés y facultades para contratar.]</li></ol><p><strong>III. Declaran ambas partes:</strong> que se reconocen personalidad y capacidad para obligarse.</p><h3>C L Á U S U L A S</h3><ol>${clausulas.map((c,i)=>`<li><strong>${["PRIMERA","SEGUNDA","TERCERA","CUARTA","QUINTA","SEXTA","SÉPTIMA","OCTAVA"][i] || (i+1)}.</strong> ${c}</li>`).join("")}</ol><p><strong>JURISDICCIÓN.</strong> Para la interpretación y cumplimiento, las partes se someten a [TRIBUNALES Y LEGISLACIÓN], renunciando al fuero que pudiera corresponderles.</p>${avisoRevision()}<p style="text-align:center;margin-top:48px"><strong>FIRMAS</strong></p><table style="width:100%;margin-top:50px"><tr><td style="width:45%;text-align:center;border-top:1px solid #000">${texto(ac.nombre,"PRIMERA PARTE")}</td><td style="width:10%"></td><td style="width:45%;text-align:center;border-top:1px solid #000">${texto(de.nombre,"SEGUNDA PARTE")}</td></tr></table>`;
@@ -142,9 +161,12 @@ window.nuevoDocumentoJuridico=async()=>{
     cargarTipos();
     await cargarAsuntos();
     const pendiente=sessionStorage.getItem("jslt_plantilla_pendiente");
-    if(pendiente && $("doc-tipo")?.querySelector(`option[value="${CSS.escape(pendiente)}"]`)){
-        $("doc-tipo").value=pendiente;
+    const tipoResuelto=resolverPlantilla(pendiente);
+    if(tipoResuelto && $("doc-tipo")?.querySelector(`option[value="${CSS.escape(tipoResuelto)}"]`)){
+        $("doc-tipo").value=tipoResuelto;
+        $("doc-tipo").dispatchEvent(new Event("change", { bubbles:true }));
         sessionStorage.removeItem("jslt_plantilla_pendiente");
+        $("doc-tipo").scrollIntoView({block:"center",behavior:"smooth"});
     }
 };
 

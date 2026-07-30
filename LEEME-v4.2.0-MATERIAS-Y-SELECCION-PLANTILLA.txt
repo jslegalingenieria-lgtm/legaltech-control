@@ -1,0 +1,18 @@
+LEXGEAR v4.2.0 · CENTRO DE CONOCIMIENTO MULTIMATERIA
+
+Cambios principales:
+1. Se ampliaron las fichas del Centro de Conocimiento a Civil, Mercantil,
+   Laboral, Administrativo, Amparo, Penal, Contratos y Sucesorio.
+2. Se mantuvo Derecho Familiar y se corrigieron sus vínculos de documentos.
+3. Al pulsar Abrir tema > Documentos/Recomendaciones > Usar, el Constructor
+   abre con el tipo de escrito seleccionado y ya no con el primero de la lista.
+4. Se añadió compatibilidad con identificadores anteriores para no romper
+   fichas o datos existentes.
+5. La taxonomía y selección inicial de documentos toma como referencia la
+   organización pública de formatos de MiDespacho; los textos incorporados
+   en LexGear son estructuras originales y editables, no copias literales.
+
+Prueba sugerida:
+- Centro de conocimiento > Mercantil > Juicio ejecutivo mercantil.
+- Documentos > Demanda ejecutiva mercantil > Usar.
+- Confirmar que en Tipo de escrito aparece la plantilla elegida.

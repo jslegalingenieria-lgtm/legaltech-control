@@ -1402,6 +1402,487 @@ const CATALOGO_AMPLIADO = [
   }
 ];
 CATALOGO.push(...CATALOGO_AMPLIADO);
+const CATALOGO_MIDESPACHO = [
+  {
+    "id": "midespacho-acta-constitutiva-y-primera-asamblea-de-una-asociacion-civil",
+    "materia": "Mercantil",
+    "etapa": "Actas de asamblea",
+    "nombre": "Acta Constitutiva y Primera Asamblea de una Asociación Civil",
+    "tipo": "contrato",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acta-de-asamblea-de-cambio-de-regimen-juridico-de-s-a-a-s-a-de-c-v",
+    "materia": "Mercantil",
+    "etapa": "Actas de asamblea",
+    "nombre": "Acta de Asamblea de Cambio de Régimen Jurídico de S.A. a S.A. de C.V.",
+    "tipo": "contrato",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acta-de-asamblea-especial-de-accionistas-de-la-serie-a",
+    "materia": "Mercantil",
+    "etapa": "Actas de asamblea",
+    "nombre": "Acta de Asamblea Especial de Accionistas de la Serie A",
+    "tipo": "contrato",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acta-de-asamblea-extraordinaria-para-fusion-de-sociedades",
+    "materia": "Mercantil",
+    "etapa": "Actas de asamblea",
+    "nombre": "Acta de Asamblea Extraordinaria para Fusión de Sociedades",
+    "tipo": "contrato",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acta-de-asamblea-extraordinaria-para-cambio-de-objeto-social",
+    "materia": "Mercantil",
+    "etapa": "Actas de asamblea",
+    "nombre": "Acta de Asamblea Extraordinaria para Cambio de Objeto Social",
+    "tipo": "contrato",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acta-de-asamblea-general-extraordinaria-para-aprobar-balance-de-liquidacion",
+    "materia": "Mercantil",
+    "etapa": "Actas de asamblea",
+    "nombre": "Acta de Asamblea General Extraordinaria para Aprobar Balance de Liquidación",
+    "tipo": "contrato",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acta-de-asamblea-para-amortizar-acciones-y-emitir-acciones-de-goce",
+    "materia": "Mercantil",
+    "etapa": "Actas de asamblea",
+    "nombre": "Acta de Asamblea para Amortizar Acciones y Emitir Acciones de Goce",
+    "tipo": "contrato",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acta-de-asamblea-para-emitir-bonos-u-obligaciones",
+    "materia": "Mercantil",
+    "etapa": "Actas de asamblea",
+    "nombre": "Acta de Asamblea para Emitir Bonos u Obligaciones",
+    "tipo": "contrato",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acta-de-asamblea-general-ordinaria",
+    "materia": "Mercantil",
+    "etapa": "Actas de asamblea",
+    "nombre": "Acta de Asamblea General Ordinaria",
+    "tipo": "contrato",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acta-de-asamblea-para-admision-de-nuevos-socios-y-modificacion-de-estatutos",
+    "materia": "Mercantil",
+    "etapa": "Actas de asamblea",
+    "nombre": "Acta de Asamblea para Admisión de Nuevos Socios y Modificación de Estatutos",
+    "tipo": "contrato",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-aclaracion-al-acuerdo-que-fija-dia-y-hora-para-remate",
+    "materia": "Civil",
+    "etapa": "Acuerdos y promociones",
+    "nombre": "Aclaración al Acuerdo que Fija Día y Hora para Remate",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acta-de-acuerdo-en-audiencia-de-justicia-alternativa",
+    "materia": "Civil",
+    "etapa": "Justicia alternativa",
+    "nombre": "Acta de Acuerdo en Audiencia de Justicia Alternativa",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acta-de-no-acuerdo-en-justicia-alternativa",
+    "materia": "Civil",
+    "etapa": "Justicia alternativa",
+    "nombre": "Acta de No Acuerdo en Justicia Alternativa",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acuerdo-de-admision-del-recurso-de-revision",
+    "materia": "Administrativo",
+    "etapa": "Recursos",
+    "nombre": "Acuerdo de Admisión del Recurso de Revisión",
+    "tipo": "administrativo",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acuerdo-de-certificacion-en-juicio-de-arrendamiento",
+    "materia": "Civil",
+    "etapa": "Arrendamiento",
+    "nombre": "Acuerdo de Certificación en Juicio de Arrendamiento",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acuerdo-de-citacion-de-testigos",
+    "materia": "Civil",
+    "etapa": "Pruebas",
+    "nombre": "Acuerdo de Citación de Testigos",
+    "tipo": "pruebas",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acuerdo-de-declaratoria-de-ejecutoria-de-sentencia-de-amparo",
+    "materia": "Amparo",
+    "etapa": "Ejecución",
+    "nombre": "Acuerdo de Declaratoria de Ejecutoria de Sentencia de Amparo",
+    "tipo": "cumplimiento_amparo",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-contestacion-de-demanda-y-reconvencion-en-juicio-de-filiacion",
+    "materia": "Familiar",
+    "etapa": "Filiación",
+    "nombre": "Contestación de demanda y reconvención en juicio de filiación",
+    "tipo": "contestacion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-solicitud-de-devolucion-de-fianza-cancelada",
+    "materia": "Civil",
+    "etapa": "Garantías",
+    "nombre": "Solicitud de devolución de fianza cancelada",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acuerdo-de-ejercicio-de-la-accion-penal",
+    "materia": "Penal",
+    "etapa": "Investigación",
+    "nombre": "Acuerdo de Ejercicio de la Acción Penal",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-agravios-en-apelacion-contra-sentencia-de-embargo-precautorio",
+    "materia": "Civil",
+    "etapa": "Agravios",
+    "nombre": "Agravios en apelación contra sentencia de embargo precautorio",
+    "tipo": "recurso",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-agravios-en-apelacion-contra-sentencia-definitiva",
+    "materia": "Civil",
+    "etapa": "Agravios",
+    "nombre": "Agravios en apelación contra sentencia definitiva",
+    "tipo": "recurso",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-agravios-en-apelacion-contra-sentencia-ejecutoria",
+    "materia": "Civil",
+    "etapa": "Agravios",
+    "nombre": "Agravios en apelación contra sentencia ejecutoria",
+    "tipo": "recurso",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-agravios-en-apelacion-contra-sentencia-interlocutoria",
+    "materia": "Civil",
+    "etapa": "Agravios",
+    "nombre": "Agravios en apelación contra sentencia interlocutoria",
+    "tipo": "recurso",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-agravios-en-apelacion-contra-auto-de-formal-prision",
+    "materia": "Penal",
+    "etapa": "Agravios",
+    "nombre": "Agravios en apelación contra auto de formal prisión",
+    "tipo": "recurso",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-agravios-por-omision-de-requerimiento-de-la-autoridad-laboral",
+    "materia": "Laboral",
+    "etapa": "Agravios",
+    "nombre": "Agravios por omisión de requerimiento de la autoridad laboral",
+    "tipo": "recurso",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-escrito-de-agravios-en-apelacion",
+    "materia": "Civil",
+    "etapa": "Agravios",
+    "nombre": "Escrito de agravios en apelación",
+    "tipo": "recurso",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-expresion-de-agravios",
+    "materia": "Civil",
+    "etapa": "Agravios",
+    "nombre": "Expresión de agravios",
+    "tipo": "recurso",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-alegatos-en-amparo-indirecto-laboral",
+    "materia": "Amparo",
+    "etapa": "Alegatos",
+    "nombre": "Alegatos en amparo indirecto laboral",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-alegatos-en-materia-familiar",
+    "materia": "Familiar",
+    "etapa": "Alegatos",
+    "nombre": "Alegatos en materia familiar",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-alegatos-de-la-parte-actora-en-contradiccion-de-maternidad",
+    "materia": "Familiar",
+    "etapa": "Filiación",
+    "nombre": "Alegatos de la parte actora en contradicción de maternidad",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-alegatos-de-la-parte-actora-en-impugnacion-de-paternidad",
+    "materia": "Familiar",
+    "etapa": "Filiación",
+    "nombre": "Alegatos de la parte actora en impugnación de paternidad",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-alegatos-dentro-del-termino-constitucional",
+    "materia": "Penal",
+    "etapa": "Alegatos",
+    "nombre": "Alegatos dentro del término constitucional",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-alegatos-en-rectificacion-de-acta-de-nacimiento-con-efectos-de-filiacion",
+    "materia": "Familiar",
+    "etapa": "Registro civil",
+    "nombre": "Alegatos en rectificación de acta de nacimiento con efectos de filiación",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acta-de-notificacion-de-demanda-incidental-de-alimentos",
+    "materia": "Familiar",
+    "etapa": "Alimentos",
+    "nombre": "Acta de notificación de demanda incidental de alimentos",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acuerdo-de-radicacion-de-demanda-de-alimentos-en-via-ordinaria",
+    "materia": "Familiar",
+    "etapa": "Alimentos",
+    "nombre": "Acuerdo de radicación de demanda de alimentos en vía ordinaria",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-ratificacion-de-contestacion-y-allanamiento-en-alimentos",
+    "materia": "Familiar",
+    "etapa": "Alimentos",
+    "nombre": "Ratificación de contestación y allanamiento en alimentos",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-contestacion-de-demanda-de-alimentos",
+    "materia": "Familiar",
+    "etapa": "Alimentos",
+    "nombre": "Contestación de demanda de alimentos",
+    "tipo": "contestacion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acuerdo-de-admision-de-pruebas-en-juicio-de-alimentos",
+    "materia": "Familiar",
+    "etapa": "Alimentos",
+    "nombre": "Acuerdo de admisión de pruebas en juicio de alimentos",
+    "tipo": "pruebas",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-promocion-para-acusar-rebeldia-de-la-parte-demandada",
+    "materia": "Familiar",
+    "etapa": "Alimentos",
+    "nombre": "Promoción para acusar rebeldía de la parte demandada",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-demanda-de-constitucion-forzosa-de-patrimonio-de-familia",
+    "materia": "Familiar",
+    "etapa": "Patrimonio de familia",
+    "nombre": "Demanda de constitución forzosa de patrimonio de familia",
+    "tipo": "demanda",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-demanda-de-amparo-contra-leyes",
+    "materia": "Amparo",
+    "etapa": "Amparo contra leyes",
+    "nombre": "Demanda de amparo contra leyes",
+    "tipo": "amparo_indirecto",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-amparo-indirecto-con-suspension-de-plano",
+    "materia": "Amparo",
+    "etapa": "Amparo indirecto",
+    "nombre": "Amparo indirecto con suspensión de plano",
+    "tipo": "amparo_indirecto",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-amparo-indirecto-contra-orden-de-aprehension-dictada-fuera-de-procedimiento",
+    "materia": "Amparo",
+    "etapa": "Amparo indirecto",
+    "nombre": "Amparo indirecto contra orden de aprehensión dictada fuera de procedimiento",
+    "tipo": "amparo_indirecto",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-amparo-adhesivo-laboral",
+    "materia": "Amparo",
+    "etapa": "Amparo laboral",
+    "nombre": "Amparo adhesivo laboral",
+    "tipo": "amparo_directo",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-amparo-indirecto-contra-embargo-de-cuentas-bancarias",
+    "materia": "Amparo",
+    "etapa": "Amparo fiscal",
+    "nombre": "Amparo indirecto contra embargo de cuentas bancarias",
+    "tipo": "amparo_indirecto",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-demanda-de-amparo-directo-en-materia-civil",
+    "materia": "Amparo",
+    "etapa": "Amparo directo",
+    "nombre": "Demanda de amparo directo en materia civil",
+    "tipo": "amparo_directo",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-demanda-de-amparo-directo-en-materia-laboral",
+    "materia": "Amparo",
+    "etapa": "Amparo directo",
+    "nombre": "Demanda de amparo directo en materia laboral",
+    "tipo": "amparo_directo",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-auto-admisorio-de-demanda-de-amparo-directo",
+    "materia": "Amparo",
+    "etapa": "Amparo directo",
+    "nombre": "Auto admisorio de demanda de amparo directo",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-acuerdo-de-tramite-para-amparo-indirecto",
+    "materia": "Amparo",
+    "etapa": "Amparo indirecto",
+    "nombre": "Acuerdo de trámite para amparo indirecto",
+    "tipo": "promocion",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-amparo-directo-contra-sentencia-del-tribunal-federal-de-justicia-administrativa",
+    "materia": "Amparo",
+    "etapa": "Amparo directo",
+    "nombre": "Amparo directo contra sentencia del Tribunal Federal de Justicia Administrativa",
+    "tipo": "amparo_directo",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-demanda-de-amparo-directo-en-materia-penal",
+    "materia": "Amparo",
+    "etapa": "Amparo penal",
+    "nombre": "Demanda de amparo directo en materia penal",
+    "tipo": "amparo_directo",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  },
+  {
+    "id": "midespacho-demanda-de-amparo-indirecto-contra-orden-de-arresto-administrativo",
+    "materia": "Amparo",
+    "etapa": "Amparo indirecto",
+    "nombre": "Demanda de amparo indirecto contra orden de arresto administrativo",
+    "tipo": "amparo_indirecto",
+    "origen": "Catálogo público MiDespacho; estructura original LexGear",
+    "revision": true
+  }
+];
+CATALOGO.push(...CATALOGO_MIDESPACHO);
+
 
 window.PLANTILLAS_BASE = {};
 window.CATALOGO_PLANTILLAS_BASE = CATALOGO;

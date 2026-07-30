@@ -245,6 +245,10 @@ function switchTab(vista) {
         renderizarTablaPersonal();
     }
 
+    if (vista === "centro-conocimiento" && typeof window.inicializarCentroConocimiento === "function") {
+        window.inicializarCentroConocimiento();
+    }
+
     if (vista === "expedientes" && typeof window.cargarExpedientes === "function") {
         window.cargarExpedientes();
     }
@@ -277,6 +281,10 @@ function switchTab(vista) {
         comunicacion: "Centro de Comunicación",
         personal: "Gestión de Personal y Abogados",
         configuracion: "Configuración del Despacho",
+        "centro-conocimiento": "Centro de Conocimiento Jurídico",
+        "constructor-documentos": "Constructor de Documentos Jurídicos",
+        "conocimiento-juridico": "Conocimiento Procesal",
+        "biblioteca-juridica": "Biblioteca Jurídica",
         mantenimiento: "Mantenimiento de Consecutivos"
     };
     

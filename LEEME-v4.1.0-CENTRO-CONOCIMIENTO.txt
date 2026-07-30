@@ -1,0 +1,41 @@
+LEXGEAR v4.1.0 — CENTRO DE CONOCIMIENTO JURÍDICO
+
+OBJETIVO
+Esta versión inicia la transición gradual de la Biblioteca Jurídica tradicional hacia una arquitectura unificada por objetos jurídicos.
+
+CAMBIOS PRINCIPALES
+1. El menú lateral muestra un único acceso: Centro de conocimiento.
+2. Desde el Centro se conservan enlaces a:
+   - Biblioteca Jurídica
+   - Conocimiento Procesal
+   - Constructor de Documentos
+   - Entrevistas/Formularios
+   - Buscador Jurídico/Jurisprudencia
+3. Se añadió Derecho Familiar como piloto.
+4. Temas iniciales:
+   - Divorcio
+   - Alimentos
+   - Guarda y custodia
+   - Régimen de convivencias
+   - Liquidación de sociedad legal
+5. Cada tema reúne explicación, ruta procesal, fuentes normativas, documentos, checklist y estrategia.
+
+ARCHIVOS NUEVOS
+- css/centro-conocimiento.css
+- js/centro-conocimiento-data.js
+- js/centro-conocimiento.js
+
+ARCHIVOS MODIFICADOS
+- dashboard.html
+- js/app.js
+- CHANGELOG.md
+
+IMPORTANTE
+Los módulos anteriores no se eliminaron. Se mantienen como vistas internas para evitar pérdida de contenido y permitir una migración gradual.
+
+PRUEBA RÁPIDA
+1. Inicia sesión.
+2. Abre "Centro de conocimiento".
+3. Busca "divorcio" o selecciona una ficha.
+4. Recorre las pestañas de la ficha.
+5. Prueba los accesos a Biblioteca, Conocimiento Procesal y Constructor.

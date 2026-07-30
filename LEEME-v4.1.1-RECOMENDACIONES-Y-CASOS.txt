@@ -1,0 +1,13 @@
+LEXGEAR v4.1.1 — RECOMENDACIONES Y CASOS DEL DESPACHO
+
+Cambios principales:
+1. Cada objeto jurídico incluye una pestaña de Recomendaciones.
+2. Las recomendaciones sugieren documentos y explican por qué pueden ser útiles.
+3. Cada objeto jurídico muestra los asuntos reales del despacho que coinciden por materia, acción y palabras clave.
+4. Se calculan indicadores de casos totales, en trámite, concluidos y cancelados.
+5. Desde la ficha se puede abrir la bitácora del asunto relacionado.
+6. Las tarjetas del Centro de Conocimiento muestran cuántos casos relacionados existen.
+7. La integración es compatible con la caché actual de asuntos y con la sincronización de Firebase.
+
+Nota:
+La relación de casos es automática y se basa en palabras clave. En una siguiente etapa podrá guardarse directamente el identificador del objeto jurídico dentro de cada asunto para lograr una relación exacta.

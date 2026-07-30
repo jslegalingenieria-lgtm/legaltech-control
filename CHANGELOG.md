@@ -167,3 +167,10 @@
 - Interruptor de gestión documental controlado por Superadministrador.
 - Metadatos documentales almacenados en Firestore.
 - Reglas de Firestore y Storage incluidas.
+
+## v4.1.0 — Centro de Conocimiento Jurídico (piloto)
+- Se unificaron Biblioteca Jurídica, Conocimiento Procesal y Constructor de Documentos bajo un nuevo acceso principal: Centro de Conocimiento.
+- Se añadió una interfaz de búsqueda por problema jurídico y navegación por recursos relacionados.
+- Se incorporó Derecho Familiar como materia piloto con fichas de Divorcio, Alimentos, Guarda y Custodia, Convivencias y Liquidación de Sociedad Legal.
+- Cada ficha integra explicación, ruta procesal, legislación, documentos, checklist y estrategia.
+- Se conservaron los módulos anteriores y sus datos para una migración gradual sin pérdida de funcionalidad.
