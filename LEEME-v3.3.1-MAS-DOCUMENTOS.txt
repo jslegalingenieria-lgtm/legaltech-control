@@ -1,0 +1,52 @@
+JS LEGALTECH CONTROL v3.3.1-alpha2
+CONSTRUCTOR CON MÁS DOCUMENTOS
+
+Esta versión amplía el Constructor de Documentos Jurídicos.
+
+PLANTILLAS INCLUIDAS
+
+FAMILIAR
+- Demanda de divorcio incausado
+- Demanda de alimentos
+- Contestación de demanda familiar
+- Promoción de ofrecimiento de pruebas
+
+CIVIL
+- Demanda de desahucio
+- Contestación de demanda de desahucio
+- Diligencias de jurisdicción voluntaria
+- Recurso de apelación
+
+MERCANTIL
+- Demanda ejecutiva mercantil
+- Contestación de demanda mercantil
+- Oposición a acuerdos de asamblea
+
+LABORAL
+- Demanda por despido injustificado
+- Aclaración administrativa ante IMSS
+
+AMPARO
+- Amparo indirecto
+- Amparo directo
+- Solicitud de suspensión
+
+CONTRATOS
+- Arrendamiento
+- Comodato
+- Compraventa
+- Prestación de servicios profesionales
+
+GENERAL
+- Escrito libre / promoción
+
+FUNCIONAMIENTO
+1. Registra o edita un asunto y captura sus partes procesales.
+2. Entra a Constructor de documentos.
+3. Pulsa Nuevo documento.
+4. Selecciona el asunto y el tipo de escrito.
+5. Genera el borrador, completa los campos entre corchetes y revisa fundamentos.
+6. Guarda el documento o expórtalo a Word/PDF.
+
+IMPORTANTE
+Las plantillas son borradores de trabajo. Antes de presentar cualquier escrito debe revisarse competencia, vía, plazos, fundamentos, prestaciones, pruebas y anexos conforme al caso concreto y la legislación vigente.

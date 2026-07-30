@@ -53,9 +53,13 @@
             actuaciones: Array.isArray(datos.actuaciones)
                 ? datos.actuaciones
                 : [],
-            correos: Array.isArray(datos.correos)
-                ? datos.correos
-                : []
+            correos: Array.isArray(datos.correos) ? datos.correos : [],
+            partes: {
+                actor: { tipo: datos.partes?.actor?.tipo || "fisica", nombre: datos.partes?.actor?.nombre || "", representante: datos.partes?.actor?.representante || "", caracter: datos.partes?.actor?.caracter || "" },
+                demandado: { tipo: datos.partes?.demandado?.tipo || "fisica", nombre: datos.partes?.demandado?.nombre || "", representante: datos.partes?.demandado?.representante || "", caracter: datos.partes?.demandado?.caracter || "" },
+                terceroInteresado: datos.partes?.terceroInteresado || "",
+                autoridadResponsable: datos.partes?.autoridadResponsable || ""
+            }
         };
     }
 
@@ -610,6 +614,22 @@
                 estado,
                 activo: !["Concluido", "Cancelado"].includes(estado),
                 resumen,
+                partes: {
+                    actor: {
+                        tipo: document.getElementById("asu-actor-tipo")?.value || "fisica",
+                        nombre: document.getElementById("asu-actor-nombre")?.value.trim() || "",
+                        representante: document.getElementById("asu-actor-representante")?.value.trim() || "",
+                        caracter: document.getElementById("asu-actor-caracter")?.value.trim() || ""
+                    },
+                    demandado: {
+                        tipo: document.getElementById("asu-demandado-tipo")?.value || "fisica",
+                        nombre: document.getElementById("asu-demandado-nombre")?.value.trim() || "",
+                        representante: document.getElementById("asu-demandado-representante")?.value.trim() || "",
+                        caracter: document.getElementById("asu-demandado-caracter")?.value.trim() || ""
+                    },
+                    terceroInteresado: document.getElementById("asu-tercero")?.value.trim() || "",
+                    autoridadResponsable: document.getElementById("asu-autoridad")?.value.trim() || ""
+                },
                 abogadoAsignado,
                 colaboradores,
                 colaboradorIds,
@@ -779,6 +799,19 @@
 
         document.getElementById("asu-resumen").value =
             asunto.resumen || "";
+
+        const partes = asunto.partes || {};
+        const asignar = (id, valor) => { const el = document.getElementById(id); if (el) el.value = valor || ""; };
+        asignar("asu-actor-tipo", partes.actor?.tipo || "fisica");
+        asignar("asu-actor-nombre", partes.actor?.nombre);
+        asignar("asu-actor-representante", partes.actor?.representante);
+        asignar("asu-actor-caracter", partes.actor?.caracter);
+        asignar("asu-demandado-tipo", partes.demandado?.tipo || "fisica");
+        asignar("asu-demandado-nombre", partes.demandado?.nombre);
+        asignar("asu-demandado-representante", partes.demandado?.representante);
+        asignar("asu-demandado-caracter", partes.demandado?.caracter);
+        asignar("asu-tercero", partes.terceroInteresado);
+        asignar("asu-autoridad", partes.autoridadResponsable);
 
         const selectAbogado =
             obtenerSelectAbogadoElemento();

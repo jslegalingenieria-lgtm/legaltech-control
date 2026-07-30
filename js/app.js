@@ -147,8 +147,10 @@ function configurarInterfazPorRol(rol) {
 
     mostrar("menu-dashboard", rol !== "Cliente");
     mostrar("menu-clientes", rol !== "Cliente");
+    mostrar("menu-entrevistas", rol !== "Cliente");
     mostrar("menu-asuntos", rol !== "Cliente");
     mostrar("menu-expedientes", rol !== "Cliente");
+    mostrar("menu-constructor-documentos", rol !== "Cliente");
     mostrar("menu-agenda", rol !== "Cliente");
     mostrar("menu-calendario", rol !== "Cliente");
     mostrar("menu-portal", rol === "Cliente");

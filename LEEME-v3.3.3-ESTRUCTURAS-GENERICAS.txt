@@ -1,0 +1,23 @@
+JS LEGALTECH CONTROL v3.3.3 - ESTRUCTURAS GENÉRICAS
+
+CORRECCIÓN PRINCIPAL
+La biblioteca ya no incorpora el texto completo de escritos reales.
+Se eliminaron nombres, domicilios, hechos, cantidades, artículos, tesis, argumentos y situaciones particulares.
+
+NUEVO FUNCIONAMIENTO
+- Cada opción conserva únicamente la estructura general del tipo de documento.
+- Los datos procesales disponibles se toman del asunto: actor, demandado, juzgado y expediente.
+- Lo que depende del caso se muestra entre corchetes para que el abogado lo complete.
+- Los fundamentos legales deben revisarse y capturarse para cada asunto.
+- No se reutilizan hechos ni argumentos de otros clientes.
+
+PRUEBA RECOMENDADA
+1. Ingrese al Constructor de documentos.
+2. Seleccione un asunto y una plantilla estructural.
+3. Verifique que no aparezcan nombres, domicilios, artículos o hechos ajenos al asunto.
+4. Complete los apartados entre corchetes.
+
+PUBLICACIÓN
+firebase deploy --only hosting
+
+Si el navegador muestra una versión anterior, recargue con Ctrl+F5 o elimine los datos del sitio una sola vez.

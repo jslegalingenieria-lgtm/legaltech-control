@@ -101,6 +101,15 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    match /entrevistas/{id} {
+      allow read: if operacionGeneral() || asignado(resource.data);
+      allow create: if operacionGeneral() || (
+        (abogado() || pasante()) && request.resource.data.abogadoAsignado == responsableUsuario()
+      );
+      allow update: if gestionTotal() || auxiliar() || asignado(resource.data);
+      allow delete: if false;
+    }
+
     match /asuntos/{id} {
       allow read: if operacionGeneral() || asignado(resource.data) || asuntoDelCliente(resource.data);
       allow create: if operacionGeneral() || (
@@ -203,5 +212,11 @@ service cloud.firestore {
     }
 
     match /{document=**} { allow read, write: if false; }
+
+    match /documentos_juridicos/{id} {
+      allow read, create, update: if operacionGeneral() || abogado() || pasante();
+      allow delete: if gestionTotal();
+    }
+
   }
 }

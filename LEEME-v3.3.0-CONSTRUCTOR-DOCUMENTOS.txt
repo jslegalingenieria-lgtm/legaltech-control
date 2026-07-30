@@ -1,0 +1,34 @@
+JS LEGALTECH CONTROL v3.3.0
+CONSTRUCTOR DE DOCUMENTOS JURÍDICOS - PRIMERA PRUEBA
+
+CAMBIOS PRINCIPALES
+1. El formulario de Asuntos ahora incluye Partes procesales:
+   - Actor/promovente: persona física o moral.
+   - Nombre o razón social.
+   - Representante legal y carácter.
+   - Demandado/contraparte con los mismos datos.
+   - Tercero interesado y autoridad responsable opcionales.
+
+2. Nuevo módulo: Constructor de documentos.
+   - Selección de asunto.
+   - Primera plantilla: Demanda de divorcio incausado.
+   - Plantilla de escrito libre.
+   - Editor enriquecido.
+   - Guardado en Firestore.
+   - Descarga compatible con Microsoft Word en formato .doc.
+   - Impresión o guardado como PDF desde el navegador.
+
+ANTES DE PROBAR
+1. Reemplaza tu proyecto por esta versión o pruébala en una carpeta separada.
+2. Publica las reglas actualizadas:
+   firebase deploy --only firestore:rules
+3. Publica el sitio:
+   firebase deploy --only hosting
+4. Crea o edita un asunto y captura las partes procesales.
+5. Entra a “Constructor de documentos”, pulsa “Nuevo documento”, selecciona el asunto y genera el borrador.
+
+IMPORTANTE
+La demanda generada es un borrador de prueba. Los fundamentos jurídicos, hechos, prestaciones y petitorios deben revisarse y completarse antes de cualquier presentación judicial.
+
+COMPATIBILIDAD
+Los asuntos anteriores seguirán funcionando. Los nuevos campos se almacenan dentro del objeto “partes” de cada asunto.

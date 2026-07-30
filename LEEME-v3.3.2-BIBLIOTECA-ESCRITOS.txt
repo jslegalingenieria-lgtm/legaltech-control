@@ -1,0 +1,22 @@
+JS LegalTech Control v3.3.2 — Biblioteca de escritos base
+
+CAMBIOS
+- Se incorporaron 64 escritos del paquete "escritos base" al Constructor de Documentos.
+- Se organizaron por materia y etapa procesal.
+- Las plantillas importadas aparecen junto con las plantillas inteligentes existentes.
+- Se sustituyen automáticamente expediente, actor, demandado, cliente, juzgado y representantes cuando existen marcadores compatibles.
+- Se aplicó una depuración automática básica de teléfonos, correos, RFC, CURP y algunos nombres identificados.
+- Se actualizó la caché PWA.
+
+IMPORTANTE
+Las plantillas provienen de escritos reales. Antes de usarlas o distribuir el software, revise cada una para retirar datos personales residuales y actualizar competencia, vía, fundamentos, plazos y anexos. La conversión conserva principalmente el texto; algunos formatos complejos de Word pueden requerir ajuste en el editor.
+
+DESPLIEGUE
+firebase deploy --only hosting
+
+PRUEBA
+1. Abra Constructor de documentos.
+2. Pulse Nuevo documento.
+3. Seleccione un asunto.
+4. Abra el selector de documentos: aparecerán las materias y las plantillas importadas agrupadas.
+5. Genere, edite y guarde el borrador.

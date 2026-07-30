@@ -1,0 +1,28 @@
+JS LEGALTECH CONTROL v4.0.0 — INTEGRACIÓN MERCANTIL
+
+NOVEDADES
+- Se incorpora Derecho Mercantil al módulo Conocimiento Procesal.
+- Se agregan 6 fichas: diagnóstico y selección de vía, ejecutivo, títulos de crédito, oral, ordinario y arbitraje.
+- Entrevistas dinámicas por procedimiento.
+- Checklists documentales y de revisión.
+- Rutas procesales orientativas.
+- Selector de vía mercantil.
+- Control orientativo de prescripción.
+- Errores críticos por procedimiento.
+
+PRUEBA RÁPIDA
+1. Abrir dashboard.html o desplegar en Firebase Hosting.
+2. Entrar en Conocimiento procesal.
+3. Seleccionar Materia: Mercantil.
+4. Probar cada procedimiento y sus pestañas.
+5. Registrar respuestas y marcar checklists; se conservan localmente por ficha.
+
+DESPLIEGUE
+Desde la carpeta del proyecto:
+  firebase deploy --only hosting
+
+Si también se reemplazan reglas o funciones en GitHub, revisar antes de desplegar:
+  firebase deploy --only firestore:rules,storage,functions,hosting
+
+CONTROL PROFESIONAL
+El contenido proviene del Manual de Litigación en Derecho Mercantil aportado al proyecto. Deben verificarse legislación, jurisprudencia, cuantías, plazos y práctica vigentes antes de usar cualquier ficha en un caso real.

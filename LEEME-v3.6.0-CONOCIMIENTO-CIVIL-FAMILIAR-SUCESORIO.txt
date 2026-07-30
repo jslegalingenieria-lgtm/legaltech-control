@@ -1,0 +1,39 @@
+JS LEGALTECH CONTROL v3.6.0
+BASE DE CONOCIMIENTO CIVIL, FAMILIAR Y SUCESORIA
+====================================================
+
+NOVEDADES PRINCIPALES
+
+1. Se sustituyó el módulo provisional de Sucesiones por 10 fichas operativas:
+   - Diagnóstico y apertura de la sucesión.
+   - Juicio sucesorio intestamentario.
+   - Juicio sucesorio testamentario.
+   - Albacea, interventor y administración.
+   - Inventario y avalúo hereditario.
+   - Partición, adjudicación e inscripción.
+   - Aceptación y repudiación de la herencia.
+   - Impugnación y defensa de testamento.
+   - Cargas alimentarias de la masa hereditaria.
+   - Tramitación y traslado a vía notarial.
+
+2. Cada ficha contiene:
+   - Objetivo y vías.
+   - Entrevista guiada.
+   - Checklist documental.
+   - Asistente de revisión con semáforo.
+   - Ruta procesal.
+   - Mapa de pruebas.
+
+3. La base completa contiene 24 fichas activas en Civil, Familiar y Sucesiones.
+
+4. El contenido sucesorio fue estructurado a partir del Manual de Litigación en Derecho Sucesorio y de Herencias para Jalisco proporcionado por el autor. No sustituye la revisión profesional de legislación, criterios, plazos y práctica judicial vigentes.
+
+PRUEBA LOCAL
+
+Abra el proyecto con Live Server o publique en Firebase Hosting. Ingrese al Dashboard, abra “Conocimiento procesal”, seleccione la materia Sucesiones y pruebe cada ficha. Las respuestas y checklists se guardan localmente por ficha.
+
+PUBLICACIÓN
+
+firebase deploy --only hosting
+
+Después de publicar, presione Ctrl + F5 para limpiar la caché anterior.

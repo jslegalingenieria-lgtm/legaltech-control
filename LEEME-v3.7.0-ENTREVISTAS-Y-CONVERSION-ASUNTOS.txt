@@ -1,0 +1,20 @@
+JS LegalTech Control v3.7.0
+ENTREVISTAS JURÍDICAS Y CONVERSIÓN A ASUNTOS
+
+NOVEDADES
+- Nuevo módulo Entrevistas en el menú lateral.
+- Las entrevistas se guardan en la colección Firestore: entrevistas.
+- Se pueden editar y buscar.
+- Una entrevista puede asociarse con un cliente registrado.
+- El botón Crear asunto genera un registro en la colección asuntos.
+- La entrevista queda vinculada mediante asuntoId y el asunto mediante entrevistaId.
+- La entrevista conserva relato, diagnóstico, documentos, riesgos y honorarios.
+
+REQUISITO PARA CREAR ASUNTO
+La entrevista debe tener cliente asociado y abogado responsable.
+
+IMPORTANTE
+Publica también el archivo firestore.rules incluido en esta versión:
+firebase deploy --only firestore:rules,hosting
+
+Después actualiza el navegador con Ctrl + F5.

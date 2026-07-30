@@ -19,6 +19,10 @@
 <link rel="stylesheet" href="css/comunicacion.css">
     <link rel="stylesheet" href="css/expedientes.css">
     <link rel="stylesheet" href="css/buscador-juridico.css">
+    <link rel="stylesheet" href="css/constructor-documentos.css">
+    <link rel="stylesheet" href="css/biblioteca-juridica.css">
+    <link rel="stylesheet" href="css/conocimiento-juridico.css">
+    <link rel="stylesheet" href="css/entrevistas.css">
 
 
     <!-- Librería para conversión limpia de HTML a PDF -->
@@ -49,8 +53,12 @@
             <ul class="sidebar-menu" id="menu-lateral">
                 <li id="menu-dashboard"><a href="#" class="menu-item" onclick="switchTab('dashboard')">🏠 Dashboard</a></li>
                 <li id="menu-clientes"><a href="#" class="menu-item" onclick="switchTab('clientes')">👥 Clientes</a></li>
+                <li id="menu-entrevistas"><a href="#" class="menu-item" onclick="switchTab('entrevistas'); cargarEntrevistas?.()">📝 Entrevistas</a></li>
                 <li id="menu-asuntos"><a href="#" class="menu-item" onclick="switchTab('asuntos')">⚖️ Asuntos</a></li>
                 <li id="menu-expedientes"><a href="#" class="menu-item" onclick="switchTab('expedientes')">📂 Expedientes</a></li>
+                <li id="menu-constructor-documentos"><a href="#" class="menu-item" onclick="switchTab('constructor-documentos')">📄 Constructor de documentos</a></li>
+                <li id="menu-biblioteca-juridica"><a href="#" class="menu-item" onclick="switchTab('biblioteca-juridica')">📚 Biblioteca jurídica</a></li>
+                <li id="menu-conocimiento-juridico"><a href="#" class="menu-item" onclick="switchTab('conocimiento-juridico')">🧭 Conocimiento procesal</a></li>
                 <li id="menu-buscador-juridico"><a href="#" class="menu-item" onclick="switchTab('buscador-juridico')">🔎 Buscador jurídico</a></li>
                 <li id="menu-agenda"><a href="#" class="menu-item" onclick="switchTab('agenda')">📅 Agenda</a></li>
                 <li id="menu-calendario"><a href="#" class="menu-item" onclick="switchTab('calendario')">🗓️ Calendario</a></li>
@@ -550,6 +558,50 @@
                 <div class="bj-advertencia">Verifica siempre la vigencia, fecha de publicación, registro digital y texto completo directamente en la fuente oficial antes de citar el resultado en un escrito.</div>
             </section>
 
+            <!-- VISTA: ENTREVISTAS JURÍDICAS -->
+            <section id="vista-entrevistas" class="app-view" style="display:none;">
+                <div class="entrevistas-toolbar">
+                    <div>
+                        <h3>Entrevistas Jurídicas</h3>
+                        <p style="color:#64748b;margin:.25rem 0 0;">Registra la consulta inicial y conviértela en asunto cuando el cliente contrate.</p>
+                    </div>
+                    <div class="entrevista-busqueda">
+                        <input id="entrevistas-buscar" type="search" placeholder="Buscar por nombre, folio o materia">
+                    </div>
+                </div>
+                <div class="entrevista-aviso">Las entrevistas se guardan en Firestore. Para convertir una entrevista en asunto debe estar asociada con un cliente registrado.</div>
+                <div class="entrevistas-grid">
+                    <div class="entrevista-panel">
+                        <h4 id="ent-form-titulo" style="margin-top:0;">Nueva entrevista jurídica</h4>
+                        <form id="form-entrevista">
+                            <input id="ent-id" type="hidden">
+                            <div class="entrevista-form-grid">
+                                <div class="ancho-completo"><label for="ent-cliente-id">Cliente asociado</label><select id="ent-cliente-id"><option value="">-- Prospecto sin cliente registrado --</option></select></div>
+                                <div><label for="ent-prospecto">Nombre del prospecto *</label><input id="ent-prospecto" required type="text"></div>
+                                <div><label for="ent-fecha">Fecha *</label><input id="ent-fecha" required type="date"></div>
+                                <div><label for="ent-telefono">Teléfono</label><input id="ent-telefono" type="tel"></div>
+                                <div><label for="ent-correo">Correo</label><input id="ent-correo" type="email"></div>
+                                <div><label for="ent-materia">Materia *</label><select id="ent-materia" required><option>Civil</option><option>Familiar</option><option>Sucesorio</option><option>Mercantil</option><option>Laboral</option><option>Penal</option><option>Administrativa</option><option>Amparo</option><option>Otra</option></select></div>
+                                <div><label for="ent-procedimiento">Procedimiento probable *</label><input id="ent-procedimiento" required type="text" placeholder="Ej. Juicio sucesorio intestamentario"></div>
+                                <div><label for="ent-origen">Origen</label><select id="ent-origen"><option>Recomendación</option><option>WhatsApp</option><option>Página web</option><option>Facebook</option><option>Google</option><option>Llamada</option><option>Otro</option></select></div>
+                                <div><label for="ent-abogado">Abogado responsable *</label><select id="ent-abogado" required></select></div>
+                                <div class="ancho-completo"><label for="ent-hechos">Relato de los hechos</label><textarea id="ent-hechos"></textarea></div>
+                                <div class="ancho-completo"><label for="ent-diagnostico">Diagnóstico y estrategia inicial</label><textarea id="ent-diagnostico"></textarea></div>
+                                <div><label for="ent-documentos">Documentos recibidos o pendientes</label><textarea id="ent-documentos"></textarea></div>
+                                <div><label for="ent-riesgos">Riesgos y observaciones privadas</label><textarea id="ent-riesgos"></textarea></div>
+                                <div><label for="ent-honorarios">Propuesta de honorarios</label><textarea id="ent-honorarios"></textarea></div>
+                                <div><label for="ent-estado">Resultado</label><select id="ent-estado"><option>Pendiente de decisión</option><option>Viable</option><option>No procede</option><option>Cliente desistió</option><option>Convertida en asunto</option></select></div>
+                            </div>
+                            <div class="entrevista-actions"><button class="btn-primary" type="submit">Guardar entrevista</button><button class="btn-secondary" id="btn-limpiar-entrevista" type="button">Nueva / limpiar</button></div>
+                        </form>
+                    </div>
+                    <div class="entrevista-panel">
+                        <h4 style="margin-top:0;">Entrevistas guardadas</h4>
+                        <div id="entrevistas-lista" class="entrevista-lista"><div class="entrevista-vacio">Cargando entrevistas...</div></div>
+                    </div>
+                </div>
+            </section>
+
             <!-- VISTA 3: ASUNTOS -->
             <section id="vista-asuntos" class="app-view" style="display: none;">
                 <div class="toolbar">
@@ -607,6 +659,33 @@
                                 </select>
                             </div>
                         </div>
+
+                        <fieldset class="partes-procesales">
+                            <legend>Partes procesales</legend>
+                            <p class="partes-ayuda">Estos datos se usarán automáticamente en el Constructor de Documentos.</p>
+                            <div class="parte-bloque">
+                                <h5>Actor / promovente</h5>
+                                <div class="partes-grid">
+                                    <div class="form-group"><label for="asu-actor-tipo">Tipo</label><select id="asu-actor-tipo"><option value="fisica">Persona física</option><option value="moral">Persona moral</option></select></div>
+                                    <div class="form-group"><label for="asu-actor-nombre">Nombre o razón social</label><input id="asu-actor-nombre" type="text" placeholder="Nombre completo o razón social"></div>
+                                    <div class="form-group parte-representante"><label for="asu-actor-representante">Representante legal</label><input id="asu-actor-representante" type="text"></div>
+                                    <div class="form-group parte-representante"><label for="asu-actor-caracter">Carácter</label><input id="asu-actor-caracter" type="text" placeholder="Apoderado, tutor, albacea..."></div>
+                                </div>
+                            </div>
+                            <div class="parte-bloque">
+                                <h5>Demandado / contraparte</h5>
+                                <div class="partes-grid">
+                                    <div class="form-group"><label for="asu-demandado-tipo">Tipo</label><select id="asu-demandado-tipo"><option value="fisica">Persona física</option><option value="moral">Persona moral</option></select></div>
+                                    <div class="form-group"><label for="asu-demandado-nombre">Nombre o razón social</label><input id="asu-demandado-nombre" type="text"></div>
+                                    <div class="form-group parte-representante"><label for="asu-demandado-representante">Representante legal</label><input id="asu-demandado-representante" type="text"></div>
+                                    <div class="form-group parte-representante"><label for="asu-demandado-caracter">Carácter</label><input id="asu-demandado-caracter" type="text"></div>
+                                </div>
+                            </div>
+                            <details><summary>Otras partes (opcionales)</summary><div class="partes-grid partes-opcionales">
+                                <div class="form-group"><label for="asu-tercero">Tercero interesado</label><input id="asu-tercero" type="text"></div>
+                                <div class="form-group"><label for="asu-autoridad">Autoridad responsable</label><input id="asu-autoridad" type="text"></div>
+                            </div></details>
+                        </fieldset>
 
                         <div class="form-group" style="margin-bottom: 1.5rem;">
                             <label for="expediente-abogado">Abogado responsable</label>
@@ -825,6 +904,91 @@
                         </thead>
                         <tbody id="tabla-asuntos-cuerpo"></tbody>
                     </table>
+                </div>
+            </section>
+
+            <section id="vista-constructor-documentos" class="app-view constructor-documentos" style="display:none;">
+                <div class="toolbar constructor-cabecera">
+                    <div><h3>Constructor de Documentos Jurídicos</h3><p>Genera, edita y guarda escritos usando los datos del asunto.</p></div>
+                    <button type="button" class="btn-primary" onclick="nuevoDocumentoJuridico()">+ Nuevo documento</button>
+                </div>
+                <div id="constructor-inicio" class="constructor-panel">
+                    <h4>Documentos guardados</h4>
+                    <div id="constructor-lista" class="constructor-lista"><p class="constructor-vacio">No hay borradores guardados.</p></div>
+                </div>
+                <div id="constructor-asistente" class="constructor-panel" hidden>
+                    <div class="constructor-grid">
+                        <div class="form-group"><label for="doc-asunto">Asunto</label><select id="doc-asunto"><option value="">Selecciona un asunto</option></select></div>
+                        <div class="form-group"><label for="doc-tipo">Tipo de escrito</label><select id="doc-tipo"><option value="">Cargando plantillas...</option></select><small class="constructor-ayuda">Las plantillas se organizan por materia y generan un borrador editable.</small></div>
+                    </div>
+                    <div class="constructor-acciones"><button type="button" class="btn-primary" onclick="generarBorradorJuridico()">Generar borrador</button><button type="button" class="btn-secundario" onclick="cancelarDocumentoJuridico()">Cancelar</button></div>
+                </div>
+                <div id="constructor-editor-panel" class="constructor-panel" hidden>
+                    <div class="constructor-grid">
+                        <div class="form-group"><label for="doc-titulo">Título interno</label><input id="doc-titulo" type="text"></div>
+                        <div class="form-group"><label for="doc-estado">Estado</label><select id="doc-estado"><option>Borrador</option><option>En revisión</option><option>Final</option></select></div>
+                    </div>
+                    <div class="editor-barra" role="toolbar">
+                        <button type="button" data-cmd="bold"><b>N</b></button><button type="button" data-cmd="italic"><i>C</i></button><button type="button" data-cmd="underline"><u>S</u></button>
+                        <button type="button" data-cmd="justifyLeft">Izq.</button><button type="button" data-cmd="justifyCenter">Centro</button><button type="button" data-cmd="justifyRight">Der.</button><button type="button" data-cmd="justifyFull">Justificar</button>
+                        <button type="button" data-cmd="insertOrderedList">1.</button><button type="button" data-cmd="insertUnorderedList">•</button>
+                    </div>
+                    <article id="doc-editor" class="documento-hoja" contenteditable="true"></article>
+                    <div class="constructor-acciones"><button type="button" class="btn-primary" onclick="guardarDocumentoJuridico()">💾 Guardar</button><button type="button" class="btn-secundario" onclick="descargarDocumentoWord()">⬇ Word</button><button type="button" class="btn-secundario" onclick="imprimirDocumentoJuridico()">🖨 Imprimir / PDF</button><button type="button" class="btn-secundario" onclick="cancelarDocumentoJuridico()">Cerrar</button></div>
+                </div>
+            </section>
+
+
+            <section id="vista-biblioteca-juridica" class="app-view" style="display:none;">
+                <div class="toolbar biblioteca-cabecera">
+                    <div><h3>Biblioteca Jurídica</h3><p>Modelos estructurales por materia y etapa procesal.</p></div>
+                </div>
+                <div class="bib-panel">
+                    <div class="bib-filtros">
+                        <div class="form-group"><label for="bib-buscar">Buscar plantilla</label><input id="bib-buscar" type="search" placeholder="Ej. apelación, desahucio, denuncia..."></div>
+                        <div class="form-group"><label for="bib-materia">Materia</label><select id="bib-materia"><option value="">Todas las materias</option></select></div>
+                        <div class="form-group"><label for="bib-etapa">Etapa</label><select id="bib-etapa"><option value="">Todas las etapas</option></select></div>
+                        <button type="button" class="btn-secundario" onclick="limpiarFiltrosBiblioteca()">Limpiar</button>
+                    </div>
+                    <div class="bib-resumen"><strong id="bib-contador">0 plantillas</strong><span>Biblioteca del sistema</span></div>
+                    <div id="biblioteca-resultados" class="bib-grid"></div>
+                    <div class="bib-nota"><strong>Aviso:</strong> todas las plantillas son modelos orientativos y contienen únicamente una estructura general. El abogado responsable debe revisar competencia, vía, plazos, hechos, pruebas, legislación y peticiones antes de utilizarlas.</div>
+                </div>
+            </section>
+
+
+            <section id="vista-conocimiento-juridico" class="app-view" style="display:none;">
+                <div class="cj-cabecera">
+                    <div>
+                        <span class="cj-eyebrow">Base de conocimiento procesal</span>
+                        <h3>Asistente de Litigación</h3>
+                        <p>Entrevistas, documentos, revisión y ruta procesal basados en los manuales internos del despacho.</p>
+                    </div>
+                    <div class="cj-origen">Contenido integrado: Civil · Familiar · Sucesorio · Mercantil</div>
+                </div>
+
+                <div class="cj-selector">
+                    <div class="form-group"><label for="cj-materia">Materia</label><select id="cj-materia"></select></div>
+                    <div class="form-group"><label for="cj-procedimiento">Procedimiento</label><select id="cj-procedimiento"></select></div>
+                    <button class="btn-primary" type="button" onclick="cargarFichaConocimiento()">Abrir ficha</button>
+                </div>
+
+                <div id="cj-ficha" class="cj-ficha" hidden>
+                    <aside class="cj-indice" aria-label="Secciones de la ficha">
+                        <button data-cj-tab="resumen" class="activo">Resumen</button>
+                        <button data-cj-tab="entrevista">Entrevista</button>
+                        <button data-cj-tab="documentos">Documentos</button>
+                        <button data-cj-tab="revision">Revisión</button>
+                        <button data-cj-tab="ruta">Ruta procesal</button>
+                        <button data-cj-tab="pruebas">Pruebas</button>
+                        <button data-cj-tab="selector">Selector de vía</button>
+                        <button data-cj-tab="prescripcion">Prescripción</button>
+                        <button data-cj-tab="errores">Errores críticos</button>
+                    </aside>
+                    <div class="cj-contenido">
+                        <div id="cj-alerta" class="cj-alerta"></div>
+                        <div id="cj-panel"></div>
+                    </div>
                 </div>
             </section>
 
@@ -1234,8 +1398,14 @@
 <script src="js/email.js"></script>
 <script src="js/acceso-clientes.js"></script>
 <script src="js/asuntos.js"></script>
+<script src="js/entrevistas.js"></script>
 <script src="js/expedientes.js"></script>
 <script src="js/buscador-juridico.js"></script>
+<script src="js/plantillas-base.js"></script>
+<script src="js/constructor-documentos.js"></script>
+<script src="js/biblioteca-juridica.js"></script>
+<script src="js/conocimiento-juridico-data.js"></script>
+<script src="js/conocimiento-juridico.js"></script>
 <script src="js/agenda.js"></script>
 <script src="js/calendario.js"></script>
 <script src="js/personal.js"></script>

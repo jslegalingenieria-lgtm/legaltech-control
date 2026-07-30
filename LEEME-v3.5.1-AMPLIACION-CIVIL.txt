@@ -1,0 +1,22 @@
+JS LEGALTECH CONTROL v3.5.1
+AMPLIACIÓN DE CONOCIMIENTO PROCESAL CIVIL Y FAMILIAR
+
+Se añadieron fichas para:
+- Divorcio
+- Guarda, custodia y convivencias
+- Pensión alimenticia
+- Liquidación de sociedad legal o conyugal
+- Juicio ordinario civil
+- Juicio ejecutivo civil
+- Acción reivindicatoria
+- Acciones posesorias y acción publiciana
+- Usucapión
+- Nulidad e ineficacia de actos jurídicos
+- Responsabilidad civil y daño moral
+- Cumplimiento o rescisión de contrato
+- Juicio especial hipotecario
+- Jurisdicción voluntaria civil
+
+Sucesiones aparece como módulo reservado EN PREPARACIÓN. No se inventaron requisitos, plazos ni rutas porque el Manual de Derecho Civil Patrimonial señala que la materia sucesoria se desarrolla en un manual independiente. Cuando se incorpore ese manual se habilitarán sucesión testamentaria e intestamentaria, albacea, inventario, avalúo, administración, partición y adjudicación.
+
+Todos los contenidos son apoyos orientativos y deben revisarse contra la legislación y práctica vigentes.

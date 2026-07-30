@@ -1,0 +1,22 @@
+JS LegalTech Control v3.5.0 — Base de Conocimiento Procesal
+
+NOVEDADES
+- Nuevo módulo: Conocimiento procesal.
+- Ficha inicial de Derecho Familiar: Divorcio en Jalisco.
+- Entrevista guiada con guardado local.
+- Checklist documental con prioridades y avance.
+- Asistente de revisión con semáforo.
+- Ruta procesal orientativa.
+- Mapa de pruebas.
+
+ORIGEN DEL CONTENIDO
+La primera ficha fue estructurada a partir del Manual de Litigación en Derecho Familiar — Jalisco, edición julio de 2026, proporcionado por el autor del proyecto.
+
+IMPORTANTE
+La información es orientativa y debe verificarse antes de usarse en un asunto real. No sustituye el análisis del abogado responsable. Los datos de entrevista y los avances se guardan por ahora en localStorage; la integración con Firestore queda para la siguiente etapa.
+
+PRÓXIMAS FASES
+- Vincular entrevistas y checklists con asuntos y expedientes.
+- Administrador de fichas de conocimiento.
+- Materias mercantil, administrativa y penal a partir de nuevos manuales.
+- Alertas de plazos vinculadas con Agenda.

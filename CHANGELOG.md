@@ -1,3 +1,25 @@
+# v4.0.0 — Integración Mercantil
+
+- Nueva materia Mercantil en Conocimiento Procesal.
+- Fichas de diagnóstico, ejecutivo, títulos de crédito, oral, ordinario y arbitraje.
+- Selector orientativo de vía.
+- Control de prescripción.
+- Errores críticos.
+- Entrevistas, documentos, revisión, ruta y pruebas adaptados por procedimiento.
+
+## v3.7.0 - Entrevistas jurídicas
+- Nuevo módulo de entrevistas persistentes en Firestore.
+- Edición, búsqueda y estados de seguimiento.
+- Conversión de entrevista en asunto con vinculación bidireccional.
+- Nuevas reglas de seguridad para la colección entrevistas.
+
+# v3.6.0 — Base sucesoria integrada
+
+- Integración completa del Manual de Derecho Sucesorio y de Herencias de Jalisco.
+- Diez fichas sucesorias activas con entrevistas, checklists, revisión, rutas y pruebas.
+- Eliminación de la ficha provisional de sucesiones.
+- Actualización de caché PWA para los archivos del módulo de conocimiento.
+
 ## 3.0.2 - Corrección documental y adjuntos en actuaciones
 - Toggle trasladado al Dashboard del Superadministrador.
 - Adjuntos en captura de actuaciones.

@@ -1,0 +1,20 @@
+JS LEGALTECH CONTROL v3.4.0 - BIBLIOTECA JURÍDICA
+
+NOVEDADES
+- Nuevo módulo Biblioteca Jurídica.
+- Buscador por nombre, materia, etapa y submateria.
+- Fichas técnicas y acceso directo al Constructor.
+- Ampliación de modelos estructurales en Civil, Laboral, Administrativo y Penal.
+- Las plantillas no contienen hechos, nombres, domicilios, artículos ni argumentos particulares.
+- Aviso de revisión profesional visible en la biblioteca y en los documentos.
+
+PRUEBA
+1. Abre Biblioteca jurídica.
+2. Filtra por materia o etapa.
+3. Pulsa Usar plantilla.
+4. Selecciona un asunto.
+5. Genera el borrador y revisa todos los campos entre corchetes.
+
+PUBLICACIÓN
+firebase deploy --only hosting
+Después recarga con Ctrl + F5.
