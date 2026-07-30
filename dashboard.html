@@ -59,6 +59,7 @@
                     <li id="menu-asuntos"><a href="#" class="menu-item" onclick="switchTab('asuntos')">⚖️ Asuntos</a></li>
                     <li id="menu-expedientes"><a href="#" class="menu-item" onclick="switchTab('expedientes')">📂 Expedientes</a></li>
                     <li id="menu-agenda"><a href="#" class="menu-item" onclick="mostrarVistaAgenda('lista')">📅 Agenda</a></li>
+                    <li id="menu-cotizaciones"><a href="#" class="menu-item" onclick="switchTab('cotizaciones')">💼 Cotizaciones</a></li>
                     <li id="menu-centro-conocimiento"><a href="#" class="menu-item" onclick="switchTab('centro-conocimiento')">🧠 Centro de conocimiento</a></li>
                     <li id="menu-buscador-juridico"><a href="#" class="menu-item" onclick="switchTab('buscador-juridico')">🔎 Buscador jurídico</a></li>
                     <!-- Comunicación, Personal y Configuración se insertan según el rol -->
@@ -914,7 +915,7 @@
                         <h3>Centro de Conocimiento Jurídico</h3>
                         <p>Consulta teoría, ruta procesal, legislación, modelos y herramientas desde un mismo tema jurídico.</p>
                     </div>
-                    <div class="cc-hero-badge"><strong>Versión piloto</strong><span>Derecho Familiar</span></div>
+
                 </div>
 
                 <div class="cc-searchbar">
@@ -965,6 +966,83 @@
                         <button data-cc-tab="casos" onclick="cambiarTabCentro('casos')">Casos del despacho</button>
                     </div>
                     <div id="cc-ficha-panel" class="cc-ficha-panel"></div>
+                </div>
+            </section>
+
+
+            <section id="vista-estrategia-procesal" class="app-view modulo-juridico" style="display:none;">
+                <div class="mj-hero">
+                    <div><span class="cc-eyebrow">LexGear · Motor de decisiones</span><h3>Estrategia Procesal</h3><p>Identifica objetivos, riesgos, pruebas y acciones recomendadas mediante una entrevista jurídica guiada.</p></div>
+                    <button class="btn-secundario" type="button" onclick="switchTab('centro-conocimiento')">Volver al Centro</button>
+                </div>
+                <div class="mj-grid">
+                    <aside class="mj-card">
+                        <h4>Selecciona el escenario</h4>
+                        <div class="form-group"><label for="ep-materia">Materia</label><select id="ep-materia"><option value="laboral">Derecho Laboral</option><option value="familiar">Derecho Familiar</option><option value="civil">Derecho Civil</option><option value="mercantil">Derecho Mercantil</option></select></div>
+                        <div class="form-group"><label for="ep-procedimiento">Problema jurídico</label><select id="ep-procedimiento"></select></div>
+                        <div id="ep-preguntas" class="ep-preguntas"></div>
+                        <button class="btn-primary" type="button" onclick="analizarEstrategiaProcesal()">Analizar estrategia</button>
+                    </aside>
+                    <div class="mj-card mj-resultado" id="ep-resultado"><div class="mj-vacio"><span>🎯</span><strong>Completa la entrevista</strong><p>LexGear mostrará una ruta orientativa con fundamento, pruebas y alertas.</p></div></div>
+                </div>
+            </section>
+
+            <section id="vista-calculadoras-juridicas" class="app-view modulo-juridico" style="display:none;">
+                <div class="mj-hero">
+                    <div><span class="cc-eyebrow">LexGear · Motor jurídico de cálculo</span><h3>Calculadoras Jurídicas</h3><p>Cálculos explicados, trazables y acompañados de su fundamento legal.</p></div>
+                    <button class="btn-secundario" type="button" onclick="switchTab('centro-conocimiento')">Volver al Centro</button>
+                </div>
+                <div class="calc-selector">
+                    <button class="calc-tipo activo" type="button" data-calculadora="laboral" onclick="mostrarCalculadora('laboral')"><span>👷</span><strong>Liquidación y finiquito</strong><small>Derecho Laboral</small></button>
+                    <button class="calc-tipo" type="button" data-calculadora="alimentos" onclick="mostrarCalculadora('alimentos')"><span>👨‍👩‍👧</span><strong>Pensión alimenticia</strong><small>Derecho Familiar · Jalisco</small></button>
+                    <button class="calc-tipo" type="button" onclick="switchTab('calculadora-intereses')"><span>💹</span><strong>Intereses</strong><small>Civil y mercantil</small></button>
+                </div>
+                <div class="mj-grid calc-grid">
+                    <form id="calc-laboral-form" class="mj-card" onsubmit="event.preventDefault(); calcularLiquidacionLaboral();">
+                        <h4>Datos laborales</h4>
+                        <div class="calc-form-grid">
+                            <div class="form-group"><label for="cl-fecha-ingreso">Fecha de ingreso</label><input id="cl-fecha-ingreso" type="date" required></div>
+                            <div class="form-group"><label for="cl-fecha-baja">Fecha de baja o corte</label><input id="cl-fecha-baja" type="date" required></div>
+                            <div class="form-group"><label for="cl-salario-diario">Salario diario nominal</label><input id="cl-salario-diario" type="number" min="0" step="0.01" required></div>
+                            <div class="form-group"><label for="cl-salario-minimo">Salario mínimo general diario</label><input id="cl-salario-minimo" type="number" min="0" step="0.01" value="315.04" required><small>Parámetro 2026; debe verificarse cada año.</small></div>
+                            <div class="form-group"><label for="cl-aguinaldo-dias">Días de aguinaldo</label><input id="cl-aguinaldo-dias" type="number" min="15" step="0.01" value="15"></div>
+                            <div class="form-group"><label for="cl-vacaciones-dias">Días de vacaciones</label><input id="cl-vacaciones-dias" type="number" min="0" step="0.01"><small>Se sugieren automáticamente según antigüedad.</small></div>
+                            <div class="form-group"><label for="cl-prima-vacacional">Prima vacacional (%)</label><input id="cl-prima-vacacional" type="number" min="25" step="0.01" value="25"></div>
+                            <div class="form-group"><label for="cl-vales">Vales de despensa mensuales integrables</label><input id="cl-vales" type="number" min="0" step="0.01" value="0"></div>
+                            <div class="form-group"><label for="cl-pago-pendiente">Salarios o nómina pendiente</label><input id="cl-pago-pendiente" type="number" min="0" step="0.01" value="0"></div>
+                            <div class="form-group"><label for="cl-vacaciones-anteriores">Vacaciones pendientes anteriores (días)</label><input id="cl-vacaciones-anteriores" type="number" min="0" step="0.01" value="0"></div>
+                            <div class="form-group"><label for="cl-fondo-trabajador">Fondo de ahorro trabajador por periodo</label><input id="cl-fondo-trabajador" type="number" min="0" step="0.01" value="0"><small>Importe descontado al trabajador en cada nómina.</small></div>
+                            <div class="form-group"><label for="cl-fondo-patron">Fondo de ahorro patrón/empresa por periodo</label><input id="cl-fondo-patron" type="number" min="0" step="0.01" value="0"><small>Aportación de la empresa en cada nómina.</small></div>
+                            <div class="form-group"><label for="cl-fondo-periodicidad">Periodicidad de nómina</label><select id="cl-fondo-periodicidad"><option value="semanal">Semanal</option><option value="quincenal">Quincenal</option><option value="catorcenal">Catorcenal</option><option value="mensual">Mensual</option><option value="personalizado">Personalizado</option></select></div>
+                            <div class="form-group"><label for="cl-fondo-periodos">Periodos pendientes o acumulados</label><input id="cl-fondo-periodos" type="number" min="0" step="1" value="0"><small>Ejemplo: 20 semanas o 10 quincenas.</small></div>
+                            <div class="form-group"><label for="cl-otros">Otros conceptos devengados</label><input id="cl-otros" type="number" min="0" step="0.01" value="0"></div>
+                        </div>
+                        <div class="calc-checks"><label><input id="cl-incluir-20" type="checkbox"> Incluir escenario de 20 días por año</label><label><input id="cl-prima-antiguedad" type="checkbox" checked> Incluir prima de antigüedad</label></div>
+                        <button class="btn-primary" type="submit">Calcular con fundamento</button>
+                    </form>
+                    <div class="mj-card mj-resultado" id="calc-laboral-resultado"><div class="mj-vacio"><span>🧮</span><strong>Captura los datos</strong><p>El resultado distinguirá liquidación, finiquito, metodología y referencias jurídicas.</p></div></div>
+                </div>
+                <div id="calc-alimentos-panel" class="mj-grid calc-grid" style="display:none;">
+                    <form id="calc-alimentos-form" class="mj-card" onsubmit="event.preventDefault(); calcularPensionAlimenticia();">
+                        <h4>Escenario de pensión alimenticia</h4>
+                        <div class="calc-form-grid">
+                            <div class="form-group"><label for="pa-ingreso-neto-deudor">Ingreso neto mensual del deudor</label><input id="pa-ingreso-neto-deudor" type="number" min="0" step="0.01" required><small>Después de deducciones legales obligatorias; no restar deudas voluntarias.</small></div>
+                            <div class="form-group"><label for="pa-ingreso-otro-progenitor">Ingreso neto mensual del otro progenitor</label><input id="pa-ingreso-otro-progenitor" type="number" min="0" step="0.01" value="0"></div>
+                            <div class="form-group"><label for="pa-num-acreedores">Número de acreedores alimentarios</label><input id="pa-num-acreedores" type="number" min="1" step="1" value="1" required></div>
+                            <div class="form-group"><label for="pa-otros-dependientes">Otros dependientes económicos del deudor</label><input id="pa-otros-dependientes" type="number" min="0" step="1" value="0"></div>
+                            <div class="form-group"><label for="pa-vivienda">Vivienda mensual</label><input id="pa-vivienda" type="number" min="0" step="0.01" value="0"></div>
+                            <div class="form-group"><label for="pa-alimentacion">Alimentación mensual</label><input id="pa-alimentacion" type="number" min="0" step="0.01" value="0"></div>
+                            <div class="form-group"><label for="pa-educacion">Educación mensual</label><input id="pa-educacion" type="number" min="0" step="0.01" value="0"></div>
+                            <div class="form-group"><label for="pa-salud">Salud mensual</label><input id="pa-salud" type="number" min="0" step="0.01" value="0"></div>
+                            <div class="form-group"><label for="pa-vestido">Vestido y calzado mensual</label><input id="pa-vestido" type="number" min="0" step="0.01" value="0"></div>
+                            <div class="form-group"><label for="pa-transporte">Transporte mensual</label><input id="pa-transporte" type="number" min="0" step="0.01" value="0"></div>
+                            <div class="form-group"><label for="pa-recreacion">Recreación y desarrollo mensual</label><input id="pa-recreacion" type="number" min="0" step="0.01" value="0"></div>
+                            <div class="form-group"><label for="pa-otros-gastos">Otros gastos acreditables</label><input id="pa-otros-gastos" type="number" min="0" step="0.01" value="0"></div>
+                        </div>
+                        <div class="calc-checks"><label><input id="pa-cuidado-directo" type="checkbox" checked> El otro progenitor aporta cuidado directo y vivienda</label><label><input id="pa-necesidad-especial" type="checkbox"> Existen gastos extraordinarios o necesidad especial</label></div>
+                        <button class="btn-primary" type="submit">Analizar proporcionalidad</button>
+                    </form>
+                    <div class="mj-card mj-resultado" id="calc-alimentos-resultado"><div class="mj-vacio"><span>👨‍👩‍👧</span><strong>Captura necesidades y capacidades</strong><p>LexGear generará escenarios orientativos; no impondrá un porcentaje automático.</p></div></div>
                 </div>
             </section>
 
@@ -1025,7 +1103,7 @@
                         <h3>Asistente de Litigación</h3>
                         <p>Entrevistas, documentos, revisión y ruta procesal basados en los manuales internos del despacho.</p>
                     </div>
-                    <div class="cj-origen">Contenido integrado: Civil · Familiar · Sucesorio · Mercantil</div>
+                    <div class="cj-origen">Contenido integrado: Civil · Familiar · Sucesorio · Mercantil · Laboral</div>
                 </div>
 
                 <div class="cj-selector">
@@ -1045,6 +1123,7 @@
                         <button data-cj-tab="selector">Selector de vía</button>
                         <button data-cj-tab="prescripcion">Prescripción</button>
                         <button data-cj-tab="errores">Errores críticos</button>
+                        <button data-cj-tab="manual">Manual completo</button>
                     </aside>
                     <div class="cj-contenido">
                         <div id="cj-alerta" class="cj-alerta"></div>
@@ -1259,20 +1338,68 @@
                 </div>
             </section>
 
-            <!-- CONFIGURACIÓN DEL DESPACHO -->
+            <section id="vista-calculadora-intereses" class="app-view modulo-juridico" style="display:none;"><div class="mj-hero"><div><span class="cc-eyebrow">LexGear · Motor jurídico de cálculo</span><h3>Calculadora de Intereses</h3><p>Cálculo simple o compuesto con trazabilidad metodológica.</p></div><button class="btn-secundario" type="button" onclick="switchTab('calculadoras-juridicas')">Volver</button></div><div id="calc-intereses-panel" class="mj-grid calc-grid">
+                    <form id="calc-intereses-form" class="mj-card" onsubmit="event.preventDefault(); calcularInteresesJuridicos();">
+                        <h4>Cálculo de intereses</h4>
+                        <div class="calc-form-grid">
+                            <div class="form-group"><label for="ci-capital">Capital o suerte principal</label><input id="ci-capital" type="number" min="0" step="0.01" required></div>
+                            <div class="form-group"><label for="ci-tipo">Tipo de interés</label><select id="ci-tipo"><option value="moratorio">Moratorio</option><option value="ordinario">Ordinario</option><option value="legal">Legal</option></select></div>
+                            <div class="form-group"><label for="ci-tasa">Tasa anual (%)</label><input id="ci-tasa" type="number" min="0" step="0.0001" required><small>Captura la tasa pactada o legal previamente validada.</small></div>
+                            <div class="form-group"><label for="ci-metodo">Método</label><select id="ci-metodo"><option value="simple">Interés simple</option><option value="compuesto">Interés compuesto</option></select></div>
+                            <div class="form-group"><label for="ci-fecha-inicio">Fecha inicial</label><input id="ci-fecha-inicio" type="date" required></div>
+                            <div class="form-group"><label for="ci-fecha-fin">Fecha de corte</label><input id="ci-fecha-fin" type="date" required></div>
+                            <div class="form-group"><label for="ci-base">Base anual</label><select id="ci-base"><option value="365">365 días (año natural)</option><option value="360">360 días (año comercial)</option></select></div>
+                            <div class="form-group"><label for="ci-capitalizacion">Capitalización</label><select id="ci-capitalizacion"><option value="12">Mensual</option><option value="6">Bimestral</option><option value="4">Trimestral</option><option value="2">Semestral</option><option value="1">Anual</option></select><small>Solo se aplica al interés compuesto.</small></div>
+                            <div class="form-group"><label for="ci-pagos">Pagos o abonos al capital</label><input id="ci-pagos" type="number" min="0" step="0.01" value="0"></div>
+                            <div class="form-group"><label for="ci-iva">IVA sobre intereses (%)</label><input id="ci-iva" type="number" min="0" step="0.01" value="0"><small>Solo cuando jurídicamente y fiscalmente corresponda.</small></div>
+                        </div>
+                        <button class="btn-primary" type="submit">Calcular intereses</button>
+                    </form>
+                    <div class="mj-card mj-resultado" id="calc-intereses-resultado"><div class="mj-vacio"><span>💹</span><strong>Captura capital, tasa y fechas</strong><p>LexGear mostrará días transcurridos, fórmula, intereses y total estimado.</p></div></div>
+                </div>
+            </section>
+
+            <section id="vista-cotizaciones" class="app-view modulo-juridico" style="display:none;">
+                <div class="mj-hero"><div><span class="cc-eyebrow">LexGear · Comercial y honorarios</span><h3>Cotizaciones</h3><p>Genera propuestas editables con honorarios, gastos, descuentos, anticipo y vigencia.</p></div><button class="btn-secundario" type="button" onclick="nuevaCotizacion()">Nueva cotización</button></div>
+                <div class="mj-grid">
+                    <form id="cotizacion-form" class="mj-card" onsubmit="event.preventDefault(); generarCotizacion();">
+                        <h4>Datos de la propuesta</h4>
+                        <div class="calc-form-grid">
+                            <div class="form-group"><label>Cliente<input id="cot-cliente" required></label></div>
+                            <div class="form-group"><label>Asunto o referencia<input id="cot-asunto"></label></div>
+                            <div class="form-group"><label>Servicio<select id="cot-servicio" onchange="cargarServicioCotizacion()"></select></label></div>
+                            <div class="form-group"><label>Método de cobro<select id="cot-metodo"><option value="fijo">Cuota fija</option><option value="porcentaje">Porcentaje</option><option value="horas">Por horas</option><option value="mixto">Mixto</option><option value="arancel">Referencia de arancel</option></select></label></div>
+                            <div class="form-group"><label>Honorarios base<input id="cot-honorarios" type="number" min="0" step="0.01" value="0"></label></div>
+                            <div class="form-group"><label>Gastos estimados<input id="cot-gastos" type="number" min="0" step="0.01" value="0"></label></div>
+                            <div class="form-group"><label>Descuento (%)<input id="cot-descuento" type="number" min="0" max="100" step="0.01" value="0"></label></div>
+                            <div class="form-group"><label>Anticipo (%)<input id="cot-anticipo" type="number" min="0" max="100" step="0.01" value="50"></label></div>
+                            <div class="form-group"><label>Vigencia (días)<input id="cot-vigencia" type="number" min="1" step="1" value="30"></label></div>
+                            <div class="form-group"><label>Forma de pago<input id="cot-forma-pago" value="50% al inicio y 50% al concluir"></label></div>
+                        </div>
+                        <div class="form-group"><label>Incluye<textarea id="cot-incluye" rows="5" placeholder="Una prestación por línea"></textarea></label></div>
+                        <div class="form-group"><label>No incluye<textarea id="cot-no-incluye" rows="4" placeholder="Gastos, derechos, peritos, viáticos..."></textarea></label></div>
+                        <div class="form-group"><label>Observaciones<textarea id="cot-observaciones" rows="3"></textarea></label></div>
+                        <button class="btn-primary" type="submit">Generar cotización</button>
+                    </form>
+                    <div class="mj-card mj-resultado" id="cotizacion-resultado"><div class="mj-vacio"><span>💼</span><strong>Genera una propuesta profesional</strong><p>Todos los importes y textos permanecen editables antes de guardar o imprimir.</p></div></div>
+                </div>
+            </section>
+
             <section id="vista-configuracion" class="app-view" style="display:none;">
                 <div class="configuracion-panel">
                     <span class="configuracion-etiqueta">Administración</span>
                     <h3>⚙️ Configuración</h3>
                     <p>Personaliza los datos generales, preferencias, folios, catálogos, notificaciones y apariencia del despacho.</p>
                     <div class="configuracion-grid">
-                        <article><strong>🏢 Datos del despacho</strong><span>Identidad, domicilio, contacto y logotipo.</span></article>
-                        <article><strong>🔢 Folios y consecutivos</strong><span>Formato y prefijos. Los contadores permanecen protegidos.</span></article>
-                        <article><strong>📚 Catálogos</strong><span>Materias, estatus, actuaciones y conceptos.</span></article>
-                        <article><strong>🔔 Agenda y notificaciones</strong><span>Alertas, anticipación y horario laboral.</span></article>
-                        <article><strong>🎨 Apariencia</strong><span>Nombre, logotipo y preferencias visuales.</span></article>
-                        <article><strong>🔐 Seguridad</strong><span>Sesión, permisos y registro de accesos.</span></article>
+                        <button type="button" onclick="abrirConfiguracionSeccion('despacho')"><strong>🏢 Datos del despacho</strong><span>Identidad, domicilio y contacto.</span></button>
+                        <button type="button" onclick="abrirConfiguracionSeccion('folios')"><strong>🔢 Folios y consecutivos</strong><span>Prefijos y formato de folios.</span></button>
+                        <button type="button" onclick="abrirConfiguracionSeccion('catalogos')"><strong>📚 Catálogos</strong><span>Materias, estatus y actuaciones.</span></button>
+                        <button type="button" onclick="abrirConfiguracionSeccion('agenda')"><strong>🔔 Agenda y notificaciones</strong><span>Alertas y vista preferida.</span></button>
+                        <button type="button" onclick="abrirConfiguracionSeccion('apariencia')"><strong>🎨 Apariencia</strong><span>Nombre y menú del sistema.</span></button>
+                        <button type="button" onclick="abrirConfiguracionSeccion('seguridad')"><strong>🔐 Seguridad</strong><span>Tiempo de sesión y controles.</span></button>
+                        <button type="button" onclick="abrirConfiguracionSeccion('honorarios')"><strong>💼 Honorarios y cotizaciones</strong><span>Servicios, precios y políticas comerciales.</span></button>
                     </div>
+                    <div id="configuracion-editor" class="configuracion-editor" hidden></div>
                     <div class="configuracion-aviso">El mantenimiento técnico y el reinicio de contadores no se muestran a los usuarios del despacho.</div>
                 </div>
             </section>
@@ -1495,6 +1622,10 @@
 <script src="js/conocimiento-juridico.js"></script>
 <script src="js/centro-conocimiento-data.js"></script>
 <script src="js/centro-conocimiento.js"></script>
+<script src="js/estrategia-procesal.js"></script>
+<script src="js/calculadoras-juridicas.js"></script>
+<script src="js/cotizaciones.js"></script>
+<script src="js/configuracion.js"></script>
 <script src="js/agenda.js"></script>
 <script src="js/calendario.js"></script>
 <script src="js/personal.js"></script>
@@ -1506,6 +1637,7 @@
 <script src="js/pdf.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="js/reportes-profesionales.js"></script>
 
     <script>
         if ("serviceWorker" in navigator) {

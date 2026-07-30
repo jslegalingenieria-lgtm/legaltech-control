@@ -634,3 +634,11 @@ RESPONSIVE
     .sidebar-brand{position:sticky;top:0;}
     .sidebar-scroll{height:calc(100vh - 139px);padding-bottom:env(safe-area-inset-bottom);}
 }
+
+/* v4.3.1 configuración funcional */
+.configuracion-grid button{display:flex;flex-direction:column;gap:.4rem;text-align:left;border:1px solid #e2e8f0;border-radius:10px;padding:1rem;background:#f8fafc;cursor:pointer;font:inherit;color:inherit;transition:.2s}
+.configuracion-grid button:hover{border-color:#2563eb;background:#eff6ff;transform:translateY(-1px)}
+.configuracion-grid button span{font-size:.88rem;color:#64748b;line-height:1.4}
+.configuracion-editor{margin-top:1.25rem;padding:1.2rem;border:1px solid #cbd5e1;border-radius:12px;background:#fff}
+.configuracion-editor-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}.configuracion-editor-head h4{margin:0}.configuracion-editor-head button{border:0;background:transparent;font-size:1.6rem;cursor:pointer}
+.configuracion-form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}.configuracion-form-grid label{display:flex;flex-direction:column;gap:.35rem;font-weight:700;color:#334155}.configuracion-form-grid input,.configuracion-form-grid select,.configuracion-form-grid textarea{padding:.65rem;border:1px solid #cbd5e1;border-radius:7px;font:inherit}.configuracion-check{flex-direction:row!important;align-items:center}.configuracion-acciones{display:flex;gap:.7rem;margin-top:1rem;flex-wrap:wrap}.configuracion-nota{color:#64748b;font-size:.9rem}

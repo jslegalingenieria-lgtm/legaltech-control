@@ -1,0 +1,10 @@
+LEXGEAR v4.4.0
+
+NOVEDADES
+- Calculadora de intereses funcional: simple o compuesto, tasa anual, fechas, base 360/365, abonos e IVA opcional.
+- Configuración funcional con editor de datos, folios, catálogos, agenda, apariencia, seguridad y honorarios.
+- Catálogo editable de servicios y precios.
+- Módulo de cotizaciones con honorarios, gastos, descuentos, anticipo, vigencia, guardado e impresión/PDF.
+
+ADVERTENCIA
+Los resultados jurídicos y honorarios son orientativos, editables y deben ser validados por el profesional antes de utilizarse.

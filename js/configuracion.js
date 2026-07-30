@@ -1,60 +1,22 @@
-/** Configuración básica del despacho y preferencias de interfaz. */
-(function () {
-    "use strict";
-    const CLAVE = "js_legal_configuracion";
-    const defaults = {
-        despachoNombre: "",
-        responsable: "",
-        telefono: "",
-        correo: "",
-        agendaVista: "lista",
-        alertaDias: 3,
-        formatoFecha: "dd/mm/aaaa",
-        sistemaNombre: "JS LegalTech Control",
-        menuModo: "normal"
-    };
-
-    function leer() {
-        try { return { ...defaults, ...JSON.parse(localStorage.getItem(CLAVE) || "{}") }; }
-        catch (_) { return { ...defaults }; }
-    }
-    function valor(id) { return document.getElementById(id)?.value ?? ""; }
-    function poner(id, value) { const el=document.getElementById(id); if(el) el.value=value ?? ""; }
-
-    function aplicar(cfg) {
-        document.body.classList.toggle("menu-compacto", cfg.menuModo === "compacto");
-        const brand = document.querySelector(".sidebar-brand-copy strong");
-        if (brand) brand.textContent = cfg.sistemaNombre || defaults.sistemaNombre;
-    }
-
-    window.cargarConfiguracionSistema = function () {
-        const cfg=leer();
-        poner("cfg-despacho-nombre",cfg.despachoNombre); poner("cfg-responsable",cfg.responsable);
-        poner("cfg-telefono",cfg.telefono); poner("cfg-correo",cfg.correo);
-        poner("cfg-agenda-vista",cfg.agendaVista); poner("cfg-alerta-dias",cfg.alertaDias);
-        poner("cfg-formato-fecha",cfg.formatoFecha); poner("cfg-sistema-nombre",cfg.sistemaNombre);
-        poner("cfg-menu-modo",cfg.menuModo); aplicar(cfg);
-    };
-
-    window.guardarConfiguracionSistema = function () {
-        const cfg={
-            despachoNombre:valor("cfg-despacho-nombre").trim(), responsable:valor("cfg-responsable").trim(),
-            telefono:valor("cfg-telefono").trim(), correo:valor("cfg-correo").trim(),
-            agendaVista:valor("cfg-agenda-vista") || "lista", alertaDias:Number(valor("cfg-alerta-dias")||3),
-            formatoFecha:valor("cfg-formato-fecha") || "dd/mm/aaaa", sistemaNombre:valor("cfg-sistema-nombre").trim() || defaults.sistemaNombre,
-            menuModo:valor("cfg-menu-modo") || "normal"
-        };
-        localStorage.setItem(CLAVE,JSON.stringify(cfg)); aplicar(cfg);
-        const estado=document.getElementById("cfg-estado"); if(estado){estado.textContent="✓ Configuración guardada correctamente."; setTimeout(()=>estado.textContent="",3000);}
-    };
-
-    window.cambiarVistaAgenda = function (vista) {
-        const destino=vista === "calendario" ? "calendario" : "agenda";
-        switchTab(destino);
-    };
-    window.abrirVistaAgendaPreferida = function () {
-        const cfg=leer(); window.cambiarVistaAgenda(cfg.agendaVista);
-    };
-
-    document.addEventListener("DOMContentLoaded",()=>aplicar(leer()));
-})();
+/** Configuración funcional del despacho y preferencias. */
+(function(){"use strict";
+const CLAVE="js_legal_configuracion";
+const defaults={despachoNombre:"",responsable:"",domicilio:"",telefono:"",correo:"",prefijoCliente:"CLI",prefijoAsunto:"ASU",catalogoMaterias:"Civil\nFamiliar\nMercantil\nLaboral\nAdministrativo\nPenal\nAmparo",catalogoEstatus:"Inicial\nEn proceso\nDetenido\nConcluido\nCancelado",agendaVista:"lista",alertaDias:3,horarioInicio:"09:00",horarioFin:"18:00",sistemaNombre:"LexGear",menuModo:"normal",sesionMinutos:60,registroAccesos:true,permitirEditarPrecios:true,solicitarMotivoDescuento:20,anticipoPredeterminado:50,vigenciaCotizacion:30,serviciosHonorarios:"Divorcio incausado|Familiar|8000|Cuota fija\nSucesión intestamentaria|Sucesorio|15000|Cuota fija\nJuicio ejecutivo mercantil|Mercantil|12000|Cuota fija\nDemanda laboral|Laboral|25|Porcentaje\nConsulta jurídica|General|800|Cuota fija"};
+const leer=()=>{try{return {...defaults,...JSON.parse(localStorage.getItem(CLAVE)||"{}")}}catch(_){return {...defaults}}};
+const esc=v=>String(v??"").replace(/[&<>\"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function aplicar(c){document.body.classList.toggle("menu-compacto",c.menuModo==="compacto");const b=document.querySelector(".sidebar-brand-copy strong");if(b)b.textContent=c.sistemaNombre||defaults.sistemaNombre;}
+const campos={
+despacho:{titulo:"🏢 Datos del despacho",html:c=>`<div class="configuracion-form-grid"><label>Nombre del despacho<input data-cfg="despachoNombre" value="${esc(c.despachoNombre)}"></label><label>Responsable<input data-cfg="responsable" value="${esc(c.responsable)}"></label><label>Domicilio<input data-cfg="domicilio" value="${esc(c.domicilio)}"></label><label>Teléfono<input data-cfg="telefono" value="${esc(c.telefono)}"></label><label>Correo<input type="email" data-cfg="correo" value="${esc(c.correo)}"></label></div>`},
+folios:{titulo:"🔢 Folios y consecutivos",html:c=>`<div class="configuracion-form-grid"><label>Prefijo de clientes<input data-cfg="prefijoCliente" value="${esc(c.prefijoCliente)}"></label><label>Prefijo de asuntos<input data-cfg="prefijoAsunto" value="${esc(c.prefijoAsunto)}"></label></div><p class="configuracion-nota">Los números consecutivos reales permanecen protegidos; aquí solo se modifica su presentación.</p>`},
+catalogos:{titulo:"📚 Catálogos",html:c=>`<div class="configuracion-form-grid"><label>Materias (una por línea)<textarea rows="8" data-cfg="catalogoMaterias">${esc(c.catalogoMaterias)}</textarea></label><label>Estatus (uno por línea)<textarea rows="8" data-cfg="catalogoEstatus">${esc(c.catalogoEstatus)}</textarea></label></div>`},
+agenda:{titulo:"🔔 Agenda y notificaciones",html:c=>`<div class="configuracion-form-grid"><label>Vista preferida<select data-cfg="agendaVista"><option value="lista" ${c.agendaVista==='lista'?'selected':''}>Lista</option><option value="calendario" ${c.agendaVista==='calendario'?'selected':''}>Calendario</option></select></label><label>Días de anticipación<input type="number" min="0" data-cfg="alertaDias" value="${esc(c.alertaDias)}"></label><label>Inicio de jornada<input type="time" data-cfg="horarioInicio" value="${esc(c.horarioInicio)}"></label><label>Fin de jornada<input type="time" data-cfg="horarioFin" value="${esc(c.horarioFin)}"></label></div>`},
+apariencia:{titulo:"🎨 Apariencia",html:c=>`<div class="configuracion-form-grid"><label>Nombre del sistema<input data-cfg="sistemaNombre" value="${esc(c.sistemaNombre)}"></label><label>Modo de menú<select data-cfg="menuModo"><option value="normal" ${c.menuModo==='normal'?'selected':''}>Normal</option><option value="compacto" ${c.menuModo==='compacto'?'selected':''}>Compacto</option></select></label></div>`},
+seguridad:{titulo:"🔐 Seguridad",html:c=>`<div class="configuracion-form-grid"><label>Duración de sesión (minutos)<input type="number" min="15" data-cfg="sesionMinutos" value="${esc(c.sesionMinutos)}"></label><label class="configuracion-check"><input type="checkbox" data-cfg="registroAccesos" ${c.registroAccesos?'checked':''}> Mantener registro local de accesos</label></div><p class="configuracion-nota">Los permisos por rol y las reglas de Firebase deben administrarse por separado.</p>`},
+honorarios:{titulo:"💼 Honorarios y cotizaciones",html:c=>`<div class="configuracion-form-grid"><label class="configuracion-check"><input type="checkbox" data-cfg="permitirEditarPrecios" ${c.permitirEditarPrecios?'checked':''}> Permitir modificar precios sugeridos</label><label>Solicitar motivo desde descuento (%)<input type="number" min="0" max="100" data-cfg="solicitarMotivoDescuento" value="${esc(c.solicitarMotivoDescuento)}"></label><label>Anticipo predeterminado (%)<input type="number" min="0" max="100" data-cfg="anticipoPredeterminado" value="${esc(c.anticipoPredeterminado)}"></label><label>Vigencia predeterminada (días)<input type="number" min="1" data-cfg="vigenciaCotizacion" value="${esc(c.vigenciaCotizacion)}"></label></div><label style="display:flex;flex-direction:column;gap:.35rem;font-weight:700;margin-top:1rem">Catálogo de servicios y precios<textarea rows="10" data-cfg="serviciosHonorarios">${esc(c.serviciosHonorarios)}</textarea><small>Una línea por servicio: Servicio | Materia | Precio o porcentaje | Método. Todo puede modificarse.</small></label>`}
+};
+window.abrirConfiguracionSeccion=function(k){const e=document.getElementById("configuracion-editor"),f=campos[k],c=leer();if(!e||!f)return;e.hidden=false;e.innerHTML=`<div class="configuracion-editor-head"><h4>${f.titulo}</h4><button type="button" onclick="cerrarConfiguracionEditor()">×</button></div>${f.html(c)}<div class="configuracion-acciones"><button class="btn-primary" type="button" onclick="guardarConfiguracionSeccion()">Guardar cambios</button><button class="btn-secundario" type="button" onclick="cerrarConfiguracionEditor()">Cerrar</button></div><p id="cfg-estado"></p>`;e.scrollIntoView({behavior:"smooth",block:"nearest"});};
+window.cerrarConfiguracionEditor=()=>{const e=document.getElementById("configuracion-editor");if(e)e.hidden=true};
+window.guardarConfiguracionSeccion=function(){const c=leer();document.querySelectorAll("#configuracion-editor [data-cfg]").forEach(el=>{const k=el.dataset.cfg;c[k]=el.type==='checkbox'?el.checked:el.type==='number'?Number(el.value||0):el.value});localStorage.setItem(CLAVE,JSON.stringify(c));aplicar(c);const s=document.getElementById("cfg-estado");if(s)s.textContent="✓ Configuración guardada correctamente.";};
+window.cargarConfiguracionSistema=()=>aplicar(leer());window.guardarConfiguracionSistema=window.guardarConfiguracionSeccion;
+window.cambiarVistaAgenda=v=>switchTab(v==="calendario"?"calendario":"agenda");window.abrirVistaAgendaPreferida=()=>window.cambiarVistaAgenda(leer().agendaVista);
+document.addEventListener("DOMContentLoaded",()=>aplicar(leer()));})();

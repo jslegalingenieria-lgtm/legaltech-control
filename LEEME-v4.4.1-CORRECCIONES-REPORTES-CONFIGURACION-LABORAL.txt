@@ -1,0 +1,9 @@
+LexGear v4.4.1
+
+Correcciones:
+- Reportes PDF profesionales para calculadoras, cotizaciones y estrategia procesal.
+- Se eliminó la impresión en blanco mediante un generador basado en el formato profesional de la bitácora.
+- Se cargó correctamente js/configuracion.js; las tarjetas de Configuración ya abren sus formularios.
+- Se incorporó el Manual de Litigación Laboral al módulo Conocimiento Procesal, con ficha, entrevista, documentos, ruta, pruebas, prescripción, errores y manual completo.
+
+Nota: los contenidos y cálculos requieren validación profesional y actualización normativa.

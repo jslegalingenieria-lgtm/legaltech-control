@@ -1,0 +1,11 @@
+LEXGEAR v4.3.1
+
+CAMBIOS
+- Fondo de ahorro: aportación trabajador + aportación patrón, multiplicado por número de periodos.
+- Periodicidad visible: semanal, quincenal, catorcenal, mensual o personalizada.
+- Calculadora de pensión alimenticia habilitada como análisis de proporcionalidad, no porcentaje automático.
+- Referencias a Código Civil de Jalisco y jurisprudencias registros 2014566, 2014571 y 179683.
+- Tarjetas de Configuración convertidas en botones funcionales con formularios persistentes en localStorage.
+
+AVISO
+Los cálculos son herramientas preliminares y deben revisarse con legislación, pruebas y criterios vigentes del caso concreto.

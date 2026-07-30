@@ -1,0 +1,6 @@
+LEXGEAR v4.4.2
+
+1. Los PDF y Word destinados al cliente eliminan notas de control, advertencias internas, botones y enlaces de consulta.
+2. Se agregó exportación a Word editable para cálculos, cotizaciones, estrategia procesal y manual laboral.
+3. Derecho Laboral ahora incluye procedimientos separados: despido injustificado, despido justificado/rescisión patronal, rescisión por el trabajador, renuncia y finiquito, conciliación prejudicial, juicio ordinario, reinstalación y cobro de prestaciones.
+4. El Manual de Litigación Laboral permanece como consulta integral adicional.

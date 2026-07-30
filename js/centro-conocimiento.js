@@ -146,7 +146,7 @@
   window.cerrarFichaCentro = () => { if ($("cc-ficha")) $("cc-ficha").hidden = true; temaActivo = null; };
   window.cambiarTabCentro = tab => { tabActivo = tab; document.querySelectorAll("[data-cc-tab]").forEach(b => b.classList.toggle("activo", b.dataset.ccTab === tab)); renderFicha(); };
   window.abrirModuloCentro = modulo => {
-    const rutas = { biblioteca:"biblioteca-juridica", procesal:"conocimiento-juridico", documentos:"constructor-documentos", formularios:"entrevistas", jurisprudencia:"buscador-juridico" };
+    const rutas = { biblioteca:"biblioteca-juridica", procesal:"conocimiento-juridico", documentos:"constructor-documentos", formularios:"entrevistas", jurisprudencia:"buscador-juridico", estrategia:"estrategia-procesal", calculadoras:"calculadoras-juridicas" };
     if (rutas[modulo]) { window.switchTab?.(rutas[modulo]); return; }
     const nombres = { legislacion:"Legislación", estrategia:"Estrategia Procesal", calculadoras:"Calculadoras Jurídicas" };
     alert(`${nombres[modulo] || "Este módulo"} se integrará en una siguiente etapa del Centro de Conocimiento.`);

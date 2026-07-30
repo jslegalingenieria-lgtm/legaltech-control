@@ -1,0 +1,13 @@
+LEXGEAR v4.3.0 — ESTRATEGIA PROCESAL Y CALCULADORAS JURÍDICAS
+
+Cambios:
+- Se retiró la leyenda “Versión piloto / Derecho Familiar” del encabezado.
+- Se habilitó la tarjeta Estrategia Procesal con entrevistas guiadas para escenarios piloto.
+- Se habilitó la tarjeta Calculadoras Jurídicas.
+- Primera calculadora: liquidación y finiquito laboral con desglose, metodología, fundamentos y referencias oficiales.
+- Parámetro inicial de salario mínimo general 2026: $315.04 diarios, editable.
+- Guarda un historial local de cálculos.
+- Permite imprimir el resultado.
+
+ADVERTENCIA
+Los resultados son preliminares y deben revisarse contra documentos, hechos, legislación vigente y criterios aplicables. La procedencia de veinte días por año, salarios vencidos y otros conceptos depende del caso concreto.
