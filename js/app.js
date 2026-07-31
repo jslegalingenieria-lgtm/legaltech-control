@@ -168,13 +168,30 @@ function configurarInterfazPorRol(rol) {
     }
 
     if (rol === "Cliente") {
-        if (usuarioActivoGlobal && typeof cargarExpedientesClientePortal === "function") {
-            cargarExpedientesClientePortal(usuarioActivoGlobal.id);
-        } else if (usuarioActivoGlobal && typeof cargarPortalCliente === "function") {
-            cargarPortalCliente();
+
+    // ===== OCULTAR MÓDULOS EXCLUSIVOS DEL DESPACHO =====
+    const menusOcultos = [
+        "menu-cotizaciones",
+        "menu-centro-conocimiento",
+        "menu-buscador-juridico"
+    ];
+
+    menusOcultos.forEach(id => {
+        const menu = document.getElementById(id);
+        if (menu) {
+            menu.style.display = "none";
+            menu.hidden = true;
         }
-        switchTab("portal");
+    });
+
+    if (usuarioActivoGlobal && typeof cargarExpedientesClientePortal === "function") {
+        cargarExpedientesClientePortal(usuarioActivoGlobal.id);
+    } else if (usuarioActivoGlobal && typeof cargarPortalCliente === "function") {
+        cargarPortalCliente();
     }
+
+    switchTab("portal");
+}
 }
 
 // Alterna la Agenda entre lista y calendario sin duplicar opciones en el menú.
@@ -202,6 +219,17 @@ function switchTab(vista) {
         alert("El módulo de Expedientes es exclusivo para personal autorizado del despacho.");
         return;
     }
+// Restringir módulos exclusivos del despacho para clientes
+if (
+    ["cotizaciones", "centro-conocimiento", "buscador-juridico"].includes(vista) &&
+    usuarioActual?.rol === "Cliente"
+) {
+    alert("No tienes permisos para acceder a este módulo.");
+    return;
+}
+
+
+
     if (vista === "mantenimiento" && usuarioActual?.rol !== "Superadministrador") {
         alert("El mantenimiento de consecutivos es exclusivo del Superadministrador.");
         return;
