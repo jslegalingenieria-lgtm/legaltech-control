@@ -1628,7 +1628,7 @@
 <script src="js/centro-conocimiento-data.js"></script>
 <script src="js/centro-conocimiento.js"></script>
 <script src="js/estrategia-procesal.js"></script>
-<script src="js/calculadoras-juridicas.js"></script>
+<script src="js/calculadoras-juridicas.js?v=4.4.6"></script>
 <script src="js/cotizaciones.js"></script>
 <script src="js/configuracion.js"></script>
 <script src="js/agenda.js"></script>
@@ -1642,12 +1642,15 @@
 <script src="js/pdf.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="js/reportes-profesionales.js"></script>
+<script src="js/reportes-profesionales.js?v=4.4.6"></script>
 
     <script>
         if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("sw.js")
-                .then(() => console.log("Service Worker registrado con éxito."))
+            navigator.serviceWorker.register("sw.js?v=4.4.6", { updateViaCache: "none" })
+                .then(registro => {
+                    registro.update();
+                    console.log("Service Worker registrado con éxito.");
+                })
                 .catch(error => console.error("Error al registrar Service Worker:", error));
         }
     </script>

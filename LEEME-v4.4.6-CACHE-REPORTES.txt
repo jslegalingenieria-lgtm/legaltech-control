@@ -1,0 +1,10 @@
+LEXGEAR v4.4.6
+
+Corrección de actualización de calculadoras y reportes:
+- Se fuerza la carga de calculadoras-juridicas.js v4.4.6.
+- Se fuerza la carga de reportes-profesionales.js v4.4.6.
+- Se actualiza el Service Worker y su caché.
+- La pensión alimenticia muestra Guardar cálculo, Guardar PDF y Guardar Word editable.
+- Los reportes laboral, intereses y pensión usan encabezado institucional.
+
+Después de publicar, cierre todas las pestañas del sistema y vuelva a abrirlo.
