@@ -642,3 +642,17 @@ RESPONSIVE
 .configuracion-editor{margin-top:1.25rem;padding:1.2rem;border:1px solid #cbd5e1;border-radius:12px;background:#fff}
 .configuracion-editor-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}.configuracion-editor-head h4{margin:0}.configuracion-editor-head button{border:0;background:transparent;font-size:1.6rem;cursor:pointer}
 .configuracion-form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}.configuracion-form-grid label{display:flex;flex-direction:column;gap:.35rem;font-weight:700;color:#334155}.configuracion-form-grid input,.configuracion-form-grid select,.configuracion-form-grid textarea{padding:.65rem;border:1px solid #cbd5e1;border-radius:7px;font:inherit}.configuracion-check{flex-direction:row!important;align-items:center}.configuracion-acciones{display:flex;gap:.7rem;margin-top:1rem;flex-wrap:wrap}.configuracion-nota{color:#64748b;font-size:.9rem}
+
+
+@media (max-width: 768px) {
+    .resultado-calculadora,
+    .resultado-intereses,
+    .resultado-pension,
+    .resultado-liquidacion,
+    .tabla-resultados,
+    .contenedor-reporte {
+        display: block;
+        overflow-x: auto;
+        touch-action: pan-x pan-y;
+    }
+}
