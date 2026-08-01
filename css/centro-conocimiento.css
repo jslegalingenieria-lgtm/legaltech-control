@@ -9,3 +9,35 @@
 @media print{.sidebar,.topbar,.mj-hero button,.calc-selector,.calc-grid>form,.calc-acciones,.ep-encabezado button{display:none!important}.main-content{margin:0!important;padding:0!important}.mj-grid{display:block}.mj-card{border:0;box-shadow:none}.app-view{display:none!important}#vista-calculadoras-juridicas[style*="block"],#vista-estrategia-procesal[style*="block"]{display:block!important}}
 
 .cot-doc header{border-bottom:2px solid #17233d;padding-bottom:14px;margin-bottom:18px}.cot-doc header h3{margin:5px 0;text-transform:uppercase}.cot-doc h5{margin:18px 0 8px}.cot-doc li{margin:6px 0}.cot-doc>p{line-height:1.55}
+
+
+/* v4.4.4 — Resultados de calculadoras adaptados a móvil */
+.mj-grid,.mj-card,.mj-resultado{min-width:0;max-width:100%;box-sizing:border-box}
+.mj-resultado{overflow:hidden}
+.mj-resultado .table-responsive{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.mj-resultado .calc-fundamento,.mj-resultado .calc-fundamento *{max-width:100%;box-sizing:border-box;overflow-wrap:anywhere;word-break:normal}
+.mj-resultado .calc-links a{overflow-wrap:anywhere;word-break:break-word}
+.calc-acciones{flex-wrap:wrap}
+.calc-check-principal{font-weight:800;color:#17233d}
+.calc-checks small{color:#64748b;line-height:1.4}
+.calc-opcion-liquidacion{transition:opacity .2s ease}
+.calc-opcion-deshabilitada{opacity:.45}
+
+@media(max-width:768px){
+  .modulo-juridico,.mj-grid,.mj-card,.mj-resultado{width:100%;max-width:100%;min-width:0}
+  .mj-card{padding:14px}
+  .calc-resumen{grid-template-columns:1fr}
+  .calc-meta{align-items:stretch;flex-direction:column}
+  .calc-meta span{border-radius:10px}
+  .mj-resultado .table-responsive{overflow:visible}
+  .mj-resultado .calc-tabla{display:block;width:100%;min-width:0!important;border:0}
+  .mj-resultado .calc-tabla thead{display:none}
+  .mj-resultado .calc-tabla tbody,.mj-resultado .calc-tabla tr{display:block;width:100%}
+  .mj-resultado .calc-tabla tr{margin:0 0 12px;border:1px solid #dbe3ef;border-radius:12px;background:#fff;overflow:hidden}
+  .mj-resultado .calc-tabla td{display:grid;grid-template-columns:minmax(92px,35%) minmax(0,1fr);gap:10px;width:100%;padding:10px 12px!important;border:0;border-bottom:1px solid #e2e8f0;text-align:left!important;white-space:normal!important;overflow-wrap:anywhere;box-sizing:border-box}
+  .mj-resultado .calc-tabla td:last-child{border-bottom:0}
+  .mj-resultado .calc-tabla td::before{content:attr(data-label);font-weight:800;color:#475569}
+  .calc-fundamento{padding:12px}
+  .calc-acciones{display:grid;grid-template-columns:1fr;gap:8px}
+  .calc-acciones button{width:100%;max-width:100%;white-space:normal}
+}

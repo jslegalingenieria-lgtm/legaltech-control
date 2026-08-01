@@ -4,7 +4,7 @@
   function fechaUTC(v){const [y,m,d]=String(v).split("-").map(Number);return new Date(Date.UTC(y,m-1,d));}
   function diasEntre(a,b){return Math.max(0,Math.floor((b-a)/MS));}
   function vacPorAntiguedad(anios){if(anios<=0)return 12;if(anios<=5)return 10+anios*2;return 20+Math.ceil((anios-5)/5)*2;}
-  function fila(cat,concepto,fund,monto){return `<tr><td>${cat}</td><td>${concepto}</td><td>${fund}</td><td>${money(monto)}</td></tr>`;}
+  function fila(cat,concepto,fund,monto){return `<tr><td data-label="Categoría">${cat}</td><td data-label="Concepto">${concepto}</td><td data-label="Fundamento">${fund}</td><td data-label="Monto">${money(monto)}</td></tr>`;}
   window.calcularLiquidacionLaboral=()=>{
     const ingreso=fechaUTC($("cl-fecha-ingreso").value), baja=fechaUTC($("cl-fecha-baja").value);
     if(!ingreso||!baja||baja<=ingreso){alert("Verifica las fechas de ingreso y baja.");return;}
@@ -13,9 +13,10 @@
     let vac=num("cl-vacaciones-dias"); if(!vac){vac=vacPorAntiguedad(Math.max(1,Math.ceil(antig)));$("cl-vacaciones-dias").value=vac;}
     const inicioAnio=new Date(Date.UTC(baja.getUTCFullYear(),0,1)), diasAnio=diasEntre(inicioAnio,baja)+1;
     const sdi=sd+(aguinaldo*sd/365)+(vac*sd*prima/365)+(vales*12/365);
-    const indemn3=sdi*90;
-    const veinte=$("cl-incluir-20").checked?sdi*20*antig:0;
-    const basePrima=Math.min(sdi,sm*2), primaAnt=$("cl-prima-antiguedad").checked?basePrima*12*antig:0;
+    const incluirLiquidacion=$("cl-incluir-liquidacion")?.checked !== false;
+    const indemn3=incluirLiquidacion?sdi*90:0;
+    const veinte=incluirLiquidacion && $("cl-incluir-20").checked?sdi*20*antig:0;
+    const basePrima=Math.min(sdi,sm*2), primaAnt=incluirLiquidacion && $("cl-prima-antiguedad").checked?basePrima*12*antig:0;
     const aguinaldoProp=sd*aguinaldo*(diasAnio/365);
     const vacProp=sd*vac*((totalDias%365)/365);
     const primaVac=vacProp*prima;
@@ -25,10 +26,10 @@
     const finiquito=num("cl-pago-pendiente")+aguinaldoProp+vacProp+primaVac+vacAnt+fondoAhorro+num("cl-otros");
     const liquidacion=indemn3+veinte+primaAnt,total=liquidacion+finiquito;
     const r=$("calc-laboral-resultado");
-    r.innerHTML=`<div class="calc-resumen"><div><span>Liquidación</span><strong>${money(liquidacion)}</strong></div><div><span>Finiquito</span><strong>${money(finiquito)}</strong></div><div class="total"><span>Total preliminar</span><strong>${money(total)}</strong></div></div>
+    r.innerHTML=`<div class="calc-resumen">${incluirLiquidacion?`<div><span>Liquidación</span><strong>${money(liquidacion)}</strong></div>`:""}<div><span>Finiquito</span><strong>${money(finiquito)}</strong></div><div class="total"><span>${incluirLiquidacion?"Total preliminar":"Total del finiquito"}</span><strong>${money(total)}</strong></div></div>
     <div class="calc-meta"><span>Antigüedad: <strong>${anios} años, ${meses} meses</strong></span><span>SDI estimado: <strong>${money(sdi)}</strong></span><span>Vacaciones usadas: <strong>${vac} días</strong></span></div>
     <div class="table-responsive"><table class="calc-tabla"><thead><tr><th>Categoría</th><th>Concepto</th><th>Fundamento</th><th>Monto</th></tr></thead><tbody>
-    ${fila("Liquidación","Indemnización constitucional (90 días)","Arts. 48 y 50 LFT",indemn3)}
+    ${incluirLiquidacion?fila("Liquidación","Indemnización constitucional (90 días)","Arts. 48 y 50 LFT",indemn3):""}
     ${veinte?fila("Liquidación","Veinte días por año — escenario seleccionado","Art. 50 LFT; procedencia sujeta al caso",veinte):""}
     ${primaAnt?fila("Liquidación","Prima de antigüedad (12 días por año y proporción)","Art. 162 LFT",primaAnt):""}
     ${fila("Finiquito","Aguinaldo proporcional","Art. 87 LFT",aguinaldoProp)}
@@ -41,7 +42,16 @@
     </tbody></table></div>
     <section class="calc-fundamento"><h5>Metodología y referencias</h5><p><strong>Salario Diario Integrado:</strong> cuota diaria más proporciones de aguinaldo, prima vacacional y vales capturados, como estimación basada en los artículos 84 y 89 de la LFT.</p><p><strong>Tope de prima de antigüedad:</strong> se aplicó el menor entre el SDI estimado y dos salarios mínimos diarios, conforme a los artículos 162 y 486 de la LFT.</p><p><strong>Parámetro anual:</strong> salario mínimo general capturado ${money(sm)} diarios. La interfaz inicia con $315.04 para 2026.</p><div class="calc-links"><a target="_blank" rel="noopener" href="https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf">Consultar Ley Federal del Trabajo vigente</a><a target="_blank" rel="noopener" href="https://www.conasami.gob.mx/">Consultar CONASAMI</a></div></section>
     <div class="calc-acciones"><button class="btn-secundario" onclick="guardarCalculoLaboral()">Guardar cálculo</button><button class="btn-secundario" onclick="generarReporteLexGear('Reporte de cálculo laboral','calc-laboral-resultado')">Guardar PDF</button><button class="btn-secundario" onclick="generarWordLexGear('Reporte de cálculo laboral','calc-laboral-resultado')">Guardar Word editable</button></div><div class="cc-aviso">Estimación preliminar. La procedencia de cada indemnización y la integración salarial dependen de hechos, pruebas, prestaciones pactadas, criterios jurisdiccionales y legislación vigente. No incluye ISR, salarios vencidos, intereses ni conceptos no capturados.</div>`;
-    window.__ultimoCalculoLaboral={fecha:new Date().toISOString(),ingreso:$("cl-fecha-ingreso").value,baja:$("cl-fecha-baja").value,sdi,total,liquidacion,finiquito,fondoAhorro,antiguedad:`${anios} años, ${meses} meses`};
+    window.__ultimoCalculoLaboral={fecha:new Date().toISOString(),ingreso:$("cl-fecha-ingreso").value,baja:$("cl-fecha-baja").value,sdi,total,liquidacion,finiquito,fondoAhorro,incluirLiquidacion,antiguedad:`${anios} años, ${meses} meses`};
+  };
+
+
+  window.actualizarModoCalculoLaboral=()=>{
+    const incluir=$("cl-incluir-liquidacion")?.checked !== false;
+    document.querySelectorAll(".calc-opcion-liquidacion").forEach(el=>{
+      el.classList.toggle("calc-opcion-deshabilitada",!incluir);
+      el.querySelectorAll("input").forEach(input=>{ input.disabled=!incluir; });
+    });
   };
 
   window.mostrarCalculadora=(tipo)=>{
@@ -69,9 +79,9 @@
     r.innerHTML=`<div class="calc-resumen"><div><span>Necesidades acreditadas</span><strong>${money(gastos)}</strong></div><div><span>Participación económica estimada del deudor</span><strong>${money(escenarioBase)}</strong></div><div class="total"><span>Equivalencia orientativa</span><strong>${porBase.toFixed(1)}%</strong></div></div>
     <div class="calc-meta"><span>Acreedores: <strong>${acreedores}</strong></span><span>Capacidad conjunta: <strong>${money(ingresoFamiliar)}</strong></span><span>Proporción de ingreso del deudor: <strong>${(proporcionDeudor*100).toFixed(1)}%</strong></span></div>
     <div class="table-responsive"><table class="calc-tabla"><thead><tr><th>Escenario</th><th>Metodología</th><th>Monto mensual</th><th>% ingreso deudor</th></tr></thead><tbody>
-    <tr><td>Conservador</td><td>85% de la participación proporcional estimada</td><td>${money(escenarioBajo)}</td><td>${(escenarioBajo/ingreso*100).toFixed(1)}%</td></tr>
-    <tr><td>Base documental</td><td>Necesidades × participación de ingresos</td><td>${money(escenarioBase)}</td><td>${porBase.toFixed(1)}%</td></tr>
-    <tr><td>Necesidad reforzada</td><td>115% del escenario base, sujeto a prueba</td><td>${money(escenarioAlto)}</td><td>${(escenarioAlto/ingreso*100).toFixed(1)}%</td></tr></tbody></table></div>
+    <tr><td data-label="Escenario">Conservador</td><td data-label="Metodología">85% de la participación proporcional estimada</td><td data-label="Monto mensual">${money(escenarioBajo)}</td><td data-label="% ingreso deudor">${(escenarioBajo/ingreso*100).toFixed(1)}%</td></tr>
+    <tr><td data-label="Escenario">Base documental</td><td data-label="Metodología">Necesidades × participación de ingresos</td><td data-label="Monto mensual">${money(escenarioBase)}</td><td data-label="% ingreso deudor">${porBase.toFixed(1)}%</td></tr>
+    <tr><td data-label="Escenario">Necesidad reforzada</td><td data-label="Metodología">115% del escenario base, sujeto a prueba</td><td data-label="Monto mensual">${money(escenarioAlto)}</td><td data-label="% ingreso deudor">${(escenarioAlto/ingreso*100).toFixed(1)}%</td></tr></tbody></table></div>
     <section class="calc-fundamento"><h5>Fundamento y criterio aplicado</h5><p><strong>Código Civil del Estado de Jalisco:</strong> aplicar el principio de proporcionalidad entre las posibilidades de quien debe proporcionar alimentos y las necesidades de quien debe recibirlos. Verifica la numeración vigente en el texto oficial al usar el resultado.</p><p><strong>Jurisprudencia 1a./J. 22/2017 (10a.), registro 2014566:</strong> en asuntos de Jalisco, la necesidad debe acreditarse en mayor o menor medida y la decisión debe responder al principio de proporcionalidad.</p><p><strong>Jurisprudencia 1a./J. 27/2017 (10a.), registro 2014571:</strong> el juzgador debe valorar vida digna, capacidad propia del acreedor y suficiencia de la pensión.</p><p><strong>Jurisprudencia VI.2o.C. J/248, registro 179683:</strong> una división aritmética simple es insuficiente; deben valorarse necesidades particulares, posibilidades reales y pruebas.</p><p><strong>Base salarial:</strong> se utiliza ingreso neto después de deducciones legales obligatorias; las deudas voluntarias no se descuentan automáticamente del ingreso disponible.</p><div class="calc-links"><a target="_blank" rel="noopener" href="https://congresoweb.congresojal.gob.mx/BibliotecaVirtual/busquedasleyes/ListadoCr.cfm">Código Civil de Jalisco vigente</a><a target="_blank" rel="noopener" href="https://sjf2.scjn.gob.mx/detalle/tesis/2014566">Registro 2014566</a><a target="_blank" rel="noopener" href="https://sjf2.scjn.gob.mx/detalle/tesis/2014571">Registro 2014571</a></div></section>
     <div class="cc-aviso">Herramienta de análisis, no resolución judicial. El monto definitivo depende de pruebas, necesidades individualizadas, capacidad económica real, aportaciones en especie, cuidado directo, otros dependientes y prudente arbitrio judicial. El sistema no recomienda un porcentaje fijo.</div>`;
   };

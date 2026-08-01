@@ -1017,7 +1017,12 @@
                             <div class="form-group"><label for="cl-fondo-periodos">Periodos pendientes o acumulados</label><input id="cl-fondo-periodos" type="number" min="0" step="1" value="0"><small>Ejemplo: 20 semanas o 10 quincenas.</small></div>
                             <div class="form-group"><label for="cl-otros">Otros conceptos devengados</label><input id="cl-otros" type="number" min="0" step="0.01" value="0"></div>
                         </div>
-                        <div class="calc-checks"><label><input id="cl-incluir-20" type="checkbox"> Incluir escenario de 20 días por año</label><label><input id="cl-prima-antiguedad" type="checkbox" checked> Incluir prima de antigüedad</label></div>
+                        <div class="calc-checks">
+                            <label class="calc-check-principal"><input id="cl-incluir-liquidacion" type="checkbox" checked onchange="actualizarModoCalculoLaboral()"> Incluir liquidación por despido</label>
+                            <label class="calc-opcion-liquidacion"><input id="cl-incluir-20" type="checkbox"> Incluir escenario de 20 días por año</label>
+                            <label class="calc-opcion-liquidacion"><input id="cl-prima-antiguedad" type="checkbox" checked> Incluir prima de antigüedad</label>
+                            <small>Desmarca “Incluir liquidación por despido” para calcular únicamente el finiquito, por ejemplo en caso de renuncia.</small>
+                        </div>
                         <button class="btn-primary" type="submit">Calcular con fundamento</button>
                     </form>
                     <div class="mj-card mj-resultado" id="calc-laboral-resultado"><div class="mj-vacio"><span>🧮</span><strong>Captura los datos</strong><p>El resultado distinguirá liquidación, finiquito, metodología y referencias jurídicas.</p></div></div>

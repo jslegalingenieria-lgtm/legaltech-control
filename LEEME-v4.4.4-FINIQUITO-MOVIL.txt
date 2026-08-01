@@ -1,0 +1,10 @@
+LEXGEAR v4.4.4 — FINIQUITO Y RESULTADOS MÓVILES
+
+Cambios:
+1. La calculadora laboral incorpora la casilla «Incluir liquidación por despido».
+2. Al desmarcarla se calcula únicamente el finiquito, pensado para renuncia u otros casos sin indemnización.
+3. Las opciones de 20 días por año y prima de antigüedad se deshabilitan cuando la liquidación está desactivada.
+4. En celular, las tablas de resultados se convierten en tarjetas verticales para evitar que el contenido exceda el ancho de la pantalla.
+5. Metodología, referencias, enlaces y botones se ajustan al ancho disponible.
+
+Validar siempre la procedencia de cada concepto conforme al caso concreto.
