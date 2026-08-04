@@ -50,3 +50,14 @@
 .comunicacion-historial .com-status.estado-fecha-propuesta{background:#ede9fe;color:#6d28d9}
 @media(max-width:1000px){.comunicacion-seguimiento-grid{grid-template-columns:1fr}.comunicacion-historial{max-height:none}.comunicacion-seguimiento-header{position:static}}
 @media(max-width:560px){.comunicacion-seguimiento-header{flex-direction:column}.com-contador{align-self:flex-start}.comunicacion-historial{padding:.75rem}.comunicacion-historial .com-actions>button{flex:1 1 145px}}
+
+/* Mensajería interna con apariencia de conversación, alineada al portal del cliente */
+.com-conversacion-staff{display:grid;gap:.8rem;padding:1rem;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 2px 8px rgba(15,23,42,.05)}
+.com-conversacion-cabecera{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding-bottom:.7rem;border-bottom:1px solid #e2e8f0}
+.com-conversacion-cabecera h4{margin:0 0 .25rem;color:#1e293b;font-size:.96rem}
+.com-chat-staff{display:grid;gap:.65rem;padding:.15rem .1rem}
+.com-burbuja-staff{max-width:82%}
+.com-chat-staff .burbuja-cliente{justify-self:start;background:#fff;border:1px solid #dbeafe;border-bottom-left-radius:4px;border-bottom-right-radius:12px;color:#1e293b}
+.com-chat-staff .burbuja-despacho{justify-self:end;background:#dcfce7;border:1px solid #bbf7d0;border-bottom-right-radius:4px;border-bottom-left-radius:12px;color:#14532d}
+.com-chat-acciones{justify-content:flex-end;margin-top:0}
+@media(max-width:560px){.com-conversacion-cabecera{flex-direction:column}.com-burbuja-staff{max-width:94%}.com-chat-acciones .btn-primary{width:100%}}

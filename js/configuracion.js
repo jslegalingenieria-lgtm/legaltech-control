@@ -1,8 +1,22 @@
 /** Configuración funcional del despacho y preferencias. */
 (function(){"use strict";
 const CLAVE="js_legal_configuracion";
-const defaults={despachoNombre:"",responsable:"",domicilio:"",telefono:"",correo:"",prefijoCliente:"CLI",prefijoAsunto:"ASU",catalogoMaterias:"Civil\nFamiliar\nMercantil\nLaboral\nAdministrativo\nPenal\nAmparo",catalogoEstatus:"Inicial\nEn proceso\nDetenido\nConcluido\nCancelado",agendaVista:"lista",alertaDias:3,horarioInicio:"09:00",horarioFin:"18:00",sistemaNombre:"LexGear",menuModo:"normal",sesionMinutos:60,registroAccesos:true,permitirEditarPrecios:true,solicitarMotivoDescuento:20,anticipoPredeterminado:50,vigenciaCotizacion:30,serviciosHonorarios:"Divorcio incausado|Familiar|8000|Cuota fija\nSucesión intestamentaria|Sucesorio|15000|Cuota fija\nJuicio ejecutivo mercantil|Mercantil|12000|Cuota fija\nDemanda laboral|Laboral|25|Porcentaje\nConsulta jurídica|General|800|Cuota fija"};
-const leer=()=>{try{return {...defaults,...JSON.parse(localStorage.getItem(CLAVE)||"{}")}}catch(_){return {...defaults}}};
+const defaults={despachoNombre:"",responsable:"",domicilio:"",telefono:"",correo:"",prefijoCliente:"CLI",prefijoAsunto:"ASU",catalogoMaterias:"Civil\nFamiliar\nMercantil\nLaboral\nAdministrativo\nPenal\nAmparo",catalogoEstatus:"Inicial\nEn proceso\nDetenido\nConcluido\nCancelado",agendaVista:"lista",alertaDias:3,horarioInicio:"09:00",horarioFin:"18:00",sistemaNombre:"JS LegalTech Control",menuModo:"normal",sesionMinutos:60,registroAccesos:true,permitirEditarPrecios:true,solicitarMotivoDescuento:20,anticipoPredeterminado:50,vigenciaCotizacion:30,serviciosHonorarios:"Divorcio incausado|Familiar|8000|Cuota fija\nSucesión intestamentaria|Sucesorio|15000|Cuota fija\nJuicio ejecutivo mercantil|Mercantil|12000|Cuota fija\nDemanda laboral|Laboral|25|Porcentaje\nConsulta jurídica|General|800|Cuota fija"};
+const leer=()=>{
+    try {
+        const guardada = JSON.parse(localStorage.getItem(CLAVE) || "{}");
+        // Migración: versiones anteriores guardaban “LexGear” como nombre principal.
+        // Se conserva LexGear como marca superior, pero el nombre visible del sistema
+        // debe ser JS LegalTech Control.
+        if (!guardada.sistemaNombre || guardada.sistemaNombre === "LexGear") {
+            guardada.sistemaNombre = defaults.sistemaNombre;
+            localStorage.setItem(CLAVE, JSON.stringify(guardada));
+        }
+        return {...defaults, ...guardada};
+    } catch (_) {
+        return {...defaults};
+    }
+};
 const esc=v=>String(v??"").replace(/[&<>\"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function aplicar(c){document.body.classList.toggle("menu-compacto",c.menuModo==="compacto");const b=document.querySelector(".sidebar-brand-copy strong");if(b)b.textContent=c.sistemaNombre||defaults.sistemaNombre;}
 const campos={

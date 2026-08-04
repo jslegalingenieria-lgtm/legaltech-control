@@ -316,7 +316,24 @@
     cancelarCitas=consultaComunicacionPorRol("solicitudesCitas").onSnapshot(s=>{citasCache=s.docs.map(d=>({id:d.id,...d.data()})).filter(usuarioEsResponsable);renderCitasStaff();},error=>{console.error(error);document.getElementById("panel-com-citas").innerHTML='<div class="com-empty">No fue posible consultar las solicitudes.</div>';});
   }
 
-  function renderMensajesStaff(){const p=document.getElementById("panel-com-mensajes");if(!p)return;const a=mensajesCache.sort((x,y)=>(y.fechaCreacion?.seconds||0)-(x.fechaCreacion?.seconds||0));document.getElementById("badge-mensajes").textContent=a.filter(x=>x.estado==="Pendiente").length;p.innerHTML=a.length?a.map(x=>`<article class="com-card"><div class="com-card-head"><div><h4>${esc(x.clienteNombre)} ${x.expediente?"— "+esc(x.expediente):""}</h4><div class="com-meta">${fechaLegible(x.fechaCreacion)} · ${esc(x.clienteCorreo)}</div></div><span class="com-status estado-${String(x.estado||"pendiente").toLowerCase().replaceAll(" ","-")}">${esc(x.estado)}</span></div><div class="com-texto">${esc(x.mensaje)}</div>${x.respuesta?`<div class="com-respuesta"><strong>Respuesta:</strong><br>${esc(x.respuesta)}</div>`:""}<div class="com-actions"><button class="btn-primary" onclick="window.responderMensaje('${x.id}')">Responder</button></div></article>`).join(""):'<div class="com-empty">No hay mensajes para atender.</div>'}
+  function renderMensajesStaff(){
+    const p=document.getElementById("panel-com-mensajes");
+    if(!p)return;
+    const a=mensajesCache.slice().sort((x,y)=>(y.fechaCreacion?.seconds||0)-(x.fechaCreacion?.seconds||0));
+    document.getElementById("badge-mensajes").textContent=a.filter(x=>x.estado==="Pendiente").length;
+    p.innerHTML=a.length?a.map(x=>`<article class="com-conversacion-staff">
+      <div class="com-conversacion-cabecera">
+        <div><h4>${esc(x.clienteNombre)} ${x.expediente?"— "+esc(x.expediente):""}</h4><div class="com-meta">${esc(x.clienteCorreo)} · ${fechaLegible(x.fechaCreacion)}</div></div>
+        <span class="com-status estado-${String(x.estado||"pendiente").toLowerCase().replaceAll(" ","-")}">${esc(x.estado)}</span>
+      </div>
+      <div class="com-chat-staff">
+        <div class="burbuja-chat burbuja-cliente com-burbuja-staff"><div class="burbuja-autor">${esc(x.clienteNombre||"Cliente")}</div><div>${esc(x.mensaje)}</div><time>${fechaLegible(x.fechaCreacion)}</time></div>
+        ${x.respuesta?`<div class="burbuja-chat burbuja-despacho com-burbuja-staff"><div class="burbuja-autor">${esc(x.respondidoPor||"Despacho Jurídico")}</div><div>${esc(x.respuesta)}</div><time>${fechaLegible(x.fechaActualizacion||x.fechaCreacion)}</time></div>`:`<div class="portal-espera-respuesta">Mensaje pendiente de respuesta.</div>`}
+      </div>
+      <div class="com-actions com-chat-acciones"><button class="btn-primary" onclick="window.responderMensaje('${x.id}')">${x.respuesta?"Responder nuevamente":"Responder"}</button></div>
+    </article>`).join(""):'<div class="com-empty">No hay mensajes para atender.</div>';
+    p.scrollTop=0;
+  }
 
   async function responderMensaje(id){
     const u = obtenerSesion();

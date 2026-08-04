@@ -642,3 +642,14 @@ RESPONSIVE
 .configuracion-editor{margin-top:1.25rem;padding:1.2rem;border:1px solid #cbd5e1;border-radius:12px;background:#fff}
 .configuracion-editor-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}.configuracion-editor-head h4{margin:0}.configuracion-editor-head button{border:0;background:transparent;font-size:1.6rem;cursor:pointer}
 .configuracion-form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}.configuracion-form-grid label{display:flex;flex-direction:column;gap:.35rem;font-weight:700;color:#334155}.configuracion-form-grid input,.configuracion-form-grid select,.configuracion-form-grid textarea{padding:.65rem;border:1px solid #cbd5e1;border-radius:7px;font:inherit}.configuracion-check{flex-direction:row!important;align-items:center}.configuracion-acciones{display:flex;gap:.7rem;margin-top:1rem;flex-wrap:wrap}.configuracion-nota{color:#64748b;font-size:.9rem}
+
+/* Menú desplegable del Centro de Conocimiento */
+.menu-con-submenu > .menu-item-desplegable{display:flex;align-items:center;justify-content:space-between;gap:.75rem;width:100%}
+.submenu-flecha{font-size:.82rem;transition:transform .2s ease}
+.menu-con-submenu.submenu-abierto .submenu-flecha{transform:rotate(180deg)}
+.sidebar-submenu{list-style:none;margin:.2rem 0 .45rem;padding:.25rem 0 .25rem 1.45rem;border-left:1px solid rgba(148,163,184,.28)}
+.sidebar-submenu[hidden]{display:none!important}
+.sidebar-submenu li{margin:0}
+.sidebar-submenu a{display:block;padding:.55rem .7rem;border-radius:7px;color:#cbd5e1;text-decoration:none;font-size:.86rem;line-height:1.25}
+.sidebar-submenu a:hover,.sidebar-submenu a:focus{background:rgba(59,130,246,.16);color:#fff;outline:none}
+@media(max-width:768px){.sidebar-submenu{padding-left:1rem}.sidebar-submenu a{padding:.65rem .7rem}}

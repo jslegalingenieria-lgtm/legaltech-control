@@ -139,7 +139,7 @@ async function actualizarAsistenteVirtual() {
 function configurarInterfazPorRol(rol) {
     const R = window.JSLegalRoles;
     const puede = permiso => R?.tienePermiso(permiso) === true;
-    const menuLateral = document.getElementById("menu-lateral");
+
     const mostrar = (id, visible) => {
         const el = document.getElementById(id);
         if (el) el.style.display = visible ? "block" : "none";
@@ -149,33 +149,66 @@ function configurarInterfazPorRol(rol) {
     mostrar("menu-clientes", rol !== "Cliente");
     mostrar("menu-entrevistas", rol !== "Cliente");
     mostrar("menu-asuntos", rol !== "Cliente");
-    mostrar("menu-expedientes", rol !== "Cliente");
-    mostrar("menu-constructor-documentos", rol !== "Cliente");
     mostrar("menu-agenda", rol !== "Cliente");
+    mostrar("menu-expedientes", rol !== "Cliente");
+
+    // Módulos internos del despacho
+    mostrar("menu-centro-conocimiento", rol !== "Cliente");
+    mostrar("menu-buscador-juridico", rol !== "Cliente");
+    mostrar("menu-cotizaciones", rol !== "Cliente");
+
     mostrar("menu-portal", rol === "Cliente");
 
-    const rolesComunicacion = ["Superadministrador", "Administrador", "Auxiliar Jurídico", "Abogado"];
-    if (rolesComunicacion.includes(rol) && menuLateral && !document.getElementById("menu-comunicacion")) {
-        menuLateral.insertAdjacentHTML("beforeend", `<li id="menu-comunicacion"><a href="#" class="menu-item" onclick="switchTab('comunicacion')">💬 Comunicación</a></li>`);
-    }
+    const rolesComunicacion = [
+        "Superadministrador",
+        "Administrador",
+        "Auxiliar Jurídico",
+        "Abogado"
+    ];
 
-    if (puede("gestionar_personal") && menuLateral && !document.getElementById("menu-personal")) {
-        menuLateral.insertAdjacentHTML("beforeend", `<li id="menu-personal"><a href="#" class="menu-item" onclick="switchTab('personal')">👥 Personal</a></li>`);
-    }
-
-    if (["Superadministrador", "Administrador"].includes(rol) && menuLateral && !document.getElementById("menu-configuracion")) {
-        menuLateral.insertAdjacentHTML("beforeend", `<li id="menu-configuracion"><a href="#" class="menu-item" onclick="switchTab('configuracion')">⚙️ Configuración</a></li>`);
-    }
+    mostrar("menu-personal", puede("gestionar_personal"));
+    mostrar("menu-comunicacion", rolesComunicacion.includes(rol));
+    mostrar(
+        "menu-configuracion",
+        ["Superadministrador", "Administrador"].includes(rol)
+    );
 
     if (rol === "Cliente") {
-        if (usuarioActivoGlobal && typeof cargarExpedientesClientePortal === "function") {
+        if (
+            usuarioActivoGlobal &&
+            typeof cargarExpedientesClientePortal === "function"
+        ) {
             cargarExpedientesClientePortal(usuarioActivoGlobal.id);
-        } else if (usuarioActivoGlobal && typeof cargarPortalCliente === "function") {
+        } else if (
+            usuarioActivoGlobal &&
+            typeof cargarPortalCliente === "function"
+        ) {
             cargarPortalCliente();
         }
+
         switchTab("portal");
     }
 }
+// Abre el Centro de Conocimiento y alterna su submenú de herramientas.
+function abrirCentroConocimientoMenu(event) {
+    event?.preventDefault?.();
+    switchTab("centro-conocimiento");
+    const submenu = document.getElementById("submenu-centro-conocimiento");
+    const enlace = document.querySelector("#menu-centro-conocimiento > .menu-item-desplegable");
+    if (!submenu) return;
+    const abrir = submenu.hidden;
+    submenu.hidden = !abrir;
+    document.getElementById("menu-centro-conocimiento")?.classList.toggle("submenu-abierto", abrir);
+    enlace?.setAttribute("aria-expanded", String(abrir));
+}
+window.abrirCentroConocimientoMenu = abrirCentroConocimientoMenu;
+
+function abrirModuloCentroDesdeMenu(event, modulo) {
+    event?.preventDefault?.();
+    event?.stopPropagation?.();
+    window.abrirModuloCentro?.(modulo);
+}
+window.abrirModuloCentroDesdeMenu = abrirModuloCentroDesdeMenu;
 
 // Alterna la Agenda entre lista y calendario sin duplicar opciones en el menú.
 function mostrarVistaAgenda(modo = "lista") {

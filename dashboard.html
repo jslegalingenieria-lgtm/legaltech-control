@@ -54,15 +54,29 @@
             <div class="sidebar-scroll" id="sidebar-scroll">
                 <ul class="sidebar-menu" id="menu-lateral">
                     <li id="menu-dashboard"><a href="#" class="menu-item" onclick="switchTab('dashboard')">🏠 Dashboard</a></li>
-                    <li id="menu-entrevistas"><a href="#" class="menu-item" onclick="switchTab('entrevistas'); cargarEntrevistas?.()">📝 Entrevistas</a></li>
                     <li id="menu-clientes"><a href="#" class="menu-item" onclick="switchTab('clientes')">👥 Clientes</a></li>
+                    <li id="menu-entrevistas"><a href="#" class="menu-item" onclick="switchTab('entrevistas'); cargarEntrevistas?.()">📝 Entrevistas</a></li>
                     <li id="menu-asuntos"><a href="#" class="menu-item" onclick="switchTab('asuntos')">⚖️ Asuntos</a></li>
-                    <li id="menu-expedientes"><a href="#" class="menu-item" onclick="switchTab('expedientes')">📂 Expedientes</a></li>
                     <li id="menu-agenda"><a href="#" class="menu-item" onclick="mostrarVistaAgenda('lista')">📅 Agenda</a></li>
-                    <li id="menu-cotizaciones"><a href="#" class="menu-item" onclick="switchTab('cotizaciones')">💼 Cotizaciones</a></li>
-                    <li id="menu-centro-conocimiento"><a href="#" class="menu-item" onclick="switchTab('centro-conocimiento')">🧠 Centro de conocimiento</a></li>
+                    <li id="menu-expedientes"><a href="#" class="menu-item" onclick="switchTab('expedientes')">📂 Expedientes</a></li>
+                    <li id="menu-centro-conocimiento" class="menu-con-submenu">
+                        <a href="#" class="menu-item menu-item-desplegable" aria-expanded="false" onclick="abrirCentroConocimientoMenu(event)">
+                            <span>🧠 Centro de conocimiento</span><span class="submenu-flecha" aria-hidden="true">▾</span>
+                        </a>
+                        <ul id="submenu-centro-conocimiento" class="sidebar-submenu" hidden>
+                            <li><a href="#" onclick="abrirModuloCentroDesdeMenu(event,'biblioteca')">📚 Biblioteca Jurídica</a></li>
+                            <li><a href="#" onclick="abrirModuloCentroDesdeMenu(event,'procesal')">⚖️ Conocimiento Procesal</a></li>
+                            <li><a href="#" onclick="abrirModuloCentroDesdeMenu(event,'documentos')">📄 Constructor de Documentos</a></li>
+                            <li><a href="#" onclick="abrirModuloCentroDesdeMenu(event,'jurisprudencia')">🔎 Jurisprudencia</a></li>
+                            <li><a href="#" onclick="abrirModuloCentroDesdeMenu(event,'estrategia')">🎯 Estrategia Procesal</a></li>
+                            <li><a href="#" onclick="abrirModuloCentroDesdeMenu(event,'calculadoras')">🧮 Calculadoras Jurídicas</a></li>
+                        </ul>
+                    </li>
                     <li id="menu-buscador-juridico"><a href="#" class="menu-item" onclick="switchTab('buscador-juridico')">🔎 Buscador jurídico</a></li>
-                    <!-- Comunicación, Personal y Configuración se insertan según el rol -->
+                    <li id="menu-cotizaciones"><a href="#" class="menu-item" onclick="switchTab('cotizaciones')">💼 Cotizaciones</a></li>
+                    <li id="menu-personal" style="display:none"><a href="#" class="menu-item" onclick="switchTab('personal')">👥 Personal</a></li>
+                    <li id="menu-comunicacion" style="display:none"><a href="#" class="menu-item" onclick="switchTab('comunicacion')">💬 Comunicación</a></li>
+                    <li id="menu-configuracion" style="display:none"><a href="#" class="menu-item" onclick="switchTab('configuracion')">⚙️ Configuración</a></li>
                 </ul>
 
                 <div class="sidebar-footer">
@@ -926,15 +940,8 @@
                     <button class="btn-primary" type="button" onclick="buscarCentroConocimiento()">Buscar</button>
                 </div>
 
-                <div class="cc-modulos" aria-label="Módulos del Centro de Conocimiento">
-                    <button type="button" class="cc-modulo" data-cc-modulo="biblioteca" onclick="abrirModuloCentro('biblioteca')"><span>📚</span><strong>Biblioteca Jurídica</strong><small>Explicaciones y fundamentos</small></button>
-                    <button type="button" class="cc-modulo" data-cc-modulo="procesal" onclick="abrirModuloCentro('procesal')"><span>⚖️</span><strong>Conocimiento Procesal</strong><small>Ruta práctica de litigación</small></button>
-                    <button type="button" class="cc-modulo" data-cc-modulo="documentos" onclick="abrirModuloCentro('documentos')"><span>📄</span><strong>Constructor de Documentos</strong><small>Generación de escritos</small></button>
-                    <button type="button" class="cc-modulo" data-cc-modulo="formularios" onclick="abrirModuloCentro('formularios')"><span>📝</span><strong>Formularios Inteligentes</strong><small>Entrevistas guiadas</small></button>
-                    <button type="button" class="cc-modulo" data-cc-modulo="legislacion" onclick="abrirModuloCentro('legislacion')"><span>📖</span><strong>Legislación</strong><small>Normas relacionadas</small></button>
-                    <button type="button" class="cc-modulo" data-cc-modulo="jurisprudencia" onclick="abrirModuloCentro('jurisprudencia')"><span>🔎</span><strong>Jurisprudencia</strong><small>Criterios y tesis</small></button>
-                    <button type="button" class="cc-modulo" data-cc-modulo="estrategia" onclick="abrirModuloCentro('estrategia')"><span>🎯</span><strong>Estrategia Procesal</strong><small>Riesgos y decisiones</small></button>
-                    <button type="button" class="cc-modulo" data-cc-modulo="calculadoras" onclick="abrirModuloCentro('calculadoras')"><span>🧮</span><strong>Calculadoras Jurídicas</strong><small>Herramientas de apoyo</small></button>
+                <div class="cc-modulos-ayuda">
+                    <span>Explora las materias y temas disponibles. Las herramientas especializadas se encuentran en el submenú lateral de Centro de conocimiento.</span>
                 </div>
 
                 <div class="cc-layout">

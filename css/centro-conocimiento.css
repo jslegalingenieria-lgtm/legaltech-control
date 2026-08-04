@@ -41,3 +41,6 @@
   .calc-acciones{display:grid;grid-template-columns:1fr;gap:8px}
   .calc-acciones button{width:100%;max-width:100%;white-space:normal}
 }
+
+/* Las herramientas especializadas ahora viven en el submenú lateral. */
+.cc-modulos-ayuda{margin:0 0 1rem;padding:.75rem 1rem;border:1px solid #dbeafe;border-radius:10px;background:#eff6ff;color:#475569;font-size:.88rem;line-height:1.45}
