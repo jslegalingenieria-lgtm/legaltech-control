@@ -1,0 +1,53 @@
+AUDITORÍA Y LIMPIEZA DE JAVASCRIPT — v4.4.9
+
+RESULTADO
+- Se revisaron todos los archivos JavaScript del proyecto.
+- No se encontraron archivos JavaScript idénticos por contenido.
+- Se eliminó js/bitacora.js porque estaba vacío (0 bytes) y no era referenciado por ningún HTML o módulo.
+- Se conservaron los módulos restantes porque todos están cargados por dashboard.html o forman parte de una función activa.
+- Se actualizó dashboard.html para apuntar a la versión 4.4.9 de calculadoras-juridicas.js y reportes-profesionales.js.
+- Se regeneró sw.js con la lista completa de recursos locales actuales y un nombre de caché nuevo.
+- Se eliminaron archivos temporales de Git (.swp/.swo) y la caché local de Firebase Hosting.
+
+ARCHIVOS JAVASCRIPT ACTIVOS
+- js/acceso-clientes.js
+- js/agenda.js
+- js/alertas-terminos.js
+- js/app.js
+- js/asuntos.js
+- js/auth.js
+- js/biblioteca-juridica.js
+- js/buscador-juridico.js
+- js/calculadoras-juridicas.js
+- js/calendario.js
+- js/centro-conocimiento-data.js
+- js/centro-conocimiento.js
+- js/clientes.js
+- js/comunicacion.js
+- js/configuracion.js
+- js/conocimiento-juridico-data.js
+- js/conocimiento-juridico.js
+- js/consecutivos.js
+- js/constructor-documentos.js
+- js/cotizaciones.js
+- js/dashboard-ejecutivo.js
+- js/email.js
+- js/entrevistas.js
+- js/estrategia-procesal.js
+- js/expedientes.js
+- js/exportar-excel.js
+- js/firebase.js
+- js/mantenimiento.js
+- js/notificaciones.js
+- js/pdf.js
+- js/personal.js
+- js/plantillas-base.js
+- js/portal.js
+- js/reportes-profesionales.js
+- js/roles.js
+- js/storage.js
+
+VALIDACIONES
+- Todos los archivos .js pasan node --check.
+- Todos los src/href locales de index.html y dashboard.html apuntan a archivos existentes.
+- No existe ninguna referencia a js/bitacora.js.
