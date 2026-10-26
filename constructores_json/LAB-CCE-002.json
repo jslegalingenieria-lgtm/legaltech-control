@@ -1,0 +1,291 @@
+{
+  "id": "LAB-CCE-002",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Demanda conflicto colectivo económico.",
+    "preguntas": [
+      "¿Prueba económica?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Demanda conflicto colectivo económico",
+    "tipo_documento": "demanda",
+    "rol_promovente": "sindicato / coalición / patrón",
+    "rol_contraparte": "patrón / sindicato",
+    "criterios": [
+      "Colectivo económico"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Conflicto colectivo de naturaleza económica",
+    "naturaleza": "accion",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento colectivo económico conforme a la LFT",
+    "requisitos": [
+      "Relación de trabajo del Apartado A.",
+      "Competencia (federal o local) .",
+      "Legitimación y personalidad.",
+      "Agotamiento o excepción de conciliación prejudicial, cuando aplique .",
+      "Plazo de prescripción vigente ."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "{{promovente_nombre}} representa a {{representados}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Las condiciones vigentes son {{condiciones_vigentes}}, conforme a {{documento_condiciones}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Circunstancias económicas: {{situacion_economica}}, acreditadas con {{pruebas_economicas}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "Modificación solicitada: {{modificacion_pretendida}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 5,
+      "texto": "Efectos previstos: {{efectos_previstos}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se declare procedente {{modificacion_pretendida}}."
+    },
+    {
+      "orden": 2,
+      "texto": "Se fijen las nuevas condiciones en los términos solicitados."
+    },
+    {
+      "orden": 3,
+      "texto": "Se tomen las medidas provisionales procedentes ."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Pericial",
+      "objeto": "Contable y económica sobre la situación y viabilidad.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Estados financieros y contratos.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Estados financieros",
+    "Contrato colectivo",
+    "Acreditación de personalidad"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Conflictos colectivos de naturaleza económica: procedencia y trámite",
+      "articulos": "900-919",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/conflictos_colectivos_de_naturaleza_economica_proc"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Las condiciones económicas justifican la modificación solicitada y esta no vulnera derechos mínimos.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente (propio derecho / representante)",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "caracter_promovente": {
+      "etiqueta": "Caracter promovente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "sindicato / coalición / patrón"
+    },
+    "documento_personalidad": {
+      "etiqueta": "Documento personalidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "modificacion_pretendida": {
+      "etiqueta": "Modificacion pretendida",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "representados": {
+      "etiqueta": "Representados",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "condiciones_vigentes": {
+      "etiqueta": "Condiciones vigentes",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "documento_condiciones": {
+      "etiqueta": "Documento condiciones",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "situacion_economica": {
+      "etiqueta": "Situacion economica",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "pruebas_economicas": {
+      "etiqueta": "Pruebas economicas",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "efectos_previstos": {
+      "etiqueta": "Efectos previstos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DEMANDA DE CONFLICTO COLECTIVO DE NATURALEZA ECONÓMICA\nC. {{autoridad}}:\n{{promovente_nombre}}, {{personalidad_promovente}}, con domicilio en {{domicilio_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}} y autorizando para tales efectos a {{abogado_patrono}}, comparezco para exponer:\nI. PERSONALIDAD Y DOMICILIO\nComparezco en mi carácter de {{caracter_promovente}}, personalidad que acredito con {{documento_personalidad}}. Mi domicilio es {{domicilio_promovente}}; el de la contraparte, {{contraparte_nombre}}, es {{domicilio_contraparte}}.\nII. PRETENSIONES\nPor medio del presente escrito reclamo/solicito:\n1. Se declare procedente {{modificacion_pretendida}}.\n2. Se fijen las nuevas condiciones en los términos solicitados.\n3. Se tomen las medidas provisionales procedentes.\nIII. HECHOS\nPRIMERO. {{promovente_nombre}} representa a {{representados}}.\nSEGUNDO. Las condiciones vigentes son {{condiciones_vigentes}}, conforme a {{documento_condiciones}}.\nTERCERO. Circunstancias económicas: {{situacion_economica}}, acreditadas con {{pruebas_economicas}}.\nCUARTO. Modificación solicitada: {{modificacion_pretendida}}.\nQUINTO. Efectos previstos: {{efectos_previstos}}.\nIV. DERECHO\nFundan la presente promoción las disposiciones siguientes (artículos aplicables al acto y a la vía indicada):\n- Ley Federal del Trabajo: Conflictos colectivos de naturaleza económica: procedencia y trámite. Artículos aplicables: 900-919.\nV. PRUEBAS\nOfrezco las siguientes pruebas, relacionándolas con los hechos indicados:\n1. PERICIAL.- Contable y económica sobre la situación y viabilidad.\n2. DOCUMENTAL.- Estados financieros y contratos.\n3. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n\nSe acompañan los documentos siguientes:\n1. Estados financieros\n2. Contrato colectivo\n3. Acreditación de personalidad\nVI. PETITORIOS\nPor lo expuesto, a Usted atentamente pido:\nPRIMERO. Tenerme por presentado(a) con este escrito y los documentos que se acompañan, promoviendo demanda conflicto colectivo económico en contra de {{contraparte_nombre}}.\nSEGUNDO. Admitir a trámite la demanda en la vía señalada, ordenar el emplazamiento de la contraparte en el domicilio indicado y correrle traslado.\nTERCERO. Tener por ofrecidas las pruebas señaladas en el capítulo respectivo y ordenar su admisión y desahogo.\nCUARTO. En su oportunidad, dictar resolución en la que se declaren procedentes las pretensiones reclamadas, con lo demás que en derecho corresponda. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 900-919: Conflictos colectivos de naturaleza económica: procedencia y trámite.",
+  "siguiente_paso": "Contratar y preparar perito económico.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "id": "LAB-BEN-001",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Determinar quiénes son beneficiarios por fallecimiento del trabajador y qué prestaciones se reclaman.",
+    "preguntas": [
+      "¿Quién falleció, cuándo y por qué causa?",
+      "¿Era riesgo de trabajo o no?",
+      "¿Quiénes son los posibles beneficiarios y su parentesco/dependencia?",
+      "¿Qué prestaciones reclaman (patronales y de seguridad social)?",
+      "¿Hay designación de beneficiarios?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Diagnóstico beneficiarios",
+    "tipo_documento": "diagnostico",
+    "rol_promovente": "beneficiario(a)",
+    "rol_contraparte": "patrón / empresa",
+    "criterios": [
+      "Beneficiarios laborales",
+      "Beneficiarios de seguridad social",
+      "Riesgo de trabajo / no"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Diagnóstico beneficiarios",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento laboral; incidencias sucesorias o de seguridad social si aplica",
+    "requisitos": [
+      "Acta de defunción y parentesco/dependencia.",
+      "Prestaciones pendientes del trabajador."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "{{nombre_trabajador_fallecido}} falleció el {{fecha_fallecimiento}}, causa {{causa_fallecimiento}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Los beneficiarios son {{beneficiarios}} con parentesco/dependencia {{parentesco_dependencia}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Prestaciones pendientes: {{prestaciones_adeudadas}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Reconocimiento de beneficiarios y pago de prestaciones pendientes."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Beneficiarios y prestaciones por muerte del trabajador",
+      "articulos": "501-503",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/beneficiarios_y_prestaciones_por_muerte_del_trabaj"
+    },
+    {
+      "ordenamiento": "Ley del Seguro Social",
+      "tema": "Prestaciones a beneficiarios (si aplica)",
+      "articulos": "127-137",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_del_seguro_social/prestaciones_a_beneficiarios_si_aplica"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Los reclamantes son los beneficiarios legales y tienen derecho a las prestaciones pendientes.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "nombre_trabajador_fallecido": {
+      "etiqueta": "Nombre trabajador fallecido",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_fallecimiento": {
+      "etiqueta": "Fecha fallecimiento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "causa_fallecimiento": {
+      "etiqueta": "Causa fallecimiento",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "beneficiarios": {
+      "etiqueta": "Beneficiarios",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "parentesco_dependencia": {
+      "etiqueta": "Parentesco dependencia",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "prestaciones_adeudadas": {
+      "etiqueta": "Prestaciones adeudadas",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "testigos": {
+      "etiqueta": "Testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_testigos": {
+      "etiqueta": "Hechos testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DIAGNÓSTICO — DIAGNÓSTICO BENEFICIARIOS INFORME DE DIAGNÓSTICO — DIAGNÓSTICO BENEFICIARIOS\nI. DIAGNÓSTICO\nDeterminar quiénes son beneficiarios por fallecimiento del trabajador y qué prestaciones se reclaman.\nPreguntas a resolver con el expediente:\n1. ¿Quién falleció, cuándo y por qué causa?\n2. ¿Era riesgo de trabajo o no?\n3. ¿Quiénes son los posibles beneficiarios y su parentesco/dependencia?\n4. ¿Qué prestaciones reclaman (patronales y de seguridad social)?\n5. ¿Hay designación de beneficiarios?\nII. CLASIFICACIÓN\n- Beneficiarios laborales\n- Beneficiarios de seguridad social\n- Riesgo de trabajo / no\nIII. ACCIÓN/DEFENSA Y VÍA\n- Demanda de beneficiarios LAB-BEN-003.\nVía: Procedimiento laboral; incidencias sucesorias o de seguridad social si aplica\nIV. REQUISITOS\n1. Acta de defunción y parentesco/dependencia.\n2. Prestaciones pendientes del trabajador.\nV. HECHOS A ESTABLECER\nPRIMERO. {{nombre_trabajador_fallecido}} falleció el {{fecha_fallecimiento}}, causa {{causa_fallecimiento}}.\nSEGUNDO. Los beneficiarios son {{beneficiarios}} con parentesco/dependencia {{parentesco_dependencia}}.\nTERCERO. Prestaciones pendientes: {{prestaciones_adeudadas}}.\nVI. PRETENSIONES / OBJETIVOS\n1. Reconocimiento de beneficiarios y pago de prestaciones pendientes.\nVII. PRUEBAS\n1. DOCUMENTAL.- Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.\n2. TESTIMONIAL.- Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.\n- Ley Federal del Trabajo: Beneficiarios y prestaciones por muerte del trabajador. Artículos aplicables: 501-503.\n- Ley del Seguro Social: Prestaciones a beneficiarios (si aplica). Artículos aplicables: 127-137.\nIX. SIGUIENTE PASO\nReunir actas y documentos de dependencia. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 501-503: Beneficiarios y prestaciones por muerte del trabajador.\n- Ley del Seguro Social, artículos 127-137: Prestaciones a beneficiarios (si aplica).",
+  "siguiente_paso": "Reunir actas y documentos de dependencia.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "id": "FAM-PAT-001",
+  "materia": "Familiar",
+  "diagnostico": {
+    "objetivo": "Solicitar determinación, ejercicio o medidas relacionadas con patria potestad.",
+    "preguntas": [
+      "¿Quiénes ejercen patria potestad?",
+      "¿Existe conflicto de intereses?",
+      "¿Hay riesgo para el menor?",
+      "¿Se requiere representación especial?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Patria potestad y medidas sobre su ejercicio",
+    "tipo_documento": "promoción",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Familiar",
+      "Patria potestad y medidas sobre su ejercicio"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Determinación o medidas sobre patria potestad",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento familiar aplicable según la pretensión concreta.",
+    "requisitos": [
+      "Verificar competencia y legitimación.",
+      "Integrar documentos base.",
+      "Identificar personas que deban ser llamadas.",
+      "Revisar requisitos especiales de la legislación aplicable."
+    ],
+    "nota": "SIGDE no sustituye la determinación profesional de competencia, vía y estrategia del caso concreto."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La patria potestad se encuentra a cargo de {{titulares}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La situación que motiva la intervención judicial es {{situacion}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se determine lo relativo al ejercicio de la patria potestad."
+    },
+    {
+      "orden": 2,
+      "texto": "Se dicten medidas de protección y representación cuando procedan."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Actas de nacimiento y documentos familiares.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Dictámenes pertinentes al caso.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Personas que conozcan los hechos.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Actas de nacimiento",
+    "Documentos escolares/médicos",
+    "Pruebas de riesgo o conflicto"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Patria potestad",
+      "articulos": "578-595",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/patria_potestad"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La medida solicitada debe proteger los derechos de la niña, niño o adolescente y resolver el conflicto de representación o ejercicio conforme a la ley.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "titulares": {
+      "etiqueta": "Titulares de patria potestad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "situacion": {
+      "etiqueta": "Situación que motiva la intervención",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: PATRIA POTESTAD Y MEDIDAS SOBRE SU EJERCICIO C. JUEZ DE LO FAMILIAR EN TURNO\nP R E S E N T E. {{promovente_nombre}}, respecto de {{titulares}}, comparezco para solicitar la determinación judicial que corresponda sobre la patria potestad, su ejercicio y las medidas necesarias para proteger a la persona menor o mayor incapaz involucrada.\nI. SITUACIÓN FAMILIAR {{situacion}} Deberán describirse la filiación, edades, convivencia actual, ejercicio de la patria potestad, domicilio, cuidados, antecedentes relevantes y cualquier hecho que pueda incidir en el bienestar de la persona sujeta a patria potestad.\nII. PRETENSIONES 1. Declarar o reconocer quiénes ejercen la patria potestad conforme a derecho.\n2. Determinar medidas sobre representación, cuidado, crianza y custodia cuando proceda.\n3. En su caso, adoptar medidas de protección frente a conductas que afecten la integridad física o emocional.\n4. Resolver sobre cualquier conflicto relativo al ejercicio de la patria potestad.\nIII. FUNDAMENTO Los artículos 578 a 587 del Código Civil regulan la patria potestad. El artículo 580 la caracteriza como deber y obligación y exige cuidado, crianza positiva y protección de la dignidad; el 581 establece su ejercicio por ambos progenitores o el supérstite. Cuando existan niñas, niños o adolescentes, también deberán observarse los principios de interés superior y escucha previstos en los artículos 567 a 572.\nIV. PRUEBAS Actas de nacimiento; resoluciones previas; documentos escolares y médicos; comprobantes de domicilio; informes; testimoniales; declaraciones de parte; periciales cuando procedan; instrumental y presuncional.\nV. PETITORIOS\nPRIMERO. Admitir la promoción.\nSEGUNDO. Dictar medidas provisionales de protección cuando sean necesarias.\nTERCERO. Dar intervención a las autoridades de protección de niñas, niños y adolescentes cuando legalmente corresponda.\nCUARTO. Resolver de manera definitiva conforme al interés superior de la niñez. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Civil del Estado de Jalisco, artículos 578-595: Patria potestad.",
+  "siguiente_paso": "Definir con precisión si se busca custodia, representación, limitación, pérdida, suspensión u otra medida.",
+  "alertas": [
+    "No confundir patria potestad con guarda y custodia.",
+    "La pretensión debe corresponder a la situación jurídica concreta.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

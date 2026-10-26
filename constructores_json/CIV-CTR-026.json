@@ -1,0 +1,157 @@
+{
+  "id": "CIV-CTR-026",
+  "clasificacion": {
+    "constructor": "Contrato / instrumento de Asociación Civil",
+    "tipo_documento": "contrato",
+    "rol_promovente": "Parte A",
+    "rol_contraparte": "Parte B",
+    "criterios": [
+      "Contractual",
+      "Civil",
+      "Personas jurídicas / contratos"
+    ]
+  },
+  "fundamento": [
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Asociación civil",
+      "articulos": "198-214",
+      "estatus": "fuente_oficial_jalisco_240626",
+      "fuente": "Código Civil del Estado de Jalisco, fuente oficial del Congreso del Estado de Jalisco"
+    }
+  ],
+  "fuente_normativa": {
+    "ordenamiento": "Código Civil del Estado de Jalisco",
+    "version_fuente": "240626",
+    "articulos": "198-214",
+    "verificacion": "Revisar reformas posteriores y legislación especial aplicable."
+  },
+  "teoria_caso": {
+    "texto": "Herramienta interna para comprobar que la voluntad de las partes, el objeto, las obligaciones, la representación y los documentos soporte sean coherentes con el instrumento que se pretende formalizar. No se inserta automáticamente en el documento final.",
+    "elementos": [
+      "Partes y capacidad",
+      "Objeto y finalidad",
+      "Facultades de representación",
+      "Aportaciones u obligaciones",
+      "Formalidades y efectos frente a terceros"
+    ],
+    "uso": "Control estratégico interno y revisión profesional."
+  },
+  "via_procedimiento": {
+    "via": "Extrajudicial / contractual",
+    "requisitos": [
+      "Identificación y capacidad de las partes",
+      "Acreditación de representación cuando corresponda",
+      "Documento constitutivo y anexos",
+      "Cumplimiento de formalidades e inscripción cuando proceda"
+    ],
+    "nota": "La generación del documento no sustituye la revisión de legalidad, fiscal, notarial, registral o administrativa."
+  },
+  "documentos": [
+    "Identificaciones de las partes",
+    "Poderes o documentos de representación, en su caso",
+    "Anexos y documentos del objeto contractual"
+  ],
+  "alertas": [
+    "Completar campos dinámicos.",
+    "Verificar legislación civil aplicable por entidad y naturaleza del contrato.",
+    "Revisar formalidades, objeto, capacidad y régimen fiscal."
+  ],
+  "campos_dinamicos": {
+    "denominacion": {
+      "etiqueta": "Denominacion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio": {
+      "etiqueta": "Domicilio",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "objeto": {
+      "etiqueta": "Objeto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "asociados_aportaciones": {
+      "etiqueta": "Asociados Aportaciones",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "administracion": {
+      "etiqueta": "Administracion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "asambleas": {
+      "etiqueta": "Asambleas",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "patrimonio": {
+      "etiqueta": "Patrimonio",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "admision_exclusion": {
+      "etiqueta": "Admision Exclusion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "disolucion": {
+      "etiqueta": "Disolucion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "controversias": {
+      "etiqueta": "Controversias",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "CONTRATO DE ASOCIACIÓN CIVIL DECLARACIONES\nI. Las partes cuentan con capacidad para asociarse y conocen el objeto común.\nII. El objeto de la asociación será lícito y no tendrá carácter preponderantemente económico. CLÁUSULAS\nPRIMERA. DENOMINACIÓN Y DOMICILIO. {{denominacion}} / {{domicilio}}.\nSEGUNDA. OBJETO. {{objeto}}.\nTERCERA. ASOCIADOS Y APORTACIONES. {{asociados_aportaciones}}.\nCUARTA. ADMINISTRACIÓN Y REPRESENTACIÓN. {{administracion}}.\nQUINTA. ASAMBLEAS Y VOTACIÓN. {{asambleas}}.\nSEXTA. PATRIMONIO Y CUOTAS. {{patrimonio}}.\nSÉPTIMA. ADMISIÓN, SEPARACIÓN Y EXCLUSIÓN. {{admision_exclusion}}.\nOCTAVA. DISOLUCIÓN Y LIQUIDACIÓN. {{disolucion}}.\nNOVENA. CONTROVERSIAS. {{controversias}}. FIRMAS Y ANEXOS. FUNDAMENTO LEGAL\nCódigo Civil del Estado de Jalisco — Asociación civil. 198-214 \nFUNDAMENTO JURÍDICO APLICADO\n- Código Civil del Estado de Jalisco, artículos 198-214: Asociación civil.",
+  "requiere_revision_abogado": true,
+  "siguiente_paso": "Completar los datos, revisar estatutos/cláusulas, anexos y formalidades, y validar el documento antes de firma.",
+  "accion_defensa": {
+    "naturaleza": "contrato"
+  },
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor — contrato: identificación → declaraciones → objeto → obligaciones/contraprestación → riesgos → incumplimiento → terminación → controversias → fundamento legal → firmas.",
+    "tipo_generacion": "contrato SIGDE",
+    "fuentes_usuario": [
+      "Código Civil Federal"
+    ],
+    "formato_documental": "SIGDE_CONTRATO",
+    "identidad_visual": "dinamica_por_despacho",
+    "encabezado": "Logo, nombre y datos de identidad del despacho configurados en SIGDE.",
+    "pie_pagina": "Nombre del despacho y referencia de documento contractual SIGDE; se adapta a la identidad del despacho.",
+    "nota": "La identidad visual no forma parte del contenido jurídico sustantivo y se aplica al momento de visualizar, imprimir o exportar."
+  },
+  "materia": "Civil",
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

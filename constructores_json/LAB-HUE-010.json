@@ -1,0 +1,296 @@
+{
+  "id": "LAB-HUE-010",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Ilicitud de huelga.",
+    "preguntas": [
+      "¿Qué actos?",
+      "¿Evidencia?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Ilicitud de huelga",
+    "tipo_documento": "demanda",
+    "rol_promovente": "patrón / empresa / tercero interesado",
+    "rol_contraparte": "sindicato / coalición",
+    "criterios": [
+      "Colectivo"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Declaración de ilicitud de huelga",
+    "naturaleza": "accion",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Trámite de ilicitud conforme a la LFT [VALIDAR CAUSAS Y PLAZO]",
+    "requisitos": [
+      "Relación de trabajo del Apartado A.",
+      "Competencia (federal o local) .",
+      "Legitimación y personalidad.",
+      "Agotamiento o excepción de conciliación prejudicial, cuando aplique .",
+      "Plazo de prescripción vigente ."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Durante la huelga iniciada el {{fecha_estallamiento}} ocurrieron {{actos_ilicitos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Los actos consistieron en {{descripcion_actos}} en {{lugar_actos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Participaron {{participantes}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "Se solicita dentro del plazo legal .",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se declare la ilicitud de la huelga."
+    },
+    {
+      "orden": 2,
+      "texto": "Se apliquen las consecuencias legales de la declaración ."
+    },
+    {
+      "orden": 3,
+      "texto": "Se dicten medidas para proteger bienes y personas."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos exhibidos, para acreditar los actos ilícitos.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Inspección",
+      "objeto": "Del lugar y sus condiciones.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Videos, fotografías y actas.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Evidencia de los actos",
+    "Denuncias o actas"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Huelga ilícita: causas y efectos",
+      "articulos": "933-934",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/huelga_ilicita_causas_y_efectos"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Se realizaron actos que la ley sanciona con ilicitud de la huelga.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente (propio derecho / representante)",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "caracter_promovente": {
+      "etiqueta": "Caracter promovente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "patrón / empresa / tercero interesado"
+    },
+    "documento_personalidad": {
+      "etiqueta": "Documento personalidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_estallamiento": {
+      "etiqueta": "Fecha estallamiento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "actos_ilicitos": {
+      "etiqueta": "Actos ilicitos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "descripcion_actos": {
+      "etiqueta": "Descripcion actos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar_actos": {
+      "etiqueta": "Lugar actos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "participantes": {
+      "etiqueta": "Participantes",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "testigos": {
+      "etiqueta": "Testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_testigos": {
+      "etiqueta": "Hechos testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: SOLICITUD DE DECLARACIÓN DE ILICITUD DE HUELGA\nC. {{autoridad}}:\n{{promovente_nombre}}, {{personalidad_promovente}}, con domicilio en {{domicilio_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}} y autorizando para tales efectos a {{abogado_patrono}}, comparezco para exponer:\nI. PERSONALIDAD Y DOMICILIO\nComparezco en mi carácter de {{caracter_promovente}}, personalidad que acredito con {{documento_personalidad}}. Mi domicilio es {{domicilio_promovente}}; el de la contraparte, {{contraparte_nombre}}, es {{domicilio_contraparte}}.\nII. PRETENSIONES\nPor medio del presente escrito reclamo/solicito:\n1. Se declare la ilicitud de la huelga.\n2. Se apliquen las consecuencias legales de la declaración.\n3. Se dicten medidas para proteger bienes y personas.\nIII. HECHOS\nPRIMERO. Durante la huelga iniciada el {{fecha_estallamiento}} ocurrieron {{actos_ilicitos}}.\nSEGUNDO. Los actos consistieron en {{descripcion_actos}} en {{lugar_actos}}.\nTERCERO. Participaron {{participantes}}.\nCUARTO. Se solicita dentro del plazo legal.\nIV. DERECHO\nFundan la presente promoción las disposiciones siguientes (artículos aplicables al acto y a la vía indicada):\n- Ley Federal del Trabajo: Huelga ilícita: causas y efectos. Artículos aplicables: 933-934.\nV. PRUEBAS\nOfrezco las siguientes pruebas, relacionándolas con los hechos indicados:\n1. DOCUMENTAL.- Documentos exhibidos, para acreditar los actos ilícitos.\n2. INSPECCIÓN.- Del lugar y sus condiciones.\n3. TESTIMONIAL.- Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.\n4. DOCUMENTAL.- Videos, fotografías y actas.\n5. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n\nSe acompañan los documentos siguientes:\n1. Evidencia de los actos\n2. Denuncias o actas\nVI. PETITORIOS\nPor lo expuesto, a Usted atentamente pido:\nPRIMERO. Tenerme por presentado(a) con este escrito y los documentos que se acompañan, promoviendo ilicitud de huelga en contra de {{contraparte_nombre}}.\nSEGUNDO. Admitir a trámite la demanda en la vía señalada, ordenar el emplazamiento de la contraparte en el domicilio indicado y correrle traslado.\nTERCERO. Tener por ofrecidas las pruebas señaladas en el capítulo respectivo y ordenar su admisión y desahogo.\nCUARTO. En su oportunidad, dictar resolución en la que se declaren procedentes las pretensiones reclamadas, con lo demás que en derecho corresponda. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 933-934: Huelga ilícita: causas y efectos.",
+  "siguiente_paso": "Preservar evidencia de los actos.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

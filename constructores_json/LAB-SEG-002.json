@@ -1,0 +1,353 @@
+{
+  "id": "LAB-SEG-002",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Demanda seguridad social.",
+    "preguntas": [
+      "¿Negativa por escrito?",
+      "¿Requisito previo?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Demanda seguridad social",
+    "tipo_documento": "demanda",
+    "rol_promovente": "asegurado(a) / beneficiario(a)",
+    "rol_contraparte": "institución de seguridad social",
+    "criterios": [
+      "Seguridad social"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Reconocimiento de derechos de seguridad social",
+    "naturaleza": "accion",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Juicio en materia de seguridad social conforme a la ley aplicable [VALIDAR TRIBUNAL Y REQUISITOS PREVIOS]",
+    "requisitos": [
+      "Relación de trabajo del Apartado A.",
+      "Competencia (federal o local) .",
+      "Legitimación y personalidad.",
+      "Agotamiento o excepción de conciliación prejudicial, cuando aplique .",
+      "Plazo de prescripción vigente ."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "{{promovente_nombre}} estuvo asegurado desde {{fecha_alta}} con salario {{salario}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "El {{fecha_hecho}} ocurrió {{hecho_generador}} (incapacidad, enfermedad, fallecimiento, otro).",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Se solicitó la prestación el {{fecha_solicitud}} y la institución respondió {{respuesta_institucion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "Cumple los requisitos porque {{cumplimiento_requisitos}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "El reconocimiento del derecho a {{derecho_seguridad_social}}."
+    },
+    {
+      "orden": 2,
+      "texto": "El pago de {{monto_prestaciones}} y retroactivos que procedan."
+    },
+    {
+      "orden": 3,
+      "texto": "La rectificación de datos de cotización, en su caso."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Informe o constancias de alta, baja y salario ante el IMSS e INFONAVIT, para acreditar antigüedad y salario.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional legal y humana",
+      "objeto": "Las deducciones lógico-jurídicas que se desprendan de los hechos probados.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Resolución o negativa",
+    "Constancias de cotización",
+    "Dictámenes médicos"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley del Seguro Social",
+      "tema": "Prestaciones, requisitos y procedimientos",
+      "articulos": "58-75, 472-515 LFT; 41-86 LSS según riesgo",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_del_seguro_social/prestaciones_requisitos_y_procedimientos"
+    },
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Riesgos de trabajo (si aplica)",
+      "articulos": "472-515 LFT",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/riesgos_de_trabajo_si_aplica"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Se actualizan los requisitos del derecho y la negativa de la institución carece de sustento.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente (propio derecho / representante)",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "caracter_promovente": {
+      "etiqueta": "Caracter promovente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "asegurado(a) / beneficiario(a)"
+    },
+    "documento_personalidad": {
+      "etiqueta": "Documento personalidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "derecho_seguridad_social": {
+      "etiqueta": "Derecho seguridad social",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "monto_prestaciones": {
+      "etiqueta": "Monto prestaciones",
+      "tipo": "monto",
+      "fuente": "calculadora_existente_sigde",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]",
+      "nota": "Tomar de la calculadora existente; no duplicar cálculo."
+    },
+    "fecha_alta": {
+      "etiqueta": "Fecha alta",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "salario": {
+      "etiqueta": "Salario",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_hecho": {
+      "etiqueta": "Fecha hecho",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hecho_generador": {
+      "etiqueta": "Hecho generador",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_solicitud": {
+      "etiqueta": "Fecha solicitud",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "respuesta_institucion": {
+      "etiqueta": "Respuesta institucion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "cumplimiento_requisitos": {
+      "etiqueta": "Cumplimiento requisitos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "materia_pericial": {
+      "etiqueta": "Materia pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "objeto_pericial": {
+      "etiqueta": "Objeto pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "testigos": {
+      "etiqueta": "Testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_testigos": {
+      "etiqueta": "Hechos testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DEMANDA EN MATERIA DE SEGURIDAD SOCIAL\nC. {{autoridad}}:\n{{promovente_nombre}}, {{personalidad_promovente}}, con domicilio en {{domicilio_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}} y autorizando para tales efectos a {{abogado_patrono}}, comparezco para exponer:\nI. PERSONALIDAD Y DOMICILIO\nComparezco en mi carácter de {{caracter_promovente}}, personalidad que acredito con {{documento_personalidad}}. Mi domicilio es {{domicilio_promovente}}; el de la contraparte, {{contraparte_nombre}}, es {{domicilio_contraparte}}.\nII. PRETENSIONES\nPor medio del presente escrito reclamo/solicito:\n1. El reconocimiento del derecho a {{derecho_seguridad_social}}.\n2. El pago de {{monto_prestaciones}} y retroactivos que procedan.\n3. La rectificación de datos de cotización, en su caso.\nIII. HECHOS\nPRIMERO. {{promovente_nombre}} estuvo asegurado desde {{fecha_alta}} con salario {{salario}}.\nSEGUNDO. El {{fecha_hecho}} ocurrió {{hecho_generador}} (incapacidad, enfermedad, fallecimiento, otro).\nTERCERO. Se solicitó la prestación el {{fecha_solicitud}} y la institución respondió {{respuesta_institucion}}.\nCUARTO. Cumple los requisitos porque {{cumplimiento_requisitos}}.\nIV. DERECHO\nFundan la presente promoción las disposiciones siguientes (artículos aplicables al acto y a la vía indicada):\n- Ley del Seguro Social: Prestaciones, requisitos y procedimientos. Artículos aplicables: 58-75, 472-515 LFT; 41-86 LSS según riesgo.\n- Ley Federal del Trabajo: Riesgos de trabajo (si aplica). Artículos aplicables: 472-515 LFT.\nV. PRUEBAS\nOfrezco las siguientes pruebas, relacionándolas con los hechos indicados:\n1. DOCUMENTAL.- Informe o constancias de alta, baja y salario ante el IMSS e INFONAVIT, para acreditar antigüedad y salario.\n2. DOCUMENTAL.- Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.\n3. PERICIAL.- Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.\n4. TESTIMONIAL.- Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.\n5. PRESUNCIONAL LEGAL Y HUMANA.- Las deducciones lógico-jurídicas que se desprendan de los hechos probados.\n6. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n\nSe acompañan los documentos siguientes:\n1. Resolución o negativa\n2. Constancias de cotización\n3. Dictámenes médicos\nVI. PETITORIOS\nPor lo expuesto, a Usted atentamente pido:\nPRIMERO. Tenerme por presentado(a) con este escrito y los documentos que se acompañan, promoviendo demanda seguridad social en contra de {{contraparte_nombre}}.\nSEGUNDO. Admitir a trámite la demanda en la vía señalada, ordenar el emplazamiento de la contraparte en el domicilio indicado y correrle traslado.\nTERCERO. Tener por ofrecidas las pruebas señaladas en el capítulo respectivo y ordenar su admisión y desahogo.\nCUARTO. En su oportunidad, dictar resolución en la que se declaren procedentes las pretensiones reclamadas, con lo demás que en derecho corresponda. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley del Seguro Social, artículos 58-75, 472-515 LFT; 41-86 LSS según riesgo: Prestaciones, requisitos y procedimientos.\n- Ley Federal del Trabajo, artículos 472-515 LFT: Riesgos de trabajo (si aplica).",
+  "siguiente_paso": "Verificar agotamiento de requisitos o recursos previos.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE.",
+    "No incluir cálculo de pensiones Ley 73/Ley 97 (proyecto posterior)."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

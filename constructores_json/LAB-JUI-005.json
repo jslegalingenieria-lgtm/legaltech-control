@@ -1,0 +1,312 @@
+{
+  "id": "LAB-JUI-005",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Reconvención.",
+    "preguntas": [
+      "¿Qué se reclama al trabajador?",
+      "¿La ley lo permite?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Reconvención",
+    "tipo_documento": "demanda",
+    "rol_promovente": "patrón / empresa",
+    "rol_contraparte": "trabajador(a)",
+    "criterios": [
+      "Reconvención"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Reconvención del demandado frente al actor",
+    "naturaleza": "accion",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Reconvención en el procedimiento laboral [VALIDAR PROCEDENCIA Y MOMENTO]",
+    "requisitos": [
+      "Relación de trabajo del Apartado A.",
+      "Competencia (federal o local) .",
+      "Legitimación y personalidad.",
+      "Agotamiento o excepción de conciliación prejudicial, cuando aplique .",
+      "Plazo de prescripción vigente ."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Con motivo de la relación de trabajo, {{contraparte_nombre}} ocasionó/adeuda {{concepto_reconvencion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Los hechos ocurrieron el {{fecha_hecho}} y consistieron en {{hechos_reconvencion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "El monto reclamado es {{monto_reclamado}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "La declaración de {{pretension_reconvencion}}."
+    },
+    {
+      "orden": 2,
+      "texto": "El pago de {{monto_reclamado}}."
+    },
+    {
+      "orden": 3,
+      "texto": "Gastos y costas, si procede ."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos exhibidos, para acreditar los hechos de la reconvención.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional legal y humana",
+      "objeto": "Las deducciones lógico-jurídicas que se desprendan de los hechos probados.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Documentos de la reconvención"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Reconvención: procedencia y términos",
+      "articulos": "873-A",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/reconvencion_procedencia_y_terminos"
+    },
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Límites a descuentos y reclamaciones al trabajador",
+      "articulos": "97-110",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/limites_a_descuentos_y_reclamaciones_al_trabajador"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "El trabajador tiene a su cargo una obligación exigible derivada de la relación de trabajo.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente (propio derecho / representante)",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "caracter_promovente": {
+      "etiqueta": "Caracter promovente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "patrón / empresa"
+    },
+    "documento_personalidad": {
+      "etiqueta": "Documento personalidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "pretension_reconvencion": {
+      "etiqueta": "Pretensión reconvencion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "monto_reclamado": {
+      "etiqueta": "Monto reclamado",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "concepto_reconvencion": {
+      "etiqueta": "Concepto reconvencion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_hecho": {
+      "etiqueta": "Fecha hecho",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_reconvencion": {
+      "etiqueta": "Hechos reconvencion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "testigos": {
+      "etiqueta": "Testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_testigos": {
+      "etiqueta": "Hechos testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "materia_pericial": {
+      "etiqueta": "Materia pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "objeto_pericial": {
+      "etiqueta": "Objeto pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: RECONVENCIÓN\nC. {{autoridad}}:\n{{promovente_nombre}}, {{personalidad_promovente}}, con domicilio en {{domicilio_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}} y autorizando para tales efectos a {{abogado_patrono}}, comparezco para exponer:\nI. PERSONALIDAD Y DOMICILIO\nComparezco en mi carácter de {{caracter_promovente}}, personalidad que acredito con {{documento_personalidad}}. Mi domicilio es {{domicilio_promovente}}; el de la contraparte, {{contraparte_nombre}}, es {{domicilio_contraparte}}.\nII. PRETENSIONES\nPor medio del presente escrito reclamo/solicito:\n1. La declaración de {{pretension_reconvencion}}.\n2. El pago de {{monto_reclamado}}.\n3. Gastos y costas, si procede.\nIII. HECHOS\nPRIMERO. Con motivo de la relación de trabajo, {{contraparte_nombre}} ocasionó/adeuda {{concepto_reconvencion}}.\nSEGUNDO. Los hechos ocurrieron el {{fecha_hecho}} y consistieron en {{hechos_reconvencion}}.\nTERCERO. El monto reclamado es {{monto_reclamado}}.\nIV. DERECHO\nFundan la presente promoción las disposiciones siguientes (artículos aplicables al acto y a la vía indicada):\n- Ley Federal del Trabajo: Reconvención: procedencia y términos. Artículos aplicables: 97-110.\n- Ley Federal del Trabajo: Límites a descuentos y reclamaciones al trabajador. Artículos aplicables: 97-110.\nV. PRUEBAS\nOfrezco las siguientes pruebas, relacionándolas con los hechos indicados:\n1. DOCUMENTAL.- Documentos exhibidos, para acreditar los hechos de la reconvención.\n2. TESTIMONIAL.- Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.\n3. PERICIAL.- Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.\n4. PRESUNCIONAL LEGAL Y HUMANA.- Las deducciones lógico-jurídicas que se desprendan de los hechos probados.\n5. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n\nSe acompañan los documentos siguientes:\n1. Documentos de la reconvención\nVI. PETITORIOS\nPor lo expuesto, a Usted atentamente pido:\nPRIMERO. Tenerme por presentado(a) con este escrito y los documentos que se acompañan, promoviendo reconvención en contra de {{contraparte_nombre}}.\nSEGUNDO. Admitir a trámite la demanda en la vía señalada, ordenar el emplazamiento de la contraparte en el domicilio indicado y correrle traslado.\nTERCERO. Tener por ofrecidas las pruebas señaladas en el capítulo respectivo y ordenar su admisión y desahogo.\nCUARTO. En su oportunidad, dictar resolución en la que se declaren procedentes las pretensiones reclamadas, con lo demás que en derecho corresponda. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 873-A: Reconvención: procedencia y términos.\n- Ley Federal del Trabajo, artículos 97-110: Límites a descuentos y reclamaciones al trabajador.",
+  "siguiente_paso": "Validar si la pretensión es admisible en materia laboral.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE.",
+    "No todo concepto es reconvenible en materia laboral ."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

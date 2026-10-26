@@ -1,0 +1,230 @@
+{
+  "id": "LAB-IMSS-001",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Identificar el acto o crédito del IMSS que se pretende impugnar o el derecho a reclamar, y el medio de defensa.",
+    "preguntas": [
+      "¿Qué acto: crédito fiscal, capital constitutivo, determinación, negativa de prestación?",
+      "¿Fecha de notificación y su legalidad?",
+      "¿Quién es el afectado: patrón o asegurado?",
+      "¿Qué documentos de afiliación/cotización existen?",
+      "¿Qué medio de defensa procede y en qué plazo?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Diagnóstico IMSS",
+    "tipo_documento": "diagnostico",
+    "rol_promovente": "patrón / asegurado",
+    "rol_contraparte": "IMSS",
+    "criterios": [
+      "Acto de autoridad / crédito",
+      "Negativa de prestación",
+      "Patrón o asegurado afectado"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Diagnóstico IMSS",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Medio de defensa administrativo o jurisdiccional que corresponda",
+    "requisitos": [
+      "Acto identificado y notificado.",
+      "Plazo vigente."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Acto: {{acto_imss}} número {{numero_acto}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Notificación: {{fecha_notificacion}} por {{forma_notificacion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Importe/afectación: {{monto_acto}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Dejar sin efectos o reducir el acto."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos exhibidos, para acreditar el acto y su notificación.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley del Seguro Social",
+      "tema": "Obligaciones patronales y facultades de la autoridad",
+      "articulos": "15-A-16, 132-133, LSS 15-18 según acto",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_del_seguro_social/obligaciones_patronales_y_facultades_de_la_autorid"
+    },
+    {
+      "ordenamiento": "Ley del Seguro Social",
+      "tema": "Medios de defensa",
+      "articulos": "LSS y vía administrativa/jurisdiccional aplicable al acto",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_del_seguro_social/medios_de_defensa"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "El acto es ilegal por vicios de forma o fondo.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "acto_imss": {
+      "etiqueta": "Acto imss",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "numero_acto": {
+      "etiqueta": "Número acto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_notificacion": {
+      "etiqueta": "Fecha notificación",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "forma_notificacion": {
+      "etiqueta": "Forma notificación",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "monto_acto": {
+      "etiqueta": "Monto acto",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "materia_pericial": {
+      "etiqueta": "Materia pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "objeto_pericial": {
+      "etiqueta": "Objeto pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DIAGNÓSTICO — DIAGNÓSTICO IMSS INFORME DE DIAGNÓSTICO — DIAGNÓSTICO IMSS\nI. DIAGNÓSTICO\nIdentificar el acto o crédito del IMSS que se pretende impugnar o el derecho a reclamar, y el medio de defensa.\nPreguntas a resolver con el expediente:\n1. ¿Qué acto: crédito fiscal, capital constitutivo, determinación, negativa de prestación?\n2. ¿Fecha de notificación y su legalidad?\n3. ¿Quién es el afectado: patrón o asegurado?\n4. ¿Qué documentos de afiliación/cotización existen?\n5. ¿Qué medio de defensa procede y en qué plazo?\nII. CLASIFICACIÓN\n- Acto de autoridad / crédito\n- Negativa de prestación\n- Patrón o asegurado afectado\nIII. ACCIÓN/DEFENSA Y VÍA\n- Defensa frente a acto o crédito: LAB-IMSS-002.\nVía: Medio de defensa administrativo o jurisdiccional que corresponda\nIV. REQUISITOS\n1. Acto identificado y notificado.\n2. Plazo vigente.\nV. HECHOS A ESTABLECER\nPRIMERO. Acto: {{acto_imss}} número {{numero_acto}}.\nSEGUNDO. Notificación: {{fecha_notificacion}} por {{forma_notificacion}}.\nTERCERO. Importe/afectación: {{monto_acto}}.\nVI. PRETENSIONES / OBJETIVOS\n1. Dejar sin efectos o reducir el acto.\nVII. PRUEBAS\n1. DOCUMENTAL.- Documentos exhibidos, para acreditar el acto y su notificación.\n2. PERICIAL.- Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.\n3. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n- Ley del Seguro Social: Obligaciones patronales y facultades de la autoridad. Artículos aplicables: LSS y vía administrativa/jurisdiccional aplicable al acto.\n- Ley del Seguro Social: Medios de defensa. Artículos aplicables: LSS y vía administrativa/jurisdiccional aplicable al acto.\nIX. SIGUIENTE PASO\nCalcular plazo desde la notificación y elegir medio de defensa. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley del Seguro Social, artículos 15-A-16, 132-133, LSS 15-18 según acto: Obligaciones patronales y facultades de la autoridad.\n- Ley del Seguro Social, artículos LSS y vía administrativa/jurisdiccional aplicable al acto: Medios de defensa.",
+  "siguiente_paso": "Calcular plazo desde la notificación y elegir medio de defensa.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

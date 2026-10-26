@@ -1,3 +1,32 @@
+# CHANGELOG — JS LegalTech Control
+
+## v4.9.1 — Kanban de Asuntos y Gestión y control
+- Se agregó vista Kanban a Asuntos como vista predeterminada, conservando la vista de tabla como alternativa.
+- La vista Kanban separa los asuntos en En proceso, Suspendido, Concluido y Cancelado; las tarjetas conservan accesos a bitácora, edición y cambio de estado según permisos.
+- Ambas vistas ordenan los asuntos de forma descendente por el número de expediente.
+- Se migró Gestión y control con Cotizaciones, Gastos y costos y Reportes KPI bajo un solo grupo de menú.
+- Se sustituyó el antiguo acceso independiente a Cotizaciones por el grupo Gestión y control, evitando duplicidad en navegación.
+- Se añadió a Firestore rules acceso a las colecciones raíz cotizaciones y registrosFinancieros: administración para administradores y acceso por autor para el resto del personal autorizado.
+- Se incrementó la versión de caché PWA para cargar el nuevo módulo y los estilos.
+- La sintaxis JavaScript y las referencias estructurales se validaron; no se ejecutaron pruebas de navegador/Firestore y no se desplegó a Firebase ni GitHub.
+- Las cotizaciones/movimientos antiguos de SIGDE no se migran automáticamente: el módulo escribe nuevos registros en las colecciones de LegalTech.
+
+## v4.7.0 — Manuales, diccionario y revisor jurídico
+- Se agregaron Manuales de litigación, Diccionario Jurídico y Revisor Jurídico (base estable V2.9).
+- Se quitó del menú la opción Jurisprudencia duplicada del Buscador jurídico.
+- Se retiró el Constructor clásico; la vista se presenta como Constructor y usa el constructor maestro existente.
+- Se agregaron reglas de caché y el proxy de lectura getNormativePdf para fuentes normativas permitidas.
+
+# CHANGELOG — JS LegalTech Control
+
+## v4.5.0 — Integración del buscador jurídico de SIGDE
+- El buscador de LegalTech consulta automáticamente el servicio público del Semanario Judicial de la Federación cuando la pestaña Tesis y jurisprudencia está activa.
+- Se migraron las funciones `searchSJF`, `searchSJFAgent` y `searchSJFIndexed` al backend de LegalTech, adaptando autenticación y permisos al perfil activo de `personal/{uid}` y a los roles internos de LegalTech.
+- Se agregaron tarjetas de resultados, copia de rubros, acceso al registro/fuente oficial, búsqueda web de respaldo y advertencias para enlaces indexados no verificados.
+- Se conserva el flujo de apertura manual en CJF, legislación de Jalisco, legislación federal, DOF, Corte IDH y búsqueda integral.
+- Se renovó la caché de Service Worker para entregar los archivos actualizados.
+- Las funciones automáticas requieren desplegar Cloud Functions en el proyecto LegalTech; ese despliegue no se ha realizado desde este paquete. No usa IA generativa, aunque el consumo de Functions está sujeto a la facturación/cuotas vigentes.
+
 ## v4.0.1 — Encabezado fijo, menú desplazable y Configuración
 - Encabezado fijo en escritorio y móvil.
 - Navegación lateral desplazable con LexGear fijo.
@@ -178,3 +207,21 @@
 ## v4.4.4
 - Resultados de calculadoras adaptados a pantallas móviles.
 - Opción para calcular únicamente finiquito sin liquidación.
+
+## v4.6.0 — Migración de tres módulos SIGDE a LegalTech Control
+- Se incorporó el Constructor Maestro con registro de 573 fichas JSON, filtro por materia, campos dinámicos, diagnóstico, vía, pruebas y generación de borrador editable.
+- Los borradores del constructor maestro se guardan localmente en el navegador, separados del constructor clásico.
+- Se incorporó Conocimiento Procesal SIGDE con rutas, etapas, control del expediente y consulta de términos relacionados con la Supermatriz V19.
+- Se separaron perfiles de navegación para Civil Jalisco/CPCEJ y Civil nacional/CNPCF, así como los regímenes local/nacional en Familiar y Sucesorio.
+- Se migraron calculadoras jurídicas mejoradas y las calculadoras IMSS Ley 73/Ley 97 con comparador y guardado local de cálculos.
+- Se conservaron las experiencias clásicas de Constructor y Asistente, seleccionables desde la propia interfaz.
+- Se renovó la versión de caché de la PWA para cargar los módulos nuevos.
+- Los módulos migrados no guardan automáticamente en expedientes Firestore ni en Firebase Storage. Los borradores locales permanecen en el navegador de este equipo.
+- Se comprobó sintaxis JavaScript, integridad de las 573 fichas JSON y referencias internas del dashboard. No se desplegó a Firebase ni se verificó el cómputo jurídico de cada parámetro de las calculadoras.
+
+## v4.8.0 — Términos procesales y retiro de Estrategia Procesal
+- Se añade módulo independiente de Términos procesales con catálogo canónico (291 registros) y consulta de rutas/etapas de la Supermatriz V19 (121 rutas).
+- Se añade control de vencimientos en la colección existente `alertas`, con estado pendiente/cumplido/cancelado y resumen de vencimientos.
+- Los vencimientos requieren fecha manual verificada; no se generan fechas automáticamente a partir de registros de catálogo.
+- Se retira el submódulo independiente Estrategia Procesal del menú, la vista, el script y la caché PWA.
+- No se cambió `firebase.json`, `.firebaserc`, `firestore.rules` ni se desplegaron servicios.

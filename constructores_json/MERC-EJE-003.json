@@ -1,0 +1,306 @@
+{
+  "id": "MERC-EJE-003",
+  "materia": "Mercantil",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Liquidación/remate.",
+    "preguntas": [
+      "¿Resolución firme?",
+      "¿Planilla correcta?",
+      "¿Gravámenes preferentes?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Liquidación/remate",
+    "tipo_documento": "promocion",
+    "rol_promovente": "ejecutante",
+    "rol_contraparte": "ejecutado",
+    "criterios": [
+      "Ejecución"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Liquidación de adeudo y remate de bienes embargados",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Ejecución de sentencia / etapa de remate en juicio mercantil",
+    "requisitos": [
+      "Acto de comercio o título mercantil.",
+      "Competencia (fuero federal o local concurrente) .",
+      "Legitimación y personalidad.",
+      "Documento base.",
+      "Vía mercantil idónea."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "En el expediente {{expediente}} se dictó {{resolucion_base}}, firme el {{fecha_firmeza}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Los bienes embargados son {{bienes_embargados}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "La liquidación de capital, intereses y costas es {{monto_liquidacion}}, según {{planilla_liquidacion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "Valor de los bienes según {{avaluo}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se apruebe la liquidación presentada."
+    },
+    {
+      "orden": 2,
+      "texto": "Se ordene el avalúo de los bienes embargados."
+    },
+    {
+      "orden": 3,
+      "texto": "Se señale fecha para remate y se publiquen edictos, en su caso."
+    },
+    {
+      "orden": 4,
+      "texto": "Se adjudique el producto del remate al ejecutante hasta cubrir lo adeudado."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos exhibidos, para acreditar la liquidación y el valor de los bienes.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Planilla de liquidación",
+    "Avalúo",
+    "Certificado de gravámenes"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código de Comercio",
+      "tema": "Ejecución, avalúo y remate de bienes",
+      "articulos": "1408-1414",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_de_comercio/ejecucion_avaluo_y_remate_de_bienes"
+    },
+    {
+      "ordenamiento": "Código de Comercio",
+      "tema": "Liquidación de intereses y costas",
+      "articulos": "1329-1336, 1084",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_de_comercio/liquidacion_de_intereses_y_costas"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La resolución es firme y exigible; los bienes embargados sirven para cubrir la deuda mediante remate.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "JUEZ COMPETENTE EN MATERIA MERCANTIL [VALIDAR FUERO Y COMPETENCIA]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente (propio derecho / representante)",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "caracter_promovente": {
+      "etiqueta": "Caracter promovente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "ejecutante"
+    },
+    "documento_personalidad": {
+      "etiqueta": "Documento personalidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "resolucion_base": {
+      "etiqueta": "Resolución base",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_firmeza": {
+      "etiqueta": "Fecha firmeza",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "bienes_embargados": {
+      "etiqueta": "Bienes embargados",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "monto_liquidacion": {
+      "etiqueta": "Monto liquidacion",
+      "tipo": "monto",
+      "fuente": "calculadora_existente_sigde",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]",
+      "nota": "Tomar de la calculadora existente; no duplicar cálculo."
+    },
+    "planilla_liquidacion": {
+      "etiqueta": "Planilla liquidacion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "avaluo": {
+      "etiqueta": "Avaluo",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "materia_pericial": {
+      "etiqueta": "Materia pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "objeto_pericial": {
+      "etiqueta": "Objeto pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: SOLICITUD DE LIQUIDACIÓN Y/O REMATE\nC. {{autoridad}}:\n{{promovente_nombre}}, {{personalidad_promovente}}, con domicilio en {{domicilio_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}} y autorizando para tales efectos a {{abogado_patrono}}, comparezco para exponer:\nI. PERSONALIDAD Y DOMICILIO\nComparezco en mi carácter de {{caracter_promovente}}, personalidad que acredito con {{documento_personalidad}}. Mi domicilio es {{domicilio_promovente}}; el de la contraparte, {{contraparte_nombre}}, es {{domicilio_contraparte}}.\nII. PRETENSIONES\n1. Se apruebe la liquidación presentada.\n2. Se ordene el avalúo de los bienes embargados.\n3. Se señale fecha para remate y se publiquen edictos, en su caso.\n4. Se adjudique el producto del remate al ejecutante hasta cubrir lo adeudado.\nIII. HECHOS\nPRIMERO. En el expediente {{expediente}} se dictó {{resolucion_base}}, firme el {{fecha_firmeza}}.\nSEGUNDO. Los bienes embargados son {{bienes_embargados}}.\nTERCERO. La liquidación de capital, intereses y costas es {{monto_liquidacion}}, según {{planilla_liquidacion}}.\nCUARTO. Valor de los bienes según {{avaluo}}.\nIV. DERECHO\nFundan la presente promoción las disposiciones siguientes (artículos aplicables al acto y a la vía indicada):\n- Código de Comercio: Ejecución, avalúo y remate de bienes. Artículos aplicables: 1329-1336, 1084.\n- Código de Comercio: Liquidación de intereses y costas. Artículos aplicables: 1329-1336, 1084.\nV. PRUEBAS\nOfrezco las siguientes pruebas, relacionándolas con los hechos indicados:\n1. DOCUMENTAL.- Documentos exhibidos, para acreditar la liquidación y el valor de los bienes.\n2. PERICIAL.- Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.\n3. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n\nSe acompañan los documentos siguientes:\n1. Planilla de liquidación\n2. Avalúo\n3. Certificado de gravámenes\nVI. PETITORIOS\nPor lo expuesto, a Usted atentamente pido:\nPRIMERO. Tenerme por presentado(a) con este escrito, haciendo las manifestaciones y solicitudes que en él constan.\nSEGUNDO. Acordar de conformidad lo solicitado, con fundamento en las disposiciones señaladas.\nTERCERO. Notificarme en el domicilio procesal señalado. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Código de Comercio, artículos 1408-1414: Ejecución, avalúo y remate de bienes.\n- Código de Comercio, artículos 1329-1336, 1084: Liquidación de intereses y costas.",
+  "siguiente_paso": "Revisar gravámenes preferentes antes del remate.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Materia mercantil: respetar la supletoriedad aplicable al Código de Comercio y a las leyes mercantiles especiales ."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

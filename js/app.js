@@ -150,12 +150,13 @@ function configurarInterfazPorRol(rol) {
     mostrar("menu-entrevistas", rol !== "Cliente");
     mostrar("menu-asuntos", rol !== "Cliente");
     mostrar("menu-agenda", rol !== "Cliente");
+    mostrar("menu-terminos-procesales", rol !== "Cliente");
     mostrar("menu-expedientes", rol !== "Cliente");
 
     // Módulos internos del despacho
     mostrar("menu-centro-conocimiento", rol !== "Cliente");
     mostrar("menu-buscador-juridico", rol !== "Cliente");
-    mostrar("menu-cotizaciones", rol !== "Cliente");
+    mostrar("menu-gestion-control", rol !== "Cliente");
 
     mostrar("menu-portal", rol === "Cliente");
 
@@ -203,6 +204,19 @@ function abrirCentroConocimientoMenu(event) {
 }
 window.abrirCentroConocimientoMenu = abrirCentroConocimientoMenu;
 
+// Grupo de Gestión y control: abre/cierra el submenú sin cambiar de módulo.
+function abrirGestionControlMenu(event) {
+    event?.preventDefault?.();
+    const submenu = document.getElementById("submenu-gestion-control");
+    const enlace = document.querySelector("#menu-gestion-control > .menu-item-desplegable");
+    if (!submenu) return;
+    const abrir = submenu.hidden;
+    submenu.hidden = !abrir;
+    document.getElementById("menu-gestion-control")?.classList.toggle("submenu-abierto", abrir);
+    enlace?.setAttribute("aria-expanded", String(abrir));
+}
+window.abrirGestionControlMenu = abrirGestionControlMenu;
+
 function abrirModuloCentroDesdeMenu(event, modulo) {
     event?.preventDefault?.();
     event?.stopPropagation?.();
@@ -229,6 +243,14 @@ function switchTab(vista) {
     const usuarioActual = (() => { try { return JSON.parse(sessionStorage.getItem("js_legal_usuario") || localStorage.getItem("js_legal_session") || "null"); } catch (_) { return null; } })();
     if (vista === "comunicacion" && !["Superadministrador", "Administrador", "Auxiliar Jurídico", "Abogado"].includes(usuarioActual?.rol)) {
         alert("No tienes permiso para acceder al Centro de Comunicación.");
+        return;
+    }
+    if (vista === "terminos-procesales" && usuarioActual?.rol === "Cliente") {
+        alert("El control de términos procesales es exclusivo del personal autorizado del despacho.");
+        return;
+    }
+    if (["cotizaciones", "gastos-costos", "reportes-kpi"].includes(vista) && usuarioActual?.rol === "Cliente") {
+        alert("Gestión y control es exclusivo del personal autorizado del despacho.");
         return;
     }
     if (vista === "expedientes" && usuarioActual?.rol === "Cliente") {
@@ -301,6 +323,20 @@ function switchTab(vista) {
     if (vista === "mantenimiento" && typeof window.cargarMantenimientoConsecutivos === "function") {
         window.cargarMantenimientoConsecutivos();
     }
+
+    if (vista === "constructor-documentos") {
+        window.setSIGDEModuleMode?.("constructor", "sigde");
+    }
+    if (vista === "conocimiento-juridico") {
+        window.setSIGDEModuleMode?.("conocimiento", "sigde");
+    }
+    if (vista === "manuales-litigacion") window.renderManualesLitigacion?.();
+    if (vista === "diccionario-juridico") window.renderDiccionarioJuridico?.();
+    if (vista === "revisor-juridico") window.renderRevisorJuridico?.();
+    if (vista === "terminos-procesales") window.renderTerminosProcesales?.();
+    if (["cotizaciones", "gastos-costos", "reportes-kpi"].includes(vista)) {
+        window.renderGestionControl?.(vista);
+    }
     
     // Cambiar título superior
     const titulos = {
@@ -309,16 +345,23 @@ function switchTab(vista) {
         asuntos: "Control de Asuntos Jurídicos",
         expedientes: "Expedientes Electrónicos",
         agenda: "Agenda de Audiencias y Términos",
+        "terminos-procesales": "Términos procesales",
+        cotizaciones: "Gestión y control · Cotizaciones",
+        "gastos-costos": "Gestión y control · Gastos y costos",
+        "reportes-kpi": "Gestión y control · Reportes KPI",
         calendario: "Calendario Jurídico Profesional",
         portal: "Portal de Consulta Ciudadana",
         comunicacion: "Centro de Comunicación",
         personal: "Gestión de Personal y Abogados",
         configuracion: "Configuración del Despacho",
         "centro-conocimiento": "Centro de Conocimiento Jurídico",
-        "constructor-documentos": "Constructor de Documentos Jurídicos",
+        "constructor-documentos": "Constructor",
         "conocimiento-juridico": "Conocimiento Procesal",
         "biblioteca-juridica": "Biblioteca Jurídica",
-        mantenimiento: "Mantenimiento de Consecutivos"
+        mantenimiento: "Mantenimiento de Consecutivos",
+        "manuales-litigacion": "Manuales de litigación",
+        "diccionario-juridico": "Diccionario Jurídico",
+        "revisor-juridico": "Revisor Jurídico"
     };
     
     const viewTitle = document.getElementById("view-title");

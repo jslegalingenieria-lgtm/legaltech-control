@@ -1,0 +1,608 @@
+{
+  "id": "CIV-SUC-013",
+  "materia": "Sucesorio",
+  "diagnostico": {
+    "objetivo": "Preparar la controversia sobre validez del testamento o capacidad hereditaria.",
+    "preguntas": [
+      "¿Qué disposición se impugna?",
+      "¿Qué causa de invalidez se alega?",
+      "¿Qué capacidad se cuestiona?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Impugnación de testamento o capacidad de heredero",
+    "tipo_documento": "incidente/juicio",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Sucesorio",
+      "Impugnación de testamento o capacidad de heredero"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Impugnación testamentaria o de capacidad",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento sucesorio conforme al Código de Procedimientos Civiles del Estado de Jalisco.",
+    "requisitos": [
+      "Verificar competencia y legitimación.",
+      "Integrar documentos base.",
+      "Identificar personas que deban ser llamadas.",
+      "Revisar requisitos especiales de la legislación aplicable."
+    ],
+    "nota": "SIGDE no sustituye la determinación profesional de competencia, vía y estrategia del caso concreto."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Existe una controversia concreta sobre el testamento o capacidad del heredero.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "S"
+    },
+    {
+      "orden": 2,
+      "texto": "e"
+    },
+    {
+      "orden": 3,
+      "texto": ""
+    },
+    {
+      "orden": 4,
+      "texto": "d"
+    },
+    {
+      "orden": 5,
+      "texto": "e"
+    },
+    {
+      "orden": 6,
+      "texto": "c"
+    },
+    {
+      "orden": 7,
+      "texto": "l"
+    },
+    {
+      "orden": 8,
+      "texto": "a"
+    },
+    {
+      "orden": 9,
+      "texto": "r"
+    },
+    {
+      "orden": 10,
+      "texto": "e"
+    },
+    {
+      "orden": 11,
+      "texto": ""
+    },
+    {
+      "orden": 12,
+      "texto": "l"
+    },
+    {
+      "orden": 13,
+      "texto": "o"
+    },
+    {
+      "orden": 14,
+      "texto": ""
+    },
+    {
+      "orden": 15,
+      "texto": "q"
+    },
+    {
+      "orden": 16,
+      "texto": "u"
+    },
+    {
+      "orden": 17,
+      "texto": "e"
+    },
+    {
+      "orden": 18,
+      "texto": ""
+    },
+    {
+      "orden": 19,
+      "texto": "j"
+    },
+    {
+      "orden": 20,
+      "texto": "u"
+    },
+    {
+      "orden": 21,
+      "texto": "r"
+    },
+    {
+      "orden": 22,
+      "texto": "í"
+    },
+    {
+      "orden": 23,
+      "texto": "d"
+    },
+    {
+      "orden": 24,
+      "texto": "i"
+    },
+    {
+      "orden": 25,
+      "texto": "c"
+    },
+    {
+      "orden": 26,
+      "texto": "a"
+    },
+    {
+      "orden": 27,
+      "texto": "m"
+    },
+    {
+      "orden": 28,
+      "texto": "e"
+    },
+    {
+      "orden": 29,
+      "texto": "n"
+    },
+    {
+      "orden": 30,
+      "texto": "t"
+    },
+    {
+      "orden": 31,
+      "texto": "e"
+    },
+    {
+      "orden": 32,
+      "texto": ""
+    },
+    {
+      "orden": 33,
+      "texto": "c"
+    },
+    {
+      "orden": 34,
+      "texto": "o"
+    },
+    {
+      "orden": 35,
+      "texto": "r"
+    },
+    {
+      "orden": 36,
+      "texto": "r"
+    },
+    {
+      "orden": 37,
+      "texto": "e"
+    },
+    {
+      "orden": 38,
+      "texto": "s"
+    },
+    {
+      "orden": 39,
+      "texto": "p"
+    },
+    {
+      "orden": 40,
+      "texto": "o"
+    },
+    {
+      "orden": 41,
+      "texto": "n"
+    },
+    {
+      "orden": 42,
+      "texto": "d"
+    },
+    {
+      "orden": 43,
+      "texto": "a"
+    },
+    {
+      "orden": 44,
+      "texto": ""
+    },
+    {
+      "orden": 45,
+      "texto": "y"
+    },
+    {
+      "orden": 46,
+      "texto": ""
+    },
+    {
+      "orden": 47,
+      "texto": "s"
+    },
+    {
+      "orden": 48,
+      "texto": "e"
+    },
+    {
+      "orden": 49,
+      "texto": ""
+    },
+    {
+      "orden": 50,
+      "texto": "s"
+    },
+    {
+      "orden": 51,
+      "texto": "u"
+    },
+    {
+      "orden": 52,
+      "texto": "s"
+    },
+    {
+      "orden": 53,
+      "texto": "p"
+    },
+    {
+      "orden": 54,
+      "texto": "e"
+    },
+    {
+      "orden": 55,
+      "texto": "n"
+    },
+    {
+      "orden": 56,
+      "texto": "d"
+    },
+    {
+      "orden": 57,
+      "texto": "a"
+    },
+    {
+      "orden": 58,
+      "texto": ","
+    },
+    {
+      "orden": 59,
+      "texto": ""
+    },
+    {
+      "orden": 60,
+      "texto": "e"
+    },
+    {
+      "orden": 61,
+      "texto": "n"
+    },
+    {
+      "orden": 62,
+      "texto": ""
+    },
+    {
+      "orden": 63,
+      "texto": "s"
+    },
+    {
+      "orden": 64,
+      "texto": "u"
+    },
+    {
+      "orden": 65,
+      "texto": ""
+    },
+    {
+      "orden": 66,
+      "texto": "c"
+    },
+    {
+      "orden": 67,
+      "texto": "a"
+    },
+    {
+      "orden": 68,
+      "texto": "s"
+    },
+    {
+      "orden": 69,
+      "texto": "o"
+    },
+    {
+      "orden": 70,
+      "texto": ","
+    },
+    {
+      "orden": 71,
+      "texto": ""
+    },
+    {
+      "orden": 72,
+      "texto": "s"
+    },
+    {
+      "orden": 73,
+      "texto": "ó"
+    },
+    {
+      "orden": 74,
+      "texto": "l"
+    },
+    {
+      "orden": 75,
+      "texto": "o"
+    },
+    {
+      "orden": 76,
+      "texto": ""
+    },
+    {
+      "orden": 77,
+      "texto": "l"
+    },
+    {
+      "orden": 78,
+      "texto": "o"
+    },
+    {
+      "orden": 79,
+      "texto": ""
+    },
+    {
+      "orden": 80,
+      "texto": "q"
+    },
+    {
+      "orden": 81,
+      "texto": "u"
+    },
+    {
+      "orden": 82,
+      "texto": "e"
+    },
+    {
+      "orden": 83,
+      "texto": ""
+    },
+    {
+      "orden": 84,
+      "texto": "l"
+    },
+    {
+      "orden": 85,
+      "texto": "a"
+    },
+    {
+      "orden": 86,
+      "texto": ""
+    },
+    {
+      "orden": 87,
+      "texto": "l"
+    },
+    {
+      "orden": 88,
+      "texto": "e"
+    },
+    {
+      "orden": 89,
+      "texto": "y"
+    },
+    {
+      "orden": 90,
+      "texto": ""
+    },
+    {
+      "orden": 91,
+      "texto": "o"
+    },
+    {
+      "orden": 92,
+      "texto": "r"
+    },
+    {
+      "orden": 93,
+      "texto": "d"
+    },
+    {
+      "orden": 94,
+      "texto": "e"
+    },
+    {
+      "orden": 95,
+      "texto": "n"
+    },
+    {
+      "orden": 96,
+      "texto": "e"
+    },
+    {
+      "orden": 97,
+      "texto": "."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos que acreditan los hechos y el derecho invocado.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Actuaciones del expediente en lo que favorezcan.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional",
+      "objeto": "Presunciones que resulten de los hechos acreditados.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Testamento",
+    "Documentos de capacidad",
+    "Periciales y testimoniales"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código de Procedimientos Civiles del Estado de Jalisco",
+      "tema": "Impugnación de testamento o capacidad",
+      "articulos": "841, 850",
+      "estatus": "registrado",
+      "ck_clave": "CK/cpc_jalisco/impugnaci_n_de_testamento_o_capacidad"
+    },
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Testamentos y capacidad para heredar",
+      "articulos": "2666-2907, 2948-2963",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/testamentos_y_capacidad_para_heredar"
+    }
+  ],
+  "teoria_caso": {
+    "texto": [
+      "La impugnación debe individualizar la causa y su prueba; no basta una inconformidad genérica."
+    ],
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "autor_sucesion": {
+      "etiqueta": "Autor de la sucesión",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_especificos": {
+      "etiqueta": "Hechos específicos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: IMPUGNACIÓN DE TESTAMENTO O CAPACIDAD DE HEREDERO C. JUEZ COMPETENTE\nP R E S E N T E. {{promovente_nombre}}, en mi carácter de {{personalidad_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, y autorizando a {{abogado_patrono}}, comparezco para exponer:\nI. OBJETO Se controvierte la validez del testamento y/o la capacidad de una persona llamada a heredar. Los hechos específicos son: {{hechos_especificos}}.\nII. CONTROVERSIA Deberá identificarse con precisión el testamento, la disposición cuestionada, la persona cuya capacidad se impugna, el hecho que sustenta la impugnación, el momento en que ocurrió y las pruebas disponibles.\nIII. FUNDAMENTO PROCESAL El artículo 841 del Código de Procedimientos Civiles establece que, si se impugna la validez del testamento o la capacidad legal de un heredero en testamentaría, se substanciará el juicio ordinario correspondiente con el albacea o heredero, sin suspender otra cosa que la adjudicación. En intestado, el artículo 850 prevé la vía ordinaria cuando exista oposición a la declaración de herederos o alegación de incapacidad.\nIV. PRUEBAS Testamento original o copia certificada; documentos médicos y periciales cuando la controversia sea de capacidad; testimoniales; documentos registrales; informes; periciales caligráficas o de otra especialidad cuando sean pertinentes; instrumental y presuncional.\nV. PETITORIOS\nPRIMERO. Admitir la controversia en la vía que legalmente corresponda.\nSEGUNDO. Emplazar a quienes deban intervenir.\nTERCERO. Admitir y preparar las pruebas.\nCUARTO. Declarar la validez o invalidez del testamento o la capacidad que corresponda, y ordenar las consecuencias sucesorias pertinentes. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código de Procedimientos Civiles del Estado de Jalisco, artículos 841, 850: Impugnación de testamento o capacidad.\n- Código Civil del Estado de Jalisco, artículos 2666-2907, 2948-2963: Testamentos y capacidad para heredar.",
+  "siguiente_paso": "Verificar etapa procesal, legitimación y documentos antes de presentar.",
+  "alertas": [
+    "No confundir la etapa procesal del constructor con una etapa ya agotada.",
+    "Verificar legislación vigente y resoluciones del expediente.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

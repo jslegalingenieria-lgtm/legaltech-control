@@ -1,0 +1,203 @@
+{
+  "id": "ADM-LGRA-010",
+  "materia": "Administrativo",
+  "jurisdiccion": "Federal/Entidades federativas",
+  "diagnostico": {
+    "objetivo": "Controlar notificaciones críticas de responsabilidad administrativa.",
+    "preguntas": [
+      "¿Es emplazamiento?",
+      "¿Es admisión IPRA?",
+      "¿Es citación a audiencia?",
+      "¿Es resolución definitiva?",
+      "¿Se entregaron constancias necesarias?"
+    ],
+    "datos_minimos": [
+      "acto",
+      "fecha",
+      "constancias",
+      "medio"
+    ],
+    "resultado_esperado": "Determinar vía, competencia, plazo, hechos, prueba y documento procedente."
+  },
+  "clasificacion": {
+    "constructor": "Notificaciones del procedimiento de responsabilidad administrativa",
+    "tipo_documento": "control procesal",
+    "rol_promovente": "Promovente / interesado / presunto responsable según caso",
+    "rol_contraparte": "Autoridad / tercero / denunciante",
+    "criterios": [
+      "competencia",
+      "legalidad",
+      "fundamentación y motivación",
+      "debido procedimiento",
+      "plazo",
+      "prueba",
+      "vía"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Notificaciones del procedimiento de responsabilidad administrativa",
+    "naturaleza": "procesal administrativa",
+    "descripcion": "Controlar notificaciones críticas de responsabilidad administrativa.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Acto → tipo de notificación → requisitos → fecha → cómputo → defensa",
+    "requisitos": [
+      "Identificar autoridad",
+      "Acreditar personalidad",
+      "Precisar acto/conducta",
+      "Integrar expediente y pruebas",
+      "Verificar ley especial y plazo"
+    ],
+    "nota": "Constructor basado únicamente en las fuentes cargadas; verificar legislación especial vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La notificación de {{acto}} ocurrió el {{fecha}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Se entregaron {{constancias}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Tener por legalmente notificado o controvertir defectos cuando proceda."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental pública",
+      "objeto": "Constancia de notificación.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Acto",
+    "Constancia",
+    "Acuse"
+  ],
+  "fundamento": [
+    {
+      "orden": 1,
+      "ordenamiento": "Ley General de Responsabilidades Administrativas",
+      "tema": "Notificaciones personales críticas",
+      "articulos": "193",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/lgra/notificaciones"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría es de trazabilidad: acto notificado + constancias entregadas + fecha cierta + consecuencia en el cómputo.",
+    "elementos": [
+      "Hechos",
+      "Norma",
+      "Competencia",
+      "Acto/conducta",
+      "Prueba",
+      "Vicio/defensa",
+      "Riesgo",
+      "Resultado"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el documento final."
+  },
+  "campos_dinamicos": {
+    "promovente_nombre": {
+      "etiqueta": "Nombre / razón social",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "autoridad_nombre": {
+      "etiqueta": "Autoridad",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "expediente_numero": {
+      "etiqueta": "Expediente / folio",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "fecha_acto": {
+      "etiqueta": "Fecha del acto",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "notificacion_fecha": {
+      "etiqueta": "Fecha de notificación",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "relato_hechos": {
+      "etiqueta": "Relato de hechos",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pretension_principal": {
+      "etiqueta": "Resultado buscado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pruebas_disponibles": {
+      "etiqueta": "Pruebas disponibles",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "acto": {
+      "etiqueta": "Acto notificado",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "fecha": {
+      "etiqueta": "Fecha",
+      "tipo": "fecha",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "constancias": {
+      "etiqueta": "Constancias entregadas",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    }
+  },
+  "checklist": [
+    "Identificar acto",
+    "Revisar medio",
+    "Verificar constancias",
+    "Fijar fecha",
+    "Calcular plazo",
+    "Documentar defecto"
+  ],
+  "ruta_procesal": [
+    "Acto",
+    "tipo de notificación",
+    "requisitos",
+    "fecha",
+    "cómputo",
+    "defensa"
+  ],
+  "advertencias": [
+    "Revisar ley especial y reglamento interior.",
+    "Verificar vigencia de la norma.",
+    "No presentar sin revisar expediente y cómputo de plazos."
+  ],
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  },
+  "documento_generado": "{{autoridad_competente}}\nEXPEDIENTE: {{numero_expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: NOTIFICACIONES DEL PROCEDIMIENTO DE RESPONSABILIDAD ADMINISTRATIVA\nC. {autoridad_competente}:\n{{promovente_nombre}}, por mi propio derecho / en representación de {{representado_nombre}}, personalidad que acredito con {{documento_personalidad}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, comparezco para exponer:\nI. OBJETO\nEl presente control procesal tiene por objeto plantear Controlar notificaciones críticas de responsabilidad administrativa en la vía Acto → tipo de notificación → requisitos → fecha → cómputo → defensa.\nII. HECHOS\n1. La notificación de {{acto}} ocurrió el {{fecha}}.\n2. Se entregaron {{constancias}}.\nIII. DERECHO\nCon fundamento en Ley General de Responsabilidades Administrativas, artículos 193, en relación con Notificaciones personales críticas.\nIV. PRETENSIONES / PETICIONES\n1. Tener por legalmente notificado o controvertir defectos cuando proceda..\nV. PRUEBAS\n1. {'medio': 'Documental pública', 'objeto': 'Constancia de notificación.', 'estatus': 'por_ofrecer'}\nVI. DOCUMENTOS\n{{documentos_anexos}}\nVII. PETITORIOS\nPRIMERO. Tenerme por presentado con este escrito y documentos.\nSEGUNDO. Acordar lo conducente conforme a la vía y competencia indicadas.\nTERCERO. Tener por formuladas las pretensiones y por ofrecidas las pruebas relacionadas.\nCUARTO. Dictar la resolución que en derecho corresponda. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Ley General de Responsabilidades Administrativas, artículos 193: Notificaciones personales críticas."
+}

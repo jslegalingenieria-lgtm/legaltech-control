@@ -1,0 +1,235 @@
+{
+  "id": "FAM-TUT-001",
+  "materia": "Familiar",
+  "diagnostico": {
+    "objetivo": "Preparar solicitud de tutela o designación de representante cuando exista necesidad legal.",
+    "preguntas": [
+      "¿Quién necesita representación?",
+      "¿Existe resolución de incapacidad o supuesto legal?",
+      "¿Quién puede ejercer tutela?",
+      "¿Existe conflicto de intereses?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Designación de tutor o medidas de tutela",
+    "tipo_documento": "promoción",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Familiar",
+      "Designación de tutor o medidas de tutela"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Tutela y representación",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Jurisdicción o procedimiento familiar aplicable según el supuesto.",
+    "requisitos": [
+      "Verificar competencia y legitimación.",
+      "Integrar documentos base.",
+      "Identificar personas que deban ser llamadas.",
+      "Revisar requisitos especiales de la legislación aplicable."
+    ],
+    "nota": "SIGDE no sustituye la determinación profesional de competencia, vía y estrategia del caso concreto."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La persona {{persona}} requiere representación por {{causa}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Las personas propuestas para el cargo son {{propuestos}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Designación de tutor o medida de representación que proceda."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Actas y documentos de estado civil.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Valoración cuando legalmente proceda.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Pruebas de idoneidad del tutor.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Actas",
+    "Identificaciones",
+    "Valoraciones",
+    "Datos del tutor propuesto"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Patria potestad, tutela y representación",
+      "articulos": "578-595",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/patria_potestad_tutela_y_representaci_n"
+    },
+    {
+      "ordenamiento": "Código de Procedimientos Civiles del Estado de Jalisco",
+      "tema": "Procedimientos familiares y jurisdicción voluntaria",
+      "articulos": "21 y disposiciones aplicables",
+      "estatus": "registrado",
+      "ck_clave": "CK/cpc_jalisco/procedimientos_familiares_y_jurisdicci_n_voluntaria"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La representación debe asignarse protegiendo los derechos de la persona y evitando conflictos de interés.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "persona": {
+      "etiqueta": "Persona a representar",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "causa": {
+      "etiqueta": "Causa de la tutela",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "propuestos": {
+      "etiqueta": "Personas propuestas",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: DESIGNACIÓN DE TUTOR O MEDIDAS DE TUTELA C. JUEZ COMPETENTE\nP R E S E N T E. {{promovente_nombre}}, respecto de {{persona}}, comparezco para solicitar la determinación de tutela y las medidas necesarias para su protección.\nI. SITUACIÓN La causa que motiva la intervención judicial es: {{causa}}. Las personas propuestas para ejercer el cargo son: {{propuestos}}.\nII. HECHOS Y NECESIDADES 1. Identificar a la persona que requiere representación o protección.\n2. Explicar la situación jurídica y familiar.\n3. Precisar bienes, ingresos, obligaciones o necesidades que requieran administración o representación.\n4. Explicar la idoneidad y disponibilidad de la persona propuesta.\n5. Acompañar las constancias médicas, registrales o judiciales que correspondan.\nIII. DERECHO Deberán revisarse las disposiciones del Código Civil relativas a capacidad, tutela y representación, así como las normas procesales que correspondan al procedimiento concreto. Cuando intervengan niñas, niños o adolescentes deberán observarse en todo momento el interés superior, su derecho a ser escuchados y la intervención de la autoridad de protección cuando legalmente corresponda.\nIV. PETITORIOS\nPRIMERO. Admitir la promoción.\nSEGUNDO. Recabar los informes, certificaciones y valoraciones que resulten necesarios.\nTERCERO. Dar intervención a las autoridades o familiares que legalmente deban ser escuchados.\nCUARTO. Designar tutor y delimitar sus facultades y obligaciones conforme a derecho. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Civil del Estado de Jalisco, artículos 578-595: Patria potestad, tutela y representación.\n- Código de Procedimientos Civiles del Estado de Jalisco, artículos 21 y disposiciones aplicables: Procedimientos familiares y jurisdicción voluntaria.",
+  "siguiente_paso": "Verificar régimen vigente de capacidad y tutela antes de promover; distinguir asistencia, representación y custodia.",
+  "alertas": [
+    "No usar categorías históricas de incapacidad sin verificar la legislación vigente.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

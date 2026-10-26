@@ -1,0 +1,255 @@
+{
+  "id": "FAM-ADO-001",
+  "materia": "Familiar",
+  "diagnostico": {
+    "objetivo": "Preparar la solicitud judicial de adopción conforme a los requisitos legales vigentes.",
+    "preguntas": [
+      "¿Quién pretende adoptar?",
+      "¿Quién es la persona menor o incapaz a adoptar?",
+      "¿Quiénes deben consentir?",
+      "¿Existe intervención de Procuraduría de Protección o Procuraduría Social?",
+      "¿Se trata de adopción internacional?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Demanda de adopción",
+    "tipo_documento": "solicitud",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Familiar",
+      "Demanda de adopción"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Adopción",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento de adopción conforme al Código Civil y normativa de derechos de niñas, niños y adolescentes.",
+    "requisitos": [
+      "Verificar competencia y legitimación.",
+      "Integrar documentos base.",
+      "Identificar personas que deban ser llamadas.",
+      "Revisar requisitos especiales de la legislación aplicable."
+    ],
+    "nota": "SIGDE no sustituye la determinación profesional de competencia, vía y estrategia del caso concreto."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La persona solicitante es {{adoptante}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La persona a adoptar es {{adoptado}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Los consentimientos e intervenciones requeridos son {{consentimientos}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se admita y tramite la solicitud."
+    },
+    {
+      "orden": 2,
+      "texto": "Se recaben consentimientos y opiniones requeridos."
+    },
+    {
+      "orden": 3,
+      "texto": "Se dicte sentencia de adopción si se acreditan los requisitos."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos de identidad, estado civil y capacidad económica.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Documentos de la persona a adoptar.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Informe",
+      "objeto": "Valoraciones o informes de autoridades competentes.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Cuando sea procedente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Identificaciones",
+    "Actas de estado civil",
+    "Valoraciones requeridas",
+    "Documentación de la persona a adoptar"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Adopción",
+      "articulos": "532-553",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/adopci_n"
+    },
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Patria potestad y custodia",
+      "articulos": "578-587",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/patria_potestad_y_custodia"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La adopción sólo debe prosperar cuando se acrediten los requisitos legales y se proteja el interés superior de la persona menor de edad.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "adoptante": {
+      "etiqueta": "Persona adoptante",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "adoptado": {
+      "etiqueta": "Persona a adoptar",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "consentimientos": {
+      "etiqueta": "Consentimientos e intervenciones",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: PROCEDIMIENTO DE ADOPCIÓN C. JUEZ DE PRIMERA INSTANCIA COMPETENTE\nP R E S E N T E. {{promovente_nombre}}, por mi propio derecho, comparezco en relación con la adopción de {{adoptado}}, para solicitar que se sustancie el procedimiento conforme a la legislación aplicable.\nI. ANTECEDENTES Y SITUACIÓN DEL ADOPTADO\n1. Identificación y edad de la persona que se pretende adoptar.\n2. Situación jurídica y familiar actual.\n3. Relación previa con el o los adoptantes.\n4. Circunstancias que justifican que la adopción sea conveniente para la persona adoptada.\n5. Consentimientos requeridos: {{consentimientos}}.\nII. IDONEIDAD Y DOCUMENTACIÓN Deberán integrarse el certificado de idoneidad y demás constancias exigidas por la Procuraduría de Protección de Niñas, Niños y Adolescentes, así como documentos de identidad, estado civil, salud y capacidad para ejercer la paternidad o maternidad legal.\nIII. FUNDAMENTO Los artículos 520 a 542 del Código Civil regulan la adopción. El artículo 521 exige asesoría e información sobre las consecuencias jurídicas, consentimiento libre, ausencia de pago o compensación, certificado de idoneidad y condiciones que permitan el desarrollo en ambiente sano. El artículo 522 establece que los intereses de la persona adoptada son preferentes. El artículo 524 dispone que el trámite se efectúa ante el Juez de Primera Instancia del lugar donde reside la persona que se pretende adoptar, conforme al ordenamiento procesal aplicable.\nIV. PRUEBAS Y DOCUMENTOS Actas de nacimiento; identificación; documentos de estado civil; certificado de idoneidad; estudios y constancias oficiales; consentimientos; documentos sobre la situación jurídica del adoptado; y demás elementos requeridos por la autoridad competente.\nV. PETITORIOS\nPRIMERO. Admitir el procedimiento.\nSEGUNDO. Tener por exhibida la documentación y consentimientos.\nTERCERO. Dar intervención a las autoridades que legalmente correspondan.\nCUARTO. Escuchar a la persona adoptada cuando corresponda por edad y madurez.\nQUINTO. Dictar resolución atendiendo primordialmente al interés de la persona adoptada y ordenar las inscripciones registrales correspondientes una vez que cause ejecutoria. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Civil del Estado de Jalisco, artículos 532-553: Adopción.\n- Código Civil del Estado de Jalisco, artículos 578-587: Patria potestad y custodia.",
+  "siguiente_paso": "Verificar requisitos vigentes y la intervención de las autoridades de protección antes de presentar.",
+  "alertas": [
+    "La adopción exige revisión especial de requisitos y del interés superior.",
+    "No utilizar requisitos históricos de adopción simple si están derogados.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

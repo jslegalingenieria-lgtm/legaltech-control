@@ -1,0 +1,241 @@
+{
+  "id": "AGR-CTR-002",
+  "materia": "Agraria",
+  "diagnostico": {
+    "objetivo": "Formalizar un instrumento permitido por la Ley Agraria.",
+    "preguntas": [
+      "¿Quién es titular de los derechos?",
+      "¿Qué tipo de tierra está involucrada?",
+      "¿Cuál es el proyecto productivo?",
+      "¿Se requiere asamblea, fedatario o inscripción registral?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "núcleo agrario",
+      "certificado o título",
+      "parcela",
+      "vigencia",
+      "contraprestación u obligaciones"
+    ],
+    "resultado_esperado": "Determinar la vía agraria, competencia, requisitos, prueba, fundamento y documento procedente con base en la legislación agraria vigente."
+  },
+  "clasificacion": {
+    "constructor": "Contrato de aparcería sobre parcela ejidal",
+    "tipo_documento": "contrato",
+    "rol_promovente": "ejidatario, comunero, posesionario, avecindado, núcleo agrario o interesado según el caso",
+    "rol_contraparte": "persona, órgano del núcleo o autoridad vinculada al conflicto",
+    "criterios": [
+      "Agraria",
+      "Aparcería ejidal",
+      "Materia Contractual"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Formalización del instrumento contractual agrario",
+    "naturaleza": "acción, defensa o promoción en materia agraria",
+    "descripcion": "Instrumento construido a partir de la Ley Agraria, el artículo 27 constitucional y las normas especiales identificadas en la ficha.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Contrato agrario",
+    "requisitos": [
+      "Identificar la naturaleza agraria del asunto y la competencia territorial.",
+      "Acreditar personalidad, calidad agraria o interés jurídico.",
+      "Integrar títulos, certificados, actas, planos y demás documentos relacionados con la controversia.",
+      "Precisar hechos, pretensiones y pruebas."
+    ],
+    "nota": "La vía y estrategia se determinan con los hechos y documentos concretos del expediente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "PARTE A es titular de derechos sobre {{{{parcela_tierras}}}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Las partes acuerdan {{{{obligaciones_partes}}}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "La vigencia propuesta es {{{{vigencia}}}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Formalizar el uso, aprovechamiento o garantía conforme a la ley."
+    },
+    {
+      "orden": 2,
+      "texto": "Establecer obligaciones y vigencia."
+    },
+    {
+      "orden": 3,
+      "texto": "Cumplir formalidades registrales cuando correspondan."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "certificado parcelario o documento que acredite derechos",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "acta de asamblea cuando legalmente corresponda",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "identificaciones y documentos del proyecto",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Certificado parcelario o documento de derechos",
+    "Acta de asamblea cuando corresponda",
+    "Proyecto productivo",
+    "Identificaciones"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Constitución Política de los Estados Unidos Mexicanos",
+      "tema": "Régimen agrario y justicia agraria",
+      "articulos": "27, fracciones VII, XIX y XX",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/cpeum/articulo_27_agrario"
+    },
+    {
+      "ordenamiento": "Ley Agraria",
+      "tema": "Régimen agrario",
+      "articulos": "1-3",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_agraria/disposiciones_preliminares"
+    },
+    {
+      "ordenamiento": "Ley Agraria",
+      "tema": "Aparcería ejidal",
+      "articulos": "79",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_agraria/agr-ctr-002"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "El contrato es válido únicamente dentro de las facultades y límites de la Ley Agraria; la fuente constitucional es el artículo 27, fracción VII, y la regulación específica depende del tipo de instrumento.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad o tribunal",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "nucleo_agrario": {
+      "etiqueta": "Núcleo agrario",
+      "tipo": "texto",
+      "fuente": "expediente.datos.nucleo_agrario",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "calidad_agraria": {
+      "etiqueta": "Calidad agraria",
+      "tipo": "texto",
+      "fuente": "expediente.datos.calidad_agraria",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "parcela_tierras": {
+      "etiqueta": "Parcela o tierras",
+      "tipo": "texto",
+      "fuente": "expediente.datos.parcela_tierras",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_especificos": {
+      "etiqueta": "Hechos específicos",
+      "tipo": "textarea",
+      "fuente": "expediente.hechos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.domicilio_notificaciones",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "vigencia": {
+      "etiqueta": "Vigencia del instrumento",
+      "tipo": "texto",
+      "fuente": "expediente.contrato.vigencia",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "obligaciones_partes": {
+      "etiqueta": "Obligaciones de las partes",
+      "tipo": "textarea",
+      "fuente": "expediente.contrato.obligaciones",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar_fecha": {
+      "etiqueta": "Lugar y fecha",
+      "tipo": "texto",
+      "fuente": "expediente.lugar_fecha",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "CONTRATO DE APARCERÍA EJIDAL\n\nQUE CELEBRAN, POR UNA PARTE, {{promovente_nombre}}, EN LO SUCESIVO “PARTE A”, Y POR LA OTRA {{contraparte_nombre}}, EN LO SUCESIVO “PARTE B”, AL TENOR DE LAS SIGUIENTES:\n\nDECLARACIONES\n\nI. Declara PARTE A que cuenta con la calidad agraria y facultades necesarias para celebrar el presente instrumento respecto de {{parcela_tierras}}.\n\nII. Declara PARTE B que cuenta con capacidad para obligarse y que conoce la situación jurídica y material de las tierras.\n\nIII. Ambas partes manifiestan que el objeto del instrumento es lícito y se encuentra sujeto a la Ley Agraria.\n\nCLÁUSULAS\n\nPRIMERA. OBJETO. El ejidatario concede el uso o usufructo de su parcela mediante aparcería.\n\nSEGUNDA. IDENTIFICACIÓN DE LAS TIERRAS. Las tierras objeto del instrumento son {{parcela_tierras}}, ubicadas en {{nucleo_agrario}}.\n\nTERCERA. VIGENCIA. La vigencia será {{vigencia}}, atendiendo al proyecto productivo y a los límites previstos por la legislación agraria.\n\nCUARTA. OBLIGACIONES. Las partes cumplirán las obligaciones siguientes: {{obligaciones_partes}}.\n\nQUINTA. INSCRIPCIÓN Y FORMALIDADES. Cuando la Ley Agraria exija formalización ante fedatario público o inscripción en el Registro Agrario Nacional, las partes realizarán dichas actuaciones.\n\nVI. DERECHO\nEl presente instrumento se funda en el artículo 27, fracción VII, de la Constitución Política de los Estados Unidos Mexicanos y en el artículo 79 de la Ley Agraria.\n\nLUGAR Y FECHA: {{lugar_fecha}}\n\n____________________________\n{{promovente_nombre}}\n\n____________________________\n{{contraparte_nombre}}",
+  "siguiente_paso": "Integrar datos del expediente, revisar competencia y fundamento, completar campos y verificar documentos antes de presentación.",
+  "alertas": [
+    "Verificar competencia territorial del Tribunal Unitario Agrario correspondiente.",
+    "Revisar certificados, actas, planos y constancias del Registro Agrario Nacional cuando sean relevantes."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "familia": "Materia Contractual",
+    "fuente_principal": "Ley Agraria",
+    "fuente_constitucional": "CPEUM artículo 27",
+    "formato": "Escrito jurídico SIGDE estandarizado"
+  },
+  "auditoria_juridica": {
+    "fundamento_verificado": true,
+    "articulos_pendientes": [],
+    "observaciones": "Constructor basado exclusivamente en disposiciones identificadas en las fuentes proporcionadas."
+  }
+}

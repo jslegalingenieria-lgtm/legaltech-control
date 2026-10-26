@@ -1,0 +1,197 @@
+{
+  "id": "LAB-EJE-001",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Determinar si la resolución puede ejecutarse, por qué monto y con qué medidas.",
+    "preguntas": [
+      "¿La resolución es firme o ejecutable?",
+      "¿Condena líquida o requiere liquidación?",
+      "¿Se cumplió voluntariamente?",
+      "¿Hay bienes localizables?",
+      "¿Qué medidas se solicitarán?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Diagnóstico ejecución",
+    "tipo_documento": "diagnostico",
+    "rol_promovente": "trabajador(a)",
+    "rol_contraparte": "patrón / empresa",
+    "criterios": [
+      "Ejecución de laudo/sentencia",
+      "Ejecución de convenio"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Diagnóstico ejecución",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Ejecución conforme a la LFT",
+    "requisitos": [
+      "Resolución ejecutable.",
+      "Monto o forma de liquidación."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Resolución: {{documento_ejecutivo}} del {{fecha_documento}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Condena: {{condena}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Cumplimiento a la fecha: {{estado_cumplimiento}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Cumplimiento forzoso."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos exhibidos, para acreditar la resolución y el incumplimiento.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Ejecución de resoluciones laborales",
+      "articulos": "939-949",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/ejecucion_de_resoluciones_laborales"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La resolución es ejecutable y no ha sido cumplida.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "documento_ejecutivo": {
+      "etiqueta": "Documento ejecutivo",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_documento": {
+      "etiqueta": "Fecha documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "condena": {
+      "etiqueta": "Condena",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "estado_cumplimiento": {
+      "etiqueta": "Estado cumplimiento",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DIAGNÓSTICO — DIAGNÓSTICO EJECUCIÓN INFORME DE DIAGNÓSTICO — DIAGNÓSTICO EJECUCIÓN\nI. DIAGNÓSTICO\nDeterminar si la resolución puede ejecutarse, por qué monto y con qué medidas.\nPreguntas a resolver con el expediente:\n1. ¿La resolución es firme o ejecutable?\n2. ¿Condena líquida o requiere liquidación?\n3. ¿Se cumplió voluntariamente?\n4. ¿Hay bienes localizables?\n5. ¿Qué medidas se solicitarán?\nII. CLASIFICACIÓN\n- Ejecución de laudo/sentencia\n- Ejecución de convenio\nIII. ACCIÓN/DEFENSA Y VÍA\n- LAB-EJE-002 a LAB-EJE-004.\nVía: Ejecución conforme a la LFT\nIV. REQUISITOS\n1. Resolución ejecutable.\n2. Monto o forma de liquidación.\nV. HECHOS A ESTABLECER\nPRIMERO. Resolución: {{documento_ejecutivo}} del {{fecha_documento}}.\nSEGUNDO. Condena: {{condena}}.\nTERCERO. Cumplimiento a la fecha: {{estado_cumplimiento}}.\nVI. PRETENSIONES / OBJETIVOS\n1. Cumplimiento forzoso.\nVII. PRUEBAS\n1. DOCUMENTAL.- Documentos exhibidos, para acreditar la resolución y el incumplimiento.\n2. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n- Ley Federal del Trabajo: Ejecución de resoluciones laborales. Artículos aplicables: 939-949.\nIX. SIGUIENTE PASO\nDecidir si se requiere liquidación previa. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 939-949: Ejecución de resoluciones laborales.",
+  "siguiente_paso": "Decidir si se requiere liquidación previa.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE.",
+    "Los montos de finiquito/indemnización/prestaciones vienen de la calculadora existente de SIGDE; no recalcular en el constructor."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

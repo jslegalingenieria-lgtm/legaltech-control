@@ -20,6 +20,11 @@
     <link rel="stylesheet" href="css/expedientes.css">
     <link rel="stylesheet" href="css/buscador-juridico.css">
     <link rel="stylesheet" href="css/constructor-documentos.css">
+    <link rel="stylesheet" href="css/calculadora-pensiones.css?v=4.6.0">
+    <link rel="stylesheet" href="css/sigde-modulos-migrados.css?v=4.7.0">
+    <link rel="stylesheet" href="css/revisor-juridico.css?v=legaltech-v2.9">
+    <link rel="stylesheet" href="css/legaltech-modulos-litigacion.css?v=4.7.0">
+    <link rel="stylesheet" href="css/terminos-procesales.css?v=4.8.0">
     <link rel="stylesheet" href="css/biblioteca-juridica.css">
     <link rel="stylesheet" href="css/conocimiento-juridico.css">
     <link rel="stylesheet" href="css/centro-conocimiento.css">
@@ -58,6 +63,7 @@
                     <li id="menu-entrevistas"><a href="#" class="menu-item" onclick="switchTab('entrevistas'); cargarEntrevistas?.()">📝 Entrevistas</a></li>
                     <li id="menu-asuntos"><a href="#" class="menu-item" onclick="switchTab('asuntos')">⚖️ Asuntos</a></li>
                     <li id="menu-agenda"><a href="#" class="menu-item" onclick="mostrarVistaAgenda('lista')">📅 Agenda</a></li>
+                    <li id="menu-terminos-procesales"><a href="#" class="menu-item" onclick="switchTab('terminos-procesales')">⏱️ Términos procesales</a></li>
                     <li id="menu-expedientes"><a href="#" class="menu-item" onclick="switchTab('expedientes')">📂 Expedientes</a></li>
                     <li id="menu-centro-conocimiento" class="menu-con-submenu">
                         <a href="#" class="menu-item menu-item-desplegable" aria-expanded="false" onclick="abrirCentroConocimientoMenu(event)">
@@ -65,15 +71,25 @@
                         </a>
                         <ul id="submenu-centro-conocimiento" class="sidebar-submenu" hidden>
                             <li><a href="#" onclick="abrirModuloCentroDesdeMenu(event,'biblioteca')">📚 Biblioteca Jurídica</a></li>
+                            <li id="menu-manuales-litigacion"><a href="#" onclick="abrirModuloCentroDesdeMenu(event,'manuales')">📘 Manuales de litigación</a></li>
+                            <li id="menu-diccionario-juridico"><a href="#" onclick="abrirModuloCentroDesdeMenu(event,'diccionario')">📖 Diccionario Jurídico</a></li>
+                            <li id="menu-revisor-juridico"><a href="#" onclick="abrirModuloCentroDesdeMenu(event,'revisor')">🧾 Revisor Jurídico</a></li>
                             <li><a href="#" onclick="abrirModuloCentroDesdeMenu(event,'procesal')">⚖️ Conocimiento Procesal</a></li>
-                            <li><a href="#" onclick="abrirModuloCentroDesdeMenu(event,'documentos')">📄 Constructor de Documentos</a></li>
-                            <li><a href="#" onclick="abrirModuloCentroDesdeMenu(event,'jurisprudencia')">🔎 Jurisprudencia</a></li>
-                            <li><a href="#" onclick="abrirModuloCentroDesdeMenu(event,'estrategia')">🎯 Estrategia Procesal</a></li>
+                            <li><a href="#" onclick="abrirModuloCentroDesdeMenu(event,'documentos')">📄 Constructor</a></li>
                             <li><a href="#" onclick="abrirModuloCentroDesdeMenu(event,'calculadoras')">🧮 Calculadoras Jurídicas</a></li>
                         </ul>
                     </li>
                     <li id="menu-buscador-juridico"><a href="#" class="menu-item" onclick="switchTab('buscador-juridico')">🔎 Buscador jurídico</a></li>
-                    <li id="menu-cotizaciones"><a href="#" class="menu-item" onclick="switchTab('cotizaciones')">💼 Cotizaciones</a></li>
+                    <li id="menu-gestion-control" class="menu-con-submenu">
+                        <a href="#" class="menu-item menu-item-desplegable" aria-expanded="false" onclick="abrirGestionControlMenu(event)">
+                            <span>📊 Gestión y control</span><span class="submenu-flecha" aria-hidden="true">▾</span>
+                        </a>
+                        <ul id="submenu-gestion-control" class="sidebar-submenu" hidden>
+                            <li id="menu-cotizaciones"><a href="#" onclick="event.preventDefault(); switchTab('cotizaciones')">💼 Cotizaciones</a></li>
+                            <li id="menu-gastos-costos"><a href="#" onclick="event.preventDefault(); switchTab('gastos-costos')">💸 Gastos y costos</a></li>
+                            <li id="menu-reportes-kpi"><a href="#" onclick="event.preventDefault(); switchTab('reportes-kpi')">📈 Reportes KPI</a></li>
+                        </ul>
+                    </li>
                     <li id="menu-personal" style="display:none"><a href="#" class="menu-item" onclick="switchTab('personal')">👥 Personal</a></li>
                     <li id="menu-comunicacion" style="display:none"><a href="#" class="menu-item" onclick="switchTab('comunicacion')">💬 Comunicación</a></li>
                     <li id="menu-configuracion" style="display:none"><a href="#" class="menu-item" onclick="switchTab('configuracion')">⚙️ Configuración</a></li>
@@ -525,9 +541,9 @@
                     <div>
                         <span class="bj-kicker">Investigación en fuentes oficiales</span>
                         <h3>Buscador Jurídico</h3>
-                        <p>Prepara la consulta y abre directamente los portales jurídicos oficiales. No utiliza inteligencia artificial, claves API, tarjetas ni servicios de pago.</p>
+                        <p>Consulta fuentes oficiales. En tesis y jurisprudencia, intenta recuperar resultados del SJF y, si no responde, busca enlaces indexados limitados a dominios judiciales. No usa IA generativa; las funciones automáticas requieren Cloud Functions activas.</p>
                     </div>
-                    <span class="bj-sello">✓ Sin IA y sin costo</span>
+                    <span class="bj-sello">✓ Sin IA generativa</span>
                 </div>
 
                 <div class="bj-tabs" role="tablist" aria-label="Fuentes jurídicas">
@@ -552,18 +568,40 @@
                             <select id="bj-materia"><option value="">Todas</option><option>Civil</option><option>Familiar</option><option>Laboral</option><option>Penal</option><option>Administrativa</option><option>Amparo</option><option>Constitucional</option><option>Fiscal</option></select>
                         </label>
                         <label>Tipo de documento o criterio
-                            <select id="bj-tipo-documento"><option value="">Cualquiera</option><option value="jurisprudencia">Jurisprudencia</option><option value="tesis aislada">Tesis aislada</option><option value="ley vigente">Ley vigente</option><option value="reforma">Reforma</option><option value="sentencia">Sentencia</option><option value="opinión consultiva">Opinión consultiva</option></select>
+                            <select id="bj-tipo-documento">
+                                <option value="">Cualquiera</option>
+                                <optgroup label="Criterios del SJF">
+                                    <option value="jurisprudencia">Jurisprudencia</option>
+                                    <option value="tesis aislada">Tesis aislada</option>
+                                    <option value="tesis">Tesis</option>
+                                    <option value="ejecutoria">Ejecutoria</option>
+                                    <option value="sentencia">Sentencia</option>
+                                </optgroup>
+                                <optgroup label="Consultas por tipo documental">
+                                    <option value="ley vigente">Ley vigente</option>
+                                    <option value="ley">Ley</option>
+                                    <option value="reglamento">Reglamento</option>
+                                    <option value="decreto">Decreto</option>
+                                    <option value="acuerdo">Acuerdo</option>
+                                    <option value="reforma">Reforma</option>
+                                    <option value="opinión consultiva">Opinión consultiva</option>
+                                </optgroup>
+                            </select>
                         </label>
                     </div>
                     <div class="bj-acciones">
-                        <button type="button" id="bj-btn-buscar" class="bj-btn-principal">🔎 Abrir fuente oficial</button>
-                        <button type="button" id="bj-btn-limpiar" class="bj-btn-secundario">Limpiar</button>
+                        <button type="button" id="bj-btn-buscar" class="bj-btn-principal">🔎 Buscar en el SJF</button>
+                        <button type="button" id="bj-btn-agente" class="bj-btn-secundario">🤖 Buscar con agente</button>
+                        <button type="button" id="bj-btn-copiar" class="bj-btn-secundario">📋 Copiar consulta</button>
+                        <button type="button" id="bj-btn-abrir" class="bj-btn-secundario">🌐 Abrir fuente oficial</button>
+                        <button type="button" id="bj-btn-limpiar" class="bj-btn-secundario">🧹 Limpiar</button>
                     </div>
-                    <p class="bj-nota">La consulta se copia automáticamente. Al abrir el portal oficial, pégala en su campo de búsqueda. Atajo: Ctrl + Enter.</p>
+                    <p class="bj-nota">El buscador integra consulta directa del SJF, agente determinista, respaldo indexado y opciones manuales de búsqueda (consulta amplia y frase exacta). Los índices externos solo localizan pistas; verifica registro, vigencia, texto íntegro y aplicabilidad antes de citar. Las funciones automáticas requieren Cloud Functions activas. Atajo: Ctrl + Enter.</p>
                     <div id="bj-enlaces-integrales" class="bj-enlaces-integrales" hidden></div>
                 </div>
 
                 <div id="bj-estado" class="bj-estado" hidden></div>
+                <div id="bj-resultados" class="bj-resultados" aria-live="polite"></div>
 
                 <section class="bj-historial">
                     <div class="bj-historial-cabecera"><h4>Búsquedas recientes</h4><button type="button" id="bj-borrar-historial" class="bj-btn-secundario">Borrar historial</button></div>
@@ -619,9 +657,15 @@
 
             <!-- VISTA 3: ASUNTOS -->
             <section id="vista-asuntos" class="app-view" style="display: none;">
-                <div class="toolbar">
+                <div class="toolbar asuntos-toolbar">
                     <h3>Control de Asuntos Jurídicos</h3>
-                    <button class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;" onclick="abrirModalAsunto()">+ Nuevo Asunto</button>
+                    <div class="asuntos-toolbar-actions">
+                        <div class="asuntos-view-switch" role="group" aria-label="Vista de asuntos">
+                            <button type="button" id="btn-asuntos-vista-kanban" class="active" data-asuntos-view="kanban" aria-pressed="true">▦ Kanban</button>
+                            <button type="button" id="btn-asuntos-vista-tabla" data-asuntos-view="tabla" aria-pressed="false">▤ Tabla</button>
+                        </div>
+                        <button class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;" onclick="abrirModalAsunto()">+ Nuevo Asunto</button>
+                    </div>
                 </div>
 
                 <!-- Formulario de Asuntos (Modal) -->
@@ -904,21 +948,28 @@
                     </div>
                 </div>
 
-                <!-- Tabla de Asuntos -->
-                <div class="table-responsive">
-                       <table>
-                        <thead>
-                            <tr style="background-color: #f1f5f9; border-bottom: 2px solid var(--border-color); color: var(--primary-color);">
-                                <th style="padding: 1rem;">Expediente</th>
-                                <th style="padding: 1rem;">Cliente</th>
-                                <th style="padding: 1rem;">Materia / Juicio</th>
-                                <th style="padding: 1rem;">Juzgado</th>
-                                <th style="padding: 1rem;">Estado</th>
-                                <th style="padding: 1rem; text-align: center;">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabla-asuntos-cuerpo"></tbody>
-                    </table>
+                <!-- Vista Kanban predeterminada; la tabla se conserva como vista alternativa -->
+                <div id="asuntos-kanban-vista" class="asuntos-kanban-vista">
+                    <div id="asuntos-kanban-board" class="asuntos-kanban-board" aria-live="polite">
+                        <div class="asuntos-kanban-cargando">Cargando asuntos…</div>
+                    </div>
+                </div>
+                <div id="asuntos-tabla-vista" class="asuntos-tabla-vista" style="display:none;">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr style="background-color: #f1f5f9; border-bottom: 2px solid var(--border-color); color: var(--primary-color);">
+                                    <th style="padding: 1rem;">Expediente</th>
+                                    <th style="padding: 1rem;">Cliente</th>
+                                    <th style="padding: 1rem;">Materia / Juicio</th>
+                                    <th style="padding: 1rem;">Juzgado</th>
+                                    <th style="padding: 1rem;">Estado</th>
+                                    <th style="padding: 1rem; text-align: center;">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-asuntos-cuerpo"></tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
 
@@ -977,23 +1028,6 @@
             </section>
 
 
-            <section id="vista-estrategia-procesal" class="app-view modulo-juridico" style="display:none;">
-                <div class="mj-hero">
-                    <div><span class="cc-eyebrow">LexGear · Motor de decisiones</span><h3>Estrategia Procesal</h3><p>Identifica objetivos, riesgos, pruebas y acciones recomendadas mediante una entrevista jurídica guiada.</p></div>
-                    <button class="btn-secundario" type="button" onclick="switchTab('centro-conocimiento')">Volver al Centro</button>
-                </div>
-                <div class="mj-grid">
-                    <aside class="mj-card">
-                        <h4>Selecciona el escenario</h4>
-                        <div class="form-group"><label for="ep-materia">Materia</label><select id="ep-materia"><option value="laboral">Derecho Laboral</option><option value="familiar">Derecho Familiar</option><option value="civil">Derecho Civil</option><option value="mercantil">Derecho Mercantil</option></select></div>
-                        <div class="form-group"><label for="ep-procedimiento">Problema jurídico</label><select id="ep-procedimiento"></select></div>
-                        <div id="ep-preguntas" class="ep-preguntas"></div>
-                        <button class="btn-primary" type="button" onclick="analizarEstrategiaProcesal()">Analizar estrategia</button>
-                    </aside>
-                    <div class="mj-card mj-resultado" id="ep-resultado"><div class="mj-vacio"><span>🎯</span><strong>Completa la entrevista</strong><p>LexGear mostrará una ruta orientativa con fundamento, pruebas y alertas.</p></div></div>
-                </div>
-            </section>
-
             <section id="vista-calculadoras-juridicas" class="app-view modulo-juridico" style="display:none;">
                 <div class="mj-hero">
                     <div><span class="cc-eyebrow">LexGear · Motor jurídico de cálculo</span><h3>Calculadoras Jurídicas</h3><p>Cálculos explicados, trazables y acompañados de su fundamento legal.</p></div>
@@ -1003,6 +1037,7 @@
                     <button class="calc-tipo activo" type="button" data-calculadora="laboral" onclick="mostrarCalculadora('laboral')"><span>👷</span><strong>Liquidación y finiquito</strong><small>Derecho Laboral</small></button>
                     <button class="calc-tipo" type="button" data-calculadora="alimentos" onclick="mostrarCalculadora('alimentos')"><span>👨‍👩‍👧</span><strong>Pensión alimenticia</strong><small>Derecho Familiar · Jalisco</small></button>
                     <button class="calc-tipo" type="button" onclick="switchTab('calculadora-intereses')"><span>💹</span><strong>Intereses</strong><small>Civil y mercantil</small></button>
+                    <button class="calc-tipo" type="button" data-calculadora="pensiones" onclick="mostrarCalculadora('pensiones')"><span>👴</span><strong>Pensiones IMSS</strong><small>Ley 73 · Ley 97</small></button>
                 </div>
                 <div class="mj-grid calc-grid">
                     <form id="calc-laboral-form" class="mj-card" onsubmit="event.preventDefault(); calcularLiquidacionLaboral();">
@@ -1056,39 +1091,32 @@
                     </form>
                     <div class="mj-card mj-resultado" id="calc-alimentos-resultado"><div class="mj-vacio"><span>👨‍👩‍👧</span><strong>Captura necesidades y capacidades</strong><p>LexGear generará escenarios orientativos; no impondrá un porcentaje automático.</p></div></div>
                 </div>
+            
+                <div id="calc-pensiones-panel" class="mj-grid calc-grid" style="display:none"></div>
             </section>
 
             <section id="vista-constructor-documentos" class="app-view constructor-documentos" style="display:none;">
-                <div class="toolbar constructor-cabecera">
-                    <div><h3>Constructor de Documentos Jurídicos</h3><p>Genera, edita y guarda escritos usando los datos del asunto.</p></div>
-                    <button type="button" class="btn-primary" onclick="nuevoDocumentoJuridico()">+ Nuevo documento</button>
-                </div>
-                <div id="constructor-inicio" class="constructor-panel">
-                    <h4>Documentos guardados</h4>
-                    <div id="constructor-lista" class="constructor-lista"><p class="constructor-vacio">No hay borradores guardados.</p></div>
-                </div>
-                <div id="constructor-asistente" class="constructor-panel" hidden>
-                    <div class="constructor-grid">
-                        <div class="form-group"><label for="doc-asunto">Asunto</label><select id="doc-asunto"><option value="">Selecciona un asunto</option></select></div>
-                        <div class="form-group"><label for="doc-tipo">Tipo de escrito</label><select id="doc-tipo"><option value="">Cargando plantillas...</option></select><small class="constructor-ayuda">Las plantillas se organizan por materia y generan un borrador editable.</small></div>
-                    </div>
-                    <div class="constructor-acciones"><button type="button" class="btn-primary" onclick="generarBorradorJuridico()">Generar borrador</button><button type="button" class="btn-secundario" onclick="cancelarDocumentoJuridico()">Cancelar</button></div>
-                </div>
-                <div id="constructor-editor-panel" class="constructor-panel" hidden>
-                    <div class="constructor-grid">
-                        <div class="form-group"><label for="doc-titulo">Título interno</label><input id="doc-titulo" type="text"></div>
-                        <div class="form-group"><label for="doc-estado">Estado</label><select id="doc-estado"><option>Borrador</option><option>En revisión</option><option>Final</option></select></div>
-                    </div>
-                    <div class="editor-barra" role="toolbar">
-                        <button type="button" data-cmd="bold"><b>N</b></button><button type="button" data-cmd="italic"><i>C</i></button><button type="button" data-cmd="underline"><u>S</u></button>
-                        <button type="button" data-cmd="justifyLeft">Izq.</button><button type="button" data-cmd="justifyCenter">Centro</button><button type="button" data-cmd="justifyRight">Der.</button><button type="button" data-cmd="justifyFull">Justificar</button>
-                        <button type="button" data-cmd="insertOrderedList">1.</button><button type="button" data-cmd="insertUnorderedList">•</button>
-                    </div>
-                    <article id="doc-editor" class="documento-hoja" contenteditable="true"></article>
-                    <div class="constructor-acciones"><button type="button" class="btn-primary" onclick="guardarDocumentoJuridico()">💾 Guardar</button><button type="button" class="btn-secundario" onclick="descargarDocumentoWord()">⬇ Word</button><button type="button" class="btn-secundario" onclick="imprimirDocumentoJuridico()">🖨 Imprimir / PDF</button><button type="button" class="btn-secundario" onclick="cancelarDocumentoJuridico()">Cerrar</button></div>
+                <div id="constructor-sigde-mode">
+                    <div class="sigde-module-heading"><div><span class="sigde-module-kicker">DOCUMENTOS JURÍDICOS</span><h3>Constructor</h3><p>Consulta las fichas maestras, revisa diagnóstico, vía procesal, fundamentos y pruebas, completa los campos y prepara un borrador editable.</p></div></div>
+                    <div id="sigde-constructor-root"></div>
                 </div>
             </section>
 
+
+            <section id="vista-manuales-litigacion" class="app-view" style="display:none;">
+                <div class="toolbar"><div><h3>Manuales de litigación</h3><p>Guías prácticas por materia, rutas procesales, listas de verificación y documentos de consulta.</p></div></div>
+                <div id="lt-manuales-contenido"></div>
+            </section>
+
+            <section id="vista-diccionario-juridico" class="app-view" style="display:none;">
+                <div class="toolbar"><div><h3>Diccionario Jurídico</h3><p>Consulta términos procesales, conceptos jurídicos y locuciones latinas.</p></div></div>
+                <div id="lt-diccionario-contenido"></div>
+            </section>
+
+            <section id="vista-revisor-juridico" class="app-view" style="display:none;">
+                <div class="toolbar"><div><h3>Revisor Jurídico</h3><p>Revisión determinista de escritos, detección de incidencias y generación de copia Word con comentarios.</p></div></div>
+                <div id="revisor-juridico-root"></div>
+            </section>
 
             <section id="vista-biblioteca-juridica" class="app-view" style="display:none;">
                 <div class="toolbar biblioteca-cabecera">
@@ -1109,39 +1137,15 @@
 
 
             <section id="vista-conocimiento-juridico" class="app-view" style="display:none;">
-                <div class="cj-cabecera">
-                    <div>
-                        <span class="cj-eyebrow">Base de conocimiento procesal</span>
-                        <h3>Asistente de Litigación</h3>
-                        <p>Entrevistas, documentos, revisión y ruta procesal basados en los manuales internos del despacho.</p>
-                    </div>
-                    <div class="cj-origen">Contenido integrado: Civil · Familiar · Sucesorio · Mercantil · Laboral</div>
+                <div id="conocimiento-sigde-mode">
+                    <div class="sigde-module-heading"><div><span class="sigde-module-kicker">CONOCIMIENTO PROCESAL</span><h3>Conocimiento Procesal</h3><p>Consulta rutas por materia y régimen, etapas, actuaciones siguientes, control de expediente y términos asociados a la matriz procesal.</p></div></div>
+                    <div id="sigde-procesal-root"></div>
                 </div>
+            </section>
 
-                <div class="cj-selector">
-                    <div class="form-group"><label for="cj-materia">Materia</label><select id="cj-materia"></select></div>
-                    <div class="form-group"><label for="cj-procedimiento">Procedimiento</label><select id="cj-procedimiento"></select></div>
-                    <button class="btn-primary" type="button" onclick="cargarFichaConocimiento()">Abrir ficha</button>
-                </div>
-
-                <div id="cj-ficha" class="cj-ficha" hidden>
-                    <aside class="cj-indice" aria-label="Secciones de la ficha">
-                        <button data-cj-tab="resumen" class="activo">Resumen</button>
-                        <button data-cj-tab="entrevista">Entrevista</button>
-                        <button data-cj-tab="documentos">Documentos</button>
-                        <button data-cj-tab="revision">Revisión</button>
-                        <button data-cj-tab="ruta">Ruta procesal</button>
-                        <button data-cj-tab="pruebas">Pruebas</button>
-                        <button data-cj-tab="selector">Selector de vía</button>
-                        <button data-cj-tab="prescripcion">Prescripción</button>
-                        <button data-cj-tab="errores">Errores críticos</button>
-                        <button data-cj-tab="manual">Manual completo</button>
-                    </aside>
-                    <div class="cj-contenido">
-                        <div id="cj-alerta" class="cj-alerta"></div>
-                        <div id="cj-panel"></div>
-                    </div>
-                </div>
+            <!-- Términos procesales: catálogo canónico, supermatriz y control de vencimientos -->
+            <section id="vista-terminos-procesales" class="app-view" style="display:none;">
+                <div id="terminos-procesales-root"></div>
             </section>
 
             <!-- VISTA 4: AGENDA JURÍDICA -->
@@ -1372,29 +1376,13 @@
             </section>
 
             <section id="vista-cotizaciones" class="app-view modulo-juridico" style="display:none;">
-                <div class="mj-hero"><div><span class="cc-eyebrow">LexGear · Comercial y honorarios</span><h3>Cotizaciones</h3><p>Genera propuestas editables con honorarios, gastos, descuentos, anticipo y vigencia.</p></div><button class="btn-secundario" type="button" onclick="nuevaCotizacion()">Nueva cotización</button></div>
-                <div class="mj-grid">
-                    <form id="cotizacion-form" class="mj-card" onsubmit="event.preventDefault(); generarCotizacion();">
-                        <h4>Datos de la propuesta</h4>
-                        <div class="calc-form-grid">
-                            <div class="form-group"><label>Cliente<input id="cot-cliente" required></label></div>
-                            <div class="form-group"><label>Asunto o referencia<input id="cot-asunto"></label></div>
-                            <div class="form-group"><label>Servicio<select id="cot-servicio" onchange="cargarServicioCotizacion()"></select></label></div>
-                            <div class="form-group"><label>Método de cobro<select id="cot-metodo"><option value="fijo">Cuota fija</option><option value="porcentaje">Porcentaje</option><option value="horas">Por horas</option><option value="mixto">Mixto</option><option value="arancel">Referencia de arancel</option></select></label></div>
-                            <div class="form-group"><label>Honorarios base<input id="cot-honorarios" type="number" min="0" step="0.01" value="0"></label></div>
-                            <div class="form-group"><label>Gastos estimados<input id="cot-gastos" type="number" min="0" step="0.01" value="0"></label></div>
-                            <div class="form-group"><label>Descuento (%)<input id="cot-descuento" type="number" min="0" max="100" step="0.01" value="0"></label></div>
-                            <div class="form-group"><label>Anticipo (%)<input id="cot-anticipo" type="number" min="0" max="100" step="0.01" value="50"></label></div>
-                            <div class="form-group"><label>Vigencia (días)<input id="cot-vigencia" type="number" min="1" step="1" value="30"></label></div>
-                            <div class="form-group"><label>Forma de pago<input id="cot-forma-pago" value="50% al inicio y 50% al concluir"></label></div>
-                        </div>
-                        <div class="form-group"><label>Incluye<textarea id="cot-incluye" rows="5" placeholder="Una prestación por línea"></textarea></label></div>
-                        <div class="form-group"><label>No incluye<textarea id="cot-no-incluye" rows="4" placeholder="Gastos, derechos, peritos, viáticos..."></textarea></label></div>
-                        <div class="form-group"><label>Observaciones<textarea id="cot-observaciones" rows="3"></textarea></label></div>
-                        <button class="btn-primary" type="submit">Generar cotización</button>
-                    </form>
-                    <div class="mj-card mj-resultado" id="cotizacion-resultado"><div class="mj-vacio"><span>💼</span><strong>Genera una propuesta profesional</strong><p>Todos los importes y textos permanecen editables antes de guardar o imprimir.</p></div></div>
-                </div>
+                <div id="gestion-control-cotizaciones" class="gestion-control-host"></div>
+            </section>
+            <section id="vista-gastos-costos" class="app-view modulo-juridico" style="display:none;">
+                <div id="gestion-control-gastos-costos" class="gestion-control-host"></div>
+            </section>
+            <section id="vista-reportes-kpi" class="app-view modulo-juridico" style="display:none;">
+                <div id="gestion-control-reportes-kpi" class="gestion-control-host"></div>
             </section>
 
             <section id="vista-configuracion" class="app-view" style="display:none;">
@@ -1632,17 +1620,29 @@
 <script src="js/biblioteca-juridica.js"></script>
 <script src="js/conocimiento-juridico-data.js"></script>
 <script src="js/conocimiento-juridico.js"></script>
+<script src="js/manuales-practicos-data.js?v=4.7.0"></script>
 <script src="js/centro-conocimiento-data.js"></script>
 <script src="js/centro-conocimiento.js"></script>
-<script src="js/estrategia-procesal.js"></script>
-<script src="js/calculadoras-juridicas.js?v=4.4.9"></script>
-<script src="js/cotizaciones.js"></script>
+<script src="js/calculadoras-juridicas.js?v=4.6.0"></script>
+<script src="js/pensiones-config.js?v=4.6.0"></script>
+<script src="js/pensiones-ley73.js?v=4.6.0"></script>
+<script src="js/pensiones-ley97.js?v=4.6.0"></script>
+<script src="js/pensiones-calculadora.js?v=4.6.0"></script>
+<script src="js/sigde-constructor-registry.js?v=4.7.0"></script>
+<script src="js/conocimiento-procesal-data.js?v=4.7.0"></script>
+<script src="js/supermatriz-procesal-data.js?v=4.7.0"></script>
+<script src="js/terminos-procesales-data.js?v=4.8.0"></script>
+<script src="js/sigde-modulos-migrados.js?v=4.7.0"></script>
+<script src="js/terminos-procesales.js?v=4.8.0"></script>
+<script src="js/gestion-control.js?v=4.9.1"></script>
 <script src="js/configuracion.js"></script>
 <script src="js/agenda.js"></script>
 <script src="js/calendario.js"></script>
 <script src="js/personal.js"></script>
 <script src="js/comunicacion.js"></script>
 <script src="js/app.js"></script>
+<script type="module" src="js/legaltech-manuales-diccionario.js?v=4.7.0"></script>
+<script type="module" src="js/revisor-juridico.js?v=legaltech-v2.9"></script>
 <script src="js/dashboard-ejecutivo.js"></script>
 <script src="js/exportar-excel.js"></script>
 <script src="js/portal.js"></script>
@@ -1653,7 +1653,7 @@
 
     <script>
         if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("sw.js?v=4.4.9", { updateViaCache: "none" })
+            navigator.serviceWorker.register("sw.js?v=4.8.0", { updateViaCache: "none" })
                 .then(registro => {
                     registro.update();
                     console.log("Service Worker registrado con éxito.");

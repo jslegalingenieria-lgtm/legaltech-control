@@ -1,0 +1,362 @@
+{
+  "id": "CIV-NUL-001",
+  "materia": "Civil",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Nulidad.",
+    "preguntas": [
+      "¿Qué acto y qué vicio?",
+      "¿Absoluta o relativa?",
+      "¿Interés del actor?",
+      "¿Prescripción?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Nulidad",
+    "tipo_documento": "demanda",
+    "rol_promovente": "actor(a)",
+    "rol_contraparte": "demandado(a)",
+    "criterios": [
+      "Nulidad"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Acción de nulidad (absoluta / relativa) [SELECCIONAR]",
+    "naturaleza": "accion",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Juicio civil en la vía que corresponda conforme al Código de Procedimientos Civiles del Estado de Jalisco [VALIDAR VÍA SEGÚN ACCIÓN Y CUANTÍA]",
+    "requisitos": [
+      "Competencia por materia, cuantía y territorio.",
+      "Legitimación activa y pasiva acreditadas.",
+      "Personalidad del promovente.",
+      "Documento base o hechos de la acción.",
+      "Interés jurídico."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Con fecha {{fecha_acto}} se celebró {{acto_impugnado}} entre {{partes_acto}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "El acto adolece de {{causa_nulidad}}, porque {{hechos_causa_nulidad}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "{{promovente_nombre}} tiene interés porque {{interes_nulidad}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "El acto surtió efectos consistentes en {{efectos_acto}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 5,
+      "texto": "Se ejercita la acción dentro del plazo legal {{plazo_nulidad}} .",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se declare la nulidad de {{acto_impugnado}}."
+    },
+    {
+      "orden": 2,
+      "texto": "Se declare que las partes deben restituirse lo recibido, en su caso."
+    },
+    {
+      "orden": 3,
+      "texto": "Se ordene la cancelación de inscripciones derivadas del acto."
+    },
+    {
+      "orden": 4,
+      "texto": "El pago de gastos y costas ."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos exhibidos, para acreditar el acto y la causa de nulidad.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional legal y humana",
+      "objeto": "Las deducciones lógico-jurídicas que se desprendan de los hechos probados.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Acto impugnado",
+    "Documentos que acrediten la causa de nulidad"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Nulidad absoluta y relativa",
+      "articulos": "1759-1779",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_civil_del_estado_de_jalisco/nulidad_absoluta_y_relativa"
+    },
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Requisitos de validez de los actos jurídicos",
+      "articulos": "1759-1795",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_civil_del_estado_de_jalisco/requisitos_de_validez_de_los_actos_juridicos"
+    },
+    {
+      "ordenamiento": "Código de Procedimientos Civiles del Estado de Jalisco",
+      "tema": "Vía y legitimación",
+      "articulos": "267-279",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_de_procedimientos_civiles_del_est/via_y_legitimacion"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "El acto carece de un requisito de validez; la ley sanciona esa carencia con nulidad y el actor está legitimado para pedirla.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "JUEZ CIVIL COMPETENTE DEL ESTADO DE JALISCO según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "tipo_nulidad": {
+      "etiqueta": "Tipo nulidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente (propio derecho / representante)",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "caracter_promovente": {
+      "etiqueta": "Caracter promovente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "actor(a)"
+    },
+    "documento_personalidad": {
+      "etiqueta": "Documento personalidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "acto_impugnado": {
+      "etiqueta": "Acto impugnado",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_acto": {
+      "etiqueta": "Fecha acto",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "partes_acto": {
+      "etiqueta": "Partes acto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "causa_nulidad": {
+      "etiqueta": "Causa nulidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_causa_nulidad": {
+      "etiqueta": "Hechos causa nulidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "interes_nulidad": {
+      "etiqueta": "Interes nulidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "efectos_acto": {
+      "etiqueta": "Efectos acto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "plazo_nulidad": {
+      "etiqueta": "Plazo nulidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "testigos": {
+      "etiqueta": "Testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_testigos": {
+      "etiqueta": "Hechos testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "materia_pericial": {
+      "etiqueta": "Materia pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "objeto_pericial": {
+      "etiqueta": "Objeto pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DEMANDA DE NULIDAD — {{tipo_nulidad}}\nC. {{autoridad}}:\n{{promovente_nombre}}, {{personalidad_promovente}}, con domicilio en {{domicilio_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}} y autorizando para tales efectos a {{abogado_patrono}}, comparezco para exponer:\nI. PERSONALIDAD Y DOMICILIO\nComparezco en mi carácter de {{caracter_promovente}}, personalidad que acredito con {{documento_personalidad}}. Mi domicilio es {{domicilio_promovente}}; el de la contraparte, {{contraparte_nombre}}, es {{domicilio_contraparte}}.\nII. PRETENSIONES\nPor medio del presente escrito reclamo/solicito:\n1. Se declare la nulidad de {{acto_impugnado}}.\n2. Se declare que las partes deben restituirse lo recibido, en su caso.\n3. Se ordene la cancelación de inscripciones derivadas del acto.\n4. El pago de gastos y costas.\nIII. HECHOS\nPRIMERO. Con fecha {{fecha_acto}} se celebró {{acto_impugnado}} entre {{partes_acto}}.\nSEGUNDO. El acto adolece de {{causa_nulidad}}, porque {{hechos_causa_nulidad}}.\nTERCERO. {{promovente_nombre}} tiene interés porque {{interes_nulidad}}.\nCUARTO. El acto surtió efectos consistentes en {{efectos_acto}}.\nQUINTO. Se ejercita la acción dentro del plazo legal {{plazo_nulidad}}.\nIV. DERECHO\nFundan la presente promoción las disposiciones siguientes (artículos aplicables al acto y a la vía indicada):\n- Código Civil del Estado de Jalisco: Nulidad absoluta y relativa. Artículos aplicables: 1759-1795.\n- Código Civil del Estado de Jalisco: Requisitos de validez de los actos jurídicos. Artículos aplicables: 1759-1795.\n- Código de Procedimientos Civiles del Estado de Jalisco: Vía y legitimación. Artículos aplicables: 267-279.\nV. PRUEBAS\nOfrezco las siguientes pruebas, relacionándolas con los hechos indicados:\n1. DOCUMENTAL.- Documentos exhibidos, para acreditar el acto y la causa de nulidad.\n2. TESTIMONIAL.- Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.\n3. PERICIAL.- Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.\n4. PRESUNCIONAL LEGAL Y HUMANA.- Las deducciones lógico-jurídicas que se desprendan de los hechos probados.\n5. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n\nSe acompañan los documentos siguientes:\n1. Acto impugnado\n2. Documentos que acrediten la causa de nulidad\nVI. PETITORIOS\nPor lo expuesto, a Usted atentamente pido:\nPRIMERO. Tenerme por presentado(a) con este escrito y los documentos que se acompañan, promoviendo nulidad en contra de {{contraparte_nombre}}.\nSEGUNDO. Admitir a trámite la demanda en la vía señalada, ordenar el emplazamiento de la contraparte en el domicilio indicado y correrle traslado.\nTERCERO. Tener por ofrecidas las pruebas señaladas en el capítulo respectivo y ordenar su admisión y desahogo.\nCUARTO. En su oportunidad, dictar resolución en la que se declaren procedentes las pretensiones reclamadas, con lo demás que en derecho corresponda. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Código Civil del Estado de Jalisco, artículos 1759-1779: Nulidad absoluta y relativa.\n- Código Civil del Estado de Jalisco, artículos 1759-1795: Requisitos de validez de los actos jurídicos.\n- Código de Procedimientos Civiles del Estado de Jalisco, artículos 267-279: Vía y legitimación.",
+  "siguiente_paso": "Clasificar el vicio y verificar plazo y legitimación.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Materia civil: legislación de Jalisco. No mezclar el CNPCF en esta fase."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

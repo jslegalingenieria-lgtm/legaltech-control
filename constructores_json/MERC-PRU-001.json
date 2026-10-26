@@ -1,0 +1,321 @@
+{
+  "id": "MERC-PRU-001",
+  "materia": "Mercantil",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Pruebas.",
+    "preguntas": [
+      "¿Qué hechos hay que probar?",
+      "¿Qué medios tengo?",
+      "¿Quién tiene la carga?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Pruebas",
+    "tipo_documento": "promocion",
+    "rol_promovente": "oferente",
+    "rol_contraparte": "contraparte",
+    "criterios": [
+      "Probatoria"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Ofrecimiento, objeción y preparación de pruebas",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Etapa probatoria del juicio mercantil [VALIDAR ETAPA Y FORMALIDADES]",
+    "requisitos": [
+      "Acto de comercio o título mercantil.",
+      "Competencia (fuero federal o local concurrente) .",
+      "Legitimación y personalidad.",
+      "Documento base.",
+      "Vía mercantil idónea."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Se ofrecen pruebas en el expediente {{expediente}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Hechos que se pretenden acreditar: {{hechos_a_probar}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Para cada prueba se señala su relación con los puntos controvertidos.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se admitan las pruebas ofrecidas."
+    },
+    {
+      "orden": 2,
+      "texto": "Se fije fecha para su desahogo."
+    },
+    {
+      "orden": 3,
+      "texto": "Se provea lo necesario para pruebas que requieran preparación (pericial, testimonial, informes)."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos exhibidos, para acreditar los hechos controvertidos.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Confesional",
+      "objeto": "Posiciones a cargo de {{contraparte_nombre}}, para que reconozca los hechos y documentos base de la acción.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Informe de autoridad",
+      "objeto": "Informe de {{autoridad_informante}} sobre {{objeto_informe}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Inspección",
+      "objeto": "De {{objeto_inspeccion}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional legal y humana",
+      "objeto": "Las deducciones lógico-jurídicas que se desprendan de los hechos probados.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Interrogatorios y cuestionarios",
+    "Documentos originales",
+    "Datos de testigos"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código de Comercio",
+      "tema": "Medios de prueba y su ofrecimiento, admisión y desahogo",
+      "articulos": "1197-1319",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_de_comercio/medios_de_prueba_y_su_ofrecimiento_admision_y_desa"
+    },
+    {
+      "ordenamiento": "Código de Comercio",
+      "tema": "Supletoriedad procesal mercantil",
+      "articulos": "2, 1054 y 1063",
+      "estatus": "fuente_verificada",
+      "fundamento_texto": "Supletoriedad y reglas procesales mercantiles."
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Cada hecho controvertido se acredita con medios idóneos, ofrecidos con pertinencia y oportunidad.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "JUEZ COMPETENTE EN MATERIA MERCANTIL [VALIDAR FUERO Y COMPETENCIA]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente (propio derecho / representante)",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "caracter_promovente": {
+      "etiqueta": "Caracter promovente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "oferente"
+    },
+    "documento_personalidad": {
+      "etiqueta": "Documento personalidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_a_probar": {
+      "etiqueta": "Hechos a probar",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "testigos": {
+      "etiqueta": "Testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_testigos": {
+      "etiqueta": "Hechos testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "materia_pericial": {
+      "etiqueta": "Materia pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "objeto_pericial": {
+      "etiqueta": "Objeto pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "autoridad_informante": {
+      "etiqueta": "Autoridad informante",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "objeto_informe": {
+      "etiqueta": "Objeto informe",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "objeto_inspeccion": {
+      "etiqueta": "Objeto inspeccion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: OFRECIMIENTO DE PRUEBAS / MANIFESTACIONES SOBRE PRUEBAS\nC. {{autoridad}}:\n{{promovente_nombre}}, {{personalidad_promovente}}, con domicilio en {{domicilio_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}} y autorizando para tales efectos a {{abogado_patrono}}, comparezco para exponer:\nI. PERSONALIDAD Y DOMICILIO\nComparezco en mi carácter de {{caracter_promovente}}, personalidad que acredito con {{documento_personalidad}}. Mi domicilio es {{domicilio_promovente}}; el de la contraparte, {{contraparte_nombre}}, es {{domicilio_contraparte}}.\nII. PRETENSIONES\n1. Se admitan las pruebas ofrecidas.\n2. Se fije fecha para su desahogo.\n3. Se provea lo necesario para pruebas que requieran preparación (pericial, testimonial, informes).\nIII. HECHOS\nPRIMERO. Se ofrecen pruebas en el expediente {{expediente}}.\nSEGUNDO. Hechos que se pretenden acreditar: {{hechos_a_probar}}.\nTERCERO. Para cada prueba se señala su relación con los puntos controvertidos.\nIV. DERECHO\nFundan la presente promoción las disposiciones siguientes (artículos aplicables al acto y a la vía indicada):\n- Código de Comercio: Medios de prueba y su ofrecimiento, admisión y desahogo. Artículos aplicables: 1197-1319.\n- Legislación mercantil supletoria: Supletoriedad en pruebas. Artículos aplicables: La supletoriedad se aplica conforme al artículo 2 del Código de Comercio y a la legislación procesal vigente que resulte aplicable..\nV. PRUEBAS\nOfrezco las siguientes pruebas, relacionándolas con los hechos indicados:\n1. DOCUMENTAL.- Documentos exhibidos, para acreditar los hechos controvertidos.\n2. CONFESIONAL.- Posiciones a cargo de {{contraparte_nombre}}, para que reconozca los hechos y documentos base de la acción.\n3. TESTIMONIAL.- Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.\n4. PERICIAL.- Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.\n5. INFORME DE AUTORIDAD.- Informe de {{autoridad_informante}} sobre {{objeto_informe}}.\n6. INSPECCIÓN.- De {{objeto_inspeccion}}.\n7. PRESUNCIONAL LEGAL Y HUMANA.- Las deducciones lógico-jurídicas que se desprendan de los hechos probados.\n8. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n\nSe acompañan los documentos siguientes:\n1. Interrogatorios y cuestionarios\n2. Documentos originales\n3. Datos de testigos\nVI. PETITORIOS\nPor lo expuesto, a Usted atentamente pido:\nPRIMERO. Tenerme por presentado(a) con este escrito, haciendo las manifestaciones y solicitudes que en él constan.\nSEGUNDO. Acordar de conformidad lo solicitado, con fundamento en las disposiciones señaladas.\nTERCERO. Notificarme en el domicilio procesal señalado. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Código de Comercio, artículos 1197-1319: Medios de prueba y su ofrecimiento, admisión y desahogo.\n- Código de Comercio, artículos 2, 1054 y 1063: Supletoriedad y reglas procesales mercantiles..",
+  "siguiente_paso": "Elaborar matriz hecho–prueba y verificar oportunidad de ofrecimiento.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Materia mercantil: respetar la supletoriedad aplicable al Código de Comercio y a las leyes mercantiles especiales ."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

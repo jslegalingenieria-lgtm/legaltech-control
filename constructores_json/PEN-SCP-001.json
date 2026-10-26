@@ -1,0 +1,180 @@
+{
+  "id": "PEN-SCP-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Preparar solicitud de suspensión condicional, plan de reparación y condiciones.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Suspensión condicional del proceso",
+    "tipo_documento": "audiencia",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Suspensión condicional del proceso.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Después de la vinculación y antes de acordarse la apertura de juicio, si procede.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Existe auto de vinculación por {{clasificacion_juridica}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La reparación del daño se propone mediante {{plan_reparacion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Las condiciones que se proponen son {{condiciones}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Que se apruebe la suspensión condicional si se cumplen los requisitos."
+    },
+    {
+      "orden": 2,
+      "texto": "Que se tenga por aprobado el plan de reparación y las condiciones."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Auto de vinculación y constancias de reparación.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Documentos que acrediten condiciones y capacidad de cumplimiento.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Auto de vinculación.",
+    "Plan de reparación.",
+    "Documentos de cumplimiento/garantía."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Definición y procedencia",
+      "articulos": "191-192",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Oportunidad",
+      "articulos": "193",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Plan de reparación",
+      "articulos": "194",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso aquí sirve para valorar la salida alterna, el daño y la propuesta de reparación; el planteamiento debe centrarse en los requisitos legales y no sustituye la valoración judicial.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "antecedentes": {
+      "etiqueta": "Antecedentes",
+      "tipo": "texto",
+      "fuente": "expediente.antecedentes",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "clasificacion_juridica": {
+      "etiqueta": "Clasificacion Juridica",
+      "tipo": "texto",
+      "fuente": "expediente.clasificacion_juridica",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "plan_reparacion": {
+      "etiqueta": "Plan Reparacion",
+      "tipo": "texto",
+      "fuente": "expediente.plan_reparacion",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "condiciones": {
+      "etiqueta": "Condiciones",
+      "tipo": "texto",
+      "fuente": "expediente.condiciones",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "C. JUEZ DE CONTROL\nASUNTO: SUSPENSIÓN CONDICIONAL DEL PROCESO\nI. ANTECEDENTES\n{{antecedentes}}.\nII. REPARACIÓN DEL DAÑO\n{{plan_reparacion}}.\nIII. CONDICIONES\n{{condiciones}}.\nIV. PETICIÓN\nSe apruebe la suspensión condicional del proceso si se satisfacen los requisitos del CNPP. \nFUNDAMENTO JURÍDICO APLICADO\n- Código Nacional de Procedimientos Penales, artículos 191-192: Definición y procedencia.\n- Código Nacional de Procedimientos Penales, artículos 193: Oportunidad.\n- Código Nacional de Procedimientos Penales, artículos 194: Plan de reparación.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

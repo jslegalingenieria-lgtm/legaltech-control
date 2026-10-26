@@ -1,0 +1,437 @@
+{
+  "id": "CIV-SUC-009",
+  "materia": "Sucesorio",
+  "diagnostico": {
+    "objetivo": "Determinar pasivos, cargas, gastos y saldo distribuible antes de la partición.",
+    "preguntas": [
+      "¿Qué deudas y cargas están acreditadas?",
+      "¿Qué gastos son de la sucesión?",
+      "¿Cuál es el saldo neto?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Liquidación de la herencia",
+    "tipo_documento": "promoción",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Sucesorio",
+      "Liquidación de la herencia"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Liquidación del caudal",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento sucesorio conforme al Código de Procedimientos Civiles del Estado de Jalisco.",
+    "requisitos": [
+      "Verificar competencia y legitimación.",
+      "Integrar documentos base.",
+      "Identificar personas que deban ser llamadas.",
+      "Revisar requisitos especiales de la legislación aplicable."
+    ],
+    "nota": "SIGDE no sustituye la determinación profesional de competencia, vía y estrategia del caso concreto."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "El inventario está aprobado y corresponde liquidar el caudal.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "S"
+    },
+    {
+      "orden": 2,
+      "texto": "e"
+    },
+    {
+      "orden": 3,
+      "texto": ""
+    },
+    {
+      "orden": 4,
+      "texto": "a"
+    },
+    {
+      "orden": 5,
+      "texto": "p"
+    },
+    {
+      "orden": 6,
+      "texto": "r"
+    },
+    {
+      "orden": 7,
+      "texto": "u"
+    },
+    {
+      "orden": 8,
+      "texto": "e"
+    },
+    {
+      "orden": 9,
+      "texto": "b"
+    },
+    {
+      "orden": 10,
+      "texto": "e"
+    },
+    {
+      "orden": 11,
+      "texto": ""
+    },
+    {
+      "orden": 12,
+      "texto": "l"
+    },
+    {
+      "orden": 13,
+      "texto": "a"
+    },
+    {
+      "orden": 14,
+      "texto": ""
+    },
+    {
+      "orden": 15,
+      "texto": "l"
+    },
+    {
+      "orden": 16,
+      "texto": "i"
+    },
+    {
+      "orden": 17,
+      "texto": "q"
+    },
+    {
+      "orden": 18,
+      "texto": "u"
+    },
+    {
+      "orden": 19,
+      "texto": "i"
+    },
+    {
+      "orden": 20,
+      "texto": "d"
+    },
+    {
+      "orden": 21,
+      "texto": "a"
+    },
+    {
+      "orden": 22,
+      "texto": "c"
+    },
+    {
+      "orden": 23,
+      "texto": "i"
+    },
+    {
+      "orden": 24,
+      "texto": "ó"
+    },
+    {
+      "orden": 25,
+      "texto": "n"
+    },
+    {
+      "orden": 26,
+      "texto": ""
+    },
+    {
+      "orden": 27,
+      "texto": "y"
+    },
+    {
+      "orden": 28,
+      "texto": ""
+    },
+    {
+      "orden": 29,
+      "texto": "s"
+    },
+    {
+      "orden": 30,
+      "texto": "e"
+    },
+    {
+      "orden": 31,
+      "texto": ""
+    },
+    {
+      "orden": 32,
+      "texto": "d"
+    },
+    {
+      "orden": 33,
+      "texto": "e"
+    },
+    {
+      "orden": 34,
+      "texto": "t"
+    },
+    {
+      "orden": 35,
+      "texto": "e"
+    },
+    {
+      "orden": 36,
+      "texto": "r"
+    },
+    {
+      "orden": 37,
+      "texto": "m"
+    },
+    {
+      "orden": 38,
+      "texto": "i"
+    },
+    {
+      "orden": 39,
+      "texto": "n"
+    },
+    {
+      "orden": 40,
+      "texto": "e"
+    },
+    {
+      "orden": 41,
+      "texto": ""
+    },
+    {
+      "orden": 42,
+      "texto": "l"
+    },
+    {
+      "orden": 43,
+      "texto": "a"
+    },
+    {
+      "orden": 44,
+      "texto": ""
+    },
+    {
+      "orden": 45,
+      "texto": "m"
+    },
+    {
+      "orden": 46,
+      "texto": "a"
+    },
+    {
+      "orden": 47,
+      "texto": "s"
+    },
+    {
+      "orden": 48,
+      "texto": "a"
+    },
+    {
+      "orden": 49,
+      "texto": ""
+    },
+    {
+      "orden": 50,
+      "texto": "n"
+    },
+    {
+      "orden": 51,
+      "texto": "e"
+    },
+    {
+      "orden": 52,
+      "texto": "t"
+    },
+    {
+      "orden": 53,
+      "texto": "a"
+    },
+    {
+      "orden": 54,
+      "texto": "."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos que acreditan los hechos y el derecho invocado.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Actuaciones del expediente en lo que favorezcan.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional",
+      "objeto": "Presunciones que resulten de los hechos acreditados.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Inventario aprobado",
+    "Cuentas",
+    "Comprobantes de pasivos",
+    "Recibos y créditos"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código de Procedimientos Civiles del Estado de Jalisco",
+      "tema": "Liquidación de herencia",
+      "articulos": "892-900",
+      "estatus": "registrado",
+      "ck_clave": "CK/cpc_jalisco/liquidaci_n_de_herencia"
+    },
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Cargas y obligaciones hereditarias",
+      "articulos": "2652-2665",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/cargas_y_obligaciones_hereditarias"
+    }
+  ],
+  "teoria_caso": {
+    "texto": [
+      "La liquidación precede a una partición correcta y debe distinguir cargas de la sucesión y derechos de los herederos."
+    ],
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "autor_sucesion": {
+      "etiqueta": "Autor de la sucesión",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_especificos": {
+      "etiqueta": "Hechos específicos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: LIQUIDACIÓN DE LA HERENCIA C. JUEZ COMPETENTE\nP R E S E N T E. {{promovente_nombre}}, en mi carácter de {{personalidad_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, y autorizando a {{abogado_patrono}}, comparezco para exponer:\nI. BASE DE LA LIQUIDACIÓN Una vez aprobados inventario, avalúo y cuentas de administración, corresponde determinar el activo líquido de la sucesión. La situación concreta es: {{hechos_especificos}}.\nII. OPERACIONES 1. Determinar activo hereditario.\n2. Identificar deudas mortuorias, hereditarias y testamentarias.\n3. Determinar cargas, gastos y obligaciones pendientes.\n4. Aplicar pagos conforme al orden legal que corresponda.\n5. Determinar el remanente líquido sujeto a partición.\nIII. FUNDAMENTO El artículo 900 del CPC establece que concluidas y aprobadas las operaciones de inventario y avalúo, el albacea procederá a la liquidación. El artículo 3048 del Código Civil incluye entre las obligaciones del albacea el pago de las deudas mortuorias, hereditarias y testamentarias.\nIV. DOCUMENTOS Inventario aprobado; avalúos; cuentas; comprobantes de deudas; estados de cuenta; recibos; títulos; constancias fiscales y demás documentos necesarios para demostrar el activo y pasivo.\nV. PETITORIOS\nPRIMERO. Tener por presentada la liquidación.\nSEGUNDO. Dar vista a los interesados y acreedores reconocidos cuando corresponda.\nTERCERO. Aprobar las operaciones que resulten procedentes.\nCUARTO. Determinar el remanente líquido para la partición. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código de Procedimientos Civiles del Estado de Jalisco, artículos 892-900: Liquidación de herencia.\n- Código Civil del Estado de Jalisco, artículos 2652-2665: Cargas y obligaciones hereditarias.",
+  "siguiente_paso": "Verificar etapa procesal, legitimación y documentos antes de presentar.",
+  "alertas": [
+    "No confundir la etapa procesal del constructor con una etapa ya agotada.",
+    "Verificar legislación vigente y resoluciones del expediente.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

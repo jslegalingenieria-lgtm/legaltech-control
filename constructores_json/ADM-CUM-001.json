@@ -1,0 +1,225 @@
+{
+  "id": "ADM-CUM-001",
+  "materia": "Administrativo",
+  "jurisdiccion": "Federal/Jalisco",
+  "diagnostico": {
+    "objetivo": "Dar seguimiento al cumplimiento de una resolución administrativa y documentar incumplimientos.",
+    "preguntas": [
+      "¿Qué ordenó la resolución?",
+      "¿Quién debe cumplir?",
+      "¿Cuál plazo?",
+      "¿Qué evidencia acredita cumplimiento?",
+      "¿Qué ocurre si no cumple?"
+    ],
+    "datos_minimos": [
+      "resolucion",
+      "obligado",
+      "plazo",
+      "evidencia"
+    ],
+    "resultado_esperado": "Determinar vía, competencia, plazo, hechos, prueba y documento procedente."
+  },
+  "clasificacion": {
+    "constructor": "Control de cumplimiento de resolución administrativa",
+    "tipo_documento": "seguimiento",
+    "rol_promovente": "Promovente / interesado / presunto responsable según caso",
+    "rol_contraparte": "Autoridad / tercero / denunciante",
+    "criterios": [
+      "competencia",
+      "legalidad",
+      "fundamentación y motivación",
+      "debido procedimiento",
+      "plazo",
+      "prueba",
+      "vía"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Control de cumplimiento de resolución administrativa",
+    "naturaleza": "procesal administrativa",
+    "descripcion": "Dar seguimiento al cumplimiento de una resolución administrativa y documentar incumplimientos.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Resolución → notificación → plazo de cumplimiento → verificación → requerimiento/medio procedente",
+    "requisitos": [
+      "Identificar autoridad",
+      "Acreditar personalidad",
+      "Precisar acto/conducta",
+      "Integrar expediente y pruebas",
+      "Verificar ley especial y plazo"
+    ],
+    "nota": "Constructor basado únicamente en las fuentes cargadas; verificar legislación especial vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La resolución ordenó {{obligacion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "El obligado debía cumplir a más tardar el {{fecha}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "El incumplimiento consiste en {{incumplimiento}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Tener por cumplida o incumplida la resolución."
+    },
+    {
+      "orden": 2,
+      "texto": "Adoptar el medio legal procedente ante incumplimiento."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Resolución y notificación.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Pruebas de cumplimiento/incumplimiento.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Resolución",
+    "Notificación",
+    "Evidencia de cumplimiento",
+    "Requerimientos"
+  ],
+  "fundamento": [
+    {
+      "orden": 1,
+      "ordenamiento": "Ley Federal de Procedimiento Administrativo",
+      "tema": "Eficacia y exigibilidad del acto",
+      "articulos": "8-10",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/lfpa/eficacia"
+    },
+    {
+      "orden": 2,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Ejecución administrativa",
+      "articulos": "148-152",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/ejecucion"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría separa existencia/validez de la resolución y su cumplimiento material, documentando cada obligación y fecha.",
+    "elementos": [
+      "Hechos",
+      "Norma",
+      "Competencia",
+      "Acto/conducta",
+      "Prueba",
+      "Vicio/defensa",
+      "Riesgo",
+      "Resultado"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el documento final."
+  },
+  "campos_dinamicos": {
+    "promovente_nombre": {
+      "etiqueta": "Nombre / razón social",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "autoridad_nombre": {
+      "etiqueta": "Autoridad",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "expediente_numero": {
+      "etiqueta": "Expediente / folio",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "fecha_acto": {
+      "etiqueta": "Fecha del acto",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "notificacion_fecha": {
+      "etiqueta": "Fecha de notificación",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "relato_hechos": {
+      "etiqueta": "Relato de hechos",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pretension_principal": {
+      "etiqueta": "Resultado buscado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pruebas_disponibles": {
+      "etiqueta": "Pruebas disponibles",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "obligacion": {
+      "etiqueta": "Obligación",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "fecha": {
+      "etiqueta": "Fecha límite",
+      "tipo": "fecha",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "incumplimiento": {
+      "etiqueta": "Incumplimiento",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    }
+  },
+  "checklist": [
+    "Obtener resolución",
+    "Fijar fecha de cumplimiento",
+    "Identificar obligación",
+    "Recopilar evidencia",
+    "Requerir si procede",
+    "Documentar resultado"
+  ],
+  "ruta_procesal": [
+    "Resolución",
+    "notificación",
+    "plazo de cumplimiento",
+    "verificación",
+    "requerimiento/medio procedente"
+  ],
+  "advertencias": [
+    "Revisar ley especial y reglamento interior.",
+    "Verificar vigencia de la norma.",
+    "No presentar sin revisar expediente y cómputo de plazos."
+  ],
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  },
+  "documento_generado": "{{autoridad_competente}}\nEXPEDIENTE: {{numero_expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: CONTROL DE CUMPLIMIENTO DE RESOLUCIÓN ADMINISTRATIVA\nC. {autoridad_competente}:\n{{promovente_nombre}}, por mi propio derecho / en representación de {{representado_nombre}}, personalidad que acredito con {{documento_personalidad}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, comparezco para exponer:\nI. OBJETO\nEl presente seguimiento tiene por objeto plantear Dar seguimiento al cumplimiento de una resolución administrativa y documentar incumplimientos en la vía Resolución → notificación → plazo de cumplimiento → verificación → requerimiento/medio procedente.\nII. HECHOS\n1. La resolución ordenó {{obligacion}}.\n2. El obligado debía cumplir a más tardar el {{fecha}}.\n3. El incumplimiento consiste en {{incumplimiento}}.\nIII. DERECHO\nCon fundamento en Ley Federal de Procedimiento Administrativo, artículos 8-10, en relación con Eficacia y exigibilidad del acto.\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 148-152, en relación con Ejecución administrativa.\nIV. PRETENSIONES / PETICIONES\n1. Tener por cumplida o incumplida la resolución..\n2. Adoptar el medio legal procedente ante incumplimiento..\nV. PRUEBAS\n1. {'medio': 'Documental', 'objeto': 'Resolución y notificación.', 'estatus': 'por_ofrecer'}\n2. {'medio': 'Documental', 'objeto': 'Pruebas de cumplimiento/incumplimiento.', 'estatus': 'por_ofrecer'}\nVI. DOCUMENTOS\n{{documentos_anexos}}\nVII. PETITORIOS\nPRIMERO. Tenerme por presentado con este escrito y documentos.\nSEGUNDO. Acordar lo conducente conforme a la vía y competencia indicadas.\nTERCERO. Tener por formuladas las pretensiones y por ofrecidas las pruebas relacionadas.\nCUARTO. Dictar la resolución que en derecho corresponda. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal de Procedimiento Administrativo, artículos 8-10: Eficacia y exigibilidad del acto.\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 148-152: Ejecución administrativa."
+}

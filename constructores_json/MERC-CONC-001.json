@@ -1,0 +1,326 @@
+{
+  "id": "MERC-CONC-001",
+  "materia": "Mercantil",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Concurso mercantil.",
+    "preguntas": [
+      "¿Es comerciante?",
+      "¿Incumplimiento generalizado?",
+      "¿Voluntario o necesario?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Concurso mercantil",
+    "tipo_documento": "demanda",
+    "rol_promovente": "comerciante o acreedor(a) solicitante",
+    "rol_contraparte": "comerciante o acreedores [SEGÚN ROL]",
+    "criterios": [
+      "Concursal"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Declaración de concurso mercantil (voluntario o necesario) [SELECCIONAR]",
+    "naturaleza": "accion",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento conforme a la Ley de Concursos Mercantiles [VALIDAR COMPETENCIA Y SUPUESTOS]",
+    "requisitos": [
+      "Calidad de comerciante.",
+      "Supuestos de incumplimiento generalizado de obligaciones de pago.",
+      "Documentación exigida por la ley especial.",
+      "Competencia."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "{{comerciante_nombre}} es comerciante, con domicilio principal en {{domicilio_comerciante}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Sus adeudos vencidos son: {{adeudos_vencidos}}, por {{monto_adeudos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "El incumplimiento se manifiesta en {{supuesto_incumplimiento}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "Principales acreedores: {{acreedores}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 5,
+      "texto": "Activos conocidos: {{activos}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se declare el concurso mercantil de {{comerciante_nombre}}."
+    },
+    {
+      "orden": 2,
+      "texto": "Se designe visitador/conciliador en los términos de la ley ."
+    },
+    {
+      "orden": 3,
+      "texto": "Se tomen las medidas cautelares procedentes."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos exhibidos, para acreditar la calidad de comerciante y los supuestos de la ley.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Estados financieros y contabilidad.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Estados financieros",
+    "Relación de acreedores y deudores",
+    "Libros contables",
+    "Escritura constitutiva"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley de Concursos Mercantiles",
+      "tema": "Supuestos, solicitud, declaración y etapas del concurso",
+      "articulos": "9-43 y correlativos del procedimiento concursal",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_de_concursos_mercantiles/supuestos_solicitud_declaracion_y_etapas_del_concu"
+    },
+    {
+      "ordenamiento": "Código de Comercio",
+      "tema": "Calidad de comerciante",
+      "articulos": "3-6",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_de_comercio/calidad_de_comerciante"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "El comerciante incumple de forma generalizada sus obligaciones de pago y se actualizan los supuestos de la ley especial.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "JUEZ COMPETENTE EN MATERIA MERCANTIL [VALIDAR FUERO Y COMPETENCIA]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "rol_concurso": {
+      "etiqueta": "Rol concurso",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente (propio derecho / representante)",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "caracter_promovente": {
+      "etiqueta": "Caracter promovente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "comerciante o acreedor(a) solicitante"
+    },
+    "documento_personalidad": {
+      "etiqueta": "Documento personalidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "comerciante_nombre": {
+      "etiqueta": "Comerciante nombre",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_comerciante": {
+      "etiqueta": "Domicilio comerciante",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "adeudos_vencidos": {
+      "etiqueta": "Adeudos vencidos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "monto_adeudos": {
+      "etiqueta": "Monto adeudos",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "supuesto_incumplimiento": {
+      "etiqueta": "Supuesto incumplimiento",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "acreedores": {
+      "etiqueta": "Acreedores",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "activos": {
+      "etiqueta": "Activos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "materia_pericial": {
+      "etiqueta": "Materia pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "objeto_pericial": {
+      "etiqueta": "Objeto pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: SOLICITUD / DEMANDA DE CONCURSO MERCANTIL — {{rol_concurso}}\nC. {{autoridad}}:\n{{promovente_nombre}}, {{personalidad_promovente}}, con domicilio en {{domicilio_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}} y autorizando para tales efectos a {{abogado_patrono}}, comparezco para exponer:\nI. PERSONALIDAD Y DOMICILIO\nComparezco en mi carácter de {{caracter_promovente}}, personalidad que acredito con {{documento_personalidad}}. Mi domicilio es {{domicilio_promovente}}; el de la contraparte, {{contraparte_nombre}}, es {{domicilio_contraparte}}.\nII. PRETENSIONES\nPor medio del presente escrito reclamo/solicito:\n1. Se declare el concurso mercantil de {{comerciante_nombre}}.\n2. Se designe visitador/conciliador en los términos de la ley.\n3. Se tomen las medidas cautelares procedentes.\nIII. HECHOS\nPRIMERO. {{comerciante_nombre}} es comerciante, con domicilio principal en {{domicilio_comerciante}}.\nSEGUNDO. Sus adeudos vencidos son: {{adeudos_vencidos}}, por {{monto_adeudos}}.\nTERCERO. El incumplimiento se manifiesta en {{supuesto_incumplimiento}}.\nCUARTO. Principales acreedores: {{acreedores}}.\nQUINTO. Activos conocidos: {{activos}}.\nIV. DERECHO\nFundan la presente promoción las disposiciones siguientes (artículos aplicables al acto y a la vía indicada):\n- Ley de Concursos Mercantiles: Supuestos, solicitud, declaración y etapas del concurso. Artículos aplicables: 9-43 y correlativos del procedimiento concursal.\n- Código de Comercio: Calidad de comerciante. Artículos aplicables: 3-6.\nV. PRUEBAS\nOfrezco las siguientes pruebas, relacionándolas con los hechos indicados:\n1. DOCUMENTAL.- Documentos exhibidos, para acreditar la calidad de comerciante y los supuestos de la ley.\n2. PERICIAL.- Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.\n3. DOCUMENTAL.- Estados financieros y contabilidad.\n4. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n\nSe acompañan los documentos siguientes:\n1. Estados financieros\n2. Relación de acreedores y deudores\n3. Libros contables\n4. Escritura constitutiva\nVI. PETITORIOS\nPor lo expuesto, a Usted atentamente pido:\nPRIMERO. Tenerme por presentado(a) con este escrito y los documentos que se acompañan, promoviendo concurso mercantil en contra de {{contraparte_nombre}}.\nSEGUNDO. Admitir a trámite la demanda en la vía señalada, ordenar el emplazamiento de la contraparte en el domicilio indicado y correrle traslado.\nTERCERO. Tener por ofrecidas las pruebas señaladas en el capítulo respectivo y ordenar su admisión y desahogo.\nCUARTO. En su oportunidad, dictar resolución en la que se declaren procedentes las pretensiones reclamadas, con lo demás que en derecho corresponda. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley de Concursos Mercantiles, artículos 9-43 y correlativos del procedimiento concursal: Supuestos, solicitud, declaración y etapas del concurso.\n- Código de Comercio, artículos 3-6: Calidad de comerciante.",
+  "siguiente_paso": "Reunir información contable y de acreedores; valorar alternativas extrajudiciales.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Materia mercantil: respetar la supletoriedad aplicable al Código de Comercio y a las leyes mercantiles especiales .",
+    "Procedimiento de alta complejidad: requiere especialista y validación integral."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

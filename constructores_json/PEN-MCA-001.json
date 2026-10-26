@@ -1,0 +1,181 @@
+{
+  "id": "PEN-MCA-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Preparar la posición procesal sobre medidas cautelares, atendiendo a su finalidad, necesidad, idoneidad y proporcionalidad.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Solicitud y oposición a medidas cautelares",
+    "tipo_documento": "audiencia",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Solicitud u oposición de medida cautelar.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Audiencia inicial o audiencia posterior procedente.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "El proceso se sigue contra {{imputado_nombre}} por {{clasificacion_juridica}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La Fiscalía solicita {{medida_solicitada}} con base en {{argumentos_fiscalia}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "La defensa/víctima sostiene {{posicion_propia}} y ofrece como alternativas {{medidas_alternativas}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Que se imponga, modifique o rechace la medida cautelar conforme a las circunstancias del caso."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Información de arraigo, domicilio, trabajo y demás circunstancias pertinentes.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Personas que acrediten las circunstancias relevantes.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Registros de cumplimiento de medidas previas, si existen.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Comprobantes de domicilio.",
+    "Información laboral/familiar.",
+    "Registros de cumplimiento de medidas anteriores, si existen."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Tipos de medidas cautelares",
+      "articulos": "155",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso debe distinguir la discusión de responsabilidad de la discusión cautelar y concentrarse en los riesgos procesales y la medida estrictamente necesaria.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "imputado_nombre": {
+      "etiqueta": "Nombre de la persona imputada/acusada",
+      "tipo": "texto",
+      "fuente": "expediente.imputado_nombre",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "clasificacion_juridica": {
+      "etiqueta": "Clasificacion Juridica",
+      "tipo": "texto",
+      "fuente": "expediente.clasificacion_juridica",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "medida_solicitada": {
+      "etiqueta": "Medida Solicitada",
+      "tipo": "texto",
+      "fuente": "expediente.medida_solicitada",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "argumentos_fiscalia": {
+      "etiqueta": "Argumentos Fiscalia",
+      "tipo": "texto",
+      "fuente": "expediente.argumentos_fiscalia",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "posicion_propia": {
+      "etiqueta": "Posicion Propia",
+      "tipo": "texto",
+      "fuente": "expediente.posicion_propia",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "medidas_alternativas": {
+      "etiqueta": "Medidas Alternativas",
+      "tipo": "texto",
+      "fuente": "expediente.medidas_alternativas",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "C. JUEZ DE CONTROL\nASUNTO: MEDIDAS CAUTELARES\nI. ANTECEDENTES\nEl proceso corresponde a {{imputado_nombre}}, por {{clasificacion_juridica}}.\nII. POSICIÓN DE LA FISCALÍA\n{{argumentos_fiscalia}}.\nIII. POSICIÓN DE LA DEFENSA/VÍCTIMA\n{{posicion_propia}}.\nIV. MEDIDAS ALTERNATIVAS\n{{medidas_alternativas}}.\nV. PETICIÓN\nSe imponga/modifique/rechace la medida solicitada conforme a los elementos concretos debatidos. \nFUNDAMENTO JURÍDICO APLICADO\n- Código Nacional de Procedimientos Penales, artículos 155: Tipos de medidas cautelares.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

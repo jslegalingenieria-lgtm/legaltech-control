@@ -1,0 +1,205 @@
+{
+  "id": "PEN-ACT-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Solicitar diligencias específicas de investigación pertinentes y útiles.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Solicitud de actos de investigación",
+    "tipo_documento": "promoción",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Solicitud de actos de investigación.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Etapa de investigación.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "En la carpeta {{carpeta}} se investigan hechos relacionados con {{hechos_investigados}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "El acto solicitado consiste en {{acto_solicitado}} y se relaciona directamente con {{hecho_a_acreditar}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "La diligencia resulta pertinente porque {{razon_pertinencia}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Que se ordene/practique el acto de investigación solicitado, si resulta procedente."
+    },
+    {
+      "orden": 2,
+      "texto": "Que se incorpore el resultado a los registros de investigación."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos que justifican la necesidad del acto.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Información que permita individualizar la diligencia.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Solicitud de intervención pericial, si corresponde.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Constancias de la carpeta relacionadas con la solicitud.",
+    "Documentos o registros que permitan ejecutar la diligencia."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Deber y objeto de investigación penal",
+      "articulos": "212-215",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Actos de investigación y datos de prueba",
+      "articulos": "259-261",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso identifica el hecho a probar y explica por qué el acto solicitado puede aportar información pertinente para sostenerlo o controvertirlo.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "carpeta": {
+      "etiqueta": "Número de carpeta de investigación",
+      "tipo": "texto",
+      "fuente": "expediente.carpeta",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.promovente_nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "calidad_procesal": {
+      "etiqueta": "Calidad Procesal",
+      "tipo": "texto",
+      "fuente": "expediente.calidad_procesal",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_investigados": {
+      "etiqueta": "Hechos Investigados",
+      "tipo": "texto",
+      "fuente": "expediente.hechos_investigados",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "acto_solicitado": {
+      "etiqueta": "Acto Solicitado",
+      "tipo": "texto",
+      "fuente": "expediente.acto_solicitado",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hecho_a_acreditar": {
+      "etiqueta": "Hecho A Acreditar",
+      "tipo": "texto",
+      "fuente": "expediente.hecho_a_acreditar",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "razon_pertinencia": {
+      "etiqueta": "Razon Pertinencia",
+      "tipo": "texto",
+      "fuente": "expediente.razon_pertinencia",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_firma": {
+      "etiqueta": "Fecha Firma",
+      "tipo": "texto",
+      "fuente": "expediente.fecha_firma",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nCARPETA: {{carpeta}}\nASUNTO: SOLICITUD DE ACTOS DE INVESTIGACIÓN {{promovente_nombre}}, en mi carácter de {{calidad_procesal}}, comparezco para solicitar:\nI. ANTECEDENTES\nEn la carpeta se investigan {{hechos_investigados}}.\nII. ACTO SOLICITADO\nSolicito se practique {{acto_solicitado}}.\nIII. PERTINENCIA\nEl acto se relaciona con {{hecho_a_acreditar}} y resulta pertinente porque {{razon_pertinencia}}.\nIV. PETICIÓN\nSe practique la diligencia y se incorpore su resultado a los registros de investigación, conforme a las reglas aplicables. {{fecha_firma}}\n{{promovente_nombre}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Nacional de Procedimientos Penales, artículos 212-215: Deber y objeto de investigación penal.\n- Código Nacional de Procedimientos Penales, artículos 259-261: Actos de investigación y datos de prueba.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

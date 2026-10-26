@@ -1,0 +1,211 @@
+{
+  "id": "ADM-PRO-003",
+  "materia": "Administrativo",
+  "jurisdiccion": "Federal/Jalisco",
+  "diagnostico": {
+    "objetivo": "Presentar síntesis final de hechos, pruebas y argumentos antes de resolución cuando la vía contemple alegatos.",
+    "preguntas": [
+      "¿Qué hechos quedaron acreditados?",
+      "¿Qué pruebas fueron admitidas?",
+      "¿Qué argumentos siguen pendientes?",
+      "¿Qué resolución se pide?"
+    ],
+    "datos_minimos": [
+      "hechos",
+      "pruebas",
+      "argumentos",
+      "peticion"
+    ],
+    "resultado_esperado": "Determinar vía, competencia, plazo, hechos, prueba y documento procedente."
+  },
+  "clasificacion": {
+    "constructor": "Alegatos finales en procedimiento administrativo",
+    "tipo_documento": "alegatos",
+    "rol_promovente": "Promovente / interesado / presunto responsable según caso",
+    "rol_contraparte": "Autoridad / tercero / denunciante",
+    "criterios": [
+      "competencia",
+      "legalidad",
+      "fundamentación y motivación",
+      "debido procedimiento",
+      "plazo",
+      "prueba",
+      "vía"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Alegatos finales en procedimiento administrativo",
+    "naturaleza": "procesal administrativa",
+    "descripcion": "Presentar síntesis final de hechos, pruebas y argumentos antes de resolución cuando la vía contemple alegatos.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Cierre probatorio → vista/alegatos → resolución",
+    "requisitos": [
+      "Identificar autoridad",
+      "Acreditar personalidad",
+      "Precisar acto/conducta",
+      "Integrar expediente y pruebas",
+      "Verificar ley especial y plazo"
+    ],
+    "nota": "Constructor basado únicamente en las fuentes cargadas; verificar legislación especial vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Quedó acreditado {{hecho}} mediante {{prueba}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La autoridad debe resolver considerando {{argumento}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se tengan por formulados alegatos."
+    },
+    {
+      "orden": 2,
+      "texto": "Se valoren integralmente pruebas."
+    },
+    {
+      "orden": 3,
+      "texto": "Se dicte resolución congruente."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Actuaciones.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental",
+      "objeto": "Expediente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Expediente",
+    "Índice de pruebas",
+    "Proyecto de alegatos"
+  ],
+  "fundamento": [
+    {
+      "orden": 1,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Pruebas y manifestaciones",
+      "articulos": "114-116",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/alegatos"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría final conecta hechos probados con la consecuencia jurídica solicitada.",
+    "elementos": [
+      "Hechos",
+      "Norma",
+      "Competencia",
+      "Acto/conducta",
+      "Prueba",
+      "Vicio/defensa",
+      "Riesgo",
+      "Resultado"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el documento final."
+  },
+  "campos_dinamicos": {
+    "promovente_nombre": {
+      "etiqueta": "Nombre / razón social",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "autoridad_nombre": {
+      "etiqueta": "Autoridad",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "expediente_numero": {
+      "etiqueta": "Expediente / folio",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "fecha_acto": {
+      "etiqueta": "Fecha del acto",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "notificacion_fecha": {
+      "etiqueta": "Fecha de notificación",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "relato_hechos": {
+      "etiqueta": "Relato de hechos",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pretension_principal": {
+      "etiqueta": "Resultado buscado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pruebas_disponibles": {
+      "etiqueta": "Pruebas disponibles",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "hecho": {
+      "etiqueta": "Hecho probado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "prueba": {
+      "etiqueta": "Prueba que lo acredita",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "argumento": {
+      "etiqueta": "Argumento central",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    }
+  },
+  "checklist": [
+    "Revisar expediente",
+    "Separar hechos probados",
+    "Relacionar pruebas",
+    "Cerrar argumentos",
+    "Precisar petición"
+  ],
+  "ruta_procesal": [
+    "Cierre probatorio",
+    "vista/alegatos",
+    "resolución"
+  ],
+  "advertencias": [
+    "Revisar ley especial y reglamento interior.",
+    "Verificar vigencia de la norma.",
+    "No presentar sin revisar expediente y cómputo de plazos."
+  ],
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  },
+  "documento_generado": "{{autoridad_competente}}\nEXPEDIENTE: {{numero_expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: ALEGATOS FINALES EN PROCEDIMIENTO ADMINISTRATIVO\nC. {autoridad_competente}:\n{{promovente_nombre}}, por mi propio derecho / en representación de {{representado_nombre}}, personalidad que acredito con {{documento_personalidad}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, comparezco para exponer:\nI. OBJETO\nEl presente alegatos tiene por objeto plantear Presentar síntesis final de hechos, pruebas y argumentos antes de resolución cuando la vía contemple alegatos en la vía Cierre probatorio → vista/alegatos → resolución.\nII. HECHOS\n1. Quedó acreditado {{hecho}} mediante {{prueba}}.\n2. La autoridad debe resolver considerando {{argumento}}.\nIII. DERECHO\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 114-116, en relación con Pruebas y manifestaciones.\nIV. PRETENSIONES / PETICIONES\n1. Se tengan por formulados alegatos..\n2. Se valoren integralmente pruebas..\n3. Se dicte resolución congruente..\nV. PRUEBAS\n1. {'medio': 'Documental', 'objeto': 'Actuaciones.', 'estatus': 'por_ofrecer'}\n2. {'medio': 'Instrumental', 'objeto': 'Expediente.', 'estatus': 'por_ofrecer'}\nVI. DOCUMENTOS\n{{documentos_anexos}}\nVII. PETITORIOS\nPRIMERO. Tenerme por presentado con este escrito y documentos.\nSEGUNDO. Acordar lo conducente conforme a la vía y competencia indicadas.\nTERCERO. Tener por formuladas las pretensiones y por ofrecidas las pruebas relacionadas.\nCUARTO. Dictar la resolución que en derecho corresponda. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 114-116: Pruebas y manifestaciones."
+}

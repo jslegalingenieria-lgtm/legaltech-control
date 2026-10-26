@@ -1,0 +1,206 @@
+{
+  "id": "PEN-INI-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Solicitar la celebración de audiencia inicial y las determinaciones que correspondan.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Solicitud de audiencia inicial",
+    "tipo_documento": "promoción",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Solicitud de citatorio, comparecencia u orden de aprehensión, según corresponda.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Audiencia inicial.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La investigación identificada con {{carpeta}} contiene datos respecto de {{imputado_nombre}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Los hechos atribuidos consisten en {{hechos_atribuidos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "La clasificación jurídica preliminar propuesta es {{clasificacion_juridica}} y la forma de intervención es {{forma_intervencion}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Que se señale fecha y hora para audiencia inicial."
+    },
+    {
+      "orden": 2,
+      "texto": "Que se resuelva lo conducente respecto de la presencia del imputado conforme a la situación procesal."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Registros de investigación pertinentes.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Datos de prueba",
+      "objeto": "Datos que sustentan la solicitud.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental pericial",
+      "objeto": "Dictámenes incorporados a la investigación.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Registros de investigación pertinentes.",
+    "Datos de identificación del imputado.",
+    "Datos de localización o antecedentes de citación, según corresponda."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Audiencia inicial",
+      "articulos": "307",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Citación, comparecencia y orden de aprehensión",
+      "articulos": "310",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso debe organizar hechos, calificación jurídica preliminar, intervención y datos de prueba que justifican llevar el asunto ante el Juez de control.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "carpeta": {
+      "etiqueta": "Número de carpeta de investigación",
+      "tipo": "texto",
+      "fuente": "expediente.carpeta",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.promovente_nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "calidad_procesal": {
+      "etiqueta": "Calidad Procesal",
+      "tipo": "texto",
+      "fuente": "expediente.calidad_procesal",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "imputado_nombre": {
+      "etiqueta": "Nombre de la persona imputada/acusada",
+      "tipo": "texto",
+      "fuente": "expediente.imputado_nombre",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_atribuidos": {
+      "etiqueta": "Hechos Atribuidos",
+      "tipo": "texto",
+      "fuente": "expediente.hechos_atribuidos",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "clasificacion_juridica": {
+      "etiqueta": "Clasificacion Juridica",
+      "tipo": "texto",
+      "fuente": "expediente.clasificacion_juridica",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "forma_intervencion": {
+      "etiqueta": "Forma Intervencion",
+      "tipo": "texto",
+      "fuente": "expediente.forma_intervencion",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_firma": {
+      "etiqueta": "Fecha Firma",
+      "tipo": "texto",
+      "fuente": "expediente.fecha_firma",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "C. JUEZ DE CONTROL: CARPETA: {{carpeta}}\nASUNTO: SOLICITUD DE AUDIENCIA INICIAL {{promovente_nombre}}, en calidad de {{calidad_procesal}}, expongo:\nI. ANTECEDENTES\nLa investigación contiene datos relativos a {{hechos_atribuidos}}.\nII. PERSONA IMPUTADA\n{{imputado_nombre}}.\nIII. CLASIFICACIÓN JURÍDICA PRELIMINAR\n{{clasificacion_juridica}}. Forma de intervención: {{forma_intervencion}}.\nIV. PETICIÓN\nSe señale fecha y hora para audiencia inicial y se determine lo conducente para asegurar la comparecencia del imputado conforme al CNPP. {{fecha_firma}}\n{{promovente_nombre}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Nacional de Procedimientos Penales, artículos 307: Audiencia inicial.\n- Código Nacional de Procedimientos Penales, artículos 310: Citación, comparecencia y orden de aprehensión.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

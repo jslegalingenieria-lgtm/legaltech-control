@@ -1,0 +1,199 @@
+{
+  "id": "PEN-MPR-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Solicitar medidas de protección cuando existan condiciones que hagan necesaria su adopción conforme al CNPP.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Solicitud de medidas de protección",
+    "tipo_documento": "audiencia/promoción",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Solicitud de medidas de protección.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Investigación y procedimiento penal, según el momento procesal.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La víctima {{victima_nombre}} se encuentra en la situación siguiente: {{situacion_riesgo}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Existen circunstancias que generan riesgo o necesidad de protección: {{circunstancias_riesgo}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "La medida solicitada es {{medida_solicitada}} y se justifica por {{justificacion}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Que se dicte la medida de protección procedente."
+    },
+    {
+      "orden": 2,
+      "texto": "Que se realicen las comunicaciones y actuaciones necesarias para su cumplimiento."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Constancias que acrediten la situación de riesgo.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Personas que conocen las circunstancias.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Valoraciones que resulten pertinentes.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Identificación de la víctima.",
+    "Constancias de riesgo.",
+    "Datos de contacto para ejecución de la medida."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Medidas de protección",
+      "articulos": "137",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso debe explicar el riesgo concreto y la relación entre los hechos investigados y la necesidad de protección.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "carpeta": {
+      "etiqueta": "Número de carpeta de investigación",
+      "tipo": "texto",
+      "fuente": "expediente.carpeta",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "victima_nombre": {
+      "etiqueta": "Nombre de la víctima u ofendido",
+      "tipo": "texto",
+      "fuente": "expediente.victima_nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "situacion_riesgo": {
+      "etiqueta": "Situacion Riesgo",
+      "tipo": "texto",
+      "fuente": "expediente.situacion_riesgo",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "circunstancias_riesgo": {
+      "etiqueta": "Circunstancias Riesgo",
+      "tipo": "texto",
+      "fuente": "expediente.circunstancias_riesgo",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "medida_solicitada": {
+      "etiqueta": "Medida Solicitada",
+      "tipo": "texto",
+      "fuente": "expediente.medida_solicitada",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "justificacion": {
+      "etiqueta": "Justificacion",
+      "tipo": "texto",
+      "fuente": "expediente.justificacion",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.promovente_nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_firma": {
+      "etiqueta": "Fecha Firma",
+      "tipo": "texto",
+      "fuente": "expediente.fecha_firma",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nCARPETA: {{carpeta}}\nASUNTO: SOLICITUD DE MEDIDA DE PROTECCIÓN\nI. SITUACIÓN DE RIESGO\nLa víctima {{victima_nombre}} se encuentra en {{situacion_riesgo}}.\nII. CIRCUNSTANCIAS\n{{circunstancias_riesgo}}.\nIII. MEDIDA SOLICITADA\nSe solicita {{medida_solicitada}} por las siguientes razones: {{justificacion}}.\nIV. PETICIÓN\nSe dicte la medida que resulte procedente y se giren las comunicaciones necesarias para su cumplimiento. {{fecha_firma}}\n{{promovente_nombre}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Nacional de Procedimientos Penales, artículos 137: Medidas de protección.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

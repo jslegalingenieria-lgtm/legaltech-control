@@ -1,0 +1,306 @@
+{
+  "id": "LAB-IMSS-002",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Defensa frente a acto/crédito IMSS.",
+    "preguntas": [
+      "¿Cuándo se notificó?",
+      "¿Se puede suspender?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Defensa frente a acto/crédito IMSS",
+    "tipo_documento": "recurso",
+    "rol_promovente": "patrón / asegurado",
+    "rol_contraparte": "IMSS",
+    "criterios": [
+      "Defensa"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Impugnación de acto o crédito IMSS [SELECCIONAR MEDIO]",
+    "naturaleza": "defensa",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Medio de defensa previsto en la LSS y normas aplicables [VALIDAR PROCEDENCIA Y PLAZO]",
+    "requisitos": [
+      "Acto definitivo.",
+      "Plazo vigente.",
+      "Interés jurídico.",
+      "Garantía del crédito, si se exige ."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "El IMSS notificó el {{fecha_notificacion}} el acto {{acto_imss}} número {{numero_acto}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "El acto determina {{determinacion_acto}} por {{monto_acto}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Se impugna dentro del plazo legal .",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "Motivos de ilegalidad: {{motivos_ilegalidad}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se deje sin efectos total o parcialmente el acto impugnado."
+    },
+    {
+      "orden": 2,
+      "texto": "Se suspenda su ejecución, en su caso [VALIDAR GARANTÍA]."
+    },
+    {
+      "orden": 3,
+      "texto": "Se resuelva conforme a derecho."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos exhibidos, para acreditar el acto, su notificación y su ilegalidad.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Constancias de afiliación, cotización y pago.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Acto impugnado",
+    "Constancia de notificación",
+    "Garantía"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley del Seguro Social",
+      "tema": "Determinación de créditos, notificaciones y medios de defensa",
+      "articulos": "39-C, 40, 287 LSS y legislación fiscal aplicable",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_del_seguro_social/determinacion_de_creditos_notificaciones_y_medios_"
+    },
+    {
+      "ordenamiento": "Ley del Seguro Social",
+      "tema": "Medios de defensa y competencia",
+      "articulos": "294-295",
+      "estatus": "fuente_verificada",
+      "fundamento_texto": "Medios de defensa contra actos definitivos del Instituto y competencia jurisdiccional."
+    }
+  ],
+  "teoria_caso": {
+    "texto": "El acto carece de motivación o fundamentación o se sustenta en datos incorrectos.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD COMPETENTE PARA CONOCER DEL MEDIO DE DEFENSA"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente (propio derecho / representante)",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "caracter_promovente": {
+      "etiqueta": "Caracter promovente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "patrón / asegurado"
+    },
+    "documento_personalidad": {
+      "etiqueta": "Documento personalidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_notificacion": {
+      "etiqueta": "Fecha notificación",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "acto_imss": {
+      "etiqueta": "Acto imss",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "numero_acto": {
+      "etiqueta": "Número acto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "determinacion_acto": {
+      "etiqueta": "Determinacion acto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "monto_acto": {
+      "etiqueta": "Monto acto",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "motivos_ilegalidad": {
+      "etiqueta": "Motivos ilegalidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "materia_pericial": {
+      "etiqueta": "Materia pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "objeto_pericial": {
+      "etiqueta": "Objeto pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: MEDIO DE DEFENSA FRENTE A ACTO O CRÉDITO DEL IMSS\nC. {{autoridad}}:\n{{promovente_nombre}}, {{personalidad_promovente}}, con domicilio en {{domicilio_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}} y autorizando para tales efectos a {{abogado_patrono}}, comparezco para exponer:\nI. PERSONALIDAD Y DOMICILIO\nComparezco en mi carácter de {{caracter_promovente}}, personalidad que acredito con {{documento_personalidad}}. Mi domicilio es {{domicilio_promovente}}; el de la contraparte, {{contraparte_nombre}}, es {{domicilio_contraparte}}.\nII. PRETENSIONES\nPor medio del presente escrito reclamo/solicito:\n1. Se deje sin efectos total o parcialmente el acto impugnado.\n2. Se suspenda su ejecución, en su caso.\n3. Se resuelva conforme a derecho.\nIII. HECHOS\nPRIMERO. El IMSS notificó el {{fecha_notificacion}} el acto {{acto_imss}} número {{numero_acto}}.\nSEGUNDO. El acto determina {{determinacion_acto}} por {{monto_acto}}.\nTERCERO. Se impugna dentro del plazo legal.\nCUARTO. Motivos de ilegalidad: {{motivos_ilegalidad}}.\nIV. DERECHO\nFundan la presente promoción las disposiciones siguientes (artículos aplicables al acto y a la vía indicada):\n- Ley del Seguro Social: Determinación de créditos, notificaciones y medios de defensa. Artículos aplicables: 39-C, 40, 287 LSS y legislación fiscal aplicable.\n- Legislación fiscal/administrativa supletoria: Aplicable. Artículos aplicables: La norma supletoria depende de la naturaleza del crédito y del acto de autoridad; se aplica la legislación expresamente competente..\nV. PRUEBAS\nOfrezco las siguientes pruebas, relacionándolas con los hechos indicados:\n1. DOCUMENTAL.- Documentos exhibidos, para acreditar el acto, su notificación y su ilegalidad.\n2. DOCUMENTAL.- Constancias de afiliación, cotización y pago.\n3. PERICIAL.- Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.\n4. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n\nSe acompañan los documentos siguientes:\n1. Acto impugnado\n2. Constancia de notificación\n3. Garantía\nVI. PETITORIOS\nPor lo expuesto, a Usted atentamente pido:\nPRIMERO. Tenerme por presentado(a) interponiendo en tiempo y forma el medio de defensa que se promueve.\nSEGUNDO. Admitirlo a trámite, tener por ofrecidas las pruebas y por expresados los agravios o motivos de inconformidad.\nTERCERO. En su oportunidad, resolver dejando sin efectos (o modificando) el acto impugnado, en los términos solicitados. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley del Seguro Social, artículos 39-C, 40, 287 LSS y legislación fiscal aplicable: Determinación de créditos, notificaciones y medios de defensa.\n- Ley del Seguro Social, artículos 294-295: Medios de defensa contra actos definitivos del Instituto y competencia jurisdiccional..",
+  "siguiente_paso": "Calcular plazo y valorar garantía para suspensión.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE.",
+    "Verificar efectos de la falta de garantía en la ejecución del crédito ."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

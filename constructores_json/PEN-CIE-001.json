@@ -1,0 +1,183 @@
+{
+  "id": "PEN-CIE-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Controlar el plazo de investigación complementaria y preparar la solicitud o oposición correspondiente.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Solicitud de plazo y cierre de investigación complementaria",
+    "tipo_documento": "promoción/audiencia",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Solicitud de fijación, prórroga o cierre de investigación.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Investigación complementaria.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "El auto de vinculación se dictó el {{fecha_vinculacion}} y el plazo fijado fue {{plazo_fijado}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La investigación pendiente comprende {{diligencias_pendientes}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "La parte solicita {{solicitud_plazo}} porque {{justificacion}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Que se determine el plazo o su cierre conforme al estado procesal y al CNPP."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Auto de vinculación y constancias de plazo.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Solicitudes de diligencias pendientes.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Auto de vinculación.",
+    "Constancias de plazo.",
+    "Relación de diligencias pendientes."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Plazo para la investigación complementaria",
+      "articulos": "321",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Prórroga del plazo",
+      "articulos": "322",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Plazo para declarar el cierre",
+      "articulos": "323",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso debe justificar qué diligencias son necesarias para sostener o controvertir la hipótesis y cómo el plazo afecta su realización.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_vinculacion": {
+      "etiqueta": "Fecha Vinculacion",
+      "tipo": "texto",
+      "fuente": "expediente.fecha_vinculacion",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "plazo_fijado": {
+      "etiqueta": "Plazo Fijado",
+      "tipo": "texto",
+      "fuente": "expediente.plazo_fijado",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "diligencias_pendientes": {
+      "etiqueta": "Diligencias Pendientes",
+      "tipo": "texto",
+      "fuente": "expediente.diligencias_pendientes",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "solicitud_plazo": {
+      "etiqueta": "Solicitud Plazo",
+      "tipo": "texto",
+      "fuente": "expediente.solicitud_plazo",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "justificacion": {
+      "etiqueta": "Justificacion",
+      "tipo": "texto",
+      "fuente": "expediente.justificacion",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "C. JUEZ DE CONTROL\nASUNTO: PLAZO Y CIERRE DE INVESTIGACIÓN COMPLEMENTARIA\nI. ANTECEDENTES\nVinculación: {{fecha_vinculacion}}. Plazo: {{plazo_fijado}}.\nII. DILIGENCIAS PENDIENTES\n{{diligencias_pendientes}}.\nIII. SOLICITUD\n{{solicitud_plazo}}. Razones: {{justificacion}}. PETICIÓN\nSe determine lo conducente conforme al CNPP. \nFUNDAMENTO JURÍDICO APLICADO\n- Código Nacional de Procedimientos Penales, artículos 321: Plazo para la investigación complementaria.\n- Código Nacional de Procedimientos Penales, artículos 322: Prórroga del plazo.\n- Código Nacional de Procedimientos Penales, artículos 323: Plazo para declarar el cierre.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

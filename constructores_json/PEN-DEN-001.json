@@ -1,0 +1,229 @@
+{
+  "id": "PEN-DEN-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Documentar y presentar ante el Ministerio Público un hecho probablemente delictivo.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Denuncia penal",
+    "tipo_documento": "denuncia",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Denuncia de hechos probablemente constitutivos de delito.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Investigación inicial. La denuncia puede presentarse por cualquier medio conforme al CNPP.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "El {{fecha_hecho}}, en {{lugar_hecho}}, ocurrieron los siguientes hechos: {{relato_circunstanciado}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "El hecho fue realizado presuntamente por {{persona_señalada}} o por quien resulte responsable.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Tuvieron conocimiento/presenciaron los hechos {{testigos}} y existen los siguientes datos: {{datos_disponibles}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Que se reciba la denuncia y se inicie la investigación correspondiente."
+    },
+    {
+      "orden": 2,
+      "texto": "Que se practiquen las diligencias necesarias para esclarecer los hechos e identificar a quien resulte responsable."
+    },
+    {
+      "orden": 3,
+      "texto": "Que se determine lo que legalmente corresponda respecto de la reparación del daño."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos que acrediten o apoyen el relato.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Personas que presenciaron o tienen noticia del hecho.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Dictámenes necesarios según la naturaleza del hecho.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Fotográfica/video",
+      "objeto": "Registros disponibles del hecho o sus consecuencias.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Identificación del denunciante, salvo reserva/anónimo en los casos permitidos.",
+    "Documentos y registros disponibles.",
+    "Datos de testigos y otros posibles intervinientes."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Forma y contenido de la denuncia",
+      "articulos": "223",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Trámite de la denuncia",
+      "articulos": "224",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Deber de investigación penal",
+      "articulos": "212-215",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso parte de un relato circunstanciado verificable, identifica hechos relevantes, datos que los sostienen y líneas de investigación.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "carpeta": {
+      "etiqueta": "Número de carpeta de investigación",
+      "tipo": "texto",
+      "fuente": "expediente.carpeta",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.promovente_nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_hecho": {
+      "etiqueta": "Fecha del hecho",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha_hecho",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar_hecho": {
+      "etiqueta": "Lugar del hecho",
+      "tipo": "texto",
+      "fuente": "expediente.lugar_hecho",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "relato_circunstanciado": {
+      "etiqueta": "Relato Circunstanciado",
+      "tipo": "texto",
+      "fuente": "expediente.relato_circunstanciado",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "persona_señalada": {
+      "etiqueta": "Persona Señalada",
+      "tipo": "texto",
+      "fuente": "expediente.persona_señalada",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "testigos": {
+      "etiqueta": "Testigos",
+      "tipo": "texto",
+      "fuente": "expediente.testigos",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "datos_disponibles": {
+      "etiqueta": "Datos Disponibles",
+      "tipo": "texto",
+      "fuente": "expediente.datos_disponibles",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_firma": {
+      "etiqueta": "Fecha Firma",
+      "tipo": "texto",
+      "fuente": "expediente.fecha_firma",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nCARPETA DE INVESTIGACIÓN: {{carpeta}}\nASUNTO: DENUNCIA DE HECHOS PROBABLEMENTE CONSTITUTIVOS DE DELITO\nC. AGENTE DEL MINISTERIO PÚBLICO: {{promovente_nombre}}, por mi propio derecho, comparezco para exponer:\nI. OBJETO\nPor medio del presente hago del conocimiento hechos que considero probablemente constitutivos de delito, solicitando se inicie la investigación correspondiente.\nII. RELACIÓN CIRCUNSTANCIADA DE LOS HECHOS\nPRIMERO. El {{fecha_hecho}}, en {{lugar_hecho}}, {{relato_circunstanciado}}.\nSEGUNDO. La persona señalada como posible interviniente es {{persona_señalada}}, sin perjuicio de que la investigación determine a quien resulte responsable.\nTERCERO. Los testigos o personas con conocimiento son {{testigos}}.\nCUARTO. Los datos, documentos o registros que pongo a disposición son {{datos_disponibles}}.\nIII. DILIGENCIAS QUE SOLICITO\nSolicito se practiquen las diligencias de investigación pertinentes para esclarecer los hechos, identificar a quien resulte responsable y, en su caso, sustentar el ejercicio de la acción penal y la reparación del daño.\nIV. PETICIONES\nPRIMERO. Tenerme por presentado y recibir la denuncia.\nSEGUNDO. Iniciar y conducir la investigación conforme al CNPP.\nTERCERO. Practicar las diligencias pertinentes.\nCUARTO. Determinar lo que conforme a derecho corresponda. PROTESTO LO NECESARIO\n{{fecha_firma}}\n{{promovente_nombre}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Nacional de Procedimientos Penales, artículos 223: Forma y contenido de la denuncia.\n- Código Nacional de Procedimientos Penales, artículos 224: Trámite de la denuncia.\n- Código Nacional de Procedimientos Penales, artículos 212-215: Deber de investigación penal.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

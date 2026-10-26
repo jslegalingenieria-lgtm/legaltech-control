@@ -1,0 +1,221 @@
+{
+  "id": "ADM-PRO-001",
+  "materia": "Administrativo",
+  "jurisdiccion": "Federal",
+  "diagnostico": {
+    "objetivo": "Preparar escrito inicial de procedimiento a petición de parte bajo LFPA.",
+    "preguntas": [
+      "¿Es a petición o de oficio?",
+      "¿Qué autoridad?",
+      "¿Qué requisitos?",
+      "¿Qué hechos?",
+      "¿Qué documentos?"
+    ],
+    "datos_minimos": [
+      "autoridad",
+      "petición",
+      "hechos",
+      "personalidad"
+    ],
+    "resultado_esperado": "Determinar vía, competencia, plazo, hechos, prueba y documento procedente."
+  },
+  "clasificacion": {
+    "constructor": "Inicio de procedimiento administrativo federal",
+    "tipo_documento": "promoción",
+    "rol_promovente": "Promovente / interesado / presunto responsable según caso",
+    "rol_contraparte": "Autoridad / tercero / denunciante",
+    "criterios": [
+      "competencia",
+      "legalidad",
+      "fundamentación y motivación",
+      "debido procedimiento",
+      "plazo",
+      "prueba",
+      "vía"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Inicio de procedimiento administrativo federal",
+    "naturaleza": "procesal administrativa",
+    "descripcion": "Preparar escrito inicial de procedimiento a petición de parte bajo LFPA.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Solicitud → admisión → prevención → sustanciación → pruebas → resolución",
+    "requisitos": [
+      "Identificar autoridad",
+      "Acreditar personalidad",
+      "Precisar acto/conducta",
+      "Integrar expediente y pruebas",
+      "Verificar ley especial y plazo"
+    ],
+    "nota": "Constructor basado únicamente en las fuentes cargadas; verificar legislación especial vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "El interesado solicita {{peticion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Los hechos son {{relato_hechos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Se acompañan {{documentos}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Admitir y tramitar."
+    },
+    {
+      "orden": 2,
+      "texto": "Resolver expresamente."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Personalidad y documentos.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Técnica",
+      "objeto": "Soportes técnicos.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Escrito inicial",
+    "Personalidad",
+    "Anexos",
+    "Acuse"
+  ],
+  "fundamento": [
+    {
+      "orden": 1,
+      "ordenamiento": "Ley Federal de Procedimiento Administrativo",
+      "tema": "Ámbito de aplicación",
+      "articulos": "1-2",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/lfpa/ambito"
+    },
+    {
+      "orden": 2,
+      "ordenamiento": "Ley Federal de Procedimiento Administrativo",
+      "tema": "Inicio y promociones",
+      "articulos": "14-19",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/lfpa/inicio"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría vincula petición, hechos, competencia y requisitos formales con una decisión administrativa legal.",
+    "elementos": [
+      "Hechos",
+      "Norma",
+      "Competencia",
+      "Acto/conducta",
+      "Prueba",
+      "Vicio/defensa",
+      "Riesgo",
+      "Resultado"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el documento final."
+  },
+  "campos_dinamicos": {
+    "promovente_nombre": {
+      "etiqueta": "Nombre / razón social",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "autoridad_nombre": {
+      "etiqueta": "Autoridad",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "expediente_numero": {
+      "etiqueta": "Expediente / folio",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "fecha_acto": {
+      "etiqueta": "Fecha del acto",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "notificacion_fecha": {
+      "etiqueta": "Fecha de notificación",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "relato_hechos": {
+      "etiqueta": "Relato de hechos",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pretension_principal": {
+      "etiqueta": "Resultado buscado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pruebas_disponibles": {
+      "etiqueta": "Pruebas disponibles",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "peticion": {
+      "etiqueta": "Petición",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "documentos": {
+      "etiqueta": "Documentos anexos",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    }
+  },
+  "checklist": [
+    "Competencia",
+    "Personalidad",
+    "Petición",
+    "Hechos",
+    "Anexos",
+    "Acuse",
+    "Plazo"
+  ],
+  "ruta_procesal": [
+    "Solicitud",
+    "admisión",
+    "prevención",
+    "sustanciación",
+    "pruebas",
+    "resolución"
+  ],
+  "advertencias": [
+    "Revisar ley especial y reglamento interior.",
+    "Verificar vigencia de la norma.",
+    "No presentar sin revisar expediente y cómputo de plazos."
+  ],
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  },
+  "documento_generado": "{{autoridad_competente}}\nEXPEDIENTE: {{numero_expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: INICIO DE PROCEDIMIENTO ADMINISTRATIVO FEDERAL\nC. {autoridad_competente}:\n{{promovente_nombre}}, por mi propio derecho / en representación de {{representado_nombre}}, personalidad que acredito con {{documento_personalidad}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, comparezco para exponer:\nI. OBJETO\nEl presente promoción tiene por objeto plantear Preparar escrito inicial de procedimiento a petición de parte bajo LFPA en la vía Solicitud → admisión → prevención → sustanciación → pruebas → resolución.\nII. HECHOS\n1. El interesado solicita {{peticion}}.\n2. Los hechos son {{relato_hechos}}.\n3. Se acompañan {{documentos}}.\nIII. DERECHO\nCon fundamento en Ley Federal de Procedimiento Administrativo, artículos 1-2, en relación con Ámbito de aplicación.\nCon fundamento en Ley Federal de Procedimiento Administrativo, artículos 14-19, en relación con Inicio y promociones.\nIV. PRETENSIONES / PETICIONES\n1. Admitir y tramitar..\n2. Resolver expresamente..\nV. PRUEBAS\n1. {'medio': 'Documental', 'objeto': 'Personalidad y documentos.', 'estatus': 'por_ofrecer'}\n2. {'medio': 'Técnica', 'objeto': 'Soportes técnicos.', 'estatus': 'por_ofrecer'}\nVI. DOCUMENTOS\n{{documentos_anexos}}\nVII. PETITORIOS\nPRIMERO. Tenerme por presentado con este escrito y documentos.\nSEGUNDO. Acordar lo conducente conforme a la vía y competencia indicadas.\nTERCERO. Tener por formuladas las pretensiones y por ofrecidas las pruebas relacionadas.\nCUARTO. Dictar la resolución que en derecho corresponda. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal de Procedimiento Administrativo, artículos 1-2: Ámbito de aplicación.\n- Ley Federal de Procedimiento Administrativo, artículos 14-19: Inicio y promociones."
+}

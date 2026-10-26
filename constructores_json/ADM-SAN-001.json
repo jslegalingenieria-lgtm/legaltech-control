@@ -1,0 +1,266 @@
+{
+  "id": "ADM-SAN-001",
+  "materia": "Administrativo",
+  "jurisdiccion": "Jalisco",
+  "diagnostico": {
+    "objetivo": "Construir defensa frente a sanción administrativa local, incluyendo legalidad, prueba, individualización y prescripción cuando proceda.",
+    "preguntas": [
+      "¿Qué infracción?",
+      "¿Qué norma la tipifica?",
+      "¿Qué autoridad?",
+      "¿Qué hechos acreditó?",
+      "¿Cómo individualizó?",
+      "¿Prescribió?"
+    ],
+    "datos_minimos": [
+      "resolucion",
+      "infraccion",
+      "norma",
+      "pruebas",
+      "sancion",
+      "fechas"
+    ],
+    "resultado_esperado": "Determinar competencia, naturaleza del acto o conducta, plazo, vía, prueba y documento procedente."
+  },
+  "clasificacion": {
+    "constructor": "Defensa contra sanción administrativa Jalisco",
+    "tipo_documento": "recurso/defensa",
+    "rol_promovente": "Promovente / interesado / presunto responsable según el caso",
+    "rol_contraparte": "Autoridad / tercero / denunciante según corresponda",
+    "criterios": [
+      "competencia",
+      "legalidad",
+      "fundamentación y motivación",
+      "plazo",
+      "prueba",
+      "vía",
+      "interés jurídico o legítimo",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Defensa contra sanción administrativa Jalisco",
+    "naturaleza": "procesal administrativa",
+    "descripcion": "Construir defensa frente a sanción administrativa local, incluyendo legalidad, prueba, individualización y prescripción cuando proceda.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Resolución → tipicidad/competencia → hechos/prueba → sanción → prescripción → medio de defensa",
+    "requisitos": [
+      "Identificación de partes y autoridad",
+      "Acreditación de personalidad cuando corresponda",
+      "Acto, conducta o procedimiento plenamente identificado",
+      "Pruebas y documentos base",
+      "Verificación de competencia y plazo"
+    ],
+    "nota": "Validar siempre ley especial, reglamento interior, competencia, notificación y texto vigente. No se inventan artículos de fuentes no proporcionadas."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La resolución atribuye {{infraccion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La autoridad tuvo por acreditado {{hecho}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "La sanción es {{sancion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "La defensa sostiene {{defensa}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Dejar sin efectos/modificar según vía."
+    },
+    {
+      "orden": 2,
+      "texto": "Reconocer prescripción si procede."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental pública",
+      "objeto": "Resolución, actas y notificación.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Cumplimiento.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Materia técnica.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Resolución",
+    "Acta",
+    "Notificación",
+    "Pruebas",
+    "Norma"
+  ],
+  "fundamento": [
+    {
+      "orden": 1,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Objeto, ámbito y principios",
+      "articulos": "1-7",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/principios"
+    },
+    {
+      "orden": 2,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Actos administrativos, validez y eficacia",
+      "articulos": "8-20",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/acto"
+    },
+    {
+      "orden": 3,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Silencio administrativo",
+      "articulos": "21-25",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/silencio"
+    },
+    {
+      "orden": 4,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Sanciones y prescripción",
+      "articulos": "125-132",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/sanciones"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Demostrar legalidad de conducta, autoridad, procedimiento y sanción; incorporar prescripción, falta de prueba y otros agravios pertinentes.",
+    "elementos": [
+      "Hechos jurídicamente relevantes",
+      "Acto/omisión/conducta",
+      "Norma aplicable",
+      "Competencia",
+      "Prueba de cada proposición",
+      "Vicios o defensas",
+      "Riesgos",
+      "Resultado procesal"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el documento final salvo instrucción del constructor."
+  },
+  "campos_dinamicos": {
+    "promovente_nombre": {
+      "etiqueta": "Nombre / razón social",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "autoridad_nombre": {
+      "etiqueta": "Autoridad",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "expediente_numero": {
+      "etiqueta": "Expediente / folio",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "fecha_acto": {
+      "etiqueta": "Fecha del acto o conocimiento",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "notificacion_fecha": {
+      "etiqueta": "Fecha de notificación",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "relato_hechos": {
+      "etiqueta": "Relato circunstanciado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pretension_principal": {
+      "etiqueta": "Resultado buscado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pruebas_disponibles": {
+      "etiqueta": "Pruebas disponibles",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "infraccion": {
+      "etiqueta": "Infracción",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "hecho": {
+      "etiqueta": "Hecho acreditado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "sancion": {
+      "etiqueta": "Sanción",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "defensa": {
+      "etiqueta": "Defensa principal",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    }
+  },
+  "checklist": [
+    "Identificar infracción",
+    "Verificar tipicidad",
+    "Competencia",
+    "Procedimiento",
+    "Pruebas",
+    "Sanción",
+    "Prescripción",
+    "Plazo",
+    "Elegir medio"
+  ],
+  "ruta_procesal": [
+    "Resolución",
+    "tipicidad/competencia",
+    "hechos/prueba",
+    "sanción",
+    "prescripción",
+    "medio de defensa"
+  ],
+  "advertencias": [
+    "No sustituye revisión del expediente.",
+    "La ley especial puede desplazar la LFPA.",
+    "Verificar vigencia y competencia antes de presentar."
+  ],
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  },
+  "documento_generado": "{{autoridad_competente}}\nEXPEDIENTE: {{numero_expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DEFENSA CONTRA SANCIÓN ADMINISTRATIVA JALISCO\nC. {autoridad_competente}:\n{{promovente_nombre}}, por mi propio derecho / en representación de {{representado_nombre}}, personalidad que acredito con {{documento_personalidad}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, comparezco para exponer:\nI. OBJETO\nEl presente recurso/defensa tiene por objeto plantear Construir defensa frente a sanción administrativa local, incluyendo legalidad, prueba, individualización y prescripción cuando proceda en la vía Resolución → tipicidad/competencia → hechos/prueba → sanción → prescripción → medio de defensa.\nII. HECHOS\n1. La resolución atribuye {{infraccion}}.\n2. La autoridad tuvo por acreditado {{hecho}}.\n3. La sanción es {{sancion}}.\n4. La defensa sostiene {{defensa}}.\nIII. DERECHO\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 1-7, en relación con Objeto, ámbito y principios.\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 8-20, en relación con Actos administrativos, validez y eficacia.\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 21-25, en relación con Silencio administrativo.\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 125-132, en relación con Sanciones y prescripción.\nIV. PRETENSIONES / PETICIONES\n1. Dejar sin efectos/modificar según vía..\n2. Reconocer prescripción si procede..\nV. PRUEBAS\n1. {'medio': 'Documental pública', 'objeto': 'Resolución, actas y notificación.', 'estatus': 'por_ofrecer'}\n2. {'medio': 'Documental', 'objeto': 'Cumplimiento.', 'estatus': 'por_ofrecer'}\n3. {'medio': 'Pericial', 'objeto': 'Materia técnica.', 'estatus': 'por_ofrecer'}\nVI. DOCUMENTOS\n{{documentos_anexos}}\nVII. PETITORIOS\nPRIMERO. Tenerme por presentado con este escrito y documentos.\nSEGUNDO. Acordar lo conducente conforme a la vía y competencia indicadas.\nTERCERO. Tener por formuladas las pretensiones y por ofrecidas las pruebas relacionadas.\nCUARTO. Dictar la resolución que en derecho corresponda. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 1-7: Objeto, ámbito y principios.\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 8-20: Actos administrativos, validez y eficacia.\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 21-25: Silencio administrativo.\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 125-132: Sanciones y prescripción."
+}

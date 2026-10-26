@@ -1,0 +1,186 @@
+{
+  "id": "PEN-CLA-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Organizar el cierre del debate relacionando hechos, prueba, credibilidad, inferencias y consecuencia jurídica.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Alegato de clausura",
+    "tipo_documento": "audiencia",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Alegato de clausura.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Juicio oral.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La proposición central es {{proposicion_central}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Los hechos quedaron acreditados mediante {{pruebas_hechos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Los puntos controvertidos fueron {{puntos_controvertidos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "La conclusión jurídica solicitada es {{conclusion_juridica}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Que el Tribunal valore la prueba desahogada y emita el fallo/sentencia solicitado conforme a derecho."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Testimonial",
+      "objeto": "Declaraciones desahogadas.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Dictámenes y explicaciones de peritos.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental/material",
+      "objeto": "Prueba incorporada al debate.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Notas del juicio.",
+    "Registros de audiencia.",
+    "Prueba desahogada."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Alegatos de clausura y cierre del debate",
+      "articulos": "399",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Convicción del Tribunal",
+      "articulos": "402",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso se prueba o fracasa en el debate. El cierre debe conectar cada proposición relevante con la prueba desahogada y con la consecuencia jurídica solicitada.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "proposicion_central": {
+      "etiqueta": "Proposicion Central",
+      "tipo": "texto",
+      "fuente": "expediente.proposicion_central",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "pruebas_hechos": {
+      "etiqueta": "Pruebas Hechos",
+      "tipo": "texto",
+      "fuente": "expediente.pruebas_hechos",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "puntos_controvertidos": {
+      "etiqueta": "Puntos Controvertidos",
+      "tipo": "texto",
+      "fuente": "expediente.puntos_controvertidos",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "conclusion_juridica": {
+      "etiqueta": "Conclusion Juridica",
+      "tipo": "texto",
+      "fuente": "expediente.conclusion_juridica",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "peticion": {
+      "etiqueta": "Peticion",
+      "tipo": "texto",
+      "fuente": "expediente.peticion",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "TRIBUNAL DE ENJUICIAMIENTO ALEGATO DE CLAUSURA\nI. PROPOSICIÓN CENTRAL\n{{proposicion_central}}.\nII. HECHOS ACREDITADOS Y PRUEBA\n{{pruebas_hechos}}.\nIII. CONTROVERSIAS\n{{puntos_controvertidos}}.\nIV. CONCLUSIÓN JURÍDICA\n{{conclusion_juridica}}.\nV. PETICIÓN\n{{peticion}}. \nFUNDAMENTO JURÍDICO APLICADO\n- Código Nacional de Procedimientos Penales, artículos 399: Alegatos de clausura y cierre del debate.\n- Código Nacional de Procedimientos Penales, artículos 402: Convicción del Tribunal.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

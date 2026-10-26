@@ -1,0 +1,197 @@
+{
+  "id": "LAB-HUE-001",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Evaluar la procedencia de una huelga: titularidad, objeto lícito, requisitos, emplazamiento y riesgos.",
+    "preguntas": [
+      "¿Quién tiene legitimación (sindicato titular, coalición)?",
+      "¿Cuál es el objeto de la huelga?",
+      "¿Existe contrato colectivo y violación o revisión?",
+      "¿Se cumplen requisitos del pliego y emplazamiento?",
+      "¿Qué defensas puede oponer el patrón?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Diagnóstico huelga",
+    "tipo_documento": "diagnostico",
+    "rol_promovente": "sindicato / coalición",
+    "rol_contraparte": "patrón",
+    "criterios": [
+      "Objeto de la huelga",
+      "Procedencia",
+      "Riesgo de inexistencia o ilicitud"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Diagnóstico huelga",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento de huelga conforme a la LFT",
+    "requisitos": [
+      "Legitimación y objeto lícito.",
+      "Plazos de aviso ."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Sindicato: {{nombre_sindicato}}; representación: {{representacion_sindical}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Empresa: {{contraparte_nombre}}; centro de trabajo: {{centros_trabajo}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Objeto: {{objeto_huelga}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Definir peticiones y estrategia."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Contrato colectivo y estatutos.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Huelga: objeto, requisitos y procedimiento",
+      "articulos": "440-469, 920-938",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/huelga_objeto_requisitos_y_procedimiento"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La huelga persigue un objeto lícito y cumple requisitos de procedencia.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "nombre_sindicato": {
+      "etiqueta": "Nombre sindicato",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "representacion_sindical": {
+      "etiqueta": "Representacion sindical",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "centros_trabajo": {
+      "etiqueta": "Centros trabajo",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "objeto_huelga": {
+      "etiqueta": "Objeto huelga",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DIAGNÓSTICO — DIAGNÓSTICO HUELGA INFORME DE DIAGNÓSTICO — DIAGNÓSTICO HUELGA\nI. DIAGNÓSTICO\nEvaluar la procedencia de una huelga: titularidad, objeto lícito, requisitos, emplazamiento y riesgos.\nPreguntas a resolver con el expediente:\n1. ¿Quién tiene legitimación (sindicato titular, coalición)?\n2. ¿Cuál es el objeto de la huelga?\n3. ¿Existe contrato colectivo y violación o revisión?\n4. ¿Se cumplen requisitos del pliego y emplazamiento?\n5. ¿Qué defensas puede oponer el patrón?\nII. CLASIFICACIÓN\n- Objeto de la huelga\n- Procedencia\n- Riesgo de inexistencia o ilicitud\nIII. ACCIÓN/DEFENSA Y VÍA\n- Pliego de peticiones LAB-HUE-002.\n- Emplazamiento LAB-HUE-003.\nVía: Procedimiento de huelga conforme a la LFT\nIV. REQUISITOS\n1. Legitimación y objeto lícito.\n2. Plazos de aviso.\nV. HECHOS A ESTABLECER\nPRIMERO. Sindicato: {{nombre_sindicato}}; representación: {{representacion_sindical}}.\nSEGUNDO. Empresa: {{contraparte_nombre}}; centro de trabajo: {{centros_trabajo}}.\nTERCERO. Objeto: {{objeto_huelga}}.\nVI. PRETENSIONES / OBJETIVOS\n1. Definir peticiones y estrategia.\nVII. PRUEBAS\n1. DOCUMENTAL.- Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.\n2. DOCUMENTAL.- Contrato colectivo y estatutos.\n- Ley Federal del Trabajo: Huelga: objeto, requisitos y procedimiento. Artículos aplicables: 440-469, 920-938.\nIX. SIGUIENTE PASO\nElaborar pliego y emplazamiento. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 440-469, 920-938: Huelga: objeto, requisitos y procedimiento.",
+  "siguiente_paso": "Elaborar pliego y emplazamiento.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

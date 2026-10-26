@@ -1,0 +1,274 @@
+{
+  "id": "COR-013",
+  "materia": "Corporativo",
+  "diagnostico": {
+    "objetivo": "",
+    "preguntas": [
+      "¿Quién interviene y con qué capacidad?",
+      "¿Qué acto, operación o procedimiento se pretende documentar?",
+      "¿Cuál es la fuente legal especial aplicable?",
+      "¿Qué documentos y pruebas son indispensables?",
+      "¿Existen plazos, autorizaciones, registros o formalidades?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "personalidad/facultades",
+      "hechos",
+      "documentos base",
+      "objeto de la operación"
+    ],
+    "resultado_esperado": "Documento estructurado y jurídicamente parametrizado para revisión profesional."
+  },
+  "clasificacion": {
+    "constructor": "Suscripción y emisión de acciones",
+    "tipo_documento": "contrato",
+    "rol_promovente": "interesado / promovente",
+    "rol_contraparte": "contraparte / autoridad",
+    "criterios": [
+      "procedencia",
+      "competencia",
+      "plazo",
+      "prueba",
+      "pretensión"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Suscripción y emisión de acciones",
+    "naturaleza": "contrato",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Preparación → revisión de estatutos/libros y facultades → convocatoria o acuerdo → quórum/votación → acta → protocolización o formalización cuando proceda → inscripción/publicación → seguimiento.",
+    "requisitos": [
+      "Identificación de partes y capacidad/facultades.",
+      "Documentos base.",
+      "Verificación de legislación especial y vigencia."
+    ],
+    "nota": "No sustituye la revisión profesional ni la verificación de requisitos sectoriales."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Identificar el acto, resolución, controversia o trámite: {{asunto_descripcion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Precisar fechas, sujetos, autoridad, documentos y antecedentes relevantes.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Obtener el resultado jurídico correspondiente al acto o procedimiento analizado."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos que acreditan hechos, personalidad, autoridad o acto impugnado.",
+      "estatus": "por_integrar"
+    }
+  ],
+  "documentos": [
+    "Documentos base del asunto.",
+    "Acreditación de personalidad y facultades, cuando proceda."
+  ],
+  "fundamento": [
+    {
+      "orden": 1,
+      "ordenamiento": "Ley General de Sociedades Mercantiles",
+      "tema": "Suscripción y emisión de acciones",
+      "articulos": "LGSM arts. 1-6, 89, 142, 178-182, 228 Bis, 229, 234 y ss., 249 Bis y 249 Bis 1, según corresponda.",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/lgsm/suscripci_n_y_emisi_n_de_acciones"
+    },
+    {
+      "orden": 2,
+      "ordenamiento": "Ley General de Sociedades Mercantiles",
+      "tema": "Suscripción y emisión de acciones",
+      "articulos": "89-91, 111-125",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ccom/suscripci_n_y_emisi_n_de_acciones",
+      "fundamento_texto": "Capital, acciones y suscripción/emisión en sociedad anónima."
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La estrategia debe conectar cada hecho relevante con una norma aplicable, una prueba idónea y una pretensión concreta; la selección de vía y competencia debe verificarse antes de producir el escrito final.",
+    "elementos": [
+      "Hecho o necesidad empresarial",
+      "Norma aplicable",
+      "Documento o prueba que lo acredita",
+      "Riesgo jurídico",
+      "Resultado pretendido"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en documentos finales salvo que el constructor lo indique."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Expediente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Promovente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "asunto_descripcion": {
+      "etiqueta": "Descripción del asunto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "antecedentes_relevantes": {
+      "etiqueta": "Antecedentes relevantes",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha",
+      "tipo": "fecha",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Firmante",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "numero_acciones": {
+      "etiqueta": "Número de acciones",
+      "tipo": "numero",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "serie_clase": {
+      "etiqueta": "Serie o clase",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "valor_emision": {
+      "etiqueta": "Valor o precio de emisión",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "monto_suscripcion": {
+      "etiqueta": "Monto de suscripción",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "forma_pago": {
+      "etiqueta": "Forma de pago",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "condiciones_emision": {
+      "etiqueta": "Condiciones de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "impuestos_gastos": {
+      "etiqueta": "Impuestos y gastos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "controversias": {
+      "etiqueta": "Controversias",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante_sociedad": {
+      "etiqueta": "Firmante de la sociedad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante_suscriptor": {
+      "etiqueta": "Firmante suscriptor",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "CONTRATO DE SUSCRIPCIÓN Y EMISIÓN DE ACCIONES DECLARACIONES\nI. Declara LA PARTE A contar con capacidad jurídica y, en su caso, facultades suficientes para celebrar el contrato; que la información proporcionada es veraz y que conoce el objeto de la operación.\nII. Declara LA PARTE B contar con capacidad jurídica y, en su caso, facultades suficientes; que la información proporcionada es veraz y que conoce el objeto de la operación.\nIII. Ambas partes reconocen que su consentimiento es libre y que el objeto es lícito y determinable. CLÁUSULAS\nPRIMERA. EMISIÓN. La sociedad emitirá {{numero_acciones}} acciones de la serie/clase {{serie_clase}} por un valor nominal o precio de emisión de {{valor_emision}}.\nSEGUNDA. SUSCRIPCIÓN. El suscriptor acepta adquirir las acciones y cubrir {{monto_suscripcion}} conforme a los términos aprobados por el órgano competente.\nTERCERA. PAGO. {{forma_pago}}.\nCUARTA. DERECHOS. Las acciones conferirán los derechos corporativos y económicos previstos en la ley, estatutos y resolución corporativa correspondiente.\nQUINTA. REGISTRO. La emisión y suscripción se asentará en los libros corporativos y registros que correspondan.\nSEXTA. CONDICIONES. {{condiciones_emision}}.\nSÉPTIMA. IMPUESTOS Y GASTOS. {{impuestos_gastos}}.\nOCTAVA. CONTROVERSIAS. {{controversias}}. FIRMAS: {{firmante_sociedad}} / {{firmante_suscriptor}} FUNDAMENTO LEGAL\nLey General de Sociedades Mercantiles — Suscripción y emisión de acciones. LGSM arts. 1-6, 89, 142, 178-182, 228 Bis, 229, 234 y ss., 249 Bis y 249 Bis 1, según corresponda. Código de Comercio — Suscripción y emisión de acciones. Disposiciones relacionadas con la materia; verificar artículos específicos contra la fuente. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley General de Sociedades Mercantiles, artículos LGSM arts. 1-6, 89, 142, 178-182, 228 Bis, 229, 234 y ss., 249 Bis y 249 Bis 1, según corresponda.: Suscripción y emisión de acciones.\n- Ley General de Sociedades Mercantiles, artículos 89-91, 111-125: Capital, acciones y suscripción/emisión en sociedad anónima..",
+  "siguiente_paso": "Preparación → revisión de estatutos/libros y facultades → convocatoria o acuerdo → quórum/votación → acta → protocolización o formalización cuando proceda → inscripción/publicación → seguimiento.",
+  "alertas": [
+    "Completar y revisar todos los campos dinámicos antes de firma.",
+    "Verificar personalidad, facultades, licitud del objeto, contraprestación, formalidades y régimen fiscal/regulatorio.",
+    "Los anexos forman parte del contrato sólo si quedan identificados y firmados o incorporados conforme a la operación.",
+    "La plantilla no sustituye la revisión jurídica del caso concreto."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor — contrato: identificación → declaraciones → objeto → obligaciones/contraprestación → riesgos → incumplimiento → terminación → controversias → fundamento legal → firmas.",
+    "tipo_generacion": "contrato SIGDE",
+    "fuentes_usuario": [
+      {
+        "ordenamiento": "Ley General de Sociedades Mercantiles",
+        "articulos": "LGSM arts. 87-91 y disposiciones sobre acciones, capital y asambleas."
+      }
+    ],
+    "formato_documental": "SIGDE_CONTRATO",
+    "identidad_visual": "dinamica_por_despacho",
+    "encabezado": "Logo, nombre y datos de identidad del despacho configurados en SIGDE.",
+    "pie_pagina": "Nombre del despacho y referencia de documento contractual SIGDE; se adapta a la identidad del despacho.",
+    "nota": "La identidad visual no forma parte del contenido jurídico sustantivo y se aplica al momento de visualizar, imprimir o exportar."
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

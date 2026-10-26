@@ -1,0 +1,228 @@
+{
+  "id": "FAM-FIL-001",
+  "materia": "Familiar",
+  "diagnostico": {
+    "objetivo": "Determinar la filiación y sus efectos jurídicos.",
+    "preguntas": [
+      "¿Qué estado de filiación existe actualmente?",
+      "¿Qué se pretende reconocer, desconocer o rectificar?",
+      "¿Qué pruebas biológicas o documentales existen?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Acción de filiación, reconocimiento o desconocimiento",
+    "tipo_documento": "demanda",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Familiar",
+      "Acción de filiación, reconocimiento o desconocimiento"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Filiación y estado civil",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Juicio del estado civil conforme a la legislación procesal aplicable.",
+    "requisitos": [
+      "Verificar competencia y legitimación.",
+      "Integrar documentos base.",
+      "Identificar personas que deban ser llamadas.",
+      "Revisar requisitos especiales de la legislación aplicable."
+    ],
+    "nota": "SIGDE no sustituye la determinación profesional de competencia, vía y estrategia del caso concreto."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "El acta de nacimiento actualmente señala {{filiacion_actual}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La situación biológica y jurídica alegada es {{situacion_filiacion}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Declaración o modificación del estado de filiación."
+    },
+    {
+      "orden": 2,
+      "texto": "Rectificación registral, en su caso."
+    },
+    {
+      "orden": 3,
+      "texto": "Consecuencias legales de la filiación."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Acta de nacimiento y documentos del estado civil.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Prueba genética cuando proceda.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Personas que conozcan los hechos.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Acta de nacimiento",
+    "Documentos del estado civil",
+    "Datos de progenitores",
+    "Información para prueba genética"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Paternidad y filiación",
+      "articulos": "456-519",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/paternidad_y_filiaci_n"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La filiación alegada debe analizarse a partir del estado civil existente, los hechos biológicos relevantes y la prueba admisible.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "filiacion_actual": {
+      "etiqueta": "Filiación actual",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "situacion_filiacion": {
+      "etiqueta": "Situación de filiación alegada",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: ACCIÓN DE FILIACIÓN, RECONOCIMIENTO O DESCONOCIMIENTO C. JUEZ COMPETENTE\nP R E S E N T E. {{promovente_nombre}}, respecto de {{domicilio_contraparte}}, comparezco para hacer valer la acción que corresponda sobre el estado de filiación.\nI. SITUACIÓN ACTUAL La filiación actualmente consta de la siguiente manera: {{filiacion_actual}}. La situación que se pretende acreditar o controvertir es: {{situacion_filiacion}}.\nII. HECHOS\n1. Identificación y parentesco de las partes.\n2. Antecedentes del registro civil.\n3. Circunstancias de reconocimiento, posesión de estado o hechos relevantes para la filiación.\n4. Pruebas científicas o documentales disponibles.\n5. En su caso, circunstancias relativas a una persona menor de edad y su interés superior.\nIII. DERECHO Los artículos 486 a 514 del Código Civil regulan la filiación y su establecimiento, contradicción e investigación. El artículo 491 contempla el reconocimiento voluntario o la sentencia que declare la filiación; el artículo 512 establece supuestos para la investigación de paternidad y el propio Código contempla la prueba científica y sus consecuencias cuando el presunto progenitor se niega a proporcionar la muestra necesaria.\nIV. PRUEBAS Actas del Registro Civil; documentos de identidad; documentos privados; testimonial; declaración de parte; prueba científica o genética cuando sea legalmente procedente; instrumental y presuncional.\nV. PETITORIOS\nPRIMERO. Admitir la acción.\nSEGUNDO. Emplazar a quien corresponda.\nTERCERO. Admitir y preparar las pruebas, incluida la científica cuando proceda.\nCUARTO. Dictar sentencia declarando la situación de filiación que jurídicamente corresponda y ordenar las anotaciones registrales procedentes. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Civil del Estado de Jalisco, artículos 456-519: Paternidad y filiación.",
+  "siguiente_paso": "Identificar con exactitud la acción de estado civil y la prueba idónea antes de redactar.",
+  "alertas": [
+    "No confundir reconocimiento voluntario con acción judicial de filiación.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

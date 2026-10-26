@@ -1,0 +1,493 @@
+{
+  "id": "CIV-SUC-015",
+  "materia": "Sucesorio",
+  "diagnostico": {
+    "objetivo": "Documentar la decisión del llamado a heredar y sus efectos.",
+    "preguntas": [
+      "¿Existe delación hereditaria?",
+      "¿La persona acepta o repudia?",
+      "¿Hay menores o incapaces involucrados?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Aceptación o repudiación de herencia",
+    "tipo_documento": "promoción",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Sucesorio",
+      "Aceptación o repudiación de herencia"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Aceptación o repudiación",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento sucesorio conforme al Código de Procedimientos Civiles del Estado de Jalisco.",
+    "requisitos": [
+      "Verificar competencia y legitimación.",
+      "Integrar documentos base.",
+      "Identificar personas que deban ser llamadas.",
+      "Revisar requisitos especiales de la legislación aplicable."
+    ],
+    "nota": "SIGDE no sustituye la determinación profesional de competencia, vía y estrategia del caso concreto."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La persona llamada a heredar manifiesta su decisión en la forma legal.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "S"
+    },
+    {
+      "orden": 2,
+      "texto": "e"
+    },
+    {
+      "orden": 3,
+      "texto": ""
+    },
+    {
+      "orden": 4,
+      "texto": "t"
+    },
+    {
+      "orden": 5,
+      "texto": "e"
+    },
+    {
+      "orden": 6,
+      "texto": "n"
+    },
+    {
+      "orden": 7,
+      "texto": "g"
+    },
+    {
+      "orden": 8,
+      "texto": "a"
+    },
+    {
+      "orden": 9,
+      "texto": ""
+    },
+    {
+      "orden": 10,
+      "texto": "p"
+    },
+    {
+      "orden": 11,
+      "texto": "o"
+    },
+    {
+      "orden": 12,
+      "texto": "r"
+    },
+    {
+      "orden": 13,
+      "texto": ""
+    },
+    {
+      "orden": 14,
+      "texto": "h"
+    },
+    {
+      "orden": 15,
+      "texto": "e"
+    },
+    {
+      "orden": 16,
+      "texto": "c"
+    },
+    {
+      "orden": 17,
+      "texto": "h"
+    },
+    {
+      "orden": 18,
+      "texto": "a"
+    },
+    {
+      "orden": 19,
+      "texto": ""
+    },
+    {
+      "orden": 20,
+      "texto": "l"
+    },
+    {
+      "orden": 21,
+      "texto": "a"
+    },
+    {
+      "orden": 22,
+      "texto": ""
+    },
+    {
+      "orden": 23,
+      "texto": "a"
+    },
+    {
+      "orden": 24,
+      "texto": "c"
+    },
+    {
+      "orden": 25,
+      "texto": "e"
+    },
+    {
+      "orden": 26,
+      "texto": "p"
+    },
+    {
+      "orden": 27,
+      "texto": "t"
+    },
+    {
+      "orden": 28,
+      "texto": "a"
+    },
+    {
+      "orden": 29,
+      "texto": "c"
+    },
+    {
+      "orden": 30,
+      "texto": "i"
+    },
+    {
+      "orden": 31,
+      "texto": "ó"
+    },
+    {
+      "orden": 32,
+      "texto": "n"
+    },
+    {
+      "orden": 33,
+      "texto": ""
+    },
+    {
+      "orden": 34,
+      "texto": "o"
+    },
+    {
+      "orden": 35,
+      "texto": ""
+    },
+    {
+      "orden": 36,
+      "texto": "r"
+    },
+    {
+      "orden": 37,
+      "texto": "e"
+    },
+    {
+      "orden": 38,
+      "texto": "p"
+    },
+    {
+      "orden": 39,
+      "texto": "u"
+    },
+    {
+      "orden": 40,
+      "texto": "d"
+    },
+    {
+      "orden": 41,
+      "texto": "i"
+    },
+    {
+      "orden": 42,
+      "texto": "a"
+    },
+    {
+      "orden": 43,
+      "texto": "c"
+    },
+    {
+      "orden": 44,
+      "texto": "i"
+    },
+    {
+      "orden": 45,
+      "texto": "ó"
+    },
+    {
+      "orden": 46,
+      "texto": "n"
+    },
+    {
+      "orden": 47,
+      "texto": ""
+    },
+    {
+      "orden": 48,
+      "texto": "q"
+    },
+    {
+      "orden": 49,
+      "texto": "u"
+    },
+    {
+      "orden": 50,
+      "texto": "e"
+    },
+    {
+      "orden": 51,
+      "texto": ""
+    },
+    {
+      "orden": 52,
+      "texto": "l"
+    },
+    {
+      "orden": 53,
+      "texto": "e"
+    },
+    {
+      "orden": 54,
+      "texto": "g"
+    },
+    {
+      "orden": 55,
+      "texto": "a"
+    },
+    {
+      "orden": 56,
+      "texto": "l"
+    },
+    {
+      "orden": 57,
+      "texto": "m"
+    },
+    {
+      "orden": 58,
+      "texto": "e"
+    },
+    {
+      "orden": 59,
+      "texto": "n"
+    },
+    {
+      "orden": 60,
+      "texto": "t"
+    },
+    {
+      "orden": 61,
+      "texto": "e"
+    },
+    {
+      "orden": 62,
+      "texto": ""
+    },
+    {
+      "orden": 63,
+      "texto": "p"
+    },
+    {
+      "orden": 64,
+      "texto": "r"
+    },
+    {
+      "orden": 65,
+      "texto": "o"
+    },
+    {
+      "orden": 66,
+      "texto": "c"
+    },
+    {
+      "orden": 67,
+      "texto": "e"
+    },
+    {
+      "orden": 68,
+      "texto": "d"
+    },
+    {
+      "orden": 69,
+      "texto": "a"
+    },
+    {
+      "orden": 70,
+      "texto": "."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos que acreditan los hechos y el derecho invocado.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Actuaciones del expediente en lo que favorezcan.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional",
+      "objeto": "Presunciones que resulten de los hechos acreditados.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Testamento o declaratoria",
+    "Identificación",
+    "Acta de defunción"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Aceptación y repudiación de herencia",
+      "articulos": "disposiciones del Libro Sexto",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/aceptaci_n_y_repudiaci_n_de_herencia"
+    }
+  ],
+  "teoria_caso": {
+    "texto": [
+      "Verificar capacidad, representación y efectos de la decisión antes de formalizarla."
+    ],
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "autor_sucesion": {
+      "etiqueta": "Autor de la sucesión",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_especificos": {
+      "etiqueta": "Hechos específicos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: ACEPTACIÓN O REPUDIACIÓN DE HERENCIA C. JUEZ COMPETENTE\nP R E S E N T E. {{promovente_nombre}}, en mi carácter de {{personalidad_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, y autorizando a {{abogado_patrono}}, comparezco para exponer:\nI. DECLARACIÓN {{promovente_nombre}} manifiesta su voluntad respecto de la aceptación o repudiación de la herencia de {{autor_sucesion}}, en atención a los hechos siguientes: {{hechos_especificos}}.\nII. ACEPTACIÓN La aceptación puede ser expresa o tácita conforme al artículo 2996 del Código Civil. El artículo 2997 dispone que no puede aceptarse o repudiarse en parte, con plazo o condicionalmente. La aceptación o repudiación produce efectos retroactivos a la fecha de la muerte conforme al artículo 3000.\nIII. REPUDIACIÓN Si se opta por repudiar, deberá formularse expresamente y por escrito ante el juez o mediante instrumento público ante notario, conforme al artículo\n3001. El artículo 3015 permite repudiar hasta antes de aprobarse la adjudicación. Tratándose de niñas, niños, adolescentes o incapaces deberán revisarse las reglas especiales del artículo 2995.\nIV. PETITORIOS\nPRIMERO. Tener por hecha la manifestación.\nSEGUNDO. En caso de aceptación, reconocer sus efectos dentro de la sucesión.\nTERCERO. En caso de repudiación, tenerla por formulada en la forma legal y proveer lo que corresponda respecto de quienes sean llamados en su lugar. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Civil del Estado de Jalisco, artículos disposiciones del Libro Sexto: Aceptación y repudiación de herencia.",
+  "siguiente_paso": "Verificar etapa procesal, legitimación y documentos antes de presentar.",
+  "alertas": [
+    "No confundir la etapa procesal del constructor con una etapa ya agotada.",
+    "Verificar legislación vigente y resoluciones del expediente.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

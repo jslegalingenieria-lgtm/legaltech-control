@@ -1,0 +1,226 @@
+{
+  "id": "ADM-JAL-SIL-002",
+  "materia": "Administrativo",
+  "jurisdiccion": "Jalisco",
+  "diagnostico": {
+    "objetivo": "Analizar y documentar una posible afirmativa ficta sin presumirla cuando la materia especial no la reconozca.",
+    "preguntas": [
+      "¿El trámite admite afirmativa ficta?",
+      "¿Cuál es el plazo?",
+      "¿Se cumplieron requisitos?",
+      "¿Hubo prevención?",
+      "¿Existe impedimento?"
+    ],
+    "datos_minimos": [
+      "peticion",
+      "tramite",
+      "plazo",
+      "requisitos",
+      "prevenciones"
+    ],
+    "resultado_esperado": "Determinar competencia, naturaleza del acto o conducta, plazo, vía, prueba y documento procedente."
+  },
+  "clasificacion": {
+    "constructor": "Afirmativa ficta Jalisco — análisis de procedencia",
+    "tipo_documento": "promoción/defensa",
+    "rol_promovente": "Promovente / interesado / presunto responsable según el caso",
+    "rol_contraparte": "Autoridad / tercero / denunciante según corresponda",
+    "criterios": [
+      "competencia",
+      "legalidad",
+      "fundamentación y motivación",
+      "plazo",
+      "prueba",
+      "vía",
+      "interés jurídico o legítimo",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Afirmativa ficta Jalisco — análisis de procedencia",
+    "naturaleza": "procesal administrativa",
+    "descripcion": "Analizar y documentar una posible afirmativa ficta sin presumirla cuando la materia especial no la reconozca.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Petición → requisitos → cómputo → silencio → verificación de procedencia → medio correspondiente",
+    "requisitos": [
+      "Identificación de partes y autoridad",
+      "Acreditación de personalidad cuando corresponda",
+      "Acto, conducta o procedimiento plenamente identificado",
+      "Pruebas y documentos base",
+      "Verificación de competencia y plazo"
+    ],
+    "nota": "Validar siempre ley especial, reglamento interior, competencia, notificación y texto vigente. No se inventan artículos de fuentes no proporcionadas."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La solicitud se presentó el {{fecha}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Se cumplieron {{requisitos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Transcurrió el plazo sin resolución.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Reconocer el efecto legal solo si la norma aplicable lo permite."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Solicitud y requisitos.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental",
+      "objeto": "Expediente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Petición",
+    "Requisitos",
+    "Acuse",
+    "Plazo"
+  ],
+  "fundamento": [
+    {
+      "orden": 1,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Objeto, ámbito y principios",
+      "articulos": "1-7",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/principios"
+    },
+    {
+      "orden": 2,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Actos administrativos, validez y eficacia",
+      "articulos": "8-20",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/acto"
+    },
+    {
+      "orden": 3,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Silencio administrativo",
+      "articulos": "21-25",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/silencio"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "El constructor no presume afirmativa ficta: primero exige identificar la norma especial que le dé ese efecto.",
+    "elementos": [
+      "Hechos jurídicamente relevantes",
+      "Acto/omisión/conducta",
+      "Norma aplicable",
+      "Competencia",
+      "Prueba de cada proposición",
+      "Vicios o defensas",
+      "Riesgos",
+      "Resultado procesal"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el documento final salvo instrucción del constructor."
+  },
+  "campos_dinamicos": {
+    "promovente_nombre": {
+      "etiqueta": "Nombre / razón social",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "autoridad_nombre": {
+      "etiqueta": "Autoridad",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "expediente_numero": {
+      "etiqueta": "Expediente / folio",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "fecha_acto": {
+      "etiqueta": "Fecha del acto o conocimiento",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "notificacion_fecha": {
+      "etiqueta": "Fecha de notificación",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "relato_hechos": {
+      "etiqueta": "Relato circunstanciado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pretension_principal": {
+      "etiqueta": "Resultado buscado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pruebas_disponibles": {
+      "etiqueta": "Pruebas disponibles",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "fecha": {
+      "etiqueta": "Fecha de solicitud",
+      "tipo": "fecha",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "requisitos": {
+      "etiqueta": "Requisitos cumplidos",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    }
+  },
+  "checklist": [
+    "Identificar norma especial",
+    "Verificar afirmativa ficta",
+    "Acreditar requisitos",
+    "Calcular plazo",
+    "Revisar prevenciones",
+    "Documentar silencio"
+  ],
+  "ruta_procesal": [
+    "Petición",
+    "requisitos",
+    "cómputo",
+    "silencio",
+    "verificación de procedencia",
+    "medio correspondiente"
+  ],
+  "advertencias": [
+    "No sustituye revisión del expediente.",
+    "La ley especial puede desplazar la LFPA.",
+    "Verificar vigencia y competencia antes de presentar."
+  ],
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  },
+  "documento_generado": "{{autoridad_competente}}\nEXPEDIENTE: {{numero_expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: AFIRMATIVA FICTA JALISCO — ANÁLISIS DE PROCEDENCIA\nC. {autoridad_competente}:\n{{promovente_nombre}}, por mi propio derecho / en representación de {{representado_nombre}}, personalidad que acredito con {{documento_personalidad}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, comparezco para exponer:\nI. OBJETO\nEl presente promoción/defensa tiene por objeto plantear Analizar y documentar una posible afirmativa ficta sin presumirla cuando la materia especial no la reconozca en la vía Petición → requisitos → cómputo → silencio → verificación de procedencia → medio correspondiente.\nII. HECHOS\n1. La solicitud se presentó el {{fecha}}.\n2. Se cumplieron {{requisitos}}.\n3. Transcurrió el plazo sin resolución.\nIII. DERECHO\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 1-7, en relación con Objeto, ámbito y principios.\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 8-20, en relación con Actos administrativos, validez y eficacia.\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 21-25, en relación con Silencio administrativo.\nIV. PRETENSIONES / PETICIONES\n1. Reconocer el efecto legal solo si la norma aplicable lo permite..\nV. PRUEBAS\n1. {'medio': 'Documental', 'objeto': 'Solicitud y requisitos.', 'estatus': 'por_ofrecer'}\n2. {'medio': 'Instrumental', 'objeto': 'Expediente.', 'estatus': 'por_ofrecer'}\nVI. DOCUMENTOS\n{{documentos_anexos}}\nVII. PETITORIOS\nPRIMERO. Tenerme por presentado con este escrito y documentos.\nSEGUNDO. Acordar lo conducente conforme a la vía y competencia indicadas.\nTERCERO. Tener por formuladas las pretensiones y por ofrecidas las pruebas relacionadas.\nCUARTO. Dictar la resolución que en derecho corresponda. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 1-7: Objeto, ámbito y principios.\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 8-20: Actos administrativos, validez y eficacia.\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 21-25: Silencio administrativo."
+}

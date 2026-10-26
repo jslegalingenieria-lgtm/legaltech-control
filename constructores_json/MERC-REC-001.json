@@ -1,0 +1,276 @@
+{
+  "id": "MERC-REC-001",
+  "materia": "Mercantil",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Medio de defensa.",
+    "preguntas": [
+      "¿Qué resolución?",
+      "¿Fecha de notificación?",
+      "¿Qué medio procede?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Medio de defensa",
+    "tipo_documento": "recurso",
+    "rol_promovente": "recurrente",
+    "rol_contraparte": "contraparte",
+    "criterios": [
+      "Impugnación"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Recurso o medio de impugnación [SELECCIONAR: revocación, apelación, otro procedente]",
+    "naturaleza": "defensa",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Medio de impugnación previsto en el Código de Comercio [VALIDAR PROCEDENCIA, PLAZO Y EFECTOS]",
+    "requisitos": [
+      "Acto o resolución impugnable.",
+      "Plazo vigente.",
+      "Agravio personal y directo.",
+      "Forma y requisitos de interposición."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Resolución impugnada: {{resolucion_impugnada}} de fecha {{fecha_resolucion}}, notificada el {{fecha_notificacion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Se interpone dentro del plazo legal .",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Agravio 1: {{agravio_1}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "Agravio 2: {{agravio_2}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se revoque, modifique o anule la resolución impugnada."
+    },
+    {
+      "orden": 2,
+      "texto": "Se dicte la resolución que en derecho corresponda."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos exhibidos, para acreditar la resolución impugnada y su notificación.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Resolución impugnada",
+    "Constancia de notificación"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código de Comercio",
+      "tema": "Recursos y medios de impugnación",
+      "articulos": "1336-1345 Bis 8",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_de_comercio/recursos_y_medios_de_impugnacion"
+    },
+    {
+      "ordenamiento": "Código de Comercio",
+      "tema": "Efectos de la admisión",
+      "articulos": "1336-1345 Bis 8",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_de_comercio/efectos_de_la_admision"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La resolución viola la ley o causa un agravio que el medio de defensa corrige.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "JUEZ COMPETENTE EN MATERIA MERCANTIL [VALIDAR FUERO Y COMPETENCIA]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "medio_defensa": {
+      "etiqueta": "Medio defensa",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente (propio derecho / representante)",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "caracter_promovente": {
+      "etiqueta": "Caracter promovente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "recurrente"
+    },
+    "documento_personalidad": {
+      "etiqueta": "Documento personalidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "resolucion_impugnada": {
+      "etiqueta": "Resolución impugnada",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_resolucion": {
+      "etiqueta": "Fecha resolución",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_notificacion": {
+      "etiqueta": "Fecha notificación",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "agravio_1": {
+      "etiqueta": "Agravio 1",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "agravio_2": {
+      "etiqueta": "Agravio 2",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: MEDIO DE DEFENSA — {{medio_defensa}}\nC. {{autoridad}}:\n{{promovente_nombre}}, {{personalidad_promovente}}, con domicilio en {{domicilio_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}} y autorizando para tales efectos a {{abogado_patrono}}, comparezco para exponer:\nI. PERSONALIDAD Y DOMICILIO\nComparezco en mi carácter de {{caracter_promovente}}, personalidad que acredito con {{documento_personalidad}}. Mi domicilio es {{domicilio_promovente}}; el de la contraparte, {{contraparte_nombre}}, es {{domicilio_contraparte}}.\nII. PRETENSIONES\nPor medio del presente escrito reclamo/solicito:\n1. Se revoque, modifique o anule la resolución impugnada.\n2. Se dicte la resolución que en derecho corresponda.\nIII. HECHOS\nPRIMERO. Resolución impugnada: {{resolucion_impugnada}} de fecha {{fecha_resolucion}}, notificada el {{fecha_notificacion}}.\nSEGUNDO. Se interpone dentro del plazo legal.\nTERCERO. Agravio 1: {{agravio_1}}.\nCUARTO. Agravio 2: {{agravio_2}}.\nIV. DERECHO\nFundan la presente promoción las disposiciones siguientes (artículos aplicables al acto y a la vía indicada):\n- Código de Comercio: Recursos y medios de impugnación. Artículos aplicables: 1336-1345 Bis 8.\n- Código de Comercio: Efectos de la admisión. Artículos aplicables: 1336-1345 Bis 8.\nV. PRUEBAS\nOfrezco las siguientes pruebas, relacionándolas con los hechos indicados:\n1. DOCUMENTAL.- Documentos exhibidos, para acreditar la resolución impugnada y su notificación.\n2. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n\nSe acompañan los documentos siguientes:\n1. Resolución impugnada\n2. Constancia de notificación\nVI. PETITORIOS\nPor lo expuesto, a Usted atentamente pido:\nPRIMERO. Tenerme por presentado(a) interponiendo en tiempo y forma el medio de defensa que se promueve.\nSEGUNDO. Admitirlo a trámite, tener por ofrecidas las pruebas y por expresados los agravios o motivos de inconformidad.\nTERCERO. En su oportunidad, resolver dejando sin efectos (o modificando) el acto impugnado, en los términos solicitados. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Código de Comercio, artículos 1336-1345 Bis 8: Recursos y medios de impugnación.\n- Código de Comercio, artículos 1336-1345 Bis 8: Efectos de la admisión.",
+  "siguiente_paso": "Calcular el plazo desde la notificación y confirmar el medio procedente.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Materia mercantil: respetar la supletoriedad aplicable al Código de Comercio y a las leyes mercantiles especiales ."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

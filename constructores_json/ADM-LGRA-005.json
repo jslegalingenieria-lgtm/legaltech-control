@@ -1,0 +1,233 @@
+{
+  "id": "ADM-LGRA-005",
+  "materia": "Administrativo",
+  "jurisdiccion": "Federal/Entidades federativas",
+  "diagnostico": {
+    "objetivo": "Impugnar calificación de hechos o abstención en los términos de la LGRA.",
+    "preguntas": [
+      "¿Qué calificó?",
+      "¿Qué parte es indebida?",
+      "¿Qué pruebas sostienen?",
+      "¿Se está en plazo?"
+    ],
+    "datos_minimos": [
+      "calificacion",
+      "notificacion",
+      "agravios",
+      "pruebas"
+    ],
+    "resultado_esperado": "Determinar competencia, naturaleza del acto o conducta, plazo, vía, prueba y documento procedente."
+  },
+  "clasificacion": {
+    "constructor": "Recurso de inconformidad contra calificación de falta",
+    "tipo_documento": "recurso de inconformidad",
+    "rol_promovente": "Promovente / interesado / presunto responsable según el caso",
+    "rol_contraparte": "Autoridad / tercero / denunciante según corresponda",
+    "criterios": [
+      "competencia",
+      "legalidad",
+      "fundamentación y motivación",
+      "plazo",
+      "prueba",
+      "vía",
+      "interés jurídico o legítimo",
+      "Federal/Entidades federativas"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Recurso de inconformidad contra calificación de falta",
+    "naturaleza": "procesal administrativa",
+    "descripcion": "Impugnar calificación de hechos o abstención en los términos de la LGRA.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Calificación/abstención → plazo → recurso → pruebas → resolución",
+    "requisitos": [
+      "Identificación de partes y autoridad",
+      "Acreditación de personalidad cuando corresponda",
+      "Acto, conducta o procedimiento plenamente identificado",
+      "Pruebas y documentos base",
+      "Verificación de competencia y plazo"
+    ],
+    "nota": "Validar siempre ley especial, reglamento interior, competencia, notificación y texto vigente. No se inventan artículos de fuentes no proporcionadas."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La autoridad calificó {{calificacion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La defensa sostiene {{agravio}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Confirmar calificación/abstención o dejarla sin efectos y recalificar/iniciar según corresponda."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Calificación y expediente.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Pruebas.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Calificación",
+    "Notificación",
+    "Pruebas"
+  ],
+  "fundamento": [
+    {
+      "orden": 1,
+      "ordenamiento": "Ley General de Responsabilidades Administrativas",
+      "tema": "Objeto, sujetos y autoridades",
+      "articulos": "1-10",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/lgra/ambito"
+    },
+    {
+      "orden": 2,
+      "ordenamiento": "Ley General de Responsabilidades Administrativas",
+      "tema": "Investigación y denuncias",
+      "articulos": "90-100",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/lgra/investigacion"
+    },
+    {
+      "orden": 3,
+      "ordenamiento": "Ley General de Responsabilidades Administrativas",
+      "tema": "Procedimiento de responsabilidad administrativa",
+      "articulos": "111-116",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/lgra/procedimiento"
+    },
+    {
+      "orden": 4,
+      "ordenamiento": "Ley General de Responsabilidades Administrativas",
+      "tema": "Informe de Presunta Responsabilidad Administrativa",
+      "articulos": "194",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/lgra/ipra"
+    },
+    {
+      "orden": 5,
+      "ordenamiento": "Ley General de Responsabilidades Administrativas",
+      "tema": "Procedimiento por faltas no graves",
+      "articulos": "208",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/lgra/no_graves"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Demostrar que la calificación no corresponde a hechos o régimen jurídico aplicable.",
+    "elementos": [
+      "Hechos jurídicamente relevantes",
+      "Acto/omisión/conducta",
+      "Norma aplicable",
+      "Competencia",
+      "Prueba de cada proposición",
+      "Vicios o defensas",
+      "Riesgos",
+      "Resultado procesal"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el documento final salvo instrucción del constructor."
+  },
+  "campos_dinamicos": {
+    "promovente_nombre": {
+      "etiqueta": "Nombre / razón social",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "autoridad_nombre": {
+      "etiqueta": "Autoridad",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "expediente_numero": {
+      "etiqueta": "Expediente / folio",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "fecha_acto": {
+      "etiqueta": "Fecha del acto o conocimiento",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "notificacion_fecha": {
+      "etiqueta": "Fecha de notificación",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "relato_hechos": {
+      "etiqueta": "Relato circunstanciado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pretension_principal": {
+      "etiqueta": "Resultado buscado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pruebas_disponibles": {
+      "etiqueta": "Pruebas disponibles",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "calificacion": {
+      "etiqueta": "Calificación impugnada",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "agravio": {
+      "etiqueta": "Razones de inconformidad",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    }
+  },
+  "checklist": [
+    "Identificar acto",
+    "Revisar plazo",
+    "Agravios",
+    "Pruebas",
+    "Presentar",
+    "Controlar resolución"
+  ],
+  "ruta_procesal": [
+    "Calificación/abstención",
+    "plazo",
+    "recurso",
+    "pruebas",
+    "resolución"
+  ],
+  "advertencias": [
+    "No sustituye revisión del expediente.",
+    "La ley especial puede desplazar la LFPA.",
+    "Verificar vigencia y competencia antes de presentar."
+  ],
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  },
+  "documento_generado": "{{autoridad_competente}}\nEXPEDIENTE: {{numero_expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: RECURSO DE INCONFORMIDAD CONTRA CALIFICACIÓN DE FALTA\nC. {autoridad_competente}:\n{{promovente_nombre}}, por mi propio derecho / en representación de {{representado_nombre}}, personalidad que acredito con {{documento_personalidad}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, comparezco para exponer:\nI. OBJETO\nEl presente recurso de inconformidad tiene por objeto plantear Impugnar calificación de hechos o abstención en los términos de la LGRA en la vía Calificación/abstención → plazo → recurso → pruebas → resolución.\nII. HECHOS\n1. La autoridad calificó {{calificacion}}.\n2. La defensa sostiene {{agravio}}.\nIII. DERECHO\nCon fundamento en Ley General de Responsabilidades Administrativas, artículos 1-10, en relación con Objeto, sujetos y autoridades.\nCon fundamento en Ley General de Responsabilidades Administrativas, artículos 90-100, en relación con Investigación y denuncias.\nCon fundamento en Ley General de Responsabilidades Administrativas, artículos 111-116, en relación con Procedimiento de responsabilidad administrativa.\nCon fundamento en Ley General de Responsabilidades Administrativas, artículos 194, en relación con Informe de Presunta Responsabilidad Administrativa.\nCon fundamento en Ley General de Responsabilidades Administrativas, artículos 208, en relación con Procedimiento por faltas no graves.\nIV. PRETENSIONES / PETICIONES\n1. Confirmar calificación/abstención o dejarla sin efectos y recalificar/iniciar según corresponda..\nV. PRUEBAS\n1. {'medio': 'Documental', 'objeto': 'Calificación y expediente.', 'estatus': 'por_ofrecer'}\n2. {'medio': 'Documental', 'objeto': 'Pruebas.', 'estatus': 'por_ofrecer'}\nVI. DOCUMENTOS\n{{documentos_anexos}}\nVII. PETITORIOS\nPRIMERO. Tenerme por presentado con este escrito y documentos.\nSEGUNDO. Acordar lo conducente conforme a la vía y competencia indicadas.\nTERCERO. Tener por formuladas las pretensiones y por ofrecidas las pruebas relacionadas.\nCUARTO. Dictar la resolución que en derecho corresponda. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Ley General de Responsabilidades Administrativas, artículos 1-10: Objeto, sujetos y autoridades.\n- Ley General de Responsabilidades Administrativas, artículos 90-100: Investigación y denuncias.\n- Ley General de Responsabilidades Administrativas, artículos 111-116: Procedimiento de responsabilidad administrativa.\n- Ley General de Responsabilidades Administrativas, artículos 194: Informe de Presunta Responsabilidad Administrativa.\n- Ley General de Responsabilidades Administrativas, artículos 208: Procedimiento por faltas no graves."
+}

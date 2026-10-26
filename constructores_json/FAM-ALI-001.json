@@ -1,0 +1,262 @@
+{
+  "id": "FAM-ALI-001",
+  "materia": "Familiar",
+  "diagnostico": {
+    "objetivo": "Preparar reclamación de alimentos y su aseguramiento.",
+    "preguntas": [
+      "¿Quién es acreedor y quién deudor?",
+      "¿Cuál es la necesidad?",
+      "¿Cuál es la capacidad económica?",
+      "¿Existen otros acreedores?",
+      "¿Qué gastos ordinarios y extraordinarios deben acreditarse?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Demanda de alimentos",
+    "tipo_documento": "demanda",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Familiar",
+      "Demanda de alimentos"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Reclamación y aseguramiento de alimentos",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Juicio de alimentos conforme a las reglas procesales aplicables.",
+    "requisitos": [
+      "Verificar competencia y legitimación.",
+      "Integrar documentos base.",
+      "Identificar personas que deban ser llamadas.",
+      "Revisar requisitos especiales de la legislación aplicable."
+    ],
+    "nota": "SIGDE no sustituye la determinación profesional de competencia, vía y estrategia del caso concreto."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Existe relación jurídica alimentaria entre {{acreedor}} y {{deudor}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Las necesidades actuales ascienden aproximadamente a {{necesidades}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "La capacidad económica conocida del deudor es {{capacidad}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Pago de alimentos."
+    },
+    {
+      "orden": 2,
+      "texto": "Aseguramiento de alimentos futuros."
+    },
+    {
+      "orden": 3,
+      "texto": "Medidas provisionales cuando procedan."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Actas que acrediten parentesco o matrimonio.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Comprobantes de gastos.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Informes",
+      "objeto": "Información laboral, fiscal o financiera cuando legalmente proceda.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional",
+      "objeto": "Deducciones derivadas de hechos acreditados.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Actas del estado civil",
+    "Comprobantes de gastos",
+    "Información de ingresos",
+    "Datos de otros dependientes"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Alimentos",
+      "articulos": "432-451",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/alimentos"
+    },
+    {
+      "ordenamiento": "Código de Procedimientos Civiles del Estado de Jalisco",
+      "tema": "Juicios y medidas en materia familiar",
+      "articulos": "21 y demás aplicables",
+      "estatus": "registrado",
+      "ck_clave": "CK/cpc_jalisco/juicios_y_medidas_en_materia_familiar"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Existe obligación alimentaria, necesidad acreditable y capacidad del obligado que debe analizarse proporcionalmente.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "acreedor": {
+      "etiqueta": "Acreedor alimentario",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "deudor": {
+      "etiqueta": "Deudor alimentario",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "necesidades": {
+      "etiqueta": "Necesidades y gastos",
+      "tipo": "texto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "capacidad": {
+      "etiqueta": "Capacidad económica",
+      "tipo": "texto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: DEMANDA DE ALIMENTOS C. JUEZ COMPETENTE\nP R E S E N T E. {{promovente_nombre}}, en representación de {{acreedor}} y/o por mi propio derecho, en contra de {{deudor}}, comparezco para reclamar el cumplimiento de la obligación alimentaria.\nI. PRESTACIONES 1. Fijación de una pensión alimenticia proporcional a las necesidades de la persona acreedora y a la capacidad económica de la persona deudora.\n2. Pago de alimentos vencidos cuando legalmente proceda.\n3. Aseguramiento de alimentos futuros mediante la medida legal idónea.\n4. Determinación de la forma de pago, actualización y, cuando corresponda, gastos extraordinarios.\n5. Solicitud de informes sobre ingresos y capacidad económica cuando sea necesario.\nII. HECHOS 1. Existe entre las partes la relación jurídica que origina la obligación alimentaria: {{acreedor}} respecto de {{deudor}}.\n2. La persona acreedora requiere alimentos por las siguientes razones: {{necesidades}}.\n3. Las necesidades comprenden, según el caso, alimentación, vestido, habitación, salud, educación, transporte, actividades indispensables y demás conceptos legalmente comprendidos.\n4. La capacidad económica conocida de la persona deudora es: {{capacidad}}.\n5. Se deberán describir ingresos formales, actividades económicas, bienes, obligaciones y cualquier elemento que permita determinar la posibilidad real de cumplimiento.\n6. En su caso, se explicará si existen otros acreedores alimentarios y la forma en que deben distribuirse las cargas.\nIII. DERECHO El Código Civil del Estado de Jalisco establece en los artículos 432 a 455 las reglas de la obligación alimentaria. Los alimentos son recíprocos, personales e intransmisibles; comprenden los elementos de subsistencia material y educativa y deben proporcionarse conforme a las posibilidades de quien debe darlos y las necesidades de quien debe recibirlos. El artículo 446 reconoce acción para pedir su aseguramiento y el 448 contempla medidas de garantía para alimentos futuros.\nIV. PRUEBAS 1. Documentales del estado civil y parentesco.\n2. Documentales de gastos y necesidades.\n3. Documentales sobre ingresos y capacidad económica.\n4. Informes de empleadores, instituciones o autoridades, cuando procedan.\n5. Declaración de parte, testimonial, pericial contable o cualquier otro medio permitido que sea pertinente.\n6. Instrumental de actuaciones y presuncional.\nV. PETITORIOS\nPRIMERO. Admitir la demanda.\nSEGUNDO. Ordenar el emplazamiento y las medidas provisionales que correspondan.\nTERCERO. Fijar, en su caso, alimentos provisionales y asegurar su pago.\nCUARTO. Admitir y preparar las pruebas.\nQUINTO. Dictar sentencia fijando alimentos conforme a necesidad y posibilidad, así como su forma de aseguramiento y actualización. PROTESTO LO NECESARIO. {{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Civil del Estado de Jalisco, artículos 432-451: Alimentos.\n- Código de Procedimientos Civiles del Estado de Jalisco, artículos 21 y demás aplicables: Juicios y medidas en materia familiar.",
+  "siguiente_paso": "Integrar prueba de necesidad y capacidad antes de cuantificar la pretensión.",
+  "alertas": [
+    "No fijar una cantidad sin justificar necesidad y capacidad.",
+    "Verificar medidas provisionales y aseguramiento.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

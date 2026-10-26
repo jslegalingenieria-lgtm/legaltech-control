@@ -21,6 +21,9 @@
     let asuntosCache = [];
     let asuntoHistorialIdSeleccionado = null;
     let detenerEscuchaAsuntos = null;
+    // La vista Kanban es la predeterminada cada vez que se carga la aplicación.
+    let vistaAsuntosActual = "kanban";
+    const ESTADOS_KANBAN_ASUNTOS = ["En proceso", "Suspendido", "Concluido", "Cancelado"];
 
     function obtenerDB() {
         if (!window.db) {
@@ -880,134 +883,140 @@
         }
     }
 
-    function cargarAsuntosTabla() {
-        const cuerpo =
-            document.getElementById(
-                "tabla-asuntos-cuerpo"
-            ) ||
-            document.getElementById(
-                "tabla-expedientes-cuerpo"
-            );
+    function normalizarEstadoKanban(estado) {
+        const valor = String(estado || "En proceso").trim().toLocaleLowerCase("es-MX");
+        const encontrado = ESTADOS_KANBAN_ASUNTOS.find(item => item.toLocaleLowerCase("es-MX") === valor);
+        if (encontrado) return encontrado;
+        if (["activo", "nuevo", "abierto", "en trámite", "en tramite", "pendiente"].includes(valor)) return "En proceso";
+        if (["cerrado", "terminado", "finalizado"].includes(valor)) return "Concluido";
+        return "En proceso";
+    }
 
-        if (!cuerpo) return;
+    function compararExpedienteDesc(a, b) {
+        const obtener = asunto => String(asunto.expediente || asunto.folioInterno || "").trim();
+        const av = obtener(a), bv = obtener(b);
+        // Orden numérico descendente cuando el expediente incluye números;
+        // el desempate usa comparación natural para expedientes alfanuméricos.
+        const extraer = valor => {
+            const nums = valor.match(/\d+/g);
+            return nums ? Number(nums.join("")) : -1;
+        };
+        const an = extraer(av), bn = extraer(bv);
+        if (an !== bn) return bn - an;
+        return bv.localeCompare(av, "es", { numeric: true, sensitivity: "base" });
+    }
 
+    function aplicarVistaAsuntos(modo = vistaAsuntosActual) {
+        vistaAsuntosActual = modo === "tabla" ? "tabla" : "kanban";
+        const kanban = document.getElementById("asuntos-kanban-vista");
+        const tabla = document.getElementById("asuntos-tabla-vista");
+        if (kanban) kanban.style.display = vistaAsuntosActual === "kanban" ? "block" : "none";
+        if (tabla) tabla.style.display = vistaAsuntosActual === "tabla" ? "block" : "none";
+        document.querySelectorAll("[data-asuntos-view]").forEach(boton => {
+            const activo = boton.dataset.asuntosView === vistaAsuntosActual;
+            boton.classList.toggle("active", activo);
+            boton.setAttribute("aria-pressed", String(activo));
+        });
+    }
+
+    function renderizarKanbanAsuntos(lista) {
+        const board = document.getElementById("asuntos-kanban-board");
+        if (!board) return;
+        const items = [...lista].sort(compararExpedienteDesc);
+        board.innerHTML = ESTADOS_KANBAN_ASUNTOS.map(estado => {
+            const enColumna = items.filter(asunto => normalizarEstadoKanban(asunto.estado) === estado);
+            const tarjetas = enColumna.map(asunto => {
+                const id = escaparHTML(asunto.id);
+                const folio = escaparHTML(asunto.folioInterno || "EXP-PENDIENTE");
+                const expediente = escaparHTML(asunto.expediente || "Pendiente de asignación");
+                const cliente = escaparHTML(asunto.cliente || "Sin cliente");
+                const materia = escaparHTML(asunto.materia || "Materia no definida");
+                const accion = escaparHTML(asunto.accion || "Sin acción registrada");
+                const juzgado = escaparHTML(asunto.juzgado || "Juzgado sin registrar");
+                const responsable = escaparHTML(asunto.abogadoAsignado || "Sin abogado asignado");
+                return `<article class="asuntos-kanban-card" data-asunto-card="${id}">
+                    <div class="asuntos-kanban-card-top"><strong>${folio}</strong><span>${expediente}</span></div>
+                    <h4>${cliente}</h4>
+                    <p class="asuntos-kanban-materia">${materia}${accion ? ` · ${accion}` : ""}</p>
+                    <p class="asuntos-kanban-juzgado">${juzgado}</p>
+                    <div class="asuntos-kanban-responsable"><span>Responsable</span><strong>${responsable}</strong></div>
+                    <div class="asuntos-kanban-card-actions">
+                        <button type="button" class="btn-secundario" data-kanban-action="abrir" data-asunto-id="${id}">Bitácora</button>
+                        <button type="button" class="btn-secundario" data-kanban-action="editar" data-asunto-id="${id}">Editar</button>
+                        ${window.JSLegalRoles?.tienePermiso("cancelar_asuntos") ? `<button type="button" class="btn-secundario" data-kanban-action="estado" data-asunto-id="${id}">Estado</button>` : ""}
+                    </div>
+                </article>`;
+            }).join("");
+            const estadoClase = estado.toLocaleLowerCase("es-MX").replace(/\s+/g, "-");
+            return `<section class="asuntos-kanban-columna asuntos-kanban-${estadoClase}">
+                <header class="asuntos-kanban-columna-header"><strong>${escaparHTML(estado)}</strong><span>${enColumna.length}</span></header>
+                <div class="asuntos-kanban-tarjetas">${tarjetas || `<div class="asuntos-kanban-vacia">Sin asuntos</div>`}</div>
+            </section>`;
+        }).join("");
+        if (!items.length) {
+            board.innerHTML = `<div class="asuntos-kanban-vacio-global"><strong>No hay asuntos registrados o asignados.</strong><p>Registra un asunto o ajusta los filtros de búsqueda.</p></div>`;
+        }
+    }
+
+    function obtenerAsuntosVisiblesPorRol() {
         const usuarioActivo = obtenerUsuarioActivo();
         let asuntos = obtenerAsuntos();
-
         const responsable = responsableParaSesion(usuarioActivo);
         if (responsable) {
             const usuarioFirebase = window.firebaseAuth?.currentUser ||
                 (window.firebase?.auth ? firebase.auth().currentUser : null);
-
             const llavesSesion = new Set([
-                usuarioFirebase?.uid,
-                usuarioFirebase?.email,
-                usuarioActivo?.uid,
-                usuarioActivo?.id,
-                usuarioActivo?.usuario,
-                usuarioActivo?.correo
+                usuarioFirebase?.uid, usuarioFirebase?.email, usuarioActivo?.uid,
+                usuarioActivo?.id, usuarioActivo?.usuario, usuarioActivo?.correo
             ].filter(Boolean).map(valor => String(valor).trim()));
-
             asuntos = asuntos.filter(asunto => {
-                const esTitular =
-                    String(asunto.abogadoAsignado || "") === String(responsable);
-
+                const esTitular = String(asunto.abogadoAsignado || "") === String(responsable);
                 const idsColaboradores = [
                     ...(Array.isArray(asunto.colaboradorIds) ? asunto.colaboradorIds : []),
-                    ...(Array.isArray(asunto.colaboradores)
-                        ? asunto.colaboradores.flatMap(persona => [
-                            persona?.id,
-                            persona?.uid,
-                            persona?.usuario,
-                            persona?.correo
-                        ])
-                        : [])
+                    ...(Array.isArray(asunto.colaboradores) ? asunto.colaboradores.flatMap(persona => [
+                        persona?.id, persona?.uid, persona?.usuario, persona?.correo
+                    ]) : [])
                 ].filter(Boolean).map(valor => String(valor).trim());
-
                 const esColaborador = idsColaboradores.some(id => llavesSesion.has(id));
-
-                // El abogado titular conserva acceso a sus asuntos. El pasante
-                // únicamente accede cuando fue marcado como colaborador.
                 if (usuarioActivo?.rol === "Pasante") return esColaborador;
                 return esTitular || esColaborador;
             });
         }
+        return asuntos;
+    }
 
+    function cambiarVistaAsuntos(modo) {
+        aplicarVistaAsuntos(modo);
+        cargarAsuntosTabla();
+    }
+
+    function cargarAsuntosTabla() {
+        const cuerpo = document.getElementById("tabla-asuntos-cuerpo") || document.getElementById("tabla-expedientes-cuerpo");
+        const asuntos = obtenerAsuntosVisiblesPorRol();
+        renderizarKanbanAsuntos(asuntos);
+        aplicarVistaAsuntos(vistaAsuntosActual);
+        if (!cuerpo) return;
         cuerpo.innerHTML = "";
-
         if (!asuntos.length) {
-            cuerpo.innerHTML = `
-                <tr>
-                    <td colspan="6"
-                        style="text-align:center;padding:1rem;">
-                        No hay expedientes registrados o asignados.
-                    </td>
-                </tr>
-            `;
+            cuerpo.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:1rem;">No hay expedientes registrados o asignados.</td></tr>`;
             return;
         }
-
-        asuntos.forEach(asunto => {
+        // La tabla también muestra primero el número de expediente más alto.
+        [...asuntos].sort(compararExpedienteDesc).forEach(asunto => {
             const fila = document.createElement("tr");
-
-                  fila.dataset.id = asunto.id;
+            fila.dataset.id = asunto.id;
             fila.innerHTML = `
                 <td><strong>${escaparHTML(asunto.folioInterno || "EXP-PENDIENTE")}</strong><br><small>${escaparHTML(asunto.expediente || "Pendiente de asignación")}</small></td>
-
-                <td>${escaparHTML(
-                    asunto.cliente || "Sin cliente"
-                )}</td>
-
-                <td>${escaparHTML(
-                    `${asunto.materia || ""} / ${
-                        asunto.accion || ""
-                    }`
-                )}</td>
-
-                <td>${escaparHTML(
-                    asunto.juzgado || ""
-                )}</td>
-
-                <td>
-                    <span class="badge">
-                        ${escaparHTML(
-                            asunto.estado || ""
-                        )}
-                    </span>
-                </td>
-
+                <td>${escaparHTML(asunto.cliente || "Sin cliente")}</td>
+                <td>${escaparHTML(`${asunto.materia || ""} / ${asunto.accion || ""}`)}</td>
+                <td>${escaparHTML(asunto.juzgado || "")}</td>
+                <td><span class="badge">${escaparHTML(asunto.estado || "")}</span></td>
                 <td style="text-align:center;">
-                    <button
-                        type="button"
-                        onclick="editarAsunto('${asunto.id}')"
-                        style="color:#3b82f6;background:none;border:none;cursor:pointer;margin-right:5px;">
-                        ✏️
-                    </button>
-
-                    <button
-                        type="button"
-                        onclick="abrirBitacoraAsunto('${asunto.id}')"
-                        style="color:#8b5cf6;background:none;border:none;cursor:pointer;margin-right:5px;">
-                        📜
-                    </button>
-
-                    <button
-                        type="button"
-                        title="Reenviar acceso al portal"
-                        onclick="reenviarInvitacionCliente('${asunto.id}')"
-                        style="color:#0f766e;background:none;border:none;cursor:pointer;margin-right:5px;">
-                        📧
-                    </button>
-
-                    ${window.JSLegalRoles?.tienePermiso("cancelar_asuntos") ? `<button
-                        type="button"
-                        onclick="eliminarAsunto('${asunto.id}')"
-                        style="color:#ef4444;background:none;border:none;cursor:pointer;">
-                        🔄 Estado
-                    </button>` : ""}
-                </td>
-            `;
-
+                    <button type="button" onclick="editarAsunto('${escaparHTML(asunto.id)}')" style="color:#3b82f6;background:none;border:none;cursor:pointer;margin-right:5px;">✏️</button>
+                    <button type="button" onclick="abrirBitacoraAsunto('${escaparHTML(asunto.id)}')" style="color:#8b5cf6;background:none;border:none;cursor:pointer;margin-right:5px;">📜</button>
+                    <button type="button" title="Reenviar acceso al portal" onclick="reenviarInvitacionCliente('${escaparHTML(asunto.id)}')" style="color:#0f766e;background:none;border:none;cursor:pointer;margin-right:5px;">📧</button>
+                    ${window.JSLegalRoles?.tienePermiso("cancelar_asuntos") ? `<button type="button" onclick="eliminarAsunto('${escaparHTML(asunto.id)}')" style="color:#ef4444;background:none;border:none;cursor:pointer;">🔄 Estado</button>` : ""}
+                </td>`;
             cuerpo.appendChild(fila);
         });
     }
@@ -1681,6 +1690,7 @@
         eliminarActuacion;
     window.cargarHistorialActuacionesLista =
         cargarHistorialActuacionesLista;
+    window.cambiarVistaAsuntos = cambiarVistaAsuntos;
     window.cargarAbogadosEnAsuntos =
         cargarAbogadosEnAsuntos;
     window.actualizarColaboradoresEnAsuntos =
@@ -1691,6 +1701,18 @@
 
 
     document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("btn-asuntos-vista-kanban")?.addEventListener("click", () => cambiarVistaAsuntos("kanban"));
+        document.getElementById("btn-asuntos-vista-tabla")?.addEventListener("click", () => cambiarVistaAsuntos("tabla"));
+        document.getElementById("asuntos-kanban-board")?.addEventListener("click", event => {
+            const boton = event.target.closest("button[data-kanban-action]");
+            if (!boton) return;
+            const id = boton.dataset.asuntoId;
+            const accion = boton.dataset.kanbanAction;
+            if (accion === "editar") window.editarAsunto?.(id);
+            else if (accion === "abrir") window.abrirBitacoraAsunto?.(id);
+            else if (accion === "estado") window.eliminarAsunto?.(id);
+        });
+        aplicarVistaAsuntos("kanban");
         document.getElementById("act-input-pdf")?.addEventListener("change", event => {
             agregarArchivosActuacion(event.target.files); event.target.value = "";
         });

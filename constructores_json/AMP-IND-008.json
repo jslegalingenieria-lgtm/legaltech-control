@@ -1,0 +1,315 @@
+{
+  "id": "AMP-IND-008",
+  "materia": "Amparo",
+  "jurisdiccion": "Federal",
+  "datos_minimos": [
+    "persona_quejosa",
+    "representación",
+    "autoridad_responsable",
+    "tercero_interesado",
+    "acto_norma_u_omision",
+    "fecha_notificacion_o_conocimiento",
+    "afectacion_real_y_actual",
+    "derechos_humanos",
+    "conceptos_de_violacion",
+    "pruebas",
+    "suspension_si_procede",
+    "pretension_y_efectos"
+  ],
+  "preguntas": [
+    "¿Quién es la persona quejosa y cuál es su derecho subjetivo o interés legítimo?",
+    "¿Cuál es la afectación real, actual y diferenciada?",
+    "¿Qué autoridad dicta, ordena, ejecuta o intenta ejecutar el acto, o cuál omite actuar?",
+    "¿Cuál es exactamente la norma, acto u omisión reclamado?",
+    "¿Cuándo se notificó o cuándo se tuvo conocimiento y cómo se acredita?",
+    "¿Qué vía corresponde: amparo directo o indirecto?",
+    "¿Qué órgano jurisdiccional es competente?",
+    "¿Existe tercero interesado y cuál es su interés?",
+    "¿Existe causa de improcedencia o sobreseimiento?",
+    "¿Debe solicitarse suspensión y qué requisitos debe satisfacer?",
+    "¿Qué derecho humano y parámetro constitucional se invoca?",
+    "¿Cuál es el concepto de violación y cómo se relaciona con los hechos?",
+    "¿Qué prueba acredita cada hecho relevante?",
+    "¿Qué efecto concreto se pretende obtener con el amparo?"
+  ],
+  "documentos": [
+    "Identificación y datos de la persona quejosa",
+    "Documento de personalidad o representación, cuando corresponda",
+    "Acto, resolución, norma u omisión reclamada",
+    "Constancia de notificación o conocimiento",
+    "Expediente de origen y constancias relevantes",
+    "Pruebas documentales relacionadas con los hechos",
+    "Documentos para acreditar interés jurídico o legítimo",
+    "Elementos para justificar suspensión, si se solicita",
+    "Copias y anexos conforme a la vía aplicable",
+    "Constancias electrónicas cuando el trámite se realice mediante Firma Electrónica"
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental pública",
+      "objeto": "Acreditar actos de autoridad, resoluciones, expedientes, notificaciones y constancias oficiales.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental privada",
+      "objeto": "Acreditar hechos y afectaciones que no consten en documentos públicos.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Valorar las constancias que integren el expediente constitucional.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional",
+      "objeto": "Derivar consecuencias lógicas y jurídicas de hechos acreditados.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "diagnostico": {
+    "objetivo": "Constructor para determinar cuándo una persona particular puede ser autoridad responsable y estructurar la impugnación. El constructor debe servir como herramienta de trabajo forense: primero diagnostica, después verifica procedencia, competencia y oportunidad, y finalmente estructura la actuación o documento sin sustituir la revisión profesional del expediente.",
+    "preguntas": [
+      "¿Quién es la persona quejosa y cuál es su derecho subjetivo o interés legítimo?",
+      "¿Cuál es la afectación real, actual y diferenciada?",
+      "¿Qué autoridad dicta, ordena, ejecuta o intenta ejecutar el acto, o cuál omite actuar?",
+      "¿Cuál es exactamente la norma, acto u omisión reclamado?",
+      "¿Cuándo se notificó o cuándo se tuvo conocimiento y cómo se acredita?",
+      "¿Qué vía corresponde: amparo directo o indirecto?",
+      "¿Qué órgano jurisdiccional es competente?",
+      "¿Existe tercero interesado y cuál es su interés?",
+      "¿Existe causa de improcedencia o sobreseimiento?",
+      "¿Debe solicitarse suspensión y qué requisitos debe satisfacer?",
+      "¿Qué derecho humano y parámetro constitucional se invoca?",
+      "¿Cuál es el concepto de violación y cómo se relaciona con los hechos?",
+      "¿Qué prueba acredita cada hecho relevante?",
+      "¿Qué efecto concreto se pretende obtener con el amparo?"
+    ],
+    "datos_minimos": [
+      "persona_quejosa",
+      "representación",
+      "autoridad_responsable",
+      "tercero_interesado",
+      "acto_norma_u_omision",
+      "fecha_notificacion_o_conocimiento",
+      "afectacion_real_y_actual",
+      "derechos_humanos",
+      "conceptos_de_violacion",
+      "pruebas",
+      "suspension_si_procede",
+      "pretension_y_efectos"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, legitimación, competencia, oportunidad, suspensión cuando proceda, estructura de argumentos, pruebas, efectos solicitados, riesgos y ruta procesal.",
+    "explicacion_profesional": "Constructor para determinar cuándo una persona particular puede ser autoridad responsable y estructurar la impugnación. Para la toma de decisión se debe revisar el expediente completo y distinguir entre hechos, acto de autoridad, afectación, norma constitucional, procedencia, prueba y remedio. El sistema no debe convertir una afirmación del usuario en un hecho acreditado."
+  },
+  "clasificacion": {
+    "constructor": "Amparo contra actos de particulares equivalentes a autoridad",
+    "tipo_documento": "Escrito de amparo / promoción procesal",
+    "rol_promovente": "Persona quejosa / promovente / recurrente, según corresponda",
+    "rol_contraparte": "Autoridad responsable / persona tercera interesada / Ministerio Público Federal, según corresponda",
+    "criterios": [
+      "procedencia",
+      "legitimación",
+      "interés jurídico o legítimo",
+      "competencia",
+      "plazo",
+      "acto u omisión reclamado",
+      "parámetro constitucional",
+      "conceptos de violación",
+      "pruebas",
+      "suspensión",
+      "sentencia",
+      "recursos",
+      "cumplimiento"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Amparo contra actos de particulares equivalentes a autoridad",
+    "naturaleza": "constitucional/procesal",
+    "descripcion": "Constructor para determinar cuándo una persona particular puede ser autoridad responsable y estructurar la impugnación.",
+    "excepciones_defensas": [
+      "Improcedencia",
+      "Sobreseimiento",
+      "Falta de legitimación",
+      "Falta de oportunidad",
+      "Incompetencia",
+      "Consentimiento del acto",
+      "Falta de afectación real y actual, cuando corresponda"
+    ],
+    "estrategia": "Separar diagnóstico, argumentación y petición. Cada conclusión debe tener una base normativa identificable y, cuando sea necesario, una constancia que la respalde."
+  },
+  "via_procedimiento": {
+    "via": "Análisis inicial → verificación de procedencia → identificación de órgano competente → control de plazo → integración de hechos y pruebas → definición del parámetro constitucional → actuación procesal → seguimiento de suspensión, sentencia, recurso o cumplimiento, según corresponda.",
+    "requisitos": [
+      "Individualizar el acto, norma u omisión",
+      "Identificar correctamente autoridades y terceros",
+      "Acreditar personalidad o legitimación",
+      "Verificar plazo y forma de cómputo",
+      "Definir vía directa o indirecta",
+      "Precisar derecho humano y parámetro constitucional",
+      "Construir conceptos de violación relacionados con hechos acreditables",
+      "Definir pruebas y efecto solicitado",
+      "Analizar suspensión y sus requisitos cuando proceda",
+      "Controlar notificaciones, recursos y cumplimiento"
+    ],
+    "nota": "Fuente normativa principal: Ley de Amparo, texto vigente aportado por el usuario, última reforma DOF 16-10-2025."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Identificar cronológicamente el origen del acto, norma u omisión y la intervención de cada autoridad.",
+      "estatus": "por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Precisar cuándo y cómo la persona quejosa conoció el acto y qué constancia lo acredita.",
+      "estatus": "por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Explicar la afectación real, actual y diferenciada y su relación causal con el acto reclamado.",
+      "estatus": "por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se reconozca la procedencia de la vía y se conceda el amparo y protección de la Justicia Federal cuando resulte jurídicamente procedente."
+    },
+    {
+      "orden": 2,
+      "texto": "Se produzcan los efectos restitutorios o protectores correspondientes al derecho vulnerado, conforme a la sentencia."
+    },
+    {
+      "orden": 3,
+      "texto": "Se dicten las medidas cautelares o procesales que legalmente procedan."
+    }
+  ],
+  "fundamento": [
+    {
+      "orden": 1,
+      "ordenamiento": "Constitución Política de los Estados Unidos Mexicanos",
+      "tema": "Fundamento constitucional del juicio de amparo",
+      "articulos": "103 y 107",
+      "estatus": "fuente_verificada"
+    },
+    {
+      "orden": 2,
+      "ordenamiento": "Ley de Amparo",
+      "tema": "Constructor para determinar cuándo una persona particular puede ser autoridad responsable y estructurar la impugnación.",
+      "articulos": "5-II, 6, 108, 110",
+      "estatus": "fuente_usuario_texto_vigente_DO_F_16_10_2025"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso debe conectar cuatro planos: (1) qué ocurrió y cómo se acredita; (2) qué autoridad, norma, acto u omisión produjo la afectación; (3) qué derecho humano, garantía o parámetro constitucional se considera vulnerado; y (4) qué consecuencia procesal y restitutoria se solicita. No basta afirmar una violación: el razonamiento debe explicar la relación causal entre acto y perjuicio, identificar la regla constitucional aplicable y anticipar las defensas de la autoridad o del tercero interesado.",
+    "elementos": [
+      "Parte legitimada y tipo de afectación",
+      "Acto, norma u omisión reclamado",
+      "Hechos jurídicamente relevantes",
+      "Prueba de cada hecho esencial",
+      "Derecho humano y parámetro constitucional",
+      "Regla o principio presuntamente vulnerado",
+      "Razonamiento de confrontación constitucional",
+      "Relación causal entre acto y perjuicio",
+      "Procedencia y oportunidad",
+      "Respuesta anticipada a improcedencia o sobreseimiento",
+      "Suspensión y ponderación de intereses, cuando proceda",
+      "Efecto concreto solicitado",
+      "Riesgos y escenarios alternativos"
+    ],
+    "uso": "Herramienta estratégica interna. El contenido sirve para orientar la captura y la redacción; no debe insertarse automáticamente en el documento final salvo que el constructor lo indique."
+  },
+  "campos_dinamicos": {
+    "promovente_nombre": {
+      "etiqueta": "Nombre de la persona quejosa o promovente",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "representante_nombre": {
+      "etiqueta": "Representante o persona que promueve en nombre de la quejosa",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír notificaciones",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "autoridad_responsable": {
+      "etiqueta": "Autoridad o autoridades responsables",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "tercero_interesado": {
+      "etiqueta": "Persona tercera interesada",
+      "tipo": "textarea",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "acto_reclamado": {
+      "etiqueta": "Norma general, acto u omisión reclamado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "fecha_notificacion": {
+      "etiqueta": "Fecha de notificación o conocimiento",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "hechos": {
+      "etiqueta": "Antecedentes y hechos bajo protesta de decir verdad",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "derechos_violados": {
+      "etiqueta": "Derechos humanos y preceptos constitucionales invocados",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "conceptos_violacion": {
+      "etiqueta": "Conceptos de violación",
+      "tipo": "textarea",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "suspension": {
+      "etiqueta": "Solicitud y justificación de suspensión, si procede",
+      "tipo": "textarea",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "pruebas": {
+      "etiqueta": "Pruebas y objeto de cada una",
+      "tipo": "textarea",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "pretension": {
+      "etiqueta": "Efectos y resultado constitucional solicitado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "expediente_origen": {
+      "etiqueta": "Número y órgano del expediente de origen",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    }
+  },
+  "texto_legal_relevante": "Fuente: Ley de Amparo, texto vigente proporcionado por el usuario, última reforma DOF 16-10-2025. Artículos de referencia: 5-II, 6, 108, 110. El constructor debe mostrar explicación jurídica suficiente de estos artículos y vincularlos con los datos capturados, sin inventar requisitos no contenidos en la fuente.",
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  },
+  "documento_generado": "{{autoridad_competente}}\nEXPEDIENTE: {{numero_expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: AMPARO CONTRA ACTOS DE PARTICULARES EQUIVALENTES A AUTORIDAD\nC. {autoridad_competente}:\n{{promovente_nombre}}, por mi propio derecho / en representación de {{representado_nombre}}, personalidad que acredito con {{documento_personalidad}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, comparezco para exponer:\nI. OBJETO\nEl presente escrito de amparo / promoción procesal tiene por objeto plantear Constructor para determinar cuándo una persona particular puede ser autoridad responsable y estructurar la impugnación en la vía Análisis inicial → verificación de procedencia → identificación de órgano competente → control de plazo → integración de hechos y pruebas → definición del parámetro constitucional → actuación procesal → seguimiento de suspensión, sentencia, recurso o cumplimiento, según corresponda..\nII. HECHOS\n1. Identificar cronológicamente el origen del acto, norma u omisión y la intervención de cada autoridad.\n2. Precisar cuándo y cómo la persona quejosa conoció el acto y qué constancia lo acredita.\n3. Explicar la afectación real, actual y diferenciada y su relación causal con el acto reclamado.\nIII. DERECHO\nCon fundamento en Constitución Política de los Estados Unidos Mexicanos, artículos 103 y 107, en relación con Fundamento constitucional del juicio de amparo.\nCon fundamento en Ley de Amparo, artículos 5-II, 6, 108, 110, en relación con Constructor para determinar cuándo una persona particular puede ser autoridad responsable y estructurar la impugnación..\nIV. PRETENSIONES / PETICIONES\n1. Se reconozca la procedencia de la vía y se conceda el amparo y protección de la Justicia Federal cuando resulte jurídicamente procedente..\n2. Se produzcan los efectos restitutorios o protectores correspondientes al derecho vulnerado, conforme a la sentencia..\n3. Se dicten las medidas cautelares o procesales que legalmente procedan..\nV. PRUEBAS\n1. {'medio': 'Documental pública', 'objeto': 'Acreditar actos de autoridad, resoluciones, expedientes, notificaciones y constancias oficiales.', 'estatus': 'por_ofrecer'}\n2. {'medio': 'Documental privada', 'objeto': 'Acreditar hechos y afectaciones que no consten en documentos públicos.', 'estatus': 'por_ofrecer'}\n3. {'medio': 'Instrumental de actuaciones', 'objeto': 'Valorar las constancias que integren el expediente constitucional.', 'estatus': 'por_ofrecer'}\n4. {'medio': 'Presuncional', 'objeto': 'Derivar consecuencias lógicas y jurídicas de hechos acreditados.', 'estatus': 'por_ofrecer'}\nVI. DOCUMENTOS\n{{documentos_anexos}}\nVII. PETITORIOS\nPRIMERO. Tenerme por presentado con este escrito y documentos.\nSEGUNDO. Acordar lo conducente conforme a la vía y competencia indicadas.\nTERCERO. Tener por formuladas las pretensiones y por ofrecidas las pruebas relacionadas.\nCUARTO. Dictar la resolución que en derecho corresponda. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Constitución Política de los Estados Unidos Mexicanos, artículos 103 y 107: Fundamento constitucional del juicio de amparo.\n- Ley de Amparo, artículos 5-II, 6, 108, 110: Constructor para determinar cuándo una persona particular puede ser autoridad responsable y estructurar la impugnación.."
+}

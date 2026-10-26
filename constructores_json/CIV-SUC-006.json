@@ -1,0 +1,483 @@
+{
+  "id": "CIV-SUC-006",
+  "materia": "Sucesorio",
+  "diagnostico": {
+    "objetivo": "Integrar inventario y avalúo completo de la masa hereditaria.",
+    "preguntas": [
+      "¿Qué bienes, créditos y deudas existen?",
+      "¿Hay bienes litigiosos o de terceros?",
+      "¿Se requiere inventario solemne?",
+      "¿Quién valuará?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Inventario y avalúo sucesorio",
+    "tipo_documento": "promoción",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Sucesorio",
+      "Inventario y avalúo sucesorio"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Inventario y avalúo",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento sucesorio conforme al Código de Procedimientos Civiles del Estado de Jalisco.",
+    "requisitos": [
+      "Verificar competencia y legitimación.",
+      "Integrar documentos base.",
+      "Identificar personas que deban ser llamadas.",
+      "Revisar requisitos especiales de la legislación aplicable."
+    ],
+    "nota": "SIGDE no sustituye la determinación profesional de competencia, vía y estrategia del caso concreto."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "El albacea integra activos, pasivos y documentos de la sucesión.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "S"
+    },
+    {
+      "orden": 2,
+      "texto": "e"
+    },
+    {
+      "orden": 3,
+      "texto": ""
+    },
+    {
+      "orden": 4,
+      "texto": "a"
+    },
+    {
+      "orden": 5,
+      "texto": "p"
+    },
+    {
+      "orden": 6,
+      "texto": "r"
+    },
+    {
+      "orden": 7,
+      "texto": "u"
+    },
+    {
+      "orden": 8,
+      "texto": "e"
+    },
+    {
+      "orden": 9,
+      "texto": "b"
+    },
+    {
+      "orden": 10,
+      "texto": "e"
+    },
+    {
+      "orden": 11,
+      "texto": ""
+    },
+    {
+      "orden": 12,
+      "texto": "e"
+    },
+    {
+      "orden": 13,
+      "texto": "l"
+    },
+    {
+      "orden": 14,
+      "texto": ""
+    },
+    {
+      "orden": 15,
+      "texto": "i"
+    },
+    {
+      "orden": 16,
+      "texto": "n"
+    },
+    {
+      "orden": 17,
+      "texto": "v"
+    },
+    {
+      "orden": 18,
+      "texto": "e"
+    },
+    {
+      "orden": 19,
+      "texto": "n"
+    },
+    {
+      "orden": 20,
+      "texto": "t"
+    },
+    {
+      "orden": 21,
+      "texto": "a"
+    },
+    {
+      "orden": 22,
+      "texto": "r"
+    },
+    {
+      "orden": 23,
+      "texto": "i"
+    },
+    {
+      "orden": 24,
+      "texto": "o"
+    },
+    {
+      "orden": 25,
+      "texto": ""
+    },
+    {
+      "orden": 26,
+      "texto": "y"
+    },
+    {
+      "orden": 27,
+      "texto": ""
+    },
+    {
+      "orden": 28,
+      "texto": "a"
+    },
+    {
+      "orden": 29,
+      "texto": "v"
+    },
+    {
+      "orden": 30,
+      "texto": "a"
+    },
+    {
+      "orden": 31,
+      "texto": "l"
+    },
+    {
+      "orden": 32,
+      "texto": "ú"
+    },
+    {
+      "orden": 33,
+      "texto": "o"
+    },
+    {
+      "orden": 34,
+      "texto": ""
+    },
+    {
+      "orden": 35,
+      "texto": "o"
+    },
+    {
+      "orden": 36,
+      "texto": ""
+    },
+    {
+      "orden": 37,
+      "texto": "s"
+    },
+    {
+      "orden": 38,
+      "texto": "e"
+    },
+    {
+      "orden": 39,
+      "texto": ""
+    },
+    {
+      "orden": 40,
+      "texto": "r"
+    },
+    {
+      "orden": 41,
+      "texto": "e"
+    },
+    {
+      "orden": 42,
+      "texto": "s"
+    },
+    {
+      "orden": 43,
+      "texto": "u"
+    },
+    {
+      "orden": 44,
+      "texto": "e"
+    },
+    {
+      "orden": 45,
+      "texto": "l"
+    },
+    {
+      "orden": 46,
+      "texto": "v"
+    },
+    {
+      "orden": 47,
+      "texto": "a"
+    },
+    {
+      "orden": 48,
+      "texto": "n"
+    },
+    {
+      "orden": 49,
+      "texto": ""
+    },
+    {
+      "orden": 50,
+      "texto": "s"
+    },
+    {
+      "orden": 51,
+      "texto": "u"
+    },
+    {
+      "orden": 52,
+      "texto": "s"
+    },
+    {
+      "orden": 53,
+      "texto": ""
+    },
+    {
+      "orden": 54,
+      "texto": "o"
+    },
+    {
+      "orden": 55,
+      "texto": "p"
+    },
+    {
+      "orden": 56,
+      "texto": "o"
+    },
+    {
+      "orden": 57,
+      "texto": "s"
+    },
+    {
+      "orden": 58,
+      "texto": "i"
+    },
+    {
+      "orden": 59,
+      "texto": "c"
+    },
+    {
+      "orden": 60,
+      "texto": "i"
+    },
+    {
+      "orden": 61,
+      "texto": "o"
+    },
+    {
+      "orden": 62,
+      "texto": "n"
+    },
+    {
+      "orden": 63,
+      "texto": "e"
+    },
+    {
+      "orden": 64,
+      "texto": "s"
+    },
+    {
+      "orden": 65,
+      "texto": "."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos que acreditan los hechos y el derecho invocado.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Actuaciones del expediente en lo que favorezcan.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional",
+      "objeto": "Presunciones que resulten de los hechos acreditados.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Títulos de propiedad",
+    "Certificados registrales",
+    "Estados de cuenta",
+    "Avalúos",
+    "Relación de deudas"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código de Procedimientos Civiles del Estado de Jalisco",
+      "tema": "Inventario y avalúo",
+      "articulos": "854-878",
+      "estatus": "registrado",
+      "ck_clave": "CK/cpc_jalisco/inventario_y_aval_o"
+    },
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Albacea y administración",
+      "articulos": "3020-3056",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/albacea_y_administraci_n"
+    }
+  ],
+  "teoria_caso": {
+    "texto": [
+      "El inventario debe individualizar bienes y documentos y reflejar su estado y valor."
+    ],
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "autor_sucesion": {
+      "etiqueta": "Autor de la sucesión",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_especificos": {
+      "etiqueta": "Hechos específicos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: PRESENTACIÓN DE INVENTARIO Y AVALÚO SUCESORIO C. JUEZ COMPETENTE\nP R E S E N T E. {{promovente_nombre}}, en mi carácter de {{personalidad_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, y autorizando a {{abogado_patrono}}, comparezco para exponer:\nI. OBJETO La presente promoción tiene por objeto presentar el inventario y avalúo de los bienes de la sucesión de {{autor_sucesion}}. La relación de bienes y circunstancias específicas son: {{hechos_especificos}}.\nII. INVENTARIO Se deberá individualizar cada bien con descripción suficiente, ubicación, título de propiedad, datos registrales, gravámenes, posesión, valor y documentación soporte. En bienes muebles se precisarán marca, modelo, número de serie y estado cuando sean relevantes; en cuentas y derechos se identificará institución, contrato, saldo y titularidad.\nIII. AVALÚO El valor deberá sustentarse con dictamen del perito correspondiente cuando proceda. El CPC establece en su artículo 854 que, dentro de los diez días siguientes a la aceptación del cargo, el albacea debe proceder a la formación simultánea del inventario y avalúo, dando aviso al Juzgado para la designación o acuerdo del perito valuador.\nIV. OPOSICIONES La oposición a los avalúos se sustanciará en los términos del artículo 874 cuando se alegue error en la cosa o en sus condiciones esenciales, o cohecho o inteligencia fraudulenta entre peritos.\nV. PETITORIOS\nPRIMERO. Tener por presentado el inventario y avalúo.\nSEGUNDO. Dar vista a los interesados.\nTERCERO. Admitir, en su caso, el dictamen pericial y documentación soporte.\nCUARTO. Aprobar el inventario y avalúo si cumplen con los requisitos legales y no existe oposición procedente. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código de Procedimientos Civiles del Estado de Jalisco, artículos 854-878: Inventario y avalúo.\n- Código Civil del Estado de Jalisco, artículos 3020-3056: Albacea y administración.",
+  "siguiente_paso": "Verificar etapa procesal, legitimación y documentos antes de presentar.",
+  "alertas": [
+    "No confundir la etapa procesal del constructor con una etapa ya agotada.",
+    "Verificar legislación vigente y resoluciones del expediente.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

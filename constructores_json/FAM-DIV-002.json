@@ -1,0 +1,276 @@
+{
+  "id": "FAM-DIV-002",
+  "materia": "Familiar",
+  "diagnostico": {
+    "objetivo": "Estructurar un convenio de consecuencias del divorcio, cuando legalmente proceda.",
+    "preguntas": [
+      "¿Qué acuerdos existen sobre alimentos?",
+      "¿Quién tendrá custodia y cómo será la convivencia?",
+      "¿Cómo se distribuirán bienes y obligaciones?",
+      "¿Existen deudas, compensación o pendientes?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Convenio de divorcio",
+    "tipo_documento": "convenio",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Familiar",
+      "Convenio de divorcio"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Convenio sobre consecuencias del divorcio",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "La vía y homologación dependerán del procedimiento de divorcio.",
+    "requisitos": [
+      "Verificar competencia y legitimación.",
+      "Integrar documentos base.",
+      "Identificar personas que deban ser llamadas.",
+      "Revisar requisitos especiales de la legislación aplicable."
+    ],
+    "nota": "SIGDE no sustituye la determinación profesional de competencia, vía y estrategia del caso concreto."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Las partes acuerdan respecto de {{custodia_acuerdo}}, {{convivencia_acuerdo}} y {{alimentos_acuerdo}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Respecto del patrimonio acuerdan {{patrimonio_acuerdo}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Aprobación judicial del convenio en lo que legalmente proceda."
+    },
+    {
+      "orden": 2,
+      "texto": "Fijación de reglas claras de custodia y convivencia."
+    },
+    {
+      "orden": 3,
+      "texto": "Determinación de alimentos y forma de cumplimiento."
+    },
+    {
+      "orden": 4,
+      "texto": "Liquidación o bases para liquidación patrimonial."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Acta de matrimonio y documentos de identidad.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Actas de nacimiento.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Documentos patrimoniales, cuando sean necesarios.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Acta de matrimonio",
+    "Actas de nacimiento",
+    "Capitulaciones",
+    "Relación de bienes y deudas"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Divorcio y efectos",
+      "articulos": "404-422",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/divorcio_y_efectos"
+    },
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Guarda y custodia",
+      "articulos": "560-577",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/guarda_y_custodia"
+    },
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Alimentos",
+      "articulos": "432-451",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/alimentos"
+    },
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Sociedad legal y régimen patrimonial",
+      "articulos": "282-301",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/sociedad_legal_y_r_gimen_patrimonial"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "El convenio debe traducir los acuerdos de las partes a obligaciones claras, ejecutables y compatibles con el interés superior de niñas, niños y adolescentes.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "custodia_acuerdo": {
+      "etiqueta": "Acuerdo de custodia",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "convivencia_acuerdo": {
+      "etiqueta": "Acuerdo de convivencias",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "alimentos_acuerdo": {
+      "etiqueta": "Acuerdo de alimentos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "patrimonio_acuerdo": {
+      "etiqueta": "Acuerdo patrimonial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_matrimonio": {
+      "etiqueta": "Fecha de matrimonio",
+      "tipo": "fecha",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: CONVENIO PARA REGULAR LAS CONSECUENCIAS DEL DIVORCIO C. JUEZ DE LO FAMILIAR EN TURNO\nP R E S E N T E. {{promovente_nombre}} y {{domicilio_contraparte}}, por nuestro propio derecho, comparecemos para presentar convenio y manifestar:\nI. DECLARACIONES\n1. Que contrajimos matrimonio en fecha {{fecha_matrimonio}}, bajo el régimen patrimonial que se precisará en el expediente.\n2. Que hemos decidido solicitar la disolución del vínculo matrimonial por mutuo consentimiento.\n3. Que conocemos las consecuencias jurídicas del divorcio y presentamos este convenio para que sea revisado judicialmente.\n4. Que la existencia de hijas e hijos, su edad, necesidades y situación actual se describen en el expediente y se toman como base para las cláusulas correspondientes.\nII. CLÁUSULAS PRIMERA. GUARDA Y CUSTODIA. Las partes acuerdan: {{custodia_acuerdo}}. El acuerdo deberá salvaguardar el interés superior de la niñez y será sometido a revisión judicial. SEGUNDA. RÉGIMEN DE VISITAS Y CONVIVENCIA. Se propone: {{convivencia_acuerdo}}. El régimen deberá ser claro respecto de días, horarios, vacaciones, fechas especiales, lugar de entrega y recepción y medios de comunicación, y no podrá utilizarse como mecanismo de presión respecto de alimentos. TERCERA. ALIMENTOS. Las partes acuerdan: {{alimentos_acuerdo}}. Deberá precisarse acreedor, deudor, monto o fórmula, periodicidad, forma de pago, actualización, garantía y gastos extraordinarios cuando corresponda. CUARTA. DOMICILIO. Se determinará qué domicilio servirá de habitación durante el procedimiento y, en su caso, las reglas posteriores que las partes acuerden. QUINTA. RÉGIMEN PATRIMONIAL. {{patrimonio_acuerdo}}. Cuando se trate de sociedad legal o conyugal, deberá acompañarse la relación de bienes, cargas, deudas, avalúos y proyecto de liquidación o partición que corresponda. SEXTA. COMPENSACIÓN Y ALIMENTOS ENTRE CÓNYUGES. Se deberá indicar expresamente si existe reclamación, renuncia válida o acuerdo sobre estos conceptos, siempre sujeto a la legislación aplicable y a la revisión judicial. SÉPTIMA. MODIFICACIONES. Cualquier modificación deberá constar en la forma legalmente procedente y, cuando afecte derechos de personas menores de edad, sujetarse a control judicial.\nIII. FUNDAMENTO El convenio se formula tomando como base los artículos 403, 404, 406, 414 Bis, 415, 417-Bis, 418 y 419 del Código Civil del Estado de Jalisco. El artículo 406 exige que el convenio regule, según corresponda, custodia, alimentos, convivencia, habitación, alimentos entre cónyuges y administración/liquidación de los bienes.\nIV. PETICIÓN\nPRIMERO. Tenernos por presentados con este convenio.\nSEGUNDO. Darle el trámite correspondiente y revisar que sus cláusulas protejan los derechos de las personas involucradas.\nTERCERO. Aprobarlo en lo que resulte conforme a derecho y al interés superior de la niñez, y ordenar las medidas necesarias para su cumplimiento. PROTESTAMOS LO NECESARIO. {{lugar}}, {{fecha}}. {{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Civil del Estado de Jalisco, artículos 404-422: Divorcio y efectos.\n- Código Civil del Estado de Jalisco, artículos 560-577: Guarda y custodia.\n- Código Civil del Estado de Jalisco, artículos 432-451: Alimentos.\n- Código Civil del Estado de Jalisco, artículos 282-301: Sociedad legal y régimen patrimonial.",
+  "siguiente_paso": "Revisar que cada cláusula sea clara, ejecutable y compatible con derechos de menores y terceros.",
+  "alertas": [
+    "No pactar renuncias que afecten derechos indisponibles.",
+    "Verificar bienes, deudas y régimen matrimonial antes de liquidar.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

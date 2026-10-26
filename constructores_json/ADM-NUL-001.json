@@ -1,0 +1,212 @@
+{
+  "id": "ADM-NUL-001",
+  "materia": "Administrativo",
+  "jurisdiccion": "Jalisco",
+  "diagnostico": {
+    "objetivo": "Clasificar vicios del acto conforme a elementos y requisitos de validez de la ley local.",
+    "preguntas": [
+      "¿Falta un elemento del artículo 12?",
+      "¿Falta un requisito del artículo 13?",
+      "¿Es subsanable?",
+      "¿Qué efectos produce?"
+    ],
+    "datos_minimos": [
+      "acto",
+      "vicio",
+      "elemento_requisito",
+      "consecuencia"
+    ],
+    "resultado_esperado": "Determinar vía, competencia, plazo, hechos, prueba y documento procedente."
+  },
+  "clasificacion": {
+    "constructor": "Análisis de nulidad absoluta y relativa Jalisco",
+    "tipo_documento": "diagnóstico de nulidad",
+    "rol_promovente": "Promovente / interesado / presunto responsable según caso",
+    "rol_contraparte": "Autoridad / tercero / denunciante",
+    "criterios": [
+      "competencia",
+      "legalidad",
+      "fundamentación y motivación",
+      "debido procedimiento",
+      "plazo",
+      "prueba",
+      "vía"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Análisis de nulidad absoluta y relativa Jalisco",
+    "naturaleza": "procesal administrativa",
+    "descripcion": "Clasificar vicios del acto conforme a elementos y requisitos de validez de la ley local.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Acto → elemento/requisito → clasificación → defensa → consecuencia",
+    "requisitos": [
+      "Identificar autoridad",
+      "Acreditar personalidad",
+      "Precisar acto/conducta",
+      "Integrar expediente y pruebas",
+      "Verificar ley especial y plazo"
+    ],
+    "nota": "Constructor basado únicamente en las fuentes cargadas; verificar legislación especial vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "El acto presenta {{vicio}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "El vicio afecta {{elemento_requisito}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Determinar si corresponde nulidad absoluta o relativa."
+    },
+    {
+      "orden": 2,
+      "texto": "Invocar la consecuencia en la vía procedente."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental pública",
+      "objeto": "Acto.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Expediente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Acto íntegro",
+    "Norma aplicable",
+    "Notificación"
+  ],
+  "fundamento": [
+    {
+      "orden": 1,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Elementos y requisitos de validez",
+      "articulos": "12-13",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/validez"
+    },
+    {
+      "orden": 2,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Nulidad y eficacia",
+      "articulos": "15-18",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/nulidad"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La clasificación depende de distinguir elementos de validez del artículo 12 y requisitos del artículo 13, y de proyectar la consecuencia prevista en la ley.",
+    "elementos": [
+      "Hechos",
+      "Norma",
+      "Competencia",
+      "Acto/conducta",
+      "Prueba",
+      "Vicio/defensa",
+      "Riesgo",
+      "Resultado"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el documento final."
+  },
+  "campos_dinamicos": {
+    "promovente_nombre": {
+      "etiqueta": "Nombre / razón social",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "autoridad_nombre": {
+      "etiqueta": "Autoridad",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "expediente_numero": {
+      "etiqueta": "Expediente / folio",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "fecha_acto": {
+      "etiqueta": "Fecha del acto",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "notificacion_fecha": {
+      "etiqueta": "Fecha de notificación",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "relato_hechos": {
+      "etiqueta": "Relato de hechos",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pretension_principal": {
+      "etiqueta": "Resultado buscado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pruebas_disponibles": {
+      "etiqueta": "Pruebas disponibles",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "vicio": {
+      "etiqueta": "Vicio",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "elemento_requisito": {
+      "etiqueta": "Elemento o requisito afectado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    }
+  },
+  "checklist": [
+    "Identificar acto",
+    "Separar elemento/requisito",
+    "Clasificar nulidad",
+    "Revisar subsanación",
+    "Elegir vía",
+    "Controlar plazo"
+  ],
+  "ruta_procesal": [
+    "Acto",
+    "elemento/requisito",
+    "clasificación",
+    "defensa",
+    "consecuencia"
+  ],
+  "advertencias": [
+    "Revisar ley especial y reglamento interior.",
+    "Verificar vigencia de la norma.",
+    "No presentar sin revisar expediente y cómputo de plazos."
+  ],
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  },
+  "documento_generado": "{{autoridad_competente}}\nEXPEDIENTE: {{numero_expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: ANÁLISIS DE NULIDAD ABSOLUTA Y RELATIVA JALISCO\nC. {autoridad_competente}:\n{{promovente_nombre}}, por mi propio derecho / en representación de {{representado_nombre}}, personalidad que acredito con {{documento_personalidad}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, comparezco para exponer:\nI. OBJETO\nEl presente diagnóstico de nulidad tiene por objeto plantear Clasificar vicios del acto conforme a elementos y requisitos de validez de la ley local en la vía Acto → elemento/requisito → clasificación → defensa → consecuencia.\nII. HECHOS\n1. El acto presenta {{vicio}}.\n2. El vicio afecta {{elemento_requisito}}.\nIII. DERECHO\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 12-13, en relación con Elementos y requisitos de validez.\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 15-18, en relación con Nulidad y eficacia.\nIV. PRETENSIONES / PETICIONES\n1. Determinar si corresponde nulidad absoluta o relativa..\n2. Invocar la consecuencia en la vía procedente..\nV. PRUEBAS\n1. {'medio': 'Documental pública', 'objeto': 'Acto.', 'estatus': 'por_ofrecer'}\n2. {'medio': 'Documental', 'objeto': 'Expediente.', 'estatus': 'por_ofrecer'}\nVI. DOCUMENTOS\n{{documentos_anexos}}\nVII. PETITORIOS\nPRIMERO. Tenerme por presentado con este escrito y documentos.\nSEGUNDO. Acordar lo conducente conforme a la vía y competencia indicadas.\nTERCERO. Tener por formuladas las pretensiones y por ofrecidas las pruebas relacionadas.\nCUARTO. Dictar la resolución que en derecho corresponda. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 12-13: Elementos y requisitos de validez.\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 15-18: Nulidad y eficacia."
+}

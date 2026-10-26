@@ -1,0 +1,309 @@
+{
+  "id": "MERC-EJE-001",
+  "materia": "Mercantil",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Demanda ejecutiva mercantil.",
+    "preguntas": [
+      "¿El documento tiene fuerza ejecutiva?",
+      "¿Vencimiento?",
+      "¿Prescripción?",
+      "¿Bienes para embargo?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Demanda ejecutiva mercantil",
+    "tipo_documento": "demanda",
+    "rol_promovente": "actor(a)",
+    "rol_contraparte": "demandado(a)",
+    "criterios": [
+      "Ejecutiva mercantil"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Acción ejecutiva derivada de documento con fuerza ejecutiva",
+    "naturaleza": "accion",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Juicio ejecutivo mercantil conforme al Código de Comercio [VALIDAR DOCUMENTOS QUE TRAEN APAREJADA EJECUCIÓN]",
+    "requisitos": [
+      "Documento que traiga aparejada ejecución.",
+      "Cantidad líquida y exigible.",
+      "Competencia.",
+      "Legitimación."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Con fecha {{fecha_documento}}, {{contraparte_nombre}} suscribió/aceptó {{documento_base}} por {{monto_reclamado}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "El vencimiento fue el {{fecha_vencimiento}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "El documento no fue pagado a su vencimiento.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "{{promovente_nombre}} es legítimo tenedor/titular del documento, {{forma_legitimacion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 5,
+      "texto": "Intereses: {{intereses_pactados}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "El pago de {{monto_reclamado}} como suerte principal."
+    },
+    {
+      "orden": 2,
+      "texto": "El pago de intereses {{intereses_pactados}} ."
+    },
+    {
+      "orden": 3,
+      "texto": "Requerimiento de pago, embargo y, en su caso, remate de bienes del demandado."
+    },
+    {
+      "orden": 4,
+      "texto": "Gastos y costas ."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Título de crédito original, base de la acción, para acreditar su existencia, literalidad, vencimiento y falta de pago.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Confesional",
+      "objeto": "Posiciones a cargo de {{contraparte_nombre}}, para que reconozca los hechos y documentos base de la acción.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional legal y humana",
+      "objeto": "Las deducciones lógico-jurídicas que se desprendan de los hechos probados.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Documento base original",
+    "Personalidad",
+    "Copias de traslado",
+    "Estado de cuenta"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código de Comercio",
+      "tema": "Juicio ejecutivo mercantil: procedencia y trámite",
+      "articulos": "1391-1409",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_de_comercio/juicio_ejecutivo_mercantil_procedencia_y_tramite"
+    },
+    {
+      "ordenamiento": "Código de Comercio",
+      "tema": "Embargo, requerimiento y remate",
+      "articulos": "1394-1414",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_de_comercio/embargo_requerimiento_y_remate"
+    },
+    {
+      "ordenamiento": "Ley General de Títulos y Operaciones de Crédito",
+      "tema": "Título base de la acción (si aplica)",
+      "articulos": "170-174 para pagaré; 76-174 para letra de cambio; 175-207 para cheque, según título",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_general_de_titulos_y_operaciones_de_/titulo_base_de_la_accion_si_aplica"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "El documento base trae aparejada ejecución, está vencido y no pagado; procede requerir, embargar y rematar.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "JUEZ COMPETENTE EN MATERIA MERCANTIL [VALIDAR FUERO Y COMPETENCIA]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente (propio derecho / representante)",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "caracter_promovente": {
+      "etiqueta": "Caracter promovente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "actor(a)"
+    },
+    "documento_personalidad": {
+      "etiqueta": "Documento personalidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "monto_reclamado": {
+      "etiqueta": "Monto reclamado",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "intereses_pactados": {
+      "etiqueta": "Intereses pactados",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_documento": {
+      "etiqueta": "Fecha documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "documento_base": {
+      "etiqueta": "Documento base",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_vencimiento": {
+      "etiqueta": "Fecha vencimiento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "forma_legitimacion": {
+      "etiqueta": "Forma legitimacion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DEMANDA EN LA VÍA EJECUTIVA MERCANTIL\nC. {{autoridad}}:\n{{promovente_nombre}}, {{personalidad_promovente}}, con domicilio en {{domicilio_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}} y autorizando para tales efectos a {{abogado_patrono}}, comparezco para exponer:\nI. PERSONALIDAD Y DOMICILIO\nComparezco en mi carácter de {{caracter_promovente}}, personalidad que acredito con {{documento_personalidad}}. Mi domicilio es {{domicilio_promovente}}; el de la contraparte, {{contraparte_nombre}}, es {{domicilio_contraparte}}.\nII. PRETENSIONES\nPor medio del presente escrito reclamo/solicito:\n1. El pago de {{monto_reclamado}} como suerte principal.\n2. El pago de intereses {{intereses_pactados}}.\n3. Requerimiento de pago, embargo y, en su caso, remate de bienes del demandado.\n4. Gastos y costas.\nIII. HECHOS\nPRIMERO. Con fecha {{fecha_documento}}, {{contraparte_nombre}} suscribió/aceptó {{documento_base}} por {{monto_reclamado}}.\nSEGUNDO. El vencimiento fue el {{fecha_vencimiento}}.\nTERCERO. El documento no fue pagado a su vencimiento.\nCUARTO. {{promovente_nombre}} es legítimo tenedor/titular del documento, {{forma_legitimacion}}.\nQUINTO. Intereses: {{intereses_pactados}}.\nIV. DERECHO\nFundan la presente promoción las disposiciones siguientes (artículos aplicables al acto y a la vía indicada):\n- Código de Comercio: Juicio ejecutivo mercantil: procedencia y trámite. Artículos aplicables: 1394-1414.\n- Código de Comercio: Embargo, requerimiento y remate. Artículos aplicables: 1394-1414.\n- Ley General de Títulos y Operaciones de Crédito: Título base de la acción (si aplica). Artículos aplicables: 170-174 para pagaré; 76-174 para letra de cambio; 175-207 para cheque, según título.\nV. PRUEBAS\nOfrezco las siguientes pruebas, relacionándolas con los hechos indicados:\n1. DOCUMENTAL.- Título de crédito original, base de la acción, para acreditar su existencia, literalidad, vencimiento y falta de pago.\n2. CONFESIONAL.- Posiciones a cargo de {{contraparte_nombre}}, para que reconozca los hechos y documentos base de la acción.\n3. PRESUNCIONAL LEGAL Y HUMANA.- Las deducciones lógico-jurídicas que se desprendan de los hechos probados.\n4. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n\nSe acompañan los documentos siguientes:\n1. Documento base original\n2. Personalidad\n3. Copias de traslado\n4. Estado de cuenta\nVI. PETITORIOS\nPor lo expuesto, a Usted atentamente pido:\nPRIMERO. Tenerme por presentado(a) con este escrito y los documentos que se acompañan, promoviendo demanda ejecutiva mercantil en contra de {{contraparte_nombre}}.\nSEGUNDO. Admitir a trámite la demanda en la vía señalada, ordenar el emplazamiento de la contraparte en el domicilio indicado y correrle traslado.\nTERCERO. Tener por ofrecidas las pruebas señaladas en el capítulo respectivo y ordenar su admisión y desahogo.\nCUARTO. En su oportunidad, dictar resolución en la que se declaren procedentes las pretensiones reclamadas, con lo demás que en derecho corresponda. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Código de Comercio, artículos 1391-1409: Juicio ejecutivo mercantil: procedencia y trámite.\n- Código de Comercio, artículos 1394-1414: Embargo, requerimiento y remate.\n- Ley General de Títulos y Operaciones de Crédito, artículos 170-174 para pagaré; 76-174 para letra de cambio; 175-207 para cheque, según título: Título base de la acción (si aplica).",
+  "siguiente_paso": "Verificar que el original se presente y sus requisitos de forma.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Materia mercantil: respetar la supletoriedad aplicable al Código de Comercio y a las leyes mercantiles especiales ."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

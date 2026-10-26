@@ -1,0 +1,161 @@
+{
+  "id": "PEN-APR-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Preparar propuesta de acuerdos sobre hechos o circunstancias que no serán materia de debate probatorio.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Acuerdos probatorios",
+    "tipo_documento": "promoción",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Propuesta de acuerdos probatorios.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Etapa intermedia.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Las partes identifican como hecho/circunstancia susceptible de acuerdo {{hecho_acuerdo}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La base documental o antecedente de ese hecho es {{soporte}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "El alcance que se propone es {{alcance}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Que se tengan por propuestos los acuerdos y, en su caso, se aprueben en audiencia."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Soporte del hecho o circunstancia.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Registro de audiencia",
+      "objeto": "Constancia del acuerdo, una vez aprobado.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Soporte documental.",
+    "Propuesta de acuerdo."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Objeto de etapa intermedia",
+      "articulos": "334",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Desarrollo de la audiencia intermedia",
+      "articulos": "344",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso debe identificar qué hechos conviene sacar del debate y cuáles deben permanecer controvertidos.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hecho_acuerdo": {
+      "etiqueta": "Hecho Acuerdo",
+      "tipo": "texto",
+      "fuente": "expediente.hecho_acuerdo",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "soporte": {
+      "etiqueta": "Soporte",
+      "tipo": "texto",
+      "fuente": "expediente.soporte",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "alcance": {
+      "etiqueta": "Alcance",
+      "tipo": "texto",
+      "fuente": "expediente.alcance",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "C. JUEZ DE CONTROL\nASUNTO: PROPUESTA DE ACUERDOS PROBATORIOS\nI. HECHO O CIRCUNSTANCIA\n{{hecho_acuerdo}}.\nII. SOPORTE\n{{soporte}}.\nIII. ALCANCE\n{{alcance}}. PETICIÓN\nSe tenga por presentada la propuesta y se resuelva en audiencia conforme al CNPP. \nFUNDAMENTO JURÍDICO APLICADO\n- Código Nacional de Procedimientos Penales, artículos 334: Objeto de etapa intermedia.\n- Código Nacional de Procedimientos Penales, artículos 344: Desarrollo de la audiencia intermedia.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

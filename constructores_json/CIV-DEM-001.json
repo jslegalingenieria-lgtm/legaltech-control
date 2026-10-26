@@ -1,0 +1,379 @@
+{
+  "id": "CIV-DEM-001",
+  "materia": "Civil",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Demanda civil.",
+    "preguntas": [
+      "¿Qué acto jurídico o hecho da origen al reclamo?",
+      "¿Existe documento base?",
+      "¿Cuál es la acción específica y existe constructor especializado?",
+      "¿Cuál es la cuantía?",
+      "¿Se agotó alguna gestión previa?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Demanda civil",
+    "tipo_documento": "demanda",
+    "rol_promovente": "actor(a)",
+    "rol_contraparte": "demandado(a)",
+    "criterios": [
+      "Contenciosa",
+      "Personal / real / mixta [SELECCIONAR]",
+      "Cuantía [CAPTURAR]"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Acción civil [SELECCIONAR ACCIÓN ESPECÍFICA]",
+    "naturaleza": "accion",
+    "descripcion": "Constructor base para demandas civiles no cubiertas por un constructor especializado.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Juicio civil en la vía que corresponda conforme al Código de Procedimientos Civiles del Estado de Jalisco [VALIDAR VÍA SEGÚN ACCIÓN Y CUANTÍA]",
+    "requisitos": [
+      "Competencia por materia, cuantía y territorio.",
+      "Legitimación activa y pasiva acreditadas.",
+      "Personalidad del promovente.",
+      "Documento base o hechos de la acción.",
+      "Interés jurídico."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Con fecha {{fecha_acto}}, {{promovente_nombre}} y {{contraparte_nombre}} {{acto_juridico}}, respecto de {{objeto_acto}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "En dicho acto las partes acordaron {{obligaciones_pactadas}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "{{contraparte_nombre}} {{hecho_incumplimiento}}, a partir de {{fecha_incumplimiento}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "A pesar de las gestiones realizadas ({{gestiones_previas}}), la contraparte no ha cumplido, por lo que resulta necesario acudir a esta vía.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 5,
+      "texto": "El valor del interés reclamado asciende a {{monto_reclamado}}, lo que determina la competencia y la vía.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "La declaración judicial de que {{promovente_nombre}} tiene derecho a {{derecho_reclamado}}."
+    },
+    {
+      "orden": 2,
+      "texto": "La condena a {{contraparte_nombre}} a {{prestacion_principal}}."
+    },
+    {
+      "orden": 3,
+      "texto": "El pago de {{monto_reclamado}} por concepto de suerte principal, en su caso."
+    },
+    {
+      "orden": 4,
+      "texto": "El pago de intereses, daños y perjuicios en los términos que prueben y que la ley permita ."
+    },
+    {
+      "orden": 5,
+      "texto": "El pago de gastos y costas en los términos de la ley aplicable ."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos exhibidos, para acreditar el acto jurídico y el incumplimiento.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Confesional",
+      "objeto": "Posiciones a cargo de {{contraparte_nombre}}, para que reconozca los hechos y documentos base de la acción.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional legal y humana",
+      "objeto": "Las deducciones lógico-jurídicas que se desprendan de los hechos probados.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Documento que acredite la personalidad",
+    "Documento base de la acción",
+    "Copias de traslado",
+    "Comprobantes de gestiones previas"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Obligaciones y su cumplimiento",
+      "articulos": "1590-1618",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_civil_del_estado_de_jalisco/obligaciones_y_su_cumplimiento"
+    },
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Acto jurídico aplicable al caso",
+      "articulos": "1759-1795",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_civil_del_estado_de_jalisco/acto_juridico_aplicable_al_caso"
+    },
+    {
+      "ordenamiento": "Código de Procedimientos Civiles del Estado de Jalisco",
+      "tema": "Demanda: requisitos y vía",
+      "articulos": "267-279",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_de_procedimientos_civiles_del_est/demanda_requisitos_y_via"
+    },
+    {
+      "ordenamiento": "Código de Procedimientos Civiles del Estado de Jalisco",
+      "tema": "Pruebas",
+      "articulos": "286-304, 311-418",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_de_procedimientos_civiles_del_est/pruebas"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "{{promovente_nombre}} celebró con {{contraparte_nombre}} un acto jurídico válido, cumplió lo que le correspondía y la contraparte incumplió, lo que genera el derecho a exigir {{prestacion_principal}}.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "JUEZ CIVIL COMPETENTE DEL ESTADO DE JALISCO según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "accion_ejercitada": {
+      "etiqueta": "Acción ejercitada",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente (propio derecho / representante)",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "caracter_promovente": {
+      "etiqueta": "Caracter promovente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "actor(a)"
+    },
+    "documento_personalidad": {
+      "etiqueta": "Documento personalidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "derecho_reclamado": {
+      "etiqueta": "Derecho reclamado",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "prestacion_principal": {
+      "etiqueta": "Prestacion principal",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "monto_reclamado": {
+      "etiqueta": "Monto reclamado",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_acto": {
+      "etiqueta": "Fecha acto",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "acto_juridico": {
+      "etiqueta": "Acto jurídico",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "objeto_acto": {
+      "etiqueta": "Objeto acto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "obligaciones_pactadas": {
+      "etiqueta": "Obligaciones pactadas",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hecho_incumplimiento": {
+      "etiqueta": "Hecho incumplimiento",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_incumplimiento": {
+      "etiqueta": "Fecha incumplimiento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "gestiones_previas": {
+      "etiqueta": "Gestiones previas",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "testigos": {
+      "etiqueta": "Testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_testigos": {
+      "etiqueta": "Hechos testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DEMANDA CIVIL — {{accion_ejercitada}}\nC. {{autoridad}}:\n{{promovente_nombre}}, {{personalidad_promovente}}, con domicilio en {{domicilio_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}} y autorizando para tales efectos a {{abogado_patrono}}, comparezco para exponer:\nI. PERSONALIDAD Y DOMICILIO\nComparezco en mi carácter de {{caracter_promovente}}, personalidad que acredito con {{documento_personalidad}}. Mi domicilio es {{domicilio_promovente}}; el de la contraparte, {{contraparte_nombre}}, es {{domicilio_contraparte}}.\nII. PRETENSIONES\nPor medio del presente escrito reclamo/solicito:\n1. La declaración judicial de que {{promovente_nombre}} tiene derecho a {{derecho_reclamado}}.\n2. La condena a {{contraparte_nombre}} a {{prestacion_principal}}.\n3. El pago de {{monto_reclamado}} por concepto de suerte principal, en su caso.\n4. El pago de intereses, daños y perjuicios en los términos que prueben y que la ley permita.\n5. El pago de gastos y costas en los términos de la ley aplicable.\nIII. HECHOS\nPRIMERO. Con fecha {{fecha_acto}}, {{promovente_nombre}} y {{contraparte_nombre}} {{acto_juridico}}, respecto de {{objeto_acto}}.\nSEGUNDO. En dicho acto las partes acordaron {{obligaciones_pactadas}}.\nTERCERO. {{contraparte_nombre}} {{hecho_incumplimiento}}, a partir de {{fecha_incumplimiento}}.\nCUARTO. A pesar de las gestiones realizadas ({{gestiones_previas}}), la contraparte no ha cumplido, por lo que resulta necesario acudir a esta vía.\nQUINTO. El valor del interés reclamado asciende a {{monto_reclamado}}, lo que determina la competencia y la vía.\nIV. DERECHO\nFundan la presente promoción las disposiciones siguientes (artículos aplicables al acto y a la vía indicada):\n- Código Civil del Estado de Jalisco: Obligaciones y su cumplimiento. Artículos aplicables: 1759-1795.\n- Código Civil del Estado de Jalisco: Acto jurídico aplicable al caso. Artículos aplicables: 1759-1795.\n- Código de Procedimientos Civiles del Estado de Jalisco: Demanda: requisitos y vía. Artículos aplicables: 286-304, 311-418.\n- Código de Procedimientos Civiles del Estado de Jalisco: Pruebas. Artículos aplicables: 286-304, 311-418.\nV. PRUEBAS\nOfrezco las siguientes pruebas, relacionándolas con los hechos indicados:\n1. DOCUMENTAL.- Documentos exhibidos, para acreditar el acto jurídico y el incumplimiento.\n2. CONFESIONAL.- Posiciones a cargo de {{contraparte_nombre}}, para que reconozca los hechos y documentos base de la acción.\n3. TESTIMONIAL.- Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.\n4. PRESUNCIONAL LEGAL Y HUMANA.- Las deducciones lógico-jurídicas que se desprendan de los hechos probados.\n5. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n\nSe acompañan los documentos siguientes:\n1. Documento que acredite la personalidad\n2. Documento base de la acción\n3. Copias de traslado\n4. Comprobantes de gestiones previas\nVI. PETITORIOS\nPor lo expuesto, a Usted atentamente pido:\nPRIMERO. Tenerme por presentado(a) con este escrito y los documentos que se acompañan, promoviendo demanda civil en contra de {{contraparte_nombre}}.\nSEGUNDO. Admitir a trámite la demanda en la vía señalada, ordenar el emplazamiento de la contraparte en el domicilio indicado y correrle traslado.\nTERCERO. Tener por ofrecidas las pruebas señaladas en el capítulo respectivo y ordenar su admisión y desahogo.\nCUARTO. En su oportunidad, dictar resolución en la que se declaren procedentes las pretensiones reclamadas, con lo demás que en derecho corresponda. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Código Civil del Estado de Jalisco, artículos 1590-1618: Obligaciones y su cumplimiento.\n- Código Civil del Estado de Jalisco, artículos 1759-1795: Acto jurídico aplicable al caso.\n- Código de Procedimientos Civiles del Estado de Jalisco, artículos 267-279: Demanda: requisitos y vía.\n- Código de Procedimientos Civiles del Estado de Jalisco, artículos 286-304, 311-418: Pruebas.",
+  "siguiente_paso": "Seleccionar la acción específica; si existe constructor especializado (arrendamiento, compraventa, mutuo, etc.), migrar a él.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Materia civil: legislación de Jalisco. No mezclar el CNPCF en esta fase.",
+    "Si hay un constructor civil especializado para el acto jurídico, usar ese en lugar del genérico."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

@@ -1,0 +1,213 @@
+{
+  "id": "ADM-REC-002",
+  "materia": "Administrativo",
+  "jurisdiccion": "Federal",
+  "diagnostico": {
+    "objetivo": "Solicitar suspensión cuando legalmente proceda y exista riesgo concreto durante el recurso.",
+    "preguntas": [
+      "¿El acto se ejecuta?",
+      "¿Qué daño produciría?",
+      "¿La suspensión está permitida?",
+      "¿Afecta interés social o terceros?",
+      "¿Hay garantía?"
+    ],
+    "datos_minimos": [
+      "acto",
+      "riesgo",
+      "daño",
+      "terceros",
+      "garantia"
+    ],
+    "resultado_esperado": "Determinar competencia, naturaleza del acto o conducta, plazo, vía, prueba y documento procedente."
+  },
+  "clasificacion": {
+    "constructor": "Suspensión en recurso administrativo federal",
+    "tipo_documento": "incidente/solicitud",
+    "rol_promovente": "Promovente / interesado / presunto responsable según el caso",
+    "rol_contraparte": "Autoridad / tercero / denunciante según corresponda",
+    "criterios": [
+      "competencia",
+      "legalidad",
+      "fundamentación y motivación",
+      "plazo",
+      "prueba",
+      "vía",
+      "interés jurídico o legítimo",
+      "Federal"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Suspensión en recurso administrativo federal",
+    "naturaleza": "procesal administrativa",
+    "descripcion": "Solicitar suspensión cuando legalmente proceda y exista riesgo concreto durante el recurso.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Impugnación → solicitud → valoración → acuerdo → seguimiento",
+    "requisitos": [
+      "Identificación de partes y autoridad",
+      "Acreditación de personalidad cuando corresponda",
+      "Acto, conducta o procedimiento plenamente identificado",
+      "Pruebas y documentos base",
+      "Verificación de competencia y plazo"
+    ],
+    "nota": "Validar siempre ley especial, reglamento interior, competencia, notificación y texto vigente. No se inventan artículos de fuentes no proporcionadas."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La ejecución produciría {{daño}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La medida preserva {{situacion}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Conceder suspensión."
+    },
+    {
+      "orden": 2,
+      "texto": "Preservar situación jurídica."
+    },
+    {
+      "orden": 3,
+      "texto": "Fijar condiciones legales."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Acto y prueba del riesgo.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Técnica",
+      "objeto": "Dictámenes de afectación.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Acto",
+    "Notificación",
+    "Prueba de daño",
+    "Garantía"
+  ],
+  "fundamento": [
+    {
+      "orden": 1,
+      "ordenamiento": "Ley Federal de Procedimiento Administrativo",
+      "tema": "Suspensión en recurso",
+      "articulos": "87",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/lfpa/suspension"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Acto ejecutable + riesgo concreto + necesidad de preservar materia + ausencia de impedimento.",
+    "elementos": [
+      "Hechos jurídicamente relevantes",
+      "Acto/omisión/conducta",
+      "Norma aplicable",
+      "Competencia",
+      "Prueba de cada proposición",
+      "Vicios o defensas",
+      "Riesgos",
+      "Resultado procesal"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el documento final salvo instrucción del constructor."
+  },
+  "campos_dinamicos": {
+    "promovente_nombre": {
+      "etiqueta": "Nombre / razón social",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "autoridad_nombre": {
+      "etiqueta": "Autoridad",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "expediente_numero": {
+      "etiqueta": "Expediente / folio",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "fecha_acto": {
+      "etiqueta": "Fecha del acto o conocimiento",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "notificacion_fecha": {
+      "etiqueta": "Fecha de notificación",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "relato_hechos": {
+      "etiqueta": "Relato circunstanciado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pretension_principal": {
+      "etiqueta": "Resultado buscado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pruebas_disponibles": {
+      "etiqueta": "Pruebas disponibles",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "daño": {
+      "etiqueta": "Daño por ejecución",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "situacion": {
+      "etiqueta": "Situación a preservar",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    }
+  },
+  "checklist": [
+    "Identificar acto",
+    "Comprobar ejecución",
+    "Precisar riesgo",
+    "Revisar requisitos",
+    "Solicitar",
+    "Atender garantía",
+    "Controlar acuerdo"
+  ],
+  "ruta_procesal": [
+    "Impugnación",
+    "solicitud",
+    "valoración",
+    "acuerdo",
+    "seguimiento"
+  ],
+  "advertencias": [
+    "No sustituye revisión del expediente.",
+    "La ley especial puede desplazar la LFPA.",
+    "Verificar vigencia y competencia antes de presentar."
+  ],
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  },
+  "documento_generado": "{{autoridad_competente}}\nEXPEDIENTE: {{numero_expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: SUSPENSIÓN EN RECURSO ADMINISTRATIVO FEDERAL\nC. {autoridad_competente}:\n{{promovente_nombre}}, por mi propio derecho / en representación de {{representado_nombre}}, personalidad que acredito con {{documento_personalidad}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, comparezco para exponer:\nI. OBJETO\nEl presente incidente/solicitud tiene por objeto plantear Solicitar suspensión cuando legalmente proceda y exista riesgo concreto durante el recurso en la vía Impugnación → solicitud → valoración → acuerdo → seguimiento.\nII. HECHOS\n1. La ejecución produciría {{daño}}.\n2. La medida preserva {{situacion}}.\nIII. DERECHO\nCon fundamento en Ley Federal de Procedimiento Administrativo, artículos 87, en relación con Suspensión en recurso.\nIV. PRETENSIONES / PETICIONES\n1. Conceder suspensión..\n2. Preservar situación jurídica..\n3. Fijar condiciones legales..\nV. PRUEBAS\n1. {'medio': 'Documental', 'objeto': 'Acto y prueba del riesgo.', 'estatus': 'por_ofrecer'}\n2. {'medio': 'Técnica', 'objeto': 'Dictámenes de afectación.', 'estatus': 'por_ofrecer'}\nVI. DOCUMENTOS\n{{documentos_anexos}}\nVII. PETITORIOS\nPRIMERO. Tenerme por presentado con este escrito y documentos.\nSEGUNDO. Acordar lo conducente conforme a la vía y competencia indicadas.\nTERCERO. Tener por formuladas las pretensiones y por ofrecidas las pruebas relacionadas.\nCUARTO. Dictar la resolución que en derecho corresponda. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal de Procedimiento Administrativo, artículos 87: Suspensión en recurso."
+}

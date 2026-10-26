@@ -1,0 +1,213 @@
+{
+  "id": "MERC-DIA-001",
+  "materia": "Mercantil",
+  "diagnostico": {
+    "objetivo": "Determinar si el asunto es mercantil, qué acción o defensa procede, en qué vía y con qué documento base.",
+    "preguntas": [
+      "¿Existe acto de comercio o título de crédito?",
+      "¿Qué documento base existe (pagaré, letra, cheque, contrato, factura)?",
+      "¿Se cumplen requisitos del título y su vencimiento?",
+      "¿Cuál es la cuantía y la competencia?",
+      "¿Hay pacto de sometimiento a jurisdicción o arbitraje?",
+      "¿Qué defensas son previsibles?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Diagnóstico mercantil",
+    "tipo_documento": "diagnostico",
+    "rol_promovente": "promovente",
+    "rol_contraparte": "contraparte",
+    "criterios": [
+      "Mercantil / civil [DETERMINAR]",
+      "Título de crédito / contrato / sociedad / concurso",
+      "Actor o demandado"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Diagnóstico mercantil",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Juicio ejecutivo, ordinario u oral mercantil conforme al Código de Comercio [VALIDAR SEGÚN DOCUMENTO Y CUANTÍA]",
+    "requisitos": [
+      "Acreditar el acto de comercio o título.",
+      "Verificar competencia.",
+      "Verificar prescripción y caducidad aplicables."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Origen del adeudo o relación mercantil: {{origen_relacion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Documento base: {{documento_base}}, de fecha {{fecha_documento}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Estado actual de pago: {{estado_pago}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Definir acción o defensa."
+    },
+    {
+      "orden": 2,
+      "texto": "Definir vía y juzgado."
+    },
+    {
+      "orden": 3,
+      "texto": "Definir monto reclamable."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos exhibidos, para acreditar el acto de comercio y el documento base.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Código de Comercio",
+      "tema": "Actos de comercio y vías de procedimiento",
+      "articulos": "75-89, 1063, 1377-1414",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_de_comercio/actos_de_comercio_y_vias_de_procedimiento"
+    },
+    {
+      "ordenamiento": "Ley General de Títulos y Operaciones de Crédito",
+      "tema": "Títulos de crédito (si aplica)",
+      "articulos": "5-26 y título específico del instrumento",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_general_de_titulos_y_operaciones_de_/titulos_de_credito_si_aplica"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Se identifica la naturaleza mercantil del asunto, el documento base y la vía idónea para obtener el pago o la defensa.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "JUEZ COMPETENTE EN MATERIA MERCANTIL [VALIDAR FUERO Y COMPETENCIA]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "origen_relacion": {
+      "etiqueta": "Origen relacion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "documento_base": {
+      "etiqueta": "Documento base",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_documento": {
+      "etiqueta": "Fecha documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "estado_pago": {
+      "etiqueta": "Estado pago",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DIAGNÓSTICO MERCANTIL INFORME DE DIAGNÓSTICO — DIAGNÓSTICO MERCANTIL\nI. DIAGNÓSTICO\nDeterminar si el asunto es mercantil, qué acción o defensa procede, en qué vía y con qué documento base.\nPreguntas a resolver con el expediente:\n1. ¿Existe acto de comercio o título de crédito?\n2. ¿Qué documento base existe (pagaré, letra, cheque, contrato, factura)?\n3. ¿Se cumplen requisitos del título y su vencimiento?\n4. ¿Cuál es la cuantía y la competencia?\n5. ¿Hay pacto de sometimiento a jurisdicción o arbitraje?\n6. ¿Qué defensas son previsibles?\nII. CLASIFICACIÓN\n- Mercantil / civil [DETERMINAR]\n- Título de crédito / contrato / sociedad / concurso\n- Actor o demandado\nIII. ACCIÓN/DEFENSA Y VÍA\n- Si hay título con fuerza ejecutiva: acción cambiaria / vía ejecutiva mercantil.\n- Sin título ejecutivo: vía ordinaria u oral mercantil según cuantía y materia.\n- Si se es demandado: contestación con excepciones procedentes.\nVía: Juicio ejecutivo, ordinario u oral mercantil conforme al Código de Comercio\nIV. REQUISITOS\n1. Acreditar el acto de comercio o título.\n2. Verificar competencia.\n3. Verificar prescripción y caducidad aplicables.\nV. HECHOS A ESTABLECER\nPRIMERO. Origen del adeudo o relación mercantil: {{origen_relacion}}.\nSEGUNDO. Documento base: {{documento_base}}, de fecha {{fecha_documento}}.\nTERCERO. Estado actual de pago: {{estado_pago}}.\nVI. PRETENSIONES / OBJETIVOS\n1. Definir acción o defensa.\n2. Definir vía y juzgado.\n3. Definir monto reclamable.\nVII. PRUEBAS\n1. DOCUMENTAL.- Documentos exhibidos, para acreditar el acto de comercio y el documento base.\n2. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n- Código de Comercio: Actos de comercio y vías de procedimiento. Artículos aplicables: 75-89, 1063, 1377-1414.\n- Ley General de Títulos y Operaciones de Crédito: Títulos de crédito (si aplica). Artículos aplicables: 5-26 y título específico del instrumento.\nIX. SIGUIENTE PASO\nInstrumento o vía identificada en el diagnóstico: {{instrumento_o_via}}. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Código de Comercio, artículos 75-89, 1063, 1377-1414: Actos de comercio y vías de procedimiento.\n- Ley General de Títulos y Operaciones de Crédito, artículos 5-26 y título específico del instrumento: Títulos de crédito (si aplica).",
+  "siguiente_paso": "Seleccionar constructor especializado: pagaré, letra, cheque, ejecutiva, ordinaria u oral.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Materia mercantil: respetar la supletoriedad aplicable al Código de Comercio y a las leyes mercantiles especiales ."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

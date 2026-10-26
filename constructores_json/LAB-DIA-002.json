@@ -1,0 +1,258 @@
+{
+  "id": "LAB-DIA-002",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Determinar si existe relación de trabajo (frente a prestación de servicios), su tipo y condiciones.",
+    "preguntas": [
+      "¿Hay subordinación, dirección y supervisión?",
+      "¿Quién fija horario, lugar y herramientas?",
+      "¿Cómo se paga: salario, honorarios, comisiones?",
+      "¿Hay alta en IMSS, contrato o recibos?",
+      "¿Desde cuándo y con qué continuidad?",
+      "¿Hay testigos o comunicaciones?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Diagnóstico relación laboral",
+    "tipo_documento": "diagnostico",
+    "rol_promovente": "trabajador(a)",
+    "rol_contraparte": "patrón / empresa",
+    "criterios": [
+      "Relación de trabajo / prestación de servicios civil o mercantil",
+      "Tipo de relación (indeterminada, determinada, obra, temporada) [VALIDAR]"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Diagnóstico relación laboral",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento laboral para reconocer relación o la vía civil/mercantil que corresponda",
+    "requisitos": [
+      "Indicios de subordinación y dependencia económica.",
+      "Prueba de pago periódico."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "{{promovente_nombre}} prestó servicios a {{contraparte_nombre}} desde {{inicio_relacion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Los servicios eran {{descripcion_servicios}}, bajo órdenes de {{superior_directo}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Horario: {{jornada}}; lugar: {{lugar_trabajo}}; pago: {{forma_pago_salario}} de {{salario}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "Herramientas e instrucciones proporcionadas por {{contraparte_nombre}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Reconocimiento de la relación de trabajo."
+    },
+    {
+      "orden": 2,
+      "texto": "Alta y regularización de seguridad social, en su caso."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Informe o constancias de alta, baja y salario ante el IMSS e INFONAVIT, para acreditar antigüedad y salario.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Inspección",
+      "objeto": "Sobre documentos que la ley obliga al patrón a conservar y exhibir, para acreditar los extremos de la relación [VALIDAR DOCUMENTOS OBLIGATORIOS].",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Concepto de relación de trabajo y contrato individual",
+      "articulos": "20-21, 24-27",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/concepto_de_relacion_de_trabajo_y_contrato_individ"
+    },
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Presunción de la relación de trabajo",
+      "articulos": "21",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/presuncion_de_la_relacion_de_trabajo_validar"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Existe subordinación y pago periódico a cambio de servicios personales, por lo que hay relación de trabajo.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "inicio_relacion": {
+      "etiqueta": "Inicio relacion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "descripcion_servicios": {
+      "etiqueta": "Descripcion servicios",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "superior_directo": {
+      "etiqueta": "Superior directo",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "jornada": {
+      "etiqueta": "Jornada",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar_trabajo": {
+      "etiqueta": "Lugar trabajo",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "forma_pago_salario": {
+      "etiqueta": "Forma pago salario",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "salario": {
+      "etiqueta": "Salario",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "testigos": {
+      "etiqueta": "Testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_testigos": {
+      "etiqueta": "Hechos testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DIAGNÓSTICO — DIAGNÓSTICO RELACIÓN LABORAL INFORME DE DIAGNÓSTICO — DIAGNÓSTICO RELACIÓN LABORAL\nI. DIAGNÓSTICO\nDeterminar si existe relación de trabajo (frente a prestación de servicios), su tipo y condiciones.\nPreguntas a resolver con el expediente:\n1. ¿Hay subordinación, dirección y supervisión?\n2. ¿Quién fija horario, lugar y herramientas?\n3. ¿Cómo se paga: salario, honorarios, comisiones?\n4. ¿Hay alta en IMSS, contrato o recibos?\n5. ¿Desde cuándo y con qué continuidad?\n6. ¿Hay testigos o comunicaciones?\nII. CLASIFICACIÓN\n- Relación de trabajo / prestación de servicios civil o mercantil\n- Tipo de relación (indeterminada, determinada, obra, temporada)\nIII. ACCIÓN/DEFENSA Y VÍA\n- Si hay relación de trabajo: continuar en laboral.\n- Si no: remitir a constructor civil CIV-SER-001.\nVía: Procedimiento laboral para reconocer relación o la vía civil/mercantil que corresponda\nIV. REQUISITOS\n1. Indicios de subordinación y dependencia económica.\n2. Prueba de pago periódico.\nV. HECHOS A ESTABLECER\nPRIMERO. {{promovente_nombre}} prestó servicios a {{contraparte_nombre}} desde {{inicio_relacion}}.\nSEGUNDO. Los servicios eran {{descripcion_servicios}}, bajo órdenes de {{superior_directo}}.\nTERCERO. Horario: {{jornada}}; lugar: {{lugar_trabajo}}; pago: {{forma_pago_salario}} de {{salario}}.\nCUARTO. Herramientas e instrucciones proporcionadas por {{contraparte_nombre}}.\nVI. PRETENSIONES / OBJETIVOS\n1. Reconocimiento de la relación de trabajo.\n2. Alta y regularización de seguridad social, en su caso.\nVII. PRUEBAS\n1. DOCUMENTAL.- Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.\n2. TESTIMONIAL.- Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.\n3. DOCUMENTAL.- Informe o constancias de alta, baja y salario ante el IMSS e INFONAVIT, para acreditar antigüedad y salario.\n4. INSPECCIÓN.- Sobre documentos que la ley obliga al patrón a conservar y exhibir, para acreditar los extremos de la relación.\n- Ley Federal del Trabajo: Concepto de relación de trabajo y contrato individual. Artículos aplicables:\n21.\n- Ley Federal del Trabajo: Presunción de la relación de trabajo. Artículos aplicables:\n21.\nIX. SIGUIENTE PASO\nReunir indicios de subordinación y decidir si se continúa en vía laboral. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 20-21, 24-27: Concepto de relación de trabajo y contrato individual.\n- Ley Federal del Trabajo, artículos 21: Presunción de la relación de trabajo.",
+  "siguiente_paso": "Reunir indicios de subordinación y decidir si se continúa en vía laboral.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

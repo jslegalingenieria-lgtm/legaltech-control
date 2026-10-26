@@ -1,0 +1,217 @@
+{
+  "id": "LAB-PRE-001",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Identificar las prestaciones adeudadas, su fundamento, periodo y prueba, sin recalcular lo que ya calcula SIGDE.",
+    "preguntas": [
+      "¿Qué prestaciones se reclaman (vacaciones, prima, aguinaldo, tiempo extra, PTU, otras)?",
+      "¿Periodo y salario base?",
+      "¿Qué prueba hay de pago o falta de pago?",
+      "¿Qué prescripción aplica por concepto?",
+      "¿Existe pacto o contrato colectivo con prestaciones superiores?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Diagnóstico prestaciones",
+    "tipo_documento": "diagnostico",
+    "rol_promovente": "trabajador(a)",
+    "rol_contraparte": "patrón / empresa",
+    "criterios": [
+      "Prestaciones legales",
+      "Prestaciones contractuales/colectivas",
+      "Prestaciones extralegales"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Diagnóstico prestaciones",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Incluidas en la demanda laboral",
+    "requisitos": [
+      "Prestaciones identificadas y periodo.",
+      "Monto traído de la calculadora existente."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "{{promovente_nombre}} laboró de {{inicio_relacion}} a {{fin_relacion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "No recibió {{prestaciones_adeudadas}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Salario base de cálculo: {{salario}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Pago de cada prestación con su monto (calculadora existente)."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Inspección",
+      "objeto": "Sobre documentos que la ley obliga al patrón a conservar y exhibir, para acreditar los extremos de la relación [VALIDAR DOCUMENTOS OBLIGATORIOS].",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Prestaciones: vacaciones, prima, aguinaldo, participación de utilidades, jornada y descansos",
+      "articulos": "58-81, 87, 117-131",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/prestaciones_vacaciones_prima_aguinaldo_participac"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Cada prestación es exigible y no se pagó o se pagó parcialmente.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "inicio_relacion": {
+      "etiqueta": "Inicio relacion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fin_relacion": {
+      "etiqueta": "Fin relacion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "prestaciones_adeudadas": {
+      "etiqueta": "Prestaciones adeudadas",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "salario": {
+      "etiqueta": "Salario",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "testigos": {
+      "etiqueta": "Testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_testigos": {
+      "etiqueta": "Hechos testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DIAGNÓSTICO — DIAGNÓSTICO PRESTACIONES INFORME DE DIAGNÓSTICO — DIAGNÓSTICO PRESTACIONES\nI. DIAGNÓSTICO\nIdentificar las prestaciones adeudadas, su fundamento, periodo y prueba, sin recalcular lo que ya calcula SIGDE.\nPreguntas a resolver con el expediente:\n1. ¿Qué prestaciones se reclaman (vacaciones, prima, aguinaldo, tiempo extra, PTU, otras)?\n2. ¿Periodo y salario base?\n3. ¿Qué prueba hay de pago o falta de pago?\n4. ¿Qué prescripción aplica por concepto?\n5. ¿Existe pacto o contrato colectivo con prestaciones superiores?\nII. CLASIFICACIÓN\n- Prestaciones legales\n- Prestaciones contractuales/colectivas\n- Prestaciones extralegales\nIII. ACCIÓN/DEFENSA Y VÍA\n- Acumular prestaciones en demanda LAB-JUI-001 / LAB-DES-003.\nVía: Incluidas en la demanda laboral\nIV. REQUISITOS\n1. Prestaciones identificadas y periodo.\n2. Monto traído de la calculadora existente.\nV. HECHOS A ESTABLECER\nPRIMERO. {{promovente_nombre}} laboró de {{inicio_relacion}} a {{fin_relacion}}.\nSEGUNDO. No recibió {{prestaciones_adeudadas}}.\nTERCERO. Salario base de cálculo: {{salario}}.\nVI. PRETENSIONES / OBJETIVOS\n1. Pago de cada prestación con su monto (calculadora existente).\nVII. PRUEBAS\n1. DOCUMENTAL.- Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.\n2. INSPECCIÓN.- Sobre documentos que la ley obliga al patrón a conservar y exhibir, para acreditar los extremos de la relación.\n3. TESTIMONIAL.- Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.\n- Ley Federal del Trabajo: Prestaciones: vacaciones, prima, aguinaldo, participación de utilidades, jornada y descansos. Artículos aplicables: 58-81, 87, 117-131.\nIX. SIGUIENTE PASO\nIntegrar la lista de prestaciones al constructor de demanda. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 58-81, 87, 117-131: Prestaciones: vacaciones, prima, aguinaldo, participación de utilidades, jornada y descansos.",
+  "siguiente_paso": "Integrar la lista de prestaciones al constructor de demanda.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE.",
+    "Los montos de finiquito/indemnización/prestaciones vienen de la calculadora existente de SIGDE; no recalcular en el constructor."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

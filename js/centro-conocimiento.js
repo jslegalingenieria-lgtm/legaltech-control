@@ -146,12 +146,17 @@
   window.cerrarFichaCentro = () => { if ($("cc-ficha")) $("cc-ficha").hidden = true; temaActivo = null; };
   window.cambiarTabCentro = tab => { tabActivo = tab; document.querySelectorAll("[data-cc-tab]").forEach(b => b.classList.toggle("activo", b.dataset.ccTab === tab)); renderFicha(); };
   window.abrirModuloCentro = modulo => {
-    const rutas = { biblioteca:"biblioteca-juridica", procesal:"conocimiento-juridico", documentos:"constructor-documentos", formularios:"entrevistas", jurisprudencia:"buscador-juridico", estrategia:"estrategia-procesal", calculadoras:"calculadoras-juridicas" };
-    if (rutas[modulo]) { window.switchTab?.(rutas[modulo]); return; }
-    const nombres = { legislacion:"Legislación", estrategia:"Estrategia Procesal", calculadoras:"Calculadoras Jurídicas" };
+    const rutas = { biblioteca:"biblioteca-juridica", procesal:"conocimiento-juridico", terminos:"terminos-procesales", documentos:"constructor-documentos", formularios:"entrevistas", calculadoras:"calculadoras-juridicas", manuales:"manuales-litigacion", diccionario:"diccionario-juridico", revisor:"revisor-juridico" };
+    if (rutas[modulo]) { window.switchTab?.(rutas[modulo]); if (modulo === "documentos") window.setSIGDEModuleMode?.("constructor", "sigde"); return; }
+    const nombres = { legislacion:"Legislación", calculadoras:"Calculadoras Jurídicas" };
     alert(`${nombres[modulo] || "Este módulo"} se integrará en una siguiente etapa del Centro de Conocimiento.`);
   };
-  window.usarDocumentoCentro = plantilla => { sessionStorage.setItem("jslt_plantilla_pendiente", plantilla); window.switchTab?.("constructor-documentos"); setTimeout(() => window.nuevoDocumentoJuridico?.(), 80); };
+  window.usarDocumentoCentro = plantilla => {
+    const ids = { "demanda-divorcio":"FAM-DIV-001", "demanda-alimentos":"FAM-ALI-001", "contestacion-familiar":"FAM-CUS-001", "jurisdiccion-voluntaria":"CIV-SUC-001", "inventario-avalúo":"CIV-SUC-006" };
+    const id = ids[plantilla] || plantilla;
+    if (typeof window.abrirConstructorSIGDELegalTech === "function") window.abrirConstructorSIGDELegalTech(id);
+    else { window.switchTab?.("constructor-documentos"); window.setSIGDEModuleMode?.("constructor", "sigde"); }
+  };
   window.abrirAsuntoRelacionado = id => { sessionStorage.setItem("jslt_asunto_abrir", id); window.switchTab?.("asuntos"); setTimeout(() => window.abrirBitacoraAsunto?.(id), 180); };
   window.imprimirChecklistCentro = () => window.print();
   window.addEventListener("asuntosActualizados", () => { renderTemas(); if (temaActivo) { actualizarIndicadores(); if (tabActivo === "casos") renderFicha(); } });

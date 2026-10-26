@@ -1,0 +1,224 @@
+{
+  "id": "LAB-SEG-001",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Identificar el derecho de seguridad social cuestionado y la vía (laboral o administrativa).",
+    "preguntas": [
+      "¿Qué derecho se reclama: incapacidad, pensión, servicio médico, aportaciones?",
+      "¿Contra qué institución?",
+      "¿Hubo alta y cotización?",
+      "¿Existe resolución de la institución?",
+      "¿Es riesgo de trabajo?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Diagnóstico seguridad social",
+    "tipo_documento": "diagnostico",
+    "rol_promovente": "trabajador(a)",
+    "rol_contraparte": "patrón / empresa",
+    "criterios": [
+      "Prestación en dinero/en especie",
+      "Riesgo de trabajo / enfermedad general",
+      "Pensión (Ley 73 / Ley 97 queda como proyecto posterior)"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Diagnóstico seguridad social",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Juicio ante el tribunal competente o recurso, según el caso",
+    "requisitos": [
+      "Resolución o negativa de la institución.",
+      "Prueba de relación y cotización."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Derecho reclamado: {{derecho_seguridad_social}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Antecedentes: alta {{fecha_alta}}, semanas/salario {{datos_cotizacion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Negativa o acto: {{acto_institucion}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Reconocimiento del derecho y pago de prestaciones."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Informe o constancias de alta, baja y salario ante el IMSS e INFONAVIT, para acreditar antigüedad y salario.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley del Seguro Social",
+      "tema": "Prestaciones y requisitos",
+      "articulos": "127-137 LSS y 500-504 LFT",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_del_seguro_social/prestaciones_y_requisitos"
+    },
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Riesgos de trabajo (si aplica)",
+      "articulos": "472-515 LFT",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/riesgos_de_trabajo_si_aplica"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "El asegurado cumple los requisitos legales para la prestación y la institución la negó indebidamente.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "derecho_seguridad_social": {
+      "etiqueta": "Derecho seguridad social",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_alta": {
+      "etiqueta": "Fecha alta",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "datos_cotizacion": {
+      "etiqueta": "Datos cotizacion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "acto_institucion": {
+      "etiqueta": "Acto institucion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "materia_pericial": {
+      "etiqueta": "Materia pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "objeto_pericial": {
+      "etiqueta": "Objeto pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DIAGNÓSTICO — DIAGNÓSTICO SEGURIDAD SOCIAL INFORME DE DIAGNÓSTICO — DIAGNÓSTICO SEGURIDAD SOCIAL\nI. DIAGNÓSTICO\nIdentificar el derecho de seguridad social cuestionado y la vía (laboral o administrativa).\nPreguntas a resolver con el expediente:\n1. ¿Qué derecho se reclama: incapacidad, pensión, servicio médico, aportaciones?\n2. ¿Contra qué institución?\n3. ¿Hubo alta y cotización?\n4. ¿Existe resolución de la institución?\n5. ¿Es riesgo de trabajo?\nII. CLASIFICACIÓN\n- Prestación en dinero/en especie\n- Riesgo de trabajo / enfermedad general\n- Pensión (Ley 73 / Ley 97 queda como proyecto posterior)\nIII. ACCIÓN/DEFENSA Y VÍA\n- Demanda de seguridad social LAB-SEG-002.\n- Defensa IMSS: LAB-IMSS-001.\nVía: Juicio ante el tribunal competente o recurso, según el caso\nIV. REQUISITOS\n1. Resolución o negativa de la institución.\n2. Prueba de relación y cotización.\nV. HECHOS A ESTABLECER\nPRIMERO. Derecho reclamado: {{derecho_seguridad_social}}.\nSEGUNDO. Antecedentes: alta {{fecha_alta}}, semanas/salario {{datos_cotizacion}}.\nTERCERO. Negativa o acto: {{acto_institucion}}.\nVI. PRETENSIONES / OBJETIVOS\n1. Reconocimiento del derecho y pago de prestaciones.\nVII. PRUEBAS\n1. DOCUMENTAL.- Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.\n2. DOCUMENTAL.- Informe o constancias de alta, baja y salario ante el IMSS e INFONAVIT, para acreditar antigüedad y salario.\n3. PERICIAL.- Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.\n- Ley del Seguro Social: Prestaciones y requisitos. Artículos aplicables: 127-137 LSS y 500-504 LFT.\n- Ley Federal del Trabajo: Riesgos de trabajo (si aplica). Artículos aplicables: 472-515 LFT.\nIX. SIGUIENTE PASO\n{{tipo_actuacion}}. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley del Seguro Social, artículos 127-137 LSS y 500-504 LFT: Prestaciones y requisitos.\n- Ley Federal del Trabajo, artículos 472-515 LFT: Riesgos de trabajo (si aplica).",
+  "siguiente_paso": "Seleccionar demanda o defensa.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE.",
+    "No calcular pensiones Ley 73/Ley 97 en este constructor: proyecto posterior."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

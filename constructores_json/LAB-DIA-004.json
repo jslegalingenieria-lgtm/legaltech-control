@@ -1,0 +1,242 @@
+{
+  "id": "LAB-DIA-004",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Valorar si el patrón puede rescindir sin responsabilidad, con qué causa, prueba y aviso.",
+    "preguntas": [
+      "¿Qué causa se invoca y qué hechos la sustentan?",
+      "¿Cuándo se conoció y cuándo ocurrió?",
+      "¿Hay prueba suficiente (testigos, documentos, videos, actas)?",
+      "¿Se levantó acta con formalidades y se garantizó defensa?",
+      "¿Cómo se entregará el aviso al trabajador?",
+      "¿Riesgo de demanda por despido?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Diagnóstico rescisión patrón",
+    "tipo_documento": "diagnostico",
+    "rol_promovente": "patrón / empresa",
+    "rol_contraparte": "trabajador(a)",
+    "criterios": [
+      "Rescisión por causa imputable al trabajador",
+      "Terminación por otra causa",
+      "Despido sin causa (riesgo)"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Diagnóstico rescisión patrón",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Aviso de rescisión y, en su caso, defensa en juicio laboral",
+    "requisitos": [
+      "Causa de rescisión probada.",
+      "Aviso en forma y tiempo ."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Causa invocada: {{causa_rescision}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Hechos: {{hechos_causa}} ocurridos el {{fecha_hechos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Conocimiento del patrón: {{fecha_conocimiento}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "Pruebas disponibles: {{pruebas_disponibles}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Rescisión sin responsabilidad para el patrón."
+    },
+    {
+      "orden": 2,
+      "texto": "Preservar prueba de los hechos."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Actas administrativas y evidencias.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Causas de rescisión sin responsabilidad para el patrón",
+      "articulos": "47",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/causas_de_rescision_sin_responsabilidad_para_el_pa"
+    },
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Aviso de rescisión",
+      "articulos": "47",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/aviso_de_rescision"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "El trabajador incurrió en una causa de rescisión acreditable y el patrón actuó oportunamente y en forma.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "causa_rescision": {
+      "etiqueta": "Causa rescision",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_causa": {
+      "etiqueta": "Hechos causa",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_hechos": {
+      "etiqueta": "Fecha hechos",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_conocimiento": {
+      "etiqueta": "Fecha conocimiento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "pruebas_disponibles": {
+      "etiqueta": "Pruebas disponibles",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "testigos": {
+      "etiqueta": "Testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_testigos": {
+      "etiqueta": "Hechos testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DIAGNÓSTICO — DIAGNÓSTICO RESCISIÓN PATRÓN INFORME DE DIAGNÓSTICO — DIAGNÓSTICO RESCISIÓN PATRÓN\nI. DIAGNÓSTICO\nValorar si el patrón puede rescindir sin responsabilidad, con qué causa, prueba y aviso.\nPreguntas a resolver con el expediente:\n1. ¿Qué causa se invoca y qué hechos la sustentan?\n2. ¿Cuándo se conoció y cuándo ocurrió?\n3. ¿Hay prueba suficiente (testigos, documentos, videos, actas)?\n4. ¿Se levantó acta con formalidades y se garantizó defensa?\n5. ¿Cómo se entregará el aviso al trabajador?\n6. ¿Riesgo de demanda por despido?\nII. CLASIFICACIÓN\n- Rescisión por causa imputable al trabajador\n- Terminación por otra causa\n- Despido sin causa (riesgo)\nIII. ACCIÓN/DEFENSA Y VÍA\n- Aviso de rescisión LAB-DES-002.\n- Preparación de defensa frente a demanda: LAB-JUI-002.\nVía: Aviso de rescisión y, en su caso, defensa en juicio laboral\nIV. REQUISITOS\n1. Causa de rescisión probada.\n2. Aviso en forma y tiempo.\nV. HECHOS A ESTABLECER\nPRIMERO. Causa invocada: {{causa_rescision}}.\nSEGUNDO. Hechos: {{hechos_causa}} ocurridos el {{fecha_hechos}}.\nTERCERO. Conocimiento del patrón: {{fecha_conocimiento}}.\nCUARTO. Pruebas disponibles: {{pruebas_disponibles}}.\nVI. PRETENSIONES / OBJETIVOS\n1. Rescisión sin responsabilidad para el patrón.\n2. Preservar prueba de los hechos.\nVII. PRUEBAS\n1. DOCUMENTAL.- Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.\n2. TESTIMONIAL.- Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.\n3. DOCUMENTAL.- Actas administrativas y evidencias.\n- Ley Federal del Trabajo: Causas de rescisión sin responsabilidad para el patrón. Artículos aplicables:\n47.\n- Ley Federal del Trabajo: Aviso de rescisión. Artículos aplicables:\n47.\nIX. SIGUIENTE PASO\nPreparar aviso de rescisión y respaldo probatorio. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 47: Causas de rescisión sin responsabilidad para el patrón.\n- Ley Federal del Trabajo, artículos 47: Aviso de rescisión.",
+  "siguiente_paso": "Preparar aviso de rescisión y respaldo probatorio.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE.",
+    "La carga de probar la causa de rescisión suele recaer en el patrón .",
+    "Verificar oportunidad para ejercer la rescisión ."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

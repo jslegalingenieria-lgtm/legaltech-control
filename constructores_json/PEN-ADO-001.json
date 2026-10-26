@@ -1,0 +1,200 @@
+{
+  "id": "PEN-ADO-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Determinar si la persona se encuentra dentro del ámbito del Sistema Integral de Justicia Penal para Adolescentes y qué ruta especializada corresponde.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Diagnóstico inicial de justicia penal para adolescentes",
+    "tipo_documento": "diagnóstico",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Diagnóstico de procedencia y ruta.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Sistema Integral de Justicia Penal para Adolescentes.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La persona tiene {{edad}} años y la fecha relevante es {{fecha_hecho}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "El hecho atribuido es {{hecho}} y la legislación penal aplicable preliminar es {{clasificacion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "La situación procesal actual es {{situacion_procesal}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Determinar grupo etario y ruta especializada."
+    },
+    {
+      "orden": 2,
+      "texto": "Identificar autoridades especializadas y derechos que deben preservarse."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Acta/documento de identidad y edad.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Constancias de la investigación/proceso.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Documento que acredite edad.",
+    "Constancias de carpeta/proceso."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Nacional del Sistema Integral de Justicia Penal para Adolescentes",
+      "tema": "Ámbito de aplicación",
+      "articulos": "1",
+      "estatus": "fuente_proporcionada",
+      "fuente": "LNSIJPA.pdf"
+    },
+    {
+      "ordenamiento": "Ley Nacional del Sistema Integral de Justicia Penal para Adolescentes",
+      "tema": "Objeto de la Ley",
+      "articulos": "2",
+      "estatus": "fuente_proporcionada",
+      "fuente": "LNSIJPA.pdf"
+    },
+    {
+      "ordenamiento": "Ley Nacional del Sistema Integral de Justicia Penal para Adolescentes",
+      "tema": "Definiciones y grupos etarios",
+      "articulos": "3",
+      "estatus": "fuente_proporcionada",
+      "fuente": "LNSIJPA.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso en adolescentes debe incorporar la edad, grupo etario, hecho atribuido, derechos especiales y finalidad del sistema, además de la hipótesis fáctica del asunto.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "imputado_nombre": {
+      "etiqueta": "Nombre de la persona imputada/acusada",
+      "tipo": "texto",
+      "fuente": "expediente.imputado_nombre",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "edad": {
+      "etiqueta": "Edad",
+      "tipo": "texto",
+      "fuente": "expediente.edad",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_hecho": {
+      "etiqueta": "Fecha del hecho",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha_hecho",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hecho": {
+      "etiqueta": "Hecho",
+      "tipo": "texto",
+      "fuente": "expediente.hecho",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "clasificacion": {
+      "etiqueta": "Clasificacion",
+      "tipo": "texto",
+      "fuente": "expediente.clasificacion",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "situacion_procesal": {
+      "etiqueta": "Situacion Procesal",
+      "tipo": "texto",
+      "fuente": "expediente.situacion_procesal",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "grupo_etario": {
+      "etiqueta": "Grupo Etario",
+      "tipo": "texto",
+      "fuente": "expediente.grupo_etario",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "ruta_especializada": {
+      "etiqueta": "Ruta Especializada",
+      "tipo": "texto",
+      "fuente": "expediente.ruta_especializada",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "DIAGNÓSTICO — JUSTICIA PENAL PARA ADOLESCENTES Persona: {{imputado_nombre}}\nEdad: {{edad}}\nFecha relevante: {{fecha_hecho}}\nHecho: {{hecho}}\nClasificación preliminar: {{clasificacion}}\nSituación procesal: {{situacion_procesal}}\nI. ÁMBITO DE APLICACIÓN\nLa Ley Nacional del Sistema Integral de Justicia Penal para Adolescentes se aplica a personas de doce años cumplidos y menos de dieciocho a quienes se atribuya una conducta tipificada como delito, en los términos de su artículo 1.\nII. GRUPO ETARIO\n{{grupo_etario}}.\nIII. RUTA\n{{ruta_especializada}}. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Nacional del Sistema Integral de Justicia Penal para Adolescentes, artículos 1: Ámbito de aplicación.\n- Ley Nacional del Sistema Integral de Justicia Penal para Adolescentes, artículos 2: Objeto de la Ley.\n- Ley Nacional del Sistema Integral de Justicia Penal para Adolescentes, artículos 3: Definiciones y grupos etarios.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

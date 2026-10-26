@@ -1,0 +1,464 @@
+{
+  "id": "LAB-DES-003",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Demanda por despido.",
+    "preguntas": [
+      "¿Despido directo?",
+      "¿Testigos?",
+      "¿Salario real?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Demanda por despido",
+    "tipo_documento": "demanda",
+    "rol_promovente": "trabajador(a)",
+    "rol_contraparte": "patrón / empresa",
+    "criterios": [
+      "Despido"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Despido injustificado",
+    "naturaleza": "accion",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento ordinario laboral",
+    "requisitos": [
+      "Relación de trabajo del Apartado A.",
+      "Competencia (federal o local) .",
+      "Legitimación y personalidad.",
+      "Agotamiento o excepción de conciliación prejudicial, cuando aplique .",
+      "Plazo de prescripción vigente ."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "El {{fecha_ingreso}}, {{promovente_nombre}} ingresó a laborar para {{contraparte_nombre}} con el puesto de {{puesto}}, bajo la categoría {{categoria}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Su jornada era {{jornada}}, en {{lugar_trabajo}}, con salario de {{salario}} pagadero {{periodicidad_pago}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Las funciones consistían en {{funciones}}, bajo la subordinación de {{superior_directo}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "El {{fecha_despido}}, aproximadamente a las {{hora_despido}}, en {{lugar_despido}}, {{persona_despide}} le manifestó: {{expresion_despido}}, dándolo por separado de su empleo.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 5,
+      "texto": "El despido ocurrió en presencia de {{testigos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 6,
+      "texto": "No se le entregó aviso escrito de rescisión ni se le imputó causa justificada [CONFIRMAR CON LOS HECHOS].",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 7,
+      "texto": "A la fecha de la separación no tenía conflictos disciplinarios [CONFIRMAR].",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 8,
+      "texto": "Conforme a la conciliación prejudicial: {{constancia_conciliacion}} (constancia o excepción).",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "La reinstalación en el puesto de {{puesto}} en los mismos términos y condiciones [OPCIÓN A]."
+    },
+    {
+      "orden": 2,
+      "texto": "O, en su caso, el pago de la indemnización que corresponda conforme a la ley, por {{monto_indemnizacion}} [OPCIÓN B; CALCULADORA EXISTENTE]."
+    },
+    {
+      "orden": 3,
+      "texto": "El pago de salarios vencidos desde la fecha del despido hasta el cumplimiento de la resolución [VALIDAR LÍMITES]."
+    },
+    {
+      "orden": 4,
+      "texto": "El pago de vacaciones, prima vacacional y aguinaldo, proporcionales y adeudados: {{monto_prestaciones}}."
+    },
+    {
+      "orden": 5,
+      "texto": "El pago de las demás prestaciones devengadas: {{prestaciones_adicionales}}."
+    },
+    {
+      "orden": 6,
+      "texto": "La regularización de inscripción y cotizaciones ante IMSS e INFONAVIT, con los salarios reales, en su caso."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Informe o constancias de alta, baja y salario ante el IMSS e INFONAVIT, para acreditar antigüedad y salario.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Inspección",
+      "objeto": "Sobre documentos que la ley obliga al patrón a conservar y exhibir, para acreditar los extremos de la relación [VALIDAR DOCUMENTOS OBLIGATORIOS].",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Confesional",
+      "objeto": "A cargo del patrón o de su representante legal, sobre la relación y los hechos del despido.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional legal y humana",
+      "objeto": "Las deducciones lógico-jurídicas que se desprendan de los hechos probados.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Constancia de conciliación prejudicial o de excepción",
+    "Identificación y poder o carta poder",
+    "Recibos de nómina / contrato",
+    "Alta IMSS",
+    "Pruebas del despido"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Terminación de la relación de trabajo e indemnización constitucional",
+      "articulos": "48-50, 53-55",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/terminacion_de_la_relacion_de_trabajo_e_indemnizac"
+    },
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Acciones de reinstalación e indemnización",
+      "articulos": "48-50",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/acciones_de_reinstalacion_e_indemnizacion"
+    },
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Salarios vencidos",
+      "articulos": "48",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/salarios_vencidos"
+    },
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Procedimiento ordinario y carga probatoria",
+      "articulos": "872-873-K, 784-804",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/procedimiento_ordinario_y_carga_probatoria"
+    },
+    {
+      "ordenamiento": "Constitución Política de los Estados Unidos Mexicanos (Art. 123, Apartado A)",
+      "tema": "Derechos del trabajador en caso de despido",
+      "articulos": "48-50 y 123 Apartado A constitucional",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/constitucion_politica_de_los_estados_uni/derechos_del_trabajador_en_caso_de_despido"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "El trabajador fue despedido sin causa justificada; el patrón debe acreditar la causa que invoque; procede lo reclamado.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente (propio derecho / representante)",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "caracter_promovente": {
+      "etiqueta": "Caracter promovente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "trabajador(a)"
+    },
+    "documento_personalidad": {
+      "etiqueta": "Documento personalidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "puesto": {
+      "etiqueta": "Puesto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "monto_indemnizacion": {
+      "etiqueta": "Monto indemnizacion",
+      "tipo": "monto",
+      "fuente": "calculadora_existente_sigde",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]",
+      "nota": "Tomar de la calculadora existente; no duplicar cálculo."
+    },
+    "monto_prestaciones": {
+      "etiqueta": "Monto prestaciones",
+      "tipo": "monto",
+      "fuente": "calculadora_existente_sigde",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]",
+      "nota": "Tomar de la calculadora existente; no duplicar cálculo."
+    },
+    "prestaciones_adicionales": {
+      "etiqueta": "Prestaciones adicionales",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_ingreso": {
+      "etiqueta": "Fecha ingreso",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "categoria": {
+      "etiqueta": "Categoria",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "jornada": {
+      "etiqueta": "Jornada",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar_trabajo": {
+      "etiqueta": "Lugar trabajo",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "salario": {
+      "etiqueta": "Salario",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "periodicidad_pago": {
+      "etiqueta": "Periodicidad pago",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "funciones": {
+      "etiqueta": "Funciones",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "superior_directo": {
+      "etiqueta": "Superior directo",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_despido": {
+      "etiqueta": "Fecha despido",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hora_despido": {
+      "etiqueta": "Hora despido",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar_despido": {
+      "etiqueta": "Lugar despido",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "persona_despide": {
+      "etiqueta": "Persona despide",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expresion_despido": {
+      "etiqueta": "Expresion despido",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "testigos": {
+      "etiqueta": "Testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "constancia_conciliacion": {
+      "etiqueta": "Constancia conciliacion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_testigos": {
+      "etiqueta": "Hechos testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DEMANDA LABORAL POR DESPIDO INJUSTIFICADO\nC. {{autoridad}}:\n{{promovente_nombre}}, {{personalidad_promovente}}, con domicilio en {{domicilio_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}} y autorizando para tales efectos a {{abogado_patrono}}, comparezco para exponer:\nI. PERSONALIDAD Y DOMICILIO\nComparezco en mi carácter de {{caracter_promovente}}, personalidad que acredito con {{documento_personalidad}}. Mi domicilio es {{domicilio_promovente}}; el de la contraparte, {{contraparte_nombre}}, es {{domicilio_contraparte}}.\nII. PRETENSIONES\nPor medio del presente escrito reclamo/solicito:\n1. La reinstalación en el puesto de {{puesto}} en los mismos términos y condiciones [OPCIÓN A].\n2. O, en su caso, el pago de la indemnización que corresponda conforme a la ley, por {{monto_indemnizacion}} [OPCIÓN B; CALCULADORA EXISTENTE].\n3. El pago de salarios vencidos desde la fecha del despido hasta el cumplimiento de la resolución.\n4. El pago de vacaciones, prima vacacional y aguinaldo, proporcionales y adeudados: {{monto_prestaciones}}.\n5. El pago de las demás prestaciones devengadas: {{prestaciones_adicionales}}.\n6. La regularización de inscripción y cotizaciones ante IMSS e INFONAVIT, con los salarios reales, en su caso.\nIII. HECHOS\nPRIMERO. El {{fecha_ingreso}}, {{promovente_nombre}} ingresó a laborar para {{contraparte_nombre}} con el puesto de {{puesto}}, bajo la categoría {{categoria}}.\nSEGUNDO. Su jornada era {{jornada}}, en {{lugar_trabajo}}, con salario de {{salario}} pagadero {{periodicidad_pago}}.\nTERCERO. Las funciones consistían en {{funciones}}, bajo la subordinación de {{superior_directo}}.\nCUARTO. El {{fecha_despido}}, aproximadamente a las {{hora_despido}}, en {{lugar_despido}}, {{persona_despide}} le manifestó: {{expresion_despido}}, dándolo por separado de su empleo.\nQUINTO. El despido ocurrió en presencia de {{testigos}}.\nSEXTO. No se le entregó aviso escrito de rescisión ni se le imputó causa justificada [CONFIRMAR CON LOS HECHOS].\nSÉPTIMO. A la fecha de la separación no tenía conflictos disciplinarios [CONFIRMAR].\nOCTAVO. Conforme a la conciliación prejudicial: {{constancia_conciliacion}} (constancia o excepción).\nIV. DERECHO\nFundan la presente promoción las disposiciones siguientes (artículos aplicables al acto y a la vía indicada):\n- Ley Federal del Trabajo: Terminación de la relación de trabajo e indemnización constitucional. Artículos aplicables: 872-873-K, 784-804.\n- Ley Federal del Trabajo: Acciones de reinstalación e indemnización. Artículos aplicables: 872-873-K, 784-804.\n- Ley Federal del Trabajo: Salarios vencidos. Artículos aplicables: 872-873-K, 784-804.\n- Ley Federal del Trabajo: Procedimiento ordinario y carga probatoria. Artículos aplicables: 872-873-K, 784-804.\n- Constitución Política de los Estados Unidos Mexicanos (Art. 123, Apartado A): Derechos del trabajador en caso de despido. Artículos aplicables: 48-50 y 123 Apartado A constitucional.\nV. PRUEBAS\nOfrezco las siguientes pruebas, relacionándolas con los hechos indicados:\n1. DOCUMENTAL.- Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.\n2. TESTIMONIAL.- Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.\n3. DOCUMENTAL.- Informe o constancias de alta, baja y salario ante el IMSS e INFONAVIT, para acreditar antigüedad y salario.\n4. INSPECCIÓN.- Sobre documentos que la ley obliga al patrón a conservar y exhibir, para acreditar los extremos de la relación.\n5. CONFESIONAL.- A cargo del patrón o de su representante legal, sobre la relación y los hechos del despido.\n6. PRESUNCIONAL LEGAL Y HUMANA.- Las deducciones lógico-jurídicas que se desprendan de los hechos probados.\n7. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n\nSe acompañan los documentos siguientes:\n1. Constancia de conciliación prejudicial o de excepción\n2. Identificación y poder o carta poder\n3. Recibos de nómina / contrato\n4. Alta IMSS\n5. Pruebas del despido\nVI. PETITORIOS\nPor lo expuesto, a Usted atentamente pido:\nPRIMERO. Tenerme por presentado(a) con este escrito y los documentos que se acompañan, promoviendo demanda por despido en contra de {{contraparte_nombre}}.\nSEGUNDO. Admitir a trámite la demanda en la vía señalada, ordenar el emplazamiento de la contraparte en el domicilio indicado y correrle traslado.\nTERCERO. Tener por ofrecidas las pruebas señaladas en el capítulo respectivo y ordenar su admisión y desahogo.\nCUARTO. En su oportunidad, dictar resolución en la que se declaren procedentes las pretensiones reclamadas, con lo demás que en derecho corresponda. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 48-50, 53-55: Terminación de la relación de trabajo e indemnización constitucional.\n- Ley Federal del Trabajo, artículos 48-50: Acciones de reinstalación e indemnización.\n- Ley Federal del Trabajo, artículos 48: Salarios vencidos.\n- Ley Federal del Trabajo, artículos 872-873-K, 784-804: Procedimiento ordinario y carga probatoria.\n- Constitución Política de los Estados Unidos Mexicanos (Art. 123, Apartado A), artículos 48-50 y 123 Apartado A constitucional: Derechos del trabajador en caso de despido.",
+  "siguiente_paso": "Completar hechos del despido con detalles verificables.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE.",
+    "Los montos de finiquito/indemnización/prestaciones vienen de la calculadora existente de SIGDE; no recalcular en el constructor."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

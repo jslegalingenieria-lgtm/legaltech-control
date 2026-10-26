@@ -1,0 +1,226 @@
+{
+  "id": "FAM-COMP-001",
+  "materia": "Familiar",
+  "diagnostico": {
+    "objetivo": "Analizar y solicitar la compensación económica cuando se actualicen sus requisitos.",
+    "preguntas": [
+      "¿Existió separación de bienes?",
+      "¿Quién se dedicó preponderantemente al hogar o cuidado?",
+      "¿Qué bienes adquirieron durante el matrimonio?",
+      "¿Qué situación socioeconómica existió?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Solicitud de compensación económica postdivorcio",
+    "tipo_documento": "promoción",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Familiar",
+      "Solicitud de compensación económica postdivorcio"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Compensación económica",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento vinculado al divorcio y a la liquidación patrimonial.",
+    "requisitos": [
+      "Verificar competencia y legitimación.",
+      "Integrar documentos base.",
+      "Identificar personas que deban ser llamadas.",
+      "Revisar requisitos especiales de la legislación aplicable."
+    ],
+    "nota": "SIGDE no sustituye la determinación profesional de competencia, vía y estrategia del caso concreto."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "El matrimonio estuvo bajo separación de bienes.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La persona solicitante se dedicó preponderantemente a {{trabajo_hogar}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Los bienes adquiridos durante el matrimonio son {{bienes_adquiridos}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se determine la compensación que legalmente corresponda."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Relación de bienes y títulos de propiedad.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Pruebas de actividad laboral y doméstica.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Avalúos cuando procedan.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Acta de matrimonio",
+    "Pruebas de separación de bienes",
+    "Relación y avalúo de bienes",
+    "Información socioeconómica"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Compensación por trabajo del hogar en divorcio",
+      "articulos": "417 Bis",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/compensaci_n_por_trabajo_del_hogar_en_divorcio"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La compensación debe analizarse conforme al régimen patrimonial y al trabajo doméstico/cuidado acreditado, sin convertirla en una presunción automática.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "trabajo_hogar": {
+      "etiqueta": "Trabajo doméstico y de cuidados",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "bienes_adquiridos": {
+      "etiqueta": "Bienes adquiridos durante el matrimonio",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: SOLICITUD DE COMPENSACIÓN ECONÓMICA POSTDIVORCIO C. JUEZ COMPETENTE\nP R E S E N T E. {{promovente_nombre}}, comparezco para solicitar la compensación económica que legalmente corresponda.\nI. HECHOS 1. Durante el matrimonio, el régimen patrimonial fue separación de bienes.\n2. La parte promovente se dedicó preponderantemente a labores no remuneradas del hogar y/o al cuidado de los hijos: {{trabajo_hogar}}.\n3. Durante ese periodo los bienes adquiridos por ambos fueron: {{bienes_adquiridos}}.\n4. Deberá explicarse la evolución socioeconómica de la familia, la clase y cantidad del trabajo doméstico y de cuidados y la situación patrimonial de cada cónyuge.\nII. DERECHO El artículo 417-Bis del Código Civil del Estado de Jalisco establece la compensación para el supuesto de separación de bienes cuando un cónyuge se dedicó preponderantemente a labores no remuneradas del hogar y/o cuidado de hijos, o destinó la mayor parte de sus ingresos al mantenimiento familiar y por ello no adquirió bienes. El límite previsto por ese artículo no podrá asumirse automáticamente: deberá determinarse conforme a la relación de bienes, avalúos y circunstancias del caso.\nIII. PRUEBAS Relación de bienes, escrituras, certificados registrales, avalúos, estados de cuenta, comprobantes de gastos familiares, información laboral y fiscal, testimoniales, pericial contable y demás pruebas pertinentes.\nIV. PETITORIOS\nPRIMERO. Admitir la solicitud.\nSEGUNDO. Requerir y recibir la información patrimonial necesaria.\nTERCERO. Admitir las pruebas y ordenar los avalúos que correspondan.\nCUARTO. Determinar, en sentencia, si procede la compensación y su monto conforme al artículo 417-Bis. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Civil del Estado de Jalisco, artículos 417 Bis: Compensación por trabajo del hogar en divorcio.",
+  "siguiente_paso": "Cuantificar y acreditar bienes y trabajo doméstico antes de solicitar un porcentaje.",
+  "alertas": [
+    "La compensación requiere análisis de requisitos y prueba; no asumir un porcentaje automático.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

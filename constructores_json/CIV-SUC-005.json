@@ -1,0 +1,461 @@
+{
+  "id": "CIV-SUC-005",
+  "materia": "Sucesorio",
+  "diagnostico": {
+    "objetivo": "Solicitar o formalizar el nombramiento y aceptación del albacea.",
+    "preguntas": [
+      "¿Quién fue designado?",
+      "¿Hubo votación de herederos?",
+      "¿El albacea acepta?",
+      "¿Debe garantizar su manejo?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Nombramiento y aceptación de albacea",
+    "tipo_documento": "promoción",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Sucesorio",
+      "Nombramiento y aceptación de albacea"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Albaceazgo",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento sucesorio conforme al Código de Procedimientos Civiles del Estado de Jalisco.",
+    "requisitos": [
+      "Verificar competencia y legitimación.",
+      "Integrar documentos base.",
+      "Identificar personas que deban ser llamadas.",
+      "Revisar requisitos especiales de la legislación aplicable."
+    ],
+    "nota": "SIGDE no sustituye la determinación profesional de competencia, vía y estrategia del caso concreto."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Se designó o debe designarse albacea y debe constar su aceptación.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "S"
+    },
+    {
+      "orden": 2,
+      "texto": "e"
+    },
+    {
+      "orden": 3,
+      "texto": ""
+    },
+    {
+      "orden": 4,
+      "texto": "a"
+    },
+    {
+      "orden": 5,
+      "texto": "p"
+    },
+    {
+      "orden": 6,
+      "texto": "r"
+    },
+    {
+      "orden": 7,
+      "texto": "u"
+    },
+    {
+      "orden": 8,
+      "texto": "e"
+    },
+    {
+      "orden": 9,
+      "texto": "b"
+    },
+    {
+      "orden": 10,
+      "texto": "e"
+    },
+    {
+      "orden": 11,
+      "texto": ""
+    },
+    {
+      "orden": 12,
+      "texto": "e"
+    },
+    {
+      "orden": 13,
+      "texto": "l"
+    },
+    {
+      "orden": 14,
+      "texto": ""
+    },
+    {
+      "orden": 15,
+      "texto": "n"
+    },
+    {
+      "orden": 16,
+      "texto": "o"
+    },
+    {
+      "orden": 17,
+      "texto": "m"
+    },
+    {
+      "orden": 18,
+      "texto": "b"
+    },
+    {
+      "orden": 19,
+      "texto": "r"
+    },
+    {
+      "orden": 20,
+      "texto": "a"
+    },
+    {
+      "orden": 21,
+      "texto": "m"
+    },
+    {
+      "orden": 22,
+      "texto": "i"
+    },
+    {
+      "orden": 23,
+      "texto": "e"
+    },
+    {
+      "orden": 24,
+      "texto": "n"
+    },
+    {
+      "orden": 25,
+      "texto": "t"
+    },
+    {
+      "orden": 26,
+      "texto": "o"
+    },
+    {
+      "orden": 27,
+      "texto": ""
+    },
+    {
+      "orden": 28,
+      "texto": "y"
+    },
+    {
+      "orden": 29,
+      "texto": ""
+    },
+    {
+      "orden": 30,
+      "texto": "s"
+    },
+    {
+      "orden": 31,
+      "texto": "e"
+    },
+    {
+      "orden": 32,
+      "texto": ""
+    },
+    {
+      "orden": 33,
+      "texto": "t"
+    },
+    {
+      "orden": 34,
+      "texto": "e"
+    },
+    {
+      "orden": 35,
+      "texto": "n"
+    },
+    {
+      "orden": 36,
+      "texto": "g"
+    },
+    {
+      "orden": 37,
+      "texto": "a"
+    },
+    {
+      "orden": 38,
+      "texto": ""
+    },
+    {
+      "orden": 39,
+      "texto": "p"
+    },
+    {
+      "orden": 40,
+      "texto": "o"
+    },
+    {
+      "orden": 41,
+      "texto": "r"
+    },
+    {
+      "orden": 42,
+      "texto": ""
+    },
+    {
+      "orden": 43,
+      "texto": "a"
+    },
+    {
+      "orden": 44,
+      "texto": "c"
+    },
+    {
+      "orden": 45,
+      "texto": "e"
+    },
+    {
+      "orden": 46,
+      "texto": "p"
+    },
+    {
+      "orden": 47,
+      "texto": "t"
+    },
+    {
+      "orden": 48,
+      "texto": "a"
+    },
+    {
+      "orden": 49,
+      "texto": "d"
+    },
+    {
+      "orden": 50,
+      "texto": "o"
+    },
+    {
+      "orden": 51,
+      "texto": ""
+    },
+    {
+      "orden": 52,
+      "texto": "e"
+    },
+    {
+      "orden": 53,
+      "texto": "l"
+    },
+    {
+      "orden": 54,
+      "texto": ""
+    },
+    {
+      "orden": 55,
+      "texto": "c"
+    },
+    {
+      "orden": 56,
+      "texto": "a"
+    },
+    {
+      "orden": 57,
+      "texto": "r"
+    },
+    {
+      "orden": 58,
+      "texto": "g"
+    },
+    {
+      "orden": 59,
+      "texto": "o"
+    },
+    {
+      "orden": 60,
+      "texto": "."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos que acreditan los hechos y el derecho invocado.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Actuaciones del expediente en lo que favorezcan.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional",
+      "objeto": "Presunciones que resulten de los hechos acreditados.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Acta de junta",
+    "Votación o designación",
+    "Datos del albacea"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código de Procedimientos Civiles del Estado de Jalisco",
+      "tema": "Albacea en el juicio sucesorio",
+      "articulos": "832, 847-849",
+      "estatus": "registrado",
+      "ck_clave": "CK/cpc_jalisco/albacea_en_el_juicio_sucesorio"
+    },
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Albacea",
+      "articulos": "3020-3051",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/albacea"
+    }
+  ],
+  "teoria_caso": {
+    "texto": [
+      "El albacea representa a la sucesión y tiene deberes de administración, garantía y rendición de cuentas."
+    ],
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "autor_sucesion": {
+      "etiqueta": "Autor de la sucesión",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_especificos": {
+      "etiqueta": "Hechos específicos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: NOMBRAMIENTO Y ACEPTACIÓN DE ALBACEA C. JUEZ COMPETENTE\nP R E S E N T E. {{promovente_nombre}}, en mi carácter de {{personalidad_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, y autorizando a {{abogado_patrono}}, comparezco para exponer:\nI. ANTECEDENTES El estado actual de la sucesión es: {{hechos_especificos}}.\nII. DESIGNACIÓN Se propone como albacea a la persona que legalmente corresponda, precisando si fue designada en testamento o elegida por los herederos. El Código Civil reconoce al albacea como representante legal de la sucesión y le asigna funciones de trámite y, cuando corresponda, ejecución de la voluntad del testador.\nIII. ACEPTACIÓN DEL CARGO La persona designada manifiesta conocer la naturaleza del cargo, sus obligaciones, impedimentos, excusas, deberes de administración, formación de inventarios, rendición de cuentas, pago de deudas y partición. Deberá revisarse la necesidad de garantía y las demás obligaciones previstas en los artículos 3020 a 3050 del Código Civil.\nIV. FUNDAMENTO PROCESAL Los artículos 837 y 847 del Código de Procedimientos Civiles regulan la elección o designación del albacea en testamentaría e intestado. El artículo 854 fija la obligación de iniciar inventario y avalúo dentro del plazo legal después de aceptar el cargo.\nV. PETITORIOS\nPRIMERO. Aprobar el nombramiento.\nSEGUNDO. Tener por aceptado y protestado el cargo.\nTERCERO. Poner al albacea en posesión cuando corresponda.\nCUARTO. Ordenar que se continúe con inventario, avalúo, administración y demás etapas. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código de Procedimientos Civiles del Estado de Jalisco, artículos 832, 847-849: Albacea en el juicio sucesorio.\n- Código Civil del Estado de Jalisco, artículos 3020-3051: Albacea.",
+  "siguiente_paso": "Verificar etapa procesal, legitimación y documentos antes de presentar.",
+  "alertas": [
+    "No confundir la etapa procesal del constructor con una etapa ya agotada.",
+    "Verificar legislación vigente y resoluciones del expediente.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

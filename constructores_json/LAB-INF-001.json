@@ -1,0 +1,197 @@
+{
+  "id": "LAB-INF-001",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Identificar el asunto con INFONAVIT (aportaciones, crédito, descuentos, resolución) y el medio de defensa.",
+    "preguntas": [
+      "¿Es patrón o trabajador?",
+      "¿Qué acto: crédito patronal, aportaciones omitidas, descuentos, resolución?",
+      "¿Fecha de notificación?",
+      "¿Qué pruebas hay de pago/aportaciones?",
+      "¿Qué recurso procede y plazo?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Diagnóstico INFONAVIT",
+    "tipo_documento": "diagnostico",
+    "rol_promovente": "patrón / trabajador",
+    "rol_contraparte": "INFONAVIT",
+    "criterios": [
+      "Aportaciones patronales",
+      "Crédito de vivienda",
+      "Resolución de la autoridad"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Diagnóstico INFONAVIT",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Recurso de inconformidad u otro medio",
+    "requisitos": [
+      "Acto notificado.",
+      "Plazo vigente."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Acto: {{acto_infonavit}} número {{numero_acto}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Notificación: {{fecha_notificacion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Monto: {{monto_acto}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Dejar sin efectos o reducir el acto."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos exhibidos, para acreditar el acto y su notificación.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley del Instituto del Fondo Nacional de la Vivienda para los Trabajadores",
+      "tema": "Obligaciones, créditos y medios de defensa",
+      "articulos": "29-30, 55-59 Ley del INFONAVIT",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_del_instituto_del_fondo_nacional_de_/obligaciones_creditos_y_medios_de_defensa"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "El acto es improcedente o excesivo.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "acto_infonavit": {
+      "etiqueta": "Acto infonavit",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "numero_acto": {
+      "etiqueta": "Número acto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_notificacion": {
+      "etiqueta": "Fecha notificación",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "monto_acto": {
+      "etiqueta": "Monto acto",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DIAGNÓSTICO — DIAGNÓSTICO INFONAVIT INFORME DE DIAGNÓSTICO — DIAGNÓSTICO INFONAVIT\nI. DIAGNÓSTICO\nIdentificar el asunto con INFONAVIT (aportaciones, crédito, descuentos, resolución) y el medio de defensa.\nPreguntas a resolver con el expediente:\n1. ¿Es patrón o trabajador?\n2. ¿Qué acto: crédito patronal, aportaciones omitidas, descuentos, resolución?\n3. ¿Fecha de notificación?\n4. ¿Qué pruebas hay de pago/aportaciones?\n5. ¿Qué recurso procede y plazo?\nII. CLASIFICACIÓN\n- Aportaciones patronales\n- Crédito de vivienda\n- Resolución de la autoridad\nIII. ACCIÓN/DEFENSA Y VÍA\n- Recurso de inconformidad: LAB-INF-002.\nVía: Recurso de inconformidad u otro medio\nIV. REQUISITOS\n1. Acto notificado.\n2. Plazo vigente.\nV. HECHOS A ESTABLECER\nPRIMERO. Acto: {{acto_infonavit}} número {{numero_acto}}.\nSEGUNDO. Notificación: {{fecha_notificacion}}.\nTERCERO. Monto: {{monto_acto}}.\nVI. PRETENSIONES / OBJETIVOS\n1. Dejar sin efectos o reducir el acto.\nVII. PRUEBAS\n1. DOCUMENTAL.- Documentos exhibidos, para acreditar el acto y su notificación.\n2. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n- Ley del Instituto del Fondo Nacional de la Vivienda para los Trabajadores: Obligaciones, créditos y medios de defensa. Artículos aplicables: 29-30, 55-59 Ley del INFONAVIT.\nIX. SIGUIENTE PASO\nCalcular plazo y reunir comprobantes. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley del Instituto del Fondo Nacional de la Vivienda para los Trabajadores, artículos 29-30, 55-59 Ley del INFONAVIT: Obligaciones, créditos y medios de defensa.",
+  "siguiente_paso": "Calcular plazo y reunir comprobantes.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

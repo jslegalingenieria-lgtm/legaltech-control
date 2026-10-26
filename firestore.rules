@@ -200,6 +200,29 @@ service cloud.firestore {
       allow delete: if superadmin();
     }
 
+    // Gestión y control: registros financieros/cotizaciones se identifican por autor.
+    function personalGestionFinanciera() {
+      return activo() && (superadmin() || admin() || auxiliar() || abogado() || pasante());
+    }
+
+    match /cotizaciones/{id} {
+      allow read: if gestionTotal() || (personalGestionFinanciera() && resource.data.createdByUid == request.auth.uid);
+      allow create: if personalGestionFinanciera() && request.resource.data.createdByUid == request.auth.uid;
+      allow update: if gestionTotal() || (personalGestionFinanciera()
+        && resource.data.createdByUid == request.auth.uid
+        && request.resource.data.createdByUid == resource.data.createdByUid);
+      allow delete: if gestionTotal() || (personalGestionFinanciera() && resource.data.createdByUid == request.auth.uid);
+    }
+
+    match /registrosFinancieros/{id} {
+      allow read: if gestionTotal() || (personalGestionFinanciera() && resource.data.createdByUid == request.auth.uid);
+      allow create: if personalGestionFinanciera() && request.resource.data.createdByUid == request.auth.uid;
+      allow update: if gestionTotal() || (personalGestionFinanciera()
+        && resource.data.createdByUid == request.auth.uid
+        && request.resource.data.createdByUid == resource.data.createdByUid);
+      allow delete: if gestionTotal() || (personalGestionFinanciera() && resource.data.createdByUid == request.auth.uid);
+    }
+
     match /configuracion/{id} {
       allow read: if activo();
       allow create, update: if gestionTotal();

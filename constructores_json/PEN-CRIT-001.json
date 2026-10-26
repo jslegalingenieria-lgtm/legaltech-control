@@ -1,0 +1,175 @@
+{
+  "id": "PEN-CRIT-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Preparar el planteamiento relacionado con un criterio de oportunidad en los supuestos legalmente procedentes.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Solicitud/impugnación de criterio de oportunidad",
+    "tipo_documento": "promoción",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Criterio de oportunidad.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Investigación o procedimiento, conforme al supuesto aplicable.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La investigación se refiere a {{hechos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La razón por la que se solicita o controvierte el criterio es {{razon}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Los datos relevantes para su análisis son {{datos}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Que el Ministerio Público aplique o revise el criterio cuando legalmente proceda, o que se ejerza el control judicial correspondiente."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Constancias de la investigación.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Datos de prueba",
+      "objeto": "Información relacionada con el supuesto legal.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Constancias de carpeta.",
+    "Datos de prueba."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Casos en que operan los criterios de oportunidad",
+      "articulos": "256",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Efectos",
+      "articulos": "257",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Notificaciones y control judicial",
+      "articulos": "258",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso debe explicar la relevancia del supuesto legal invocado y sus efectos, sin confundirlo con un acuerdo reparatorio o suspensión condicional.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos": {
+      "etiqueta": "Hechos",
+      "tipo": "texto",
+      "fuente": "expediente.hechos",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "razon": {
+      "etiqueta": "Razon",
+      "tipo": "texto",
+      "fuente": "expediente.razon",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "datos": {
+      "etiqueta": "Datos",
+      "tipo": "texto",
+      "fuente": "expediente.datos",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "peticion": {
+      "etiqueta": "Peticion",
+      "tipo": "texto",
+      "fuente": "expediente.peticion",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "C. AGENTE DEL MINISTERIO PÚBLICO / C. JUEZ DE CONTROL\nASUNTO: CRITERIO DE OPORTUNIDAD\nI. HECHOS\n{{hechos}}.\nII. RAZÓN DEL PLANTEAMIENTO\n{{razon}}.\nIII. DATOS\n{{datos}}.\nIV. PETICIÓN\n{{peticion}}. \nFUNDAMENTO JURÍDICO APLICADO\n- Código Nacional de Procedimientos Penales, artículos 256: Casos en que operan los criterios de oportunidad.\n- Código Nacional de Procedimientos Penales, artículos 257: Efectos.\n- Código Nacional de Procedimientos Penales, artículos 258: Notificaciones y control judicial.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

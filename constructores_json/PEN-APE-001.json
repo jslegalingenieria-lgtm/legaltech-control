@@ -1,0 +1,185 @@
+{
+  "id": "PEN-APE-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Preparar agravios contra una resolución apelable del Juez de control o Tribunal de enjuiciamiento.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Recurso de apelación penal",
+    "tipo_documento": "recurso",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Recurso de apelación.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Segunda instancia penal, en los supuestos previstos por el CNPP.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La resolución impugnada es {{resolucion_impugnada}}, de fecha {{fecha_resolucion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La parte considera que causa agravio porque {{agravios}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "La pretensión en segunda instancia es {{pretension_recurso}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Que se admita el recurso."
+    },
+    {
+      "orden": 2,
+      "texto": "Que se revoque, modifique o confirme la resolución según los agravios y lo que proceda."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Resolución impugnada.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Registro audiovisual",
+      "objeto": "Registro de audiencia, cuando sea relevante.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Constancias necesarias para los agravios.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Resolución impugnada.",
+    "Constancias de audiencia.",
+    "Datos de notificación."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Resoluciones apelables",
+      "articulos": "467",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Trámite de la apelación",
+      "articulos": "471",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Envío al Tribunal de alzada",
+      "articulos": "474",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso recursal debe concentrarse en el error concreto de la resolución, su trascendencia y la respuesta que debe dar el Tribunal de alzada.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "resolucion_impugnada": {
+      "etiqueta": "Resolución Impugnada",
+      "tipo": "texto",
+      "fuente": "expediente.resolucion_impugnada",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_resolucion": {
+      "etiqueta": "Fecha Resolución",
+      "tipo": "texto",
+      "fuente": "expediente.fecha_resolucion",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "agravios": {
+      "etiqueta": "Agravios",
+      "tipo": "texto",
+      "fuente": "expediente.agravios",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "pretension_recurso": {
+      "etiqueta": "Pretensión Recurso",
+      "tipo": "texto",
+      "fuente": "expediente.pretension_recurso",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "C. TRIBUNAL DE ALZADA / C. JUEZ DE CONTROL\nASUNTO: RECURSO DE APELACIÓN\nI. RESOLUCIÓN IMPUGNADA\n{{resolucion_impugnada}} de {{fecha_resolucion}}.\nII. AGRAVIOS\n{{agravios}}.\nIII. PRETENSIÓN RECURSAL\n{{pretension_recurso}}. PETICIONES\nSe tenga por interpuesto el recurso y se tramite conforme al CNPP. \nFUNDAMENTO JURÍDICO APLICADO\n- Código Nacional de Procedimientos Penales, artículos 467: Resoluciones apelables.\n- Código Nacional de Procedimientos Penales, artículos 471: Trámite de la apelación.\n- Código Nacional de Procedimientos Penales, artículos 474: Envío al Tribunal de alzada.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "id": "CNPCF-FAM-EJE-001",
+  "materia": "CNPCF",
+  "diagnostico": {
+    "objetivo": "Solicitud para exigir cumplimiento de resolución o convenio aprobado, previa verificación de ejecutabilidad.",
+    "preguntas": [
+      "¿Se verificó la declaratoria y fecha de entrada en vigor aplicable al asunto?",
+      "¿Cuál es la competencia, vía, etapa procesal y legislación sustantiva aplicable?",
+      "¿Qué hechos, pretensiones y personas interesadas deben identificarse?",
+      "¿Qué documentos y medios de prueba respaldan cada hecho?",
+      "¿Existen medidas urgentes o derechos de NNA/personas en situación de vulnerabilidad?"
+    ],
+    "datos_minimos": [
+      "autoridad",
+      "expediente",
+      "partes",
+      "hechos",
+      "pretensiones",
+      "fundamento normativo vigente",
+      "pruebas"
+    ],
+    "resultado_esperado": "Borrador estructurado sujeto a revisión profesional y verificación normativa antes de presentarse."
+  },
+  "clasificacion": {
+    "constructor": "Solicitud de ejecución de resolución familiar conforme al CNPCF",
+    "tipo_documento": "Ejecución",
+    "regimen_procesal": "CNPCF",
+    "criterios": [
+      "Confirmar declaratoria y fecha de entrada en vigor aplicable",
+      "Verificar legislación sustantiva estatal/federal que corresponda",
+      "Revisar vía, etapa y requisitos especiales antes de utilizar"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Solicitud de ejecución de resolución familiar conforme al CNPCF",
+    "naturaleza": "procesal",
+    "descripcion": "Solicitud para exigir cumplimiento de resolución o convenio aprobado, previa verificación de ejecutabilidad.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "La que corresponda conforme al CNPCF, la etapa procesal y la legislación sustantiva aplicable; determinar y verificar en el caso concreto.",
+    "requisitos": [
+      "Competencia y legitimación",
+      "Identificación de la vía y etapa procesal",
+      "Hechos y pretensiones claros",
+      "Pruebas vinculadas con los hechos",
+      "Fundamento vigente y transitorios aplicables"
+    ],
+    "nota": "Plantilla de apoyo. No presume que el CNPCF ya esté vigente para el asunto ni sustituye la revisión profesional."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Solicitud para exigir cumplimiento de resolución o convenio aprobado, previa verificación de ejecutabilidad. {{hechos_relevantes}}"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "{{pretensiones}}",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pruebas": [
+    {
+      "tipo": "Medios de prueba",
+      "detalle": "{{pruebas}}"
+    }
+  ],
+  "documentos": [
+    "Identificación y personalidad, cuando procedan",
+    "Documentos base de la acción o defensa",
+    "Anexos relacionados con hechos y medios de prueba"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Civiles y Familiares",
+      "tema": "Requisitos y trámite aplicables al tipo de escrito",
+      "articulos": "Verificar artículos específicos para la vía y etapa",
+      "estatus": "Validación profesional obligatoria"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Uso interno: relacionar hechos jurídicamente relevantes, norma aplicable, medios de prueba, pretensión y respuesta a la hipótesis contraria."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad jurisdiccional",
+      "valor_por_defecto": "[CAPTURAR]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "valor_por_defecto": "[CAPTURAR]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre de quien promueve",
+      "valor_por_defecto": "[CAPTURAR]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Contraparte",
+      "valor_por_defecto": "[CAPTURAR]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para notificaciones",
+      "valor_por_defecto": "[CAPTURAR]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Representante autorizado",
+      "valor_por_defecto": "[CAPTURAR]"
+    },
+    "hechos": {
+      "etiqueta": "Hechos relevantes",
+      "valor_por_defecto": "[CAPTURAR]"
+    },
+    "pretensiones": {
+      "etiqueta": "Pretensiones o solicitud",
+      "valor_por_defecto": "[CAPTURAR]"
+    },
+    "fundamentos": {
+      "etiqueta": "Fundamentos normativos verificados",
+      "valor_por_defecto": "[VALIDAR]"
+    },
+    "pruebas": {
+      "etiqueta": "Medios de prueba y relación con hechos",
+      "valor_por_defecto": "[CAPTURAR]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha",
+      "valor_por_defecto": "[CAPTURAR]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\n\nASUNTO: SOLICITUD DE EJECUCIÓN DE RESOLUCIÓN FAMILIAR CONFORME AL CNPCF\n\nC. AUTORIDAD JURISDICCIONAL COMPETENTE:\n\n{{promovente_nombre}}, por mi propio derecho y/o en la personalidad que tengo acreditada o que oportunamente acreditaré, señalando como domicilio para oír y recibir notificaciones el indicado en las constancias o en el apartado correspondiente, y autorizando a {{abogado_patrono}} en los términos que legalmente procedan, comparezco respetuosamente para exponer:\n\nQue por medio del presente escrito formulo la petición que se precisa en los apartados siguientes. Solicito que se examine conforme a los hechos concretos, la pretensión ejercitada, la vía que resulte procedente y las disposiciones sustantivas y procesales efectivamente aplicables. Los datos entre llaves deberán completarse antes de utilizar este borrador.\n\nI. PERSONALIDAD, LEGITIMACIÓN Y DATOS DEL ASUNTO\nLa parte promovente comparece con el carácter de {{promovente_nombre}}. La contraparte o persona relacionada con la petición es {{contraparte_nombre}}. La personalidad, el interés jurídico o legítimo, la legitimación y, en su caso, la representación deberán acreditarse con las constancias y documentos correspondientes, sin presumirse por la sola elaboración de este escrito.\n\nII. OBJETO Y PRETENSIONES\nLa petición concreta consiste en lo siguiente:\n{{pretensiones}}\n\nLas pretensiones deberán formularse de manera clara, determinada y congruente con los hechos narrados. Cuando existan varias, conviene individualizarlas y precisar cuál es principal, accesoria, provisional o subsidiaria, si jurídicamente procede.\n\nIII. HECHOS Y ANTECEDENTES\nBajo protesta de decir verdad, y en lo que resulte legalmente exigible, se exponen los antecedentes relevantes en orden cronológico:\n{{hechos}}\n\nCada hecho deberá identificar, en la medida disponible, tiempo, lugar, personas intervinientes y forma en que la parte promovente tuvo conocimiento. Deben distinguirse los hechos propios, los conocidos por referencia y las inferencias; evitar afirmaciones que no puedan sostenerse y señalar qué documento, testimonio u otro medio de prueba se relaciona con cada hecho.\n\nIV. DERECHO Y FUNDAMENTO NORMATIVO\nLa solicitud se apoya en las disposiciones siguientes, que deberán verificarse en su texto oficial, vigencia, ámbito territorial y material, régimen transitorio y aplicabilidad al caso:\n{{fundamentos}}\n\nLa referencia al Código Nacional de Procedimientos Civiles y Familiares no sustituye la comprobación de su entrada en vigor para la entidad y el órgano jurisdiccional de que se trate. En su caso, deberán identificarse por separado las normas sustantivas locales, las disposiciones procesales aplicables y los transitorios relevantes. No deben conservarse artículos genéricos ni citas no verificadas.\n\nV. MEDIOS DE PRUEBA Y SU RELACIÓN CON LOS HECHOS\nSe proponen u ofrecen, según la etapa y las reglas procesales aplicables, los siguientes medios de prueba:\n{{pruebas}}\n\nPor cada medio deberá precisarse su naturaleza, los hechos específicos que pretende demostrar, la razón de su pertinencia y, cuando corresponda, los datos necesarios para su preparación y desahogo. La admisión, preparación y valoración corresponden al órgano jurisdiccional conforme a la ley; su inclusión en este borrador no garantiza que sea admitido.\n\nVI. DOCUMENTOS Y ANEXOS\nSe deberán identificar e incorporar, según corresponda, los documentos que acrediten personalidad, relación jurídica, hechos base de la acción o defensa y demás requisitos de la vía. Verificar integridad, legibilidad, copias, traducciones, certificaciones y datos personales antes de presentar.\n\nVII. IDENTIFICACIÓN DE LA RESOLUCIÓN Y OBLIGACIÓN INCUMPLIDA\nSeñalar fecha y órgano que emitió la resolución, transcribir o resumir la parte ejecutable, indicar notificación y exigibilidad, así como las obligaciones cumplidas y pendientes. Adjuntar copia certificada o constancia idónea según proceda.\n\nVIII. LIQUIDACIÓN Y MEDIDAS DE CUMPLIMIENTO\nDesglosar periodos, cantidades, actualizaciones y pagos recibidos cuando se reclamen obligaciones cuantificables. Para obligaciones no monetarias, describir el acto de cumplimiento solicitado. Precisar las medidas de ejecución pretendidas y explicar por qué resultan adecuadas, sin duplicar conceptos ni reclamar rubros ajenos a la resolución.\n\nNOTA DE CONTROL JURÍDICO PARA EL ABOGADO\nAntes de firmar o presentar: (1) confirmar que el CNPCF ya está vigente y es aplicable al órgano y fecha del asunto; (2) revisar régimen transitorio y cualquier procedimiento especial; (3) verificar por separado la legislación sustantiva local que corresponda; (4) sustituir todos los campos pendientes; (5) cotejar cada cita con fuente oficial; (6) revisar competencia, legitimación, vía, oportunidad, anexos, datos personales y coherencia entre hechos, pretensiones y pruebas. Este texto es una base de trabajo y no debe presentarse sin adecuación al expediente concreto.\n\nIX. PETICIONES CONCRETAS\nPor lo expuesto, a Usted atentamente solicito:\n\nPRIMERO. Tenerme por presentado con este escrito y los documentos que, en su caso, se acompañen, reconociendo el carácter con el que comparezco si se acredita conforme a Derecho.\nSEGUNDO. Tener por formuladas las pretensiones y por expuestos los hechos en los términos que legalmente procedan.\nTERCERO. Acordar lo conducente respecto de los medios de prueba, anexos y solicitudes expresamente planteados, conforme a la etapa procesal.\nCUARTO. Ordenar las notificaciones y actuaciones que procedan conforme al régimen aplicable.\nQUINTO. En su oportunidad, dictar la resolución que en Derecho corresponda, sin exceder la materia de la petición ni prejuzgar sobre cuestiones que deban acreditarse.\n\nPROTESTO LO NECESARIO.\n\n{{promovente_nombre}}\n{{fecha}}\n",
+  "siguiente_paso": "Completar campos, revisar fundamento, confirmar régimen procesal y verificar anexos antes de generar versión final.",
+  "alertas": [
+    "Borrador base: no constituye asesoría automática ni documento listo para presentar.",
+    "Verificar vigencia y declaratoria de aplicación del CNPCF en la entidad y fecha del asunto.",
+    "No copiar plazos genéricos sin contrastar el artículo y procedimiento concretos.",
+    "Revisar competencia, vía, reglas especiales y anexos.",
+    "El documento generado incluye desarrollo jurídico orientativo y apartados para adaptar al caso; no presentar sin completar campos y verificar normas, hechos, pruebas, vía y régimen transitorio."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "fuente_base": "Manual Propuesto de Procedimientos Legales conforme al CNPCF.md y CNPCF aportado por el usuario",
+    "estado": "Plantilla ampliada con redacción forense orientativa; requiere adaptación al caso y verificación normativa oficial antes de uso."
+  }
+}

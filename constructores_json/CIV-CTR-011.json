@@ -1,0 +1,180 @@
+{
+  "id": "CIV-CTR-011",
+  "materia": "Civil",
+  "submateria": "Contratos civiles",
+  "tipo": "contrato",
+  "diagnostico": {
+    "objetivo": "Capturar los elementos necesarios para elaborar un Contrato de obra conforme al caso concreto.",
+    "preguntas": [
+      "¿Quiénes son las partes y con qué carácter comparecen?",
+      "¿Cuál es el objeto exacto del contrato?",
+      "¿Qué obligaciones y contraprestaciones existen?",
+      "¿Qué plazo, forma de pago y condiciones especiales se pactan?",
+      "¿Qué riesgos de incumplimiento, garantías o causas de terminación deben contemplarse?"
+    ],
+    "datos_minimos": [
+      "contratista",
+      "cliente",
+      "obra",
+      "precio_obra",
+      "plazo_obra",
+      "entregables"
+    ],
+    "resultado_esperado": "Ficha contractual completa, cláusulas parametrizadas y documento listo para revisión profesional."
+  },
+  "clasificacion": {
+    "constructor": "Contrato de obra",
+    "tipo_documento": "contrato",
+    "rol_promovente": "Parte A",
+    "rol_contraparte": "Parte B",
+    "criterios": [
+      "Contractual",
+      "Civil",
+      "Contratos civiles"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Elaboración y formalización contractual",
+    "naturaleza": "preventiva/contractual",
+    "descripcion": "Obra por encargo o a precio convenido",
+    "excepciones_defensas": [
+      "Verificar capacidad y representación",
+      "Verificar formalidades especiales",
+      "Verificar restricciones legales del objeto",
+      "Verificar competencia y ley aplicable"
+    ]
+  },
+  "via_procedimiento": {
+    "via": "Extrajudicial / contractual",
+    "requisitos": [
+      "Identificación y capacidad de las partes",
+      "Documentos de propiedad o representación cuando proceda",
+      "Datos completos del objeto",
+      "Condiciones económicas",
+      "Formalidades e inscripción cuando corresponda"
+    ],
+    "nota": "La formalización no sustituye la revisión de competencia, impuestos, permisos, registros ni requisitos especiales."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "El {{fecha_contrato}}, {{promovente_nombre}} y {{contraparte_nombre}} acuerdan celebrar el contrato de obra.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "El objeto y las condiciones esenciales son: {{objeto_contrato}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Formalizar el contrato conforme a los datos capturados y las cláusulas pactadas."
+    },
+    {
+      "orden": 2,
+      "texto": "Establecer derechos, obligaciones, contraprestaciones, garantías y consecuencias del incumplimiento."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Identidad, capacidad, representación y documentos del objeto contractual.",
+      "estatus": "por_integrar"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Documentos que acrediten propiedad, estado, permisos, registros o condiciones especiales.",
+      "estatus": "por_integrar"
+    },
+    {
+      "medio": "Comunicaciones",
+      "objeto": "Correos, cotizaciones, propuestas o acuerdos previos relevantes.",
+      "estatus": "por_integrar"
+    }
+  ],
+  "documentos": [
+    "Identificaciones y documentos de representación, en su caso",
+    "Documentos del objeto contractual",
+    "Anexos técnicos, comerciales o registrales que correspondan"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Contrato de obra",
+      "articulos": "2274-2303",
+      "estatus": "fuente_oficial_jalisco_240626",
+      "ck_clave": "CK/codigo_civil_del_estado_de_jalisco/contrato_de_obra",
+      "fuente": "Código Civil del Estado de Jalisco, PDF oficial con última reforma indicada por el Congreso"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "En materia contractual la teoría del caso se utiliza como herramienta interna para comprobar que los hechos, documentos, obligaciones, riesgos e incumplimientos son coherentes con el contrato que se pretende formalizar o con la estrategia posterior. No se inserta automáticamente en el contrato final.",
+    "elementos": [
+      "Partes y capacidad",
+      "Objeto y consentimiento",
+      "Obligaciones y contraprestación",
+      "Cumplimiento y riesgos",
+      "Garantías y consecuencias del incumplimiento"
+    ],
+    "uso": "Control estratégico interno y revisión profesional."
+  },
+  "campos_dinamicos": {
+    "autoridad": "",
+    "promovente_nombre": "",
+    "contraparte_nombre": "",
+    "domicilio_promovente": "",
+    "domicilio_contraparte": "",
+    "domicilio_notificaciones": "",
+    "abogado_patrono": "",
+    "fecha_contrato": "",
+    "lugar_contrato": "",
+    "vigencia": "",
+    "jurisdiccion": "",
+    "ley_aplicable": "Código Civil del Estado de Jalisco (validar vigencia y aplicabilidad)",
+    "notas_especiales": "",
+    "contratista": "",
+    "cliente": "",
+    "obra": "",
+    "precio_obra": "",
+    "plazo_obra": "",
+    "entregables": "",
+    "especificaciones": "",
+    "anticipo": "",
+    "defectos_garantias": "",
+    "incumplimiento": "",
+    "objeto_contrato": ""
+  },
+  "documento_generado": "CONTRATO DE CONTRATO DE OBRA QUE CELEBRAN, POR UNA PARTE, {{promovente_nombre}}, A QUIEN EN LO SUCESIVO SE LE DENOMINARÁ “PARTE A”, Y POR LA OTRA, {{contraparte_nombre}}, A QUIEN EN LO SUCESIVO SE LE DENOMINARÁ “PARTE B”, AL TENOR DE LAS SIGUIENTES: DECLARACIONES\nI. Declara PARTE A que cuenta con capacidad y legitimación para celebrar el presente contrato y que sus datos y domicilio son: {{domicilio_promovente}}.\nII. Declara PARTE B que cuenta con capacidad y legitimación para celebrar el presente contrato y que sus datos y domicilio son: {{domicilio_contraparte}}.\nIII. Ambas partes manifiestan que celebran el presente instrumento de manera libre, informada y sin vicios del consentimiento. CLÁUSULAS 1. OBJETO Y ALCANCE. PARTE A ejecutará para PARTE B la obra {{obra}} conforme a {{especificaciones}}. 2. PRECIO. El precio será {{precio_obra}}, con anticipo de {{anticipo}}. 3. PLAZO Y ENTREGA. La obra deberá concluir el {{plazo_obra}} y entregarse conforme a los criterios pactados. 4. CAMBIOS. Toda modificación al alcance deberá documentarse por escrito. 5. DEFECTOS Y GARANTÍAS. {{defectos_garantias}}. 6. INCUMPLIMIENTO. {{incumplimiento}}. DOMICILIOS Y NOTIFICACIONES\nPARTE A: {{domicilio_promovente}}\nPARTE B: {{domicilio_contraparte}}\nDomicilio para notificaciones: {{domicilio_notificaciones}} JURISDICCIÓN Y LEY APLICABLE\nLas partes se sujetarán a {{ley_aplicable}} y a la competencia de {{jurisdiccion}}, sin perjuicio de las reglas imperativas que resulten aplicables. LUGAR Y FECHA\n{{lugar_contrato}}, {{fecha_contrato}}. FIRMAS PARTE A: ______________________________\nPARTE B: ______________________________ TESTIGOS / ANEXOS (EN SU CASO)\n{{notas_especiales}} Documento estructurado conforme al fundamento jurídico incorporado en este constructor SIGDE. FUNDAMENTO LEGAL\nCódigo Civil del Estado de Jalisco — Contrato de obra. 2274-2303 \nFUNDAMENTO JURÍDICO APLICADO\n- Código Civil del Estado de Jalisco, artículos 2274-2303: Contrato de obra.",
+  "siguiente_paso": "Completar la ficha contractual, adjuntar documentos soporte y validar formalidades, fundamento y cláusulas antes de firma.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "Verificar capacidad, representación y titularidad del objeto.",
+    "Verificar formalidades, impuestos, registros y permisos cuando correspondan.",
+    "No utilizar el documento como sustituto de asesoría jurídica del caso concreto.",
+    "Verificar la versión vigente del Código Civil del Estado de Jalisco antes de firma o presentación.",
+    "Fundamento registrado para este constructor: artículos 2274-2303. Confirmar su aplicabilidad al caso concreto."
+  ],
+  "requiere_revision_abogado": true,
+  "fuente_normativa": {
+    "ordenamiento": "Código Civil del Estado de Jalisco",
+    "version_fuente": "240626",
+    "articulos": "2274-2303",
+    "verificacion": "Fuente oficial del Congreso del Estado de Jalisco; revisar nuevamente si existe reforma posterior."
+  },
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor — contrato: identificación → declaraciones → objeto → obligaciones/contraprestación → riesgos → incumplimiento → terminación → controversias → fundamento legal → firmas.",
+    "formato_documental": "SIGDE_CONTRATO",
+    "identidad_visual": "dinamica_por_despacho",
+    "encabezado": "Logo, nombre y datos de identidad del despacho configurados en SIGDE.",
+    "pie_pagina": "Nombre del despacho y referencia de documento contractual SIGDE; se adapta a la identidad del despacho.",
+    "nota": "La identidad visual no forma parte del contenido jurídico sustantivo y se aplica al momento de visualizar, imprimir o exportar."
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

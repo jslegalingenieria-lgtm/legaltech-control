@@ -1,0 +1,237 @@
+{
+  "id": "FAM-ALI-002",
+  "materia": "Familiar",
+  "diagnostico": {
+    "objetivo": "Solicitar protección alimentaria provisional cuando proceda.",
+    "preguntas": [
+      "¿Existe urgencia?",
+      "¿Qué necesidades inmediatas deben cubrirse?",
+      "¿Qué medios de aseguramiento son viables?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Solicitud de alimentos provisionales y aseguramiento",
+    "tipo_documento": "promoción",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Familiar",
+      "Solicitud de alimentos provisionales y aseguramiento"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Alimentos provisionales y aseguramiento",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Promoción dentro del procedimiento familiar correspondiente.",
+    "requisitos": [
+      "Verificar competencia y legitimación.",
+      "Integrar documentos base.",
+      "Identificar personas que deban ser llamadas.",
+      "Revisar requisitos especiales de la legislación aplicable."
+    ],
+    "nota": "SIGDE no sustituye la determinación profesional de competencia, vía y estrategia del caso concreto."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La persona acreedora requiere atención inmediata por {{urgencia}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Los gastos indispensables son {{gastos_urgentes}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se decreten alimentos provisionales."
+    },
+    {
+      "orden": 2,
+      "texto": "Se establezca medida de aseguramiento legalmente procedente."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Comprobantes de gastos urgentes.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Documentos que acrediten parentesco o vínculo.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Informe",
+      "objeto": "Datos económicos disponibles.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Actas",
+    "Comprobantes médicos/escolares/alimentarios",
+    "Información económica"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Aseguramiento de alimentos",
+      "articulos": "446-449",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/aseguramiento_de_alimentos"
+    },
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Alimentos",
+      "articulos": "432-451",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/alimentos"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La urgencia y necesidad actual justifican una protección provisional mientras se resuelve de fondo.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "urgencia": {
+      "etiqueta": "Situación de urgencia",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "gastos_urgentes": {
+      "etiqueta": "Gastos urgentes",
+      "tipo": "texto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "acreedor": {
+      "etiqueta": "Persona acreedora",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: SOLICITUD DE ALIMENTOS PROVISIONALES Y ASEGURAMIENTO C. JUEZ COMPETENTE\nP R E S E N T E. {{promovente_nombre}}, respetuosamente expongo que existe una necesidad inmediata de protección alimentaria para {{acreedor}}, por las circunstancias siguientes: {{urgencia}}.\nI. NECESIDAD URGENTE\n1. La persona acreedora requiere de manera inmediata recursos para cubrir {{gastos_urgentes}}.\n2. La obligación alimentaria deriva de la relación jurídica existente entre las partes, misma que se acreditará con la documentación correspondiente.\n3. La demora en la fijación o aseguramiento puede comprometer necesidades básicas de subsistencia, salud o educación.\nII. FUNDAMENTO Los artículos 432, 439, 442, 446 y 448 del Código Civil del Estado de Jalisco reconocen la obligación alimentaria, su contenido, proporcionalidad, acción para pedir aseguramiento y medidas para garantizar alimentos futuros.\nIII. MEDIDA SOLICITADA Se solicita que el Juzgado valore la procedencia de fijar provisionalmente una cantidad suficiente y ordenar la garantía o descuento legalmente procedente, sin prejuzgar sobre el monto definitivo que se determine después de recibir las pruebas.\nIV. DOCUMENTOS Actas que acrediten parentesco, comprobantes de gastos, constancias escolares o médicas, información de ingresos y demás documentos disponibles.\nV. PETITORIOS\nPRIMERO. Tenerme por presentado.\nSEGUNDO. Dictar las medidas provisionales que resulten procedentes.\nTERCERO. Ordenar el aseguramiento de los alimentos mediante la forma legal idónea.\nCUARTO. Continuar el procedimiento principal hasta resolver definitivamente. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Civil del Estado de Jalisco, artículos 446-449: Aseguramiento de alimentos.\n- Código Civil del Estado de Jalisco, artículos 432-451: Alimentos.",
+  "siguiente_paso": "Acreditar parentesco, necesidad y urgencia; proponer un mecanismo de aseguramiento legalmente viable.",
+  "alertas": [
+    "No confundir alimentos provisionales con la resolución definitiva.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

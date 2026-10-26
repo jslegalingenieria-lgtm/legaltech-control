@@ -1,0 +1,210 @@
+{
+  "id": "PEN-QUE-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Formalizar la voluntad de la víctima u ofendido cuando el delito requiera querella como requisito de procedibilidad.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Querella penal",
+    "tipo_documento": "querella",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Querella y solicitud de inicio de investigación.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Investigación inicial, cuando el tipo penal aplicable requiera querella.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "El {{fecha_hecho}}, en {{lugar_hecho}}, ocurrió {{relato_circunstanciado}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La persona señalada es {{persona_señalada}} y los hechos me afectan como víctima/ofendido.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Expreso de manera clara mi voluntad de que se investiguen los hechos y, en su caso, se ejerza la acción penal.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Que se tenga por formulada la querella."
+    },
+    {
+      "orden": 2,
+      "texto": "Que se inicie o continúe la investigación."
+    },
+    {
+      "orden": 3,
+      "texto": "Que se realicen los actos de investigación pertinentes y se determine lo conducente."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos relacionados con el hecho y la afectación.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Personas que presenciaron o conocen los hechos.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Peritajes pertinentes al hecho.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Identificación de la víctima u ofendido.",
+    "Documentos base.",
+    "Datos de testigos y peritos, si existen."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Querella u otro requisito equivalente",
+      "articulos": "225",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso debe justificar el hecho, la afectación a la víctima, la participación atribuida y los datos que sustentan la pretensión de investigación.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "carpeta": {
+      "etiqueta": "Número de carpeta de investigación",
+      "tipo": "texto",
+      "fuente": "expediente.carpeta",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "victima_nombre": {
+      "etiqueta": "Nombre de la víctima u ofendido",
+      "tipo": "texto",
+      "fuente": "expediente.victima_nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_hecho": {
+      "etiqueta": "Fecha del hecho",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha_hecho",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar_hecho": {
+      "etiqueta": "Lugar del hecho",
+      "tipo": "texto",
+      "fuente": "expediente.lugar_hecho",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "relato_circunstanciado": {
+      "etiqueta": "Relato Circunstanciado",
+      "tipo": "texto",
+      "fuente": "expediente.relato_circunstanciado",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "persona_señalada": {
+      "etiqueta": "Persona Señalada",
+      "tipo": "texto",
+      "fuente": "expediente.persona_señalada",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "afectacion": {
+      "etiqueta": "Afectacion",
+      "tipo": "texto",
+      "fuente": "expediente.afectacion",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "datos_disponibles": {
+      "etiqueta": "Datos Disponibles",
+      "tipo": "texto",
+      "fuente": "expediente.datos_disponibles",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_firma": {
+      "etiqueta": "Fecha Firma",
+      "tipo": "texto",
+      "fuente": "expediente.fecha_firma",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nCARPETA: {{carpeta}}\nASUNTO: QUERELLA\nC. AGENTE DEL MINISTERIO PÚBLICO: {{victima_nombre}}, en mi carácter de víctima/ofendido, comparezco y manifiesto expresamente mi voluntad de que se investiguen los hechos siguientes:\nI. HECHOS\nPRIMERO. El {{fecha_hecho}}, en {{lugar_hecho}}, {{relato_circunstanciado}}.\nSEGUNDO. La persona señalada es {{persona_señalada}}.\nTERCERO. La conducta me ocasionó {{afectacion}}.\nII. VOLUNTAD DE QUERELLARME\nDe manera expresa manifiesto mi voluntad de que se inicie/continúe la investigación y se ejerza la acción penal cuando proceda.\nIII. DATOS Y DOCUMENTOS\n{{datos_disponibles}}\nIV. PETICIONES\nPRIMERO. Tener por formulada la querella.\nSEGUNDO. Iniciar/continuar la investigación.\nTERCERO. Practicar los actos de investigación pertinentes.\nCUARTO. Resolver conforme a derecho. {{fecha_firma}}\n{{victima_nombre}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Nacional de Procedimientos Penales, artículos 225: Querella u otro requisito equivalente.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

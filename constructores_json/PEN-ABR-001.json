@@ -1,0 +1,200 @@
+{
+  "id": "PEN-ABR-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Preparar solicitud de procedimiento abreviado y verificar los requisitos que el juez debe revisar.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Solicitud de procedimiento abreviado",
+    "tipo_documento": "audiencia",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Procedimiento abreviado.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Desde la vinculación y hasta antes del auto de apertura a juicio oral.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Existe auto de vinculación a proceso por {{clasificacion_juridica}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "El Ministerio Público solicita el procedimiento abreviado y formula acusación por {{hechos_acusados}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "La persona imputada manifiesta {{consentimiento_imputado}} y la víctima/ofendido manifiesta {{posicion_victima}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Que se autorice el procedimiento abreviado si se satisfacen los requisitos legales."
+    },
+    {
+      "orden": 2,
+      "texto": "Que se dicte sentencia conforme al procedimiento autorizado."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Auto de vinculación y acusación.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Datos de prueba",
+      "objeto": "Datos que sustentan la acusación.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Declaración",
+      "objeto": "Manifestación del imputado en los términos legales.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Auto de vinculación.",
+    "Acusación.",
+    "Datos de prueba.",
+    "Plan/reparación del daño."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Requisitos de procedencia y verificación del Juez",
+      "articulos": "201",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Oportunidad",
+      "articulos": "202",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso en el abreviado se concentra en la viabilidad de la terminación anticipada, la aceptación informada, la acusación, la reparación y los requisitos legales; no debe confundirse con una admisión automática fuera de audiencia.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "antecedentes_vinculacion": {
+      "etiqueta": "Antecedentes Vinculacion",
+      "tipo": "texto",
+      "fuente": "expediente.antecedentes_vinculacion",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "clasificacion_juridica": {
+      "etiqueta": "Clasificacion Juridica",
+      "tipo": "texto",
+      "fuente": "expediente.clasificacion_juridica",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_acusados": {
+      "etiqueta": "Hechos Acusados",
+      "tipo": "texto",
+      "fuente": "expediente.hechos_acusados",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "consentimiento_imputado": {
+      "etiqueta": "Consentimiento Imputado",
+      "tipo": "texto",
+      "fuente": "expediente.consentimiento_imputado",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "posicion_victima": {
+      "etiqueta": "Posicion Victima",
+      "tipo": "texto",
+      "fuente": "expediente.posicion_victima",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "reparacion_dano": {
+      "etiqueta": "Reparacion Dano",
+      "tipo": "texto",
+      "fuente": "expediente.reparacion_dano",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "pena_solicitada": {
+      "etiqueta": "Pena Solicitada",
+      "tipo": "texto",
+      "fuente": "expediente.pena_solicitada",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "C. JUEZ DE CONTROL\nASUNTO: SOLICITUD DE PROCEDIMIENTO ABREVIADO\nI. ANTECEDENTES\nVinculación: {{antecedentes_vinculacion}}.\nII. ACUSACIÓN\n{{hechos_acusados}}. Clasificación: {{clasificacion_juridica}}.\nIII. CONSENTIMIENTO Y REQUISITOS\nLa persona imputada manifiesta: {{consentimiento_imputado}}.\nLa víctima/ofendido: {{posicion_victima}}.\nIV. REPARACIÓN Y PENA\n{{reparacion_dano}}. {{pena_solicitada}}. PETICIÓN\nSe autorice el procedimiento abreviado si se cumplen los requisitos previstos en el CNPP. \nFUNDAMENTO JURÍDICO APLICADO\n- Código Nacional de Procedimientos Penales, artículos 201: Requisitos de procedencia y verificación del Juez.\n- Código Nacional de Procedimientos Penales, artículos 202: Oportunidad.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

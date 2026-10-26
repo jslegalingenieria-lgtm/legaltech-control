@@ -1,0 +1,198 @@
+{
+  "id": "LAB-CON-004",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Convenio terminación.",
+    "preguntas": [
+      "¿Causa de terminación?",
+      "¿Qué se pagará y con qué cálculo?",
+      "¿Requiere ratificación?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Convenio terminación",
+    "tipo_documento": "convenio",
+    "rol_promovente": "patrón / empresa",
+    "rol_contraparte": "trabajador(a)",
+    "criterios": []
+  },
+  "accion_defensa": {
+    "nombre": "Convenio terminación",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "[VALIDAR VÍA CONFORME A LA LEGISLACIÓN APLICABLE]",
+    "requisitos": [
+      "Voluntad libre de ambas partes.",
+      "Conceptos pagados conforme a la ley.",
+      "Validar ratificación o aprobación ante autoridad para efectos de cosa juzgada ."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [],
+  "pretensiones": [],
+  "pruebas": [],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Terminación de la relación de trabajo",
+      "articulos": "53-55",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/terminacion_de_la_relacion_de_trabajo"
+    },
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Convenios: validez y límites de la renuncia de derechos",
+      "articulos": "33",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/convenios_validez_y_limites_de_la_renuncia_de_dere"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La terminación consensuada con pago de conceptos legales evita conflicto posterior.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_ingreso": {
+      "etiqueta": "Fecha ingreso",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "puesto": {
+      "etiqueta": "Puesto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "salario": {
+      "etiqueta": "Salario",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_terminacion": {
+      "etiqueta": "Fecha terminacion",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "causa_terminacion": {
+      "etiqueta": "Causa terminacion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "monto_finiquito": {
+      "etiqueta": "Monto finiquito",
+      "tipo": "monto",
+      "fuente": "calculadora_existente_sigde",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]",
+      "nota": "Tomar de la calculadora existente; no duplicar cálculo."
+    },
+    "conceptos_pago": {
+      "etiqueta": "Conceptos pago",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "forma_pago_convenio": {
+      "etiqueta": "Forma pago convenio",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "constancias_entrega": {
+      "etiqueta": "Constancias entrega",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "manifestaciones_trabajador": {
+      "etiqueta": "Manifestaciones trabajador",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "autoridad_ratificacion": {
+      "etiqueta": "Autoridad ratificacion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "CONVENIO DE TERMINACIÓN DE LA RELACIÓN DE TRABAJO Entre {{promovente_nombre}} («EL PATRÓN») y {{contraparte_nombre}} («EL TRABAJADOR»): ANTECEDENTES. La relación de trabajo inició el {{fecha_ingreso}}; EL TRABAJADOR se desempeñó como {{puesto}} con salario de {{salario}}. Las partes manifiestan su voluntad de darla por terminada el {{fecha_terminacion}} por {{causa_terminacion}}.\nPRIMERA. TERMINACIÓN. Las partes dan por terminada la relación de trabajo con efectos al {{fecha_terminacion}}.\nSEGUNDA. PAGO. EL PATRÓN pagará a EL TRABAJADOR {{monto_finiquito}} por los conceptos siguientes: {{conceptos_pago}}, desglosados en el anexo de liquidación elaborado con la calculadora de SIGDE.\nTERCERA. FORMA DE PAGO. {{forma_pago_convenio}}.\nCUARTA. CONSTANCIAS. EL PATRÓN entregará {{constancias_entrega}} (constancias, baja de seguridad social, etc.).\nQUINTA. MANIFESTACIONES. EL TRABAJADOR declara que {{manifestaciones_trabajador}}.\nSEXTA. RATIFICACIÓN. Las partes se obligan a ratificar este convenio ante {{autoridad_ratificacion}}, si la ley lo exige para su validez. {{lugar}}, a {{fecha}}. [FIRMA]\nEL PATRÓN: {{promovente_nombre}} EL TRABAJADOR: {{contraparte_nombre}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 53-55: Terminación de la relación de trabajo.\n- Ley Federal del Trabajo, artículos 33: Convenios: validez y límites de la renuncia de derechos.",
+  "siguiente_paso": "Calcular conceptos con la calculadora existente y definir ratificación.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE.",
+    "Los montos de finiquito/indemnización/prestaciones vienen de la calculadora existente de SIGDE; no recalcular en el constructor.",
+    "Renuncias a derechos irrenunciables no producen efectos; verificar contenido ."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

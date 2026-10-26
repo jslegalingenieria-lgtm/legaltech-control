@@ -1,0 +1,197 @@
+{
+  "id": "ADM-ACU-001",
+  "materia": "Administrativo",
+  "jurisdiccion": "Jalisco",
+  "diagnostico": {
+    "objetivo": "Analizar y solicitar/impugnar acumulación cuando existan procedimientos relacionados.",
+    "preguntas": [
+      "¿Hay procedimientos pendientes?",
+      "¿Mismo acto o actos antecedentes/consecuencia?",
+      "¿Mismas o distintas partes?",
+      "¿Conviene resolución conjunta?"
+    ],
+    "datos_minimos": [
+      "expedientes",
+      "partes",
+      "actos"
+    ],
+    "resultado_esperado": "Determinar vía, competencia, plazo, hechos, prueba y documento procedente."
+  },
+  "clasificacion": {
+    "constructor": "Acumulación de procedimientos administrativos Jalisco",
+    "tipo_documento": "incidente",
+    "rol_promovente": "Promovente / interesado / presunto responsable según caso",
+    "rol_contraparte": "Autoridad / tercero / denunciante",
+    "criterios": [
+      "competencia",
+      "legalidad",
+      "fundamentación y motivación",
+      "debido procedimiento",
+      "plazo",
+      "prueba",
+      "vía"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Acumulación de procedimientos administrativos Jalisco",
+    "naturaleza": "procesal administrativa",
+    "descripcion": "Analizar y solicitar/impugnar acumulación cuando existan procedimientos relacionados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Identificar expedientes → verificar supuesto → acuerdo de acumulación → notificación → continuación",
+    "requisitos": [
+      "Identificar autoridad",
+      "Acreditar personalidad",
+      "Precisar acto/conducta",
+      "Integrar expediente y pruebas",
+      "Verificar ley especial y plazo"
+    ],
+    "nota": "Constructor basado únicamente en las fuentes cargadas; verificar legislación especial vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Los expedientes son {{expedientes}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La relación entre ellos es {{relacion}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Acumular cuando proceda."
+    },
+    {
+      "orden": 2,
+      "texto": "Evitar decisiones contradictorias."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Expedientes y resoluciones.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Números de expediente",
+    "Actos",
+    "Constancias"
+  ],
+  "fundamento": [
+    {
+      "orden": 1,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Acumulación",
+      "articulos": "92-93",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/acumulacion"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría debe demostrar conexión procesal concreta, no solo similitud temática.",
+    "elementos": [
+      "Hechos",
+      "Norma",
+      "Competencia",
+      "Acto/conducta",
+      "Prueba",
+      "Vicio/defensa",
+      "Riesgo",
+      "Resultado"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el documento final."
+  },
+  "campos_dinamicos": {
+    "promovente_nombre": {
+      "etiqueta": "Nombre / razón social",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "autoridad_nombre": {
+      "etiqueta": "Autoridad",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "expediente_numero": {
+      "etiqueta": "Expediente / folio",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "fecha_acto": {
+      "etiqueta": "Fecha del acto",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "notificacion_fecha": {
+      "etiqueta": "Fecha de notificación",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "relato_hechos": {
+      "etiqueta": "Relato de hechos",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pretension_principal": {
+      "etiqueta": "Resultado buscado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pruebas_disponibles": {
+      "etiqueta": "Pruebas disponibles",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "expedientes": {
+      "etiqueta": "Expedientes relacionados",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "relacion": {
+      "etiqueta": "Relación entre asuntos",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    }
+  },
+  "checklist": [
+    "Identificar expedientes",
+    "Comparar partes/actos",
+    "Determinar conexión",
+    "Solicitar/analizar acuerdo",
+    "Notificar"
+  ],
+  "ruta_procesal": [
+    "Identificar expedientes",
+    "verificar supuesto",
+    "acuerdo de acumulación",
+    "notificación",
+    "continuación"
+  ],
+  "advertencias": [
+    "Revisar ley especial y reglamento interior.",
+    "Verificar vigencia de la norma.",
+    "No presentar sin revisar expediente y cómputo de plazos."
+  ],
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  },
+  "documento_generado": "{{autoridad_competente}}\nEXPEDIENTE: {{numero_expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: ACUMULACIÓN DE PROCEDIMIENTOS ADMINISTRATIVOS JALISCO\nC. {autoridad_competente}:\n{{promovente_nombre}}, por mi propio derecho / en representación de {{representado_nombre}}, personalidad que acredito con {{documento_personalidad}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, comparezco para exponer:\nI. OBJETO\nEl presente incidente tiene por objeto plantear Analizar y solicitar/impugnar acumulación cuando existan procedimientos relacionados en la vía Identificar expedientes → verificar supuesto → acuerdo de acumulación → notificación → continuación.\nII. HECHOS\n1. Los expedientes son {{expedientes}}.\n2. La relación entre ellos es {{relacion}}.\nIII. DERECHO\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 92-93, en relación con Acumulación.\nIV. PRETENSIONES / PETICIONES\n1. Acumular cuando proceda..\n2. Evitar decisiones contradictorias..\nV. PRUEBAS\n1. {'medio': 'Documental', 'objeto': 'Expedientes y resoluciones.', 'estatus': 'por_ofrecer'}\nVI. DOCUMENTOS\n{{documentos_anexos}}\nVII. PETITORIOS\nPRIMERO. Tenerme por presentado con este escrito y documentos.\nSEGUNDO. Acordar lo conducente conforme a la vía y competencia indicadas.\nTERCERO. Tener por formuladas las pretensiones y por ofrecidas las pruebas relacionadas.\nCUARTO. Dictar la resolución que en derecho corresponda. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 92-93: Acumulación."
+}

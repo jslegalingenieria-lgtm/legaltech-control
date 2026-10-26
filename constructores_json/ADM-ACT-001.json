@@ -1,0 +1,284 @@
+{
+  "id": "ADM-ACT-001",
+  "materia": "Administrativo",
+  "jurisdiccion": "Federal/Jalisco",
+  "diagnostico": {
+    "objetivo": "Diagnosticar competencia, elementos, requisitos, eficacia, notificación y posibles vicios del acto.",
+    "preguntas": [
+      "¿Quién emitió?",
+      "¿Qué norma le da competencia?",
+      "¿Cuál es el objeto?",
+      "¿Está fundado y motivado?",
+      "¿Identifica expediente e interesado?",
+      "¿Cómo se notificó?",
+      "¿Es definitivo, procedimental o ejecutivo?"
+    ],
+    "datos_minimos": [
+      "acto",
+      "autoridad",
+      "competencia",
+      "fundamento",
+      "motivación",
+      "notificación"
+    ],
+    "resultado_esperado": "Determinar competencia, naturaleza del acto o conducta, plazo, vía, prueba y documento procedente."
+  },
+  "clasificacion": {
+    "constructor": "Análisis integral del acto administrativo",
+    "tipo_documento": "diagnostico",
+    "rol_promovente": "Promovente / interesado / presunto responsable según el caso",
+    "rol_contraparte": "Autoridad / tercero / denunciante según corresponda",
+    "criterios": [
+      "competencia",
+      "legalidad",
+      "fundamentación y motivación",
+      "plazo",
+      "prueba",
+      "vía",
+      "interés jurídico o legítimo",
+      "Federal/Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Análisis integral del acto administrativo",
+    "naturaleza": "procesal administrativa",
+    "descripcion": "Diagnosticar competencia, elementos, requisitos, eficacia, notificación y posibles vicios del acto.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Acto → competencia → elementos → eficacia/notificación → vicios → vía de defensa",
+    "requisitos": [
+      "Identificación de partes y autoridad",
+      "Acreditación de personalidad cuando corresponda",
+      "Acto, conducta o procedimiento plenamente identificado",
+      "Pruebas y documentos base",
+      "Verificación de competencia y plazo"
+    ],
+    "nota": "Validar siempre ley especial, reglamento interior, competencia, notificación y texto vigente. No se inventan artículos de fuentes no proporcionadas."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "El acto fue emitido por {{autoridad_nombre}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Su fundamento es {{fundamento_acto}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Su motivación consiste en {{motivacion_acto}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "La notificación ocurrió el {{notificacion_fecha}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Determinar validez y eficacia."
+    },
+    {
+      "orden": 2,
+      "texto": "Identificar vicios."
+    },
+    {
+      "orden": 3,
+      "texto": "Seleccionar medio de defensa."
+    },
+    {
+      "orden": 4,
+      "texto": "Definir pretensión."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental pública",
+      "objeto": "Acto y expediente.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Notificación.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional",
+      "objeto": "Inferencias de omisiones y contradicciones.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Acto íntegro",
+    "Notificación",
+    "Expediente",
+    "Normas citadas"
+  ],
+  "fundamento": [
+    {
+      "orden": 1,
+      "ordenamiento": "Ley Federal de Procedimiento Administrativo",
+      "tema": "Ámbito de aplicación y supletoriedad",
+      "articulos": "1-2",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/lfpa/ambito"
+    },
+    {
+      "orden": 2,
+      "ordenamiento": "Ley Federal de Procedimiento Administrativo",
+      "tema": "Elementos y requisitos del acto administrativo",
+      "articulos": "3",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/lfpa/acto"
+    },
+    {
+      "orden": 3,
+      "ordenamiento": "Ley Federal de Procedimiento Administrativo",
+      "tema": "Procedimiento administrativo",
+      "articulos": "12-19",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/lfpa/procedimiento"
+    },
+    {
+      "orden": 1,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Objeto, ámbito y principios",
+      "articulos": "1-7",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/principios"
+    },
+    {
+      "orden": 2,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Actos administrativos, validez y eficacia",
+      "articulos": "8-20",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/acto"
+    },
+    {
+      "orden": 3,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Silencio administrativo",
+      "articulos": "21-25",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/silencio"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Contrastar cada elemento del acto con la norma que habilita a la autoridad y con los requisitos de validez.",
+    "elementos": [
+      "Hechos jurídicamente relevantes",
+      "Acto/omisión/conducta",
+      "Norma aplicable",
+      "Competencia",
+      "Prueba de cada proposición",
+      "Vicios o defensas",
+      "Riesgos",
+      "Resultado procesal"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el documento final salvo instrucción del constructor."
+  },
+  "campos_dinamicos": {
+    "promovente_nombre": {
+      "etiqueta": "Nombre / razón social",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "autoridad_nombre": {
+      "etiqueta": "Autoridad",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "expediente_numero": {
+      "etiqueta": "Expediente / folio",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "fecha_acto": {
+      "etiqueta": "Fecha del acto o conocimiento",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "notificacion_fecha": {
+      "etiqueta": "Fecha de notificación",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "relato_hechos": {
+      "etiqueta": "Relato circunstanciado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pretension_principal": {
+      "etiqueta": "Resultado buscado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pruebas_disponibles": {
+      "etiqueta": "Pruebas disponibles",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "fundamento_acto": {
+      "etiqueta": "Fundamento citado",
+      "tipo": "textarea",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "motivacion_acto": {
+      "etiqueta": "Motivación",
+      "tipo": "textarea",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "tipo_acto": {
+      "etiqueta": "Tipo de acto",
+      "tipo": "select",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    }
+  },
+  "checklist": [
+    "Obtener acto",
+    "Identificar autoridad",
+    "Verificar competencia",
+    "Separar fundamento/motivación",
+    "Revisar objeto",
+    "Revisar notificación",
+    "Determinar eficacia",
+    "Identificar vicios",
+    "Calcular plazo"
+  ],
+  "ruta_procesal": [
+    "Acto",
+    "competencia",
+    "elementos",
+    "eficacia/notificación",
+    "vicios",
+    "vía de defensa"
+  ],
+  "advertencias": [
+    "No sustituye revisión del expediente.",
+    "La ley especial puede desplazar la LFPA.",
+    "Verificar vigencia y competencia antes de presentar."
+  ],
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  },
+  "documento_generado": "{{autoridad_competente}}\nEXPEDIENTE: {{numero_expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: ANÁLISIS INTEGRAL DEL ACTO ADMINISTRATIVO\nC. {autoridad_competente}:\n{{promovente_nombre}}, por mi propio derecho / en representación de {{representado_nombre}}, personalidad que acredito con {{documento_personalidad}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, comparezco para exponer:\nI. OBJETO\nEl presente diagnostico tiene por objeto plantear Diagnosticar competencia, elementos, requisitos, eficacia, notificación y posibles vicios del acto en la vía Acto → competencia → elementos → eficacia/notificación → vicios → vía de defensa.\nII. HECHOS\n1. El acto fue emitido por {{autoridad_nombre}}.\n2. Su fundamento es {{fundamento_acto}}.\n3. Su motivación consiste en {{motivacion_acto}}.\n4. La notificación ocurrió el {{notificacion_fecha}}.\nIII. DERECHO\nCon fundamento en Ley Federal de Procedimiento Administrativo, artículos 1-2, en relación con Ámbito de aplicación y supletoriedad.\nCon fundamento en Ley Federal de Procedimiento Administrativo, artículos 3, en relación con Elementos y requisitos del acto administrativo.\nCon fundamento en Ley Federal de Procedimiento Administrativo, artículos 12-19, en relación con Procedimiento administrativo.\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 1-7, en relación con Objeto, ámbito y principios.\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 8-20, en relación con Actos administrativos, validez y eficacia.\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 21-25, en relación con Silencio administrativo.\nIV. PRETENSIONES / PETICIONES\n1. Determinar validez y eficacia..\n2. Identificar vicios..\n3. Medio de defensa identificado en el diagnóstico: {{medio_defensa}}.\n4. Definir pretensión..\nV. PRUEBAS\n1. {'medio': 'Documental pública', 'objeto': 'Acto y expediente.', 'estatus': 'por_ofrecer'}\n2. {'medio': 'Documental', 'objeto': 'Notificación.', 'estatus': 'por_ofrecer'}\n3. {'medio': 'Presuncional', 'objeto': 'Inferencias de omisiones y contradicciones.', 'estatus': 'por_ofrecer'}\nVI. DOCUMENTOS\n{{documentos_anexos}}\nVII. PETITORIOS\nPRIMERO. Tenerme por presentado con este escrito y documentos.\nSEGUNDO. Acordar lo conducente conforme a la vía y competencia indicadas.\nTERCERO. Tener por formuladas las pretensiones y por ofrecidas las pruebas relacionadas.\nCUARTO. Dictar la resolución que en derecho corresponda. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal de Procedimiento Administrativo, artículos 1-2: Ámbito de aplicación y supletoriedad.\n- Ley Federal de Procedimiento Administrativo, artículos 3: Elementos y requisitos del acto administrativo.\n- Ley Federal de Procedimiento Administrativo, artículos 12-19: Procedimiento administrativo.\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 1-7: Objeto, ámbito y principios.\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 8-20: Actos administrativos, validez y eficacia.\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 21-25: Silencio administrativo."
+}

@@ -1,0 +1,182 @@
+{
+  "id": "LAB-CCE-001",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Valorar la procedencia de un conflicto colectivo de naturaleza económica y su sustento probatorio.",
+    "preguntas": [
+      "¿Qué se pretende modificar: condiciones, jornada, salarios, suspensión, terminación colectiva?",
+      "¿Quién promueve (sindicato, patrón)?",
+      "¿Hay desequilibrio económico o circunstancias demostrables?",
+      "¿Qué pruebas económicas hay?",
+      "¿Hay contrato colectivo vigente?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Diagnóstico conflicto colectivo económico",
+    "tipo_documento": "diagnostico",
+    "rol_promovente": "sindicato / coalición / patrón",
+    "rol_contraparte": "patrón / sindicato",
+    "criterios": [
+      "Modificación / suspensión / terminación colectiva",
+      "Promovente sindicato o patrón"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Diagnóstico conflicto colectivo económico",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento de conflicto colectivo de naturaleza económica",
+    "requisitos": [
+      "Legitimación.",
+      "Sustento económico."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Promovente: {{promovente_nombre}}; contraparte: {{contraparte_nombre}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Situación económica: {{situacion_economica}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Modificación pretendida: {{modificacion_pretendida}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Obtener la modificación solicitada."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Pericial",
+      "objeto": "Contable/económica.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Conflictos colectivos de naturaleza económica",
+      "articulos": "900-919",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/conflictos_colectivos_de_naturaleza_economica"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Existen razones económicas demostrables que justifican la modificación solicitada.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "situacion_economica": {
+      "etiqueta": "Situacion economica",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "modificacion_pretendida": {
+      "etiqueta": "Modificacion pretendida",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DIAGNÓSTICO — DIAGNÓSTICO CONFLICTO COLECTIVO ECONÓMICO INFORME DE DIAGNÓSTICO — DIAGNÓSTICO CONFLICTO COLECTIVO ECONÓMICO\nI. DIAGNÓSTICO\nValorar la procedencia de un conflicto colectivo de naturaleza económica y su sustento probatorio.\nPreguntas a resolver con el expediente:\n1. ¿Qué se pretende modificar: condiciones, jornada, salarios, suspensión, terminación colectiva?\n2. ¿Quién promueve (sindicato, patrón)?\n3. ¿Hay desequilibrio económico o circunstancias demostrables?\n4. ¿Qué pruebas económicas hay?\n5. ¿Hay contrato colectivo vigente?\nII. CLASIFICACIÓN\n- Modificación / suspensión / terminación colectiva\n- Promovente sindicato o patrón\nIII. ACCIÓN/DEFENSA Y VÍA\n- Demanda LAB-CCE-002.\n- Prueba económica LAB-CCE-005.\nVía: Procedimiento de conflicto colectivo de naturaleza económica\nIV. REQUISITOS\n1. Legitimación.\n2. Sustento económico.\nV. HECHOS A ESTABLECER\nPRIMERO. Promovente: {{promovente_nombre}}; contraparte: {{contraparte_nombre}}.\nSEGUNDO. Situación económica: {{situacion_economica}}.\nTERCERO. Modificación pretendida: {{modificacion_pretendida}}.\nVI. PRETENSIONES / OBJETIVOS\n1. Obtener la modificación solicitada.\nVII. PRUEBAS\n1. PERICIAL.- Contable/económica.\n2. DOCUMENTAL.- Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.\n- Ley Federal del Trabajo: Conflictos colectivos de naturaleza económica. Artículos aplicables: 900-919.\nIX. SIGUIENTE PASO\nPreparar prueba pericial económica. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 900-919: Conflictos colectivos de naturaleza económica.",
+  "siguiente_paso": "Preparar prueba pericial económica.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

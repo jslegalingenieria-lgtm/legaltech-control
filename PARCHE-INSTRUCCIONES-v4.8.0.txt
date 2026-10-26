@@ -1,0 +1,9 @@
+PARCHE LEGALTECH CONTROL v4.8.0 — TÉRMINOS PROCESALES
+
+1. Haz una copia de seguridad de tu carpeta de LegalTech Control.
+2. Extrae este parche sobre la raíz del proyecto que ya tiene los módulos de LegalTech v4.7 y el buscador SJF integrado. Conserva la estructura de carpetas y acepta reemplazar los archivos.
+3. Elimina manualmente js/estrategia-procesal.js si ese archivo existe. La referencia, vista y opción de menú ya fueron retiradas; este paso elimina el archivo sobrante físicamente.
+4. No sobrescribas firebase.json, .firebaserc ni reglas de Firestore/Storage. Este parche no los contiene porque no se modificaron.
+5. No ejecutes firebase deploy sin revisar primero la cuenta/proyecto de facturación y probar la aplicación en una copia.
+
+El módulo de Términos procesales añade el catálogo canónico, rutas de la Supermatriz y registro de vencimientos manualmente verificados. NO calcula fechas límite automáticamente. Las fichas con estado de validación pendiente deben revisarse contra fuentes oficiales y hechos del expediente.

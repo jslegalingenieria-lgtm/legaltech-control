@@ -1,0 +1,358 @@
+{
+  "id": "CIV-CON-001",
+  "materia": "Civil",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Contestación civil.",
+    "preguntas": [
+      "¿Fecha de emplazamiento y plazo para contestar?",
+      "¿Qué hechos se aceptan, niegan o aclaran?",
+      "¿Qué excepciones procesales y de fondo existen?",
+      "¿Procede reconvención?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Contestación civil",
+    "tipo_documento": "contestacion",
+    "rol_promovente": "demandado(a)",
+    "rol_contraparte": "actor(a)",
+    "criterios": [
+      "Defensa",
+      "Procesal / de fondo"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Contestación y defensas frente a la demanda",
+    "naturaleza": "defensa",
+    "descripcion": "",
+    "excepciones_defensas": [
+      "Falta de acción o de derecho, por [CAPTURAR INFORMACIÓN: razón concreta].",
+      "Excepciones procesales que procedan (competencia, personalidad, litispendencia, cosa juzgada u otras) [VALIDAR CATÁLOGO EN CPC JALISCO].",
+      "Excepciones de fondo derivadas de pago, compensación, prescripción u otras [SELECCIONAR SEGÚN CASO]."
+    ]
+  },
+  "via_procedimiento": {
+    "via": "Juicio civil en la vía que corresponda conforme al Código de Procedimientos Civiles del Estado de Jalisco [VALIDAR VÍA SEGÚN ACCIÓN Y CUANTÍA]",
+    "requisitos": [
+      "Competencia por materia, cuantía y territorio.",
+      "Legitimación activa y pasiva acreditadas.",
+      "Personalidad del promovente.",
+      "Documento base o hechos de la acción.",
+      "Interés jurídico."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Respecto del hecho {{hecho_numero_1}} de la demanda: {{postura_hecho_1}} (se niega / se acepta / se aclara).",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Respecto del hecho {{hecho_numero_2}} de la demanda: {{postura_hecho_2}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Versión de los hechos del demandado: {{version_demandado}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "Hechos que sustentan las excepciones opuestas: {{hechos_excepciones}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se niega el derecho de {{contraparte_nombre}} a reclamar {{prestaciones_reclamadas}}."
+    },
+    {
+      "orden": 2,
+      "texto": "Se solicita la absolución de {{promovente_nombre}} respecto de cada prestación reclamada."
+    },
+    {
+      "orden": 3,
+      "texto": "En su caso, se solicita la condena de la parte actora al pago de gastos y costas conforme a la ley ."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos exhibidos, para acreditar la versión de los hechos del demandado.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Confesional",
+      "objeto": "Posiciones a cargo de {{contraparte_nombre}}, para que reconozca los hechos y documentos base de la acción.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional legal y humana",
+      "objeto": "Las deducciones lógico-jurídicas que se desprendan de los hechos probados.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Documento que acredite la personalidad",
+    "Documentos en que se funden las excepciones",
+    "Copias de traslado"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código de Procedimientos Civiles del Estado de Jalisco",
+      "tema": "Contestación de la demanda: requisitos y plazo",
+      "articulos": "267-279",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_de_procedimientos_civiles_del_est/contestacion_de_la_demanda_requisitos_y_plazo"
+    },
+    {
+      "ordenamiento": "Código de Procedimientos Civiles del Estado de Jalisco",
+      "tema": "Excepciones procesales y de fondo",
+      "articulos": "273-281",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_de_procedimientos_civiles_del_est/excepciones_procesales_y_de_fondo"
+    },
+    {
+      "ordenamiento": "Código de Procedimientos Civiles del Estado de Jalisco",
+      "tema": "Carga de la prueba",
+      "articulos": "286-304",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_de_procedimientos_civiles_del_est/carga_de_la_prueba"
+    },
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Normas sustantivas relativas a la acción demandada",
+      "articulos": "según el acto jurídico concreto; el constructor aplica el régimen sustantivo capturado",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_civil_del_estado_de_jalisco/normas_sustantivas_relativas_a_la_accion_demandada"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La parte actora no acredita los elementos de su acción; los hechos reales son los que expone {{promovente_nombre}} y, en cualquier caso, existen defensas que enervan la pretensión.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "JUEZ CIVIL COMPETENTE DEL ESTADO DE JALISCO según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente (propio derecho / representante)",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "caracter_promovente": {
+      "etiqueta": "Caracter promovente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "demandado(a)"
+    },
+    "documento_personalidad": {
+      "etiqueta": "Documento personalidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "prestaciones_reclamadas": {
+      "etiqueta": "Prestaciones reclamadas",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hecho_numero_1": {
+      "etiqueta": "Hecho número 1",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "postura_hecho_1": {
+      "etiqueta": "Postura hecho 1",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hecho_numero_2": {
+      "etiqueta": "Hecho número 2",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "postura_hecho_2": {
+      "etiqueta": "Postura hecho 2",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "version_demandado": {
+      "etiqueta": "Version demandado",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_excepciones": {
+      "etiqueta": "Hechos excepciones",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "testigos": {
+      "etiqueta": "Testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_testigos": {
+      "etiqueta": "Hechos testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "materia_pericial": {
+      "etiqueta": "Materia pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "objeto_pericial": {
+      "etiqueta": "Objeto pericial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: CONTESTACIÓN A LA DEMANDA Y OPOSICIÓN DE EXCEPCIONES\nC. {{autoridad}}:\n{{promovente_nombre}}, {{personalidad_promovente}}, con domicilio en {{domicilio_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}} y autorizando para tales efectos a {{abogado_patrono}}, comparezco para exponer:\nI. PERSONALIDAD Y DOMICILIO\nComparezco en mi carácter de {{caracter_promovente}}, personalidad que acredito con {{documento_personalidad}}. Mi domicilio es {{domicilio_promovente}}; el de la contraparte, {{contraparte_nombre}}, es {{domicilio_contraparte}}.\nII. PRETENSIONES\n1. Se niega el derecho de {{contraparte_nombre}} a reclamar {{prestaciones_reclamadas}}.\n2. Se solicita la absolución de {{promovente_nombre}} respecto de cada prestación reclamada.\n3. En su caso, se solicita la condena de la parte actora al pago de gastos y costas conforme a la ley. DEFENSAS Y EXCEPCIONES QUE SE OPONEN:\n1. Falta de acción o de derecho, por [CAPTURAR INFORMACIÓN: razón concreta].\n2. Excepciones procesales que procedan (competencia, personalidad, litispendencia, cosa juzgada u otras).\n3. Excepciones de fondo: {{excepciones_fondo}}.\nIII. HECHOS\nPRIMERO. Respecto del hecho {{hecho_numero_1}} de la demanda: {{postura_hecho_1}} (se niega / se acepta / se aclara).\nSEGUNDO. Respecto del hecho {{hecho_numero_2}} de la demanda: {{postura_hecho_2}}.\nTERCERO. Versión de los hechos del demandado: {{version_demandado}}.\nCUARTO. Hechos que sustentan las excepciones opuestas: {{hechos_excepciones}}.\nIV. DERECHO\nFundan la presente promoción las disposiciones siguientes (artículos aplicables al acto y a la vía indicada):\n- Código de Procedimientos Civiles del Estado de Jalisco: Contestación de la demanda: requisitos y plazo. Artículos aplicables: 286-304.\n- Código de Procedimientos Civiles del Estado de Jalisco: Excepciones procesales y de fondo. Artículos aplicables: 286-304.\n- Código de Procedimientos Civiles del Estado de Jalisco: Carga de la prueba. Artículos aplicables: 286-304.\n- Código Civil del Estado de Jalisco: Normas sustantivas relativas a la acción demandada. Artículos aplicables: según el acto jurídico concreto; el constructor aplica el régimen sustantivo capturado.\nV. PRUEBAS\nOfrezco las siguientes pruebas, relacionándolas con los hechos indicados:\n1. DOCUMENTAL.- Documentos exhibidos, para acreditar la versión de los hechos del demandado.\n2. CONFESIONAL.- Posiciones a cargo de {{contraparte_nombre}}, para que reconozca los hechos y documentos base de la acción.\n3. TESTIMONIAL.- Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.\n4. PERICIAL.- Dictamen en la materia {{materia_pericial}}, para acreditar {{objeto_pericial}}.\n5. PRESUNCIONAL LEGAL Y HUMANA.- Las deducciones lógico-jurídicas que se desprendan de los hechos probados.\n6. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n\nSe acompañan los documentos siguientes:\n1. Documento que acredite la personalidad\n2. Documentos en que se funden las excepciones\n3. Copias de traslado\nVI. PETITORIOS\nPor lo expuesto, a Usted atentamente pido:\nPRIMERO. Tenerme por presentado(a) en tiempo y forma dando contestación a la demanda instaurada en mi contra.\nSEGUNDO. Tener por opuestas las defensas y excepciones que se hacen valer y por negados, aceptados o aclarados los hechos en los términos expuestos.\nTERCERO. Tener por ofrecidas las pruebas señaladas y ordenar su admisión y desahogo.\nCUARTO. En su oportunidad, dictar resolución en la que se absuelva al suscrito(a) de las prestaciones reclamadas. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Código de Procedimientos Civiles del Estado de Jalisco, artículos 267-279: Contestación de la demanda: requisitos y plazo.\n- Código de Procedimientos Civiles del Estado de Jalisco, artículos 273-281: Excepciones procesales y de fondo.\n- Código de Procedimientos Civiles del Estado de Jalisco, artículos 286-304: Carga de la prueba.\n- Código Civil del Estado de Jalisco, artículos según el acto jurídico concreto; el constructor aplica el régimen sustantivo capturado: Normas sustantivas relativas a la acción demandada.",
+  "siguiente_paso": "Verificar la fecha de emplazamiento y calcular el plazo antes de cualquier otra actividad.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Materia civil: legislación de Jalisco. No mezclar el CNPCF en esta fase.",
+    "Revisar si procede reconvención y si debe oponerse junto con la contestación ."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "id": "PEN-CAD-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Documentar la trazabilidad del indicio, evidencia, objeto, instrumento o producto del hecho delictivo.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Registro y control de cadena de custodia",
+    "tipo_documento": "registro",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Registro de cadena de custodia.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Investigación penal.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "El indicio/evidencia {{indicio_descripcion}} fue localizado/descubierto/aportado el {{fecha_hecho}} en {{lugar_hecho}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La persona que lo localizó o recibió fue {{persona_responsable}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "El objeto fue embalado, identificado, trasladado y entregado conforme a los registros correspondientes: {{movimientos}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Documentar cada movimiento del indicio."
+    },
+    {
+      "orden": 2,
+      "texto": "Preservar la trazabilidad e integridad del registro."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Formato y registros de cadena de custodia.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Fotográfica",
+      "objeto": "Imágenes del indicio y embalaje.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Registro de intervención pericial, cuando corresponda.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Formato de cadena de custodia.",
+    "Fotografías.",
+    "Registros de entrega y recepción."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Cadena de custodia",
+      "articulos": "227",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso debe conectar el indicio con el hecho investigado y demostrar la trazabilidad que permite valorar su autenticidad e integridad.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "carpeta": {
+      "etiqueta": "Número de carpeta de investigación",
+      "tipo": "texto",
+      "fuente": "expediente.carpeta",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "indicio_descripcion": {
+      "etiqueta": "Indicio Descripcion",
+      "tipo": "texto",
+      "fuente": "expediente.indicio_descripcion",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_hecho": {
+      "etiqueta": "Fecha del hecho",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha_hecho",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar_hecho": {
+      "etiqueta": "Lugar del hecho",
+      "tipo": "texto",
+      "fuente": "expediente.lugar_hecho",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "persona_responsable": {
+      "etiqueta": "Persona Responsable",
+      "tipo": "texto",
+      "fuente": "expediente.persona_responsable",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "descripcion_indicio": {
+      "etiqueta": "Descripcion Indicio",
+      "tipo": "texto",
+      "fuente": "expediente.descripcion_indicio",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "movimientos": {
+      "etiqueta": "Movimientos",
+      "tipo": "texto",
+      "fuente": "expediente.movimientos",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "entregas": {
+      "etiqueta": "Entregas",
+      "tipo": "texto",
+      "fuente": "expediente.entregas",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "observaciones": {
+      "etiqueta": "Observaciones",
+      "tipo": "texto",
+      "fuente": "expediente.observaciones",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "REGISTRO DE CADENA DE CUSTODIA CARPETA: {{carpeta}}\nINDICIO: {{indicio_descripcion}}\nFECHA Y HORA DE LOCALIZACIÓN: {{fecha_hecho}}\nLUGAR: {{lugar_hecho}}\nPERSONA RESPONSABLE: {{persona_responsable}}\nI. DESCRIPCIÓN\n{{descripcion_indicio}}\nII. MOVIMIENTOS\n{{movimientos}}\nIII. ENTREGA Y RECEPCIÓN\n{{entregas}}\nIV. OBSERVACIONES\n{{observaciones}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Nacional de Procedimientos Penales, artículos 227: Cadena de custodia.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

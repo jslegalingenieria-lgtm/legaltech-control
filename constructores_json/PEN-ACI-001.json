@@ -1,0 +1,234 @@
+{
+  "id": "PEN-ACI-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Preparar acusación con los contenidos exigidos por el artículo 335 del CNPP.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Escrito de acusación",
+    "tipo_documento": "escrito",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Acusación del Ministerio Público.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Etapa intermedia, fase escrita.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Los hechos atribuidos son {{hechos_atribuidos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La clasificación jurídica es {{clasificacion_juridica}} y la forma de intervención {{forma_intervencion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Los medios de prueba que se pretenden ofrecer son {{medios_prueba}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "La reparación del daño se estima en {{reparacion_dano}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Que se tenga por formulada la acusación."
+    },
+    {
+      "orden": 2,
+      "texto": "Que se admitan los medios de prueba procedentes."
+    },
+    {
+      "orden": 3,
+      "texto": "Que se determine la apertura a juicio en los términos legales."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Medios de prueba documentales que se ofrecerán.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Testigos propuestos.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Peritos y puntos de pericia.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Evidencia material",
+      "objeto": "Objetos y elementos materiales que se ofrecerán.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Lista de medios de prueba.",
+    "Datos de individualización.",
+    "Información de reparación del daño."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Objeto de etapa intermedia",
+      "articulos": "334",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Contenido de la acusación",
+      "articulos": "335",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso debe estar madura para la etapa intermedia: hechos, clasificación, intervención, prueba, reparación y resultado que se pretende obtener en juicio.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "carpeta": {
+      "etiqueta": "Número de carpeta de investigación",
+      "tipo": "texto",
+      "fuente": "expediente.carpeta",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "imputado_nombre": {
+      "etiqueta": "Nombre de la persona imputada/acusada",
+      "tipo": "texto",
+      "fuente": "expediente.imputado_nombre",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "victima_nombre": {
+      "etiqueta": "Nombre de la víctima u ofendido",
+      "tipo": "texto",
+      "fuente": "expediente.victima_nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_atribuidos": {
+      "etiqueta": "Hechos Atribuidos",
+      "tipo": "texto",
+      "fuente": "expediente.hechos_atribuidos",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "clasificacion_juridica": {
+      "etiqueta": "Clasificacion Juridica",
+      "tipo": "texto",
+      "fuente": "expediente.clasificacion_juridica",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "forma_intervencion": {
+      "etiqueta": "Forma Intervencion",
+      "tipo": "texto",
+      "fuente": "expediente.forma_intervencion",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "medios_prueba": {
+      "etiqueta": "Medios Prueba",
+      "tipo": "texto",
+      "fuente": "expediente.medios_prueba",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "reparacion_dano": {
+      "etiqueta": "Reparacion Dano",
+      "tipo": "texto",
+      "fuente": "expediente.reparacion_dano",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "pena_solicitada": {
+      "etiqueta": "Pena Solicitada",
+      "tipo": "texto",
+      "fuente": "expediente.pena_solicitada",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "acuerdos_o_terminacion": {
+      "etiqueta": "Acuerdos O Terminacion",
+      "tipo": "texto",
+      "fuente": "expediente.acuerdos_o_terminacion",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "C. JUEZ DE CONTROL CARPETA: {{carpeta}}\nASUNTO: ACUSACIÓN\nI. INDIVIDUALIZACIÓN\nAcusado: {{imputado_nombre}}. Víctima: {{victima_nombre}}.\nII. HECHOS\n{{hechos_atribuidos}}.\nIII. CLASIFICACIÓN JURÍDICA Y PARTICIPACIÓN\n{{clasificacion_juridica}}. Forma de intervención: {{forma_intervencion}}.\nIV. MEDIOS DE PRUEBA\n{{medios_prueba}}.\nV. REPARACIÓN DEL DAÑO\n{{reparacion_dano}}.\nVI. PENA O MEDIDA SOLICITADA\n{{pena_solicitada}}.\nVII. ACUERDOS PROBATORIOS / TERMINACIÓN ANTICIPADA\n{{acuerdos_o_terminacion}}. PETICIONES\nSe tenga por presentada la acusación y se continúe con la etapa intermedia conforme al CNPP. \nFUNDAMENTO JURÍDICO APLICADO\n- Código Nacional de Procedimientos Penales, artículos 334: Objeto de etapa intermedia.\n- Código Nacional de Procedimientos Penales, artículos 335: Contenido de la acusación.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

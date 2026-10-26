@@ -1,0 +1,326 @@
+{
+  "id": "CON-006",
+  "materia": "Corporativo",
+  "diagnostico": {
+    "objetivo": "Construir y documentar el contrato de franquicia empresarial conforme a la naturaleza de la operación, capacidad de las partes, objeto, contraprestación, riesgos e incumplimiento.",
+    "preguntas": [
+      "¿Quién interviene y con qué capacidad?",
+      "¿Qué acto, operación o procedimiento se pretende documentar?",
+      "¿Cuál es la fuente legal especial aplicable?",
+      "¿Qué documentos y pruebas son indispensables?",
+      "¿Existen plazos, autorizaciones, registros o formalidades?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "personalidad/facultades",
+      "hechos",
+      "documentos base",
+      "objeto de la operación"
+    ],
+    "resultado_esperado": "Documento estructurado y jurídicamente parametrizado para revisión profesional."
+  },
+  "clasificacion": {
+    "constructor": "Franquicia empresarial",
+    "tipo_documento": "contrato",
+    "rol_promovente": "parte contratante",
+    "rol_contraparte": "parte contratante",
+    "criterios": [
+      "capacidad",
+      "facultades",
+      "objeto",
+      "contraprestación",
+      "riesgos",
+      "incumplimiento"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Franquicia empresarial",
+    "naturaleza": "contrato",
+    "descripcion": "Construir y documentar el contrato de franquicia empresarial conforme a la naturaleza de la operación, capacidad de las partes, objeto, contraprestación, riesgos e incumplimiento.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Negociación → verificación de capacidad y facultades → definición del objeto y contraprestación → cláusulas de riesgos e incumplimiento → revisión fiscal/regulatoria cuando aplique → firma → anexos → conservación y seguimiento.",
+    "requisitos": [
+      "Identificación de partes y capacidad/facultades.",
+      "Documentos base.",
+      "Verificación de legislación especial y vigencia."
+    ],
+    "nota": "No sustituye la revisión profesional ni la verificación de requisitos sectoriales."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Las partes identifican la operación, antecedentes y finalidad económica: {{antecedentes_operacion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La parte A declara contar con capacidad y facultades suficientes para celebrar el contrato.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "La parte B declara contar con capacidad y facultades suficientes para celebrar el contrato.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Documentar válidamente la operación y establecer derechos y obligaciones exigibles."
+    },
+    {
+      "orden": 2,
+      "texto": "Establecer mecanismos de cumplimiento, incumplimiento y terminación."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Identificaciones, poderes, constancias societarias y documentos de la operación.",
+      "estatus": "por_integrar"
+    }
+  ],
+  "documentos": [
+    "Acta constitutiva y estatutos vigentes, cuando intervenga una persona moral.",
+    "Poder o documento de facultades del firmante.",
+    "Identificación y datos fiscales de las partes.",
+    "Anexos técnicos, económicos o comerciales que formen parte del contrato."
+  ],
+  "fundamento": [
+    {
+      "orden": 1,
+      "ordenamiento": "Ley Federal de Protección a la Propiedad Industrial",
+      "tema": "Franquicia empresarial",
+      "articulos": "245-249",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ccom/franquicia_empresarial",
+      "fundamento_texto": "Franquicia y requisitos del contrato."
+    },
+    {
+      "orden": 2,
+      "ordenamiento": "Ley Federal de Protección a la Propiedad Industrial",
+      "tema": "Franquicia empresarial",
+      "articulos": "245-249",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ccf/franquicia_empresarial",
+      "fundamento_texto": "Franquicia y requisitos del contrato."
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La operación es jurídicamente viable si las partes tienen capacidad y facultades, el objeto es lícito y determinable, existe consentimiento válido y se documentan las obligaciones, contraprestación, riesgos e incumplimiento conforme al régimen especial aplicable.",
+    "elementos": [
+      "Hecho o necesidad empresarial",
+      "Norma aplicable",
+      "Documento o prueba que lo acredita",
+      "Riesgo jurídico",
+      "Resultado pretendido"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en documentos finales salvo que el constructor lo indique."
+  },
+  "campos_dinamicos": {
+    "parte_a_nombre": {
+      "etiqueta": "Parte A",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "parte_b_nombre": {
+      "etiqueta": "Parte B",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante_a": {
+      "etiqueta": "Firmante Parte A",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante_b": {
+      "etiqueta": "Firmante Parte B",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "antecedentes_operacion": {
+      "etiqueta": "Antecedentes de la operación",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "objeto_contrato": {
+      "etiqueta": "Objeto del contrato",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "anexo_objeto": {
+      "etiqueta": "Anexo que describe el objeto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraprestacion": {
+      "etiqueta": "Contraprestación",
+      "tipo": "monto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "vigencia": {
+      "etiqueta": "Vigencia",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_inicio": {
+      "etiqueta": "Fecha de inicio",
+      "tipo": "fecha",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_termino": {
+      "etiqueta": "Fecha de término",
+      "tipo": "fecha",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "obligaciones_parte_a": {
+      "etiqueta": "Obligaciones Parte A",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "obligaciones_parte_b": {
+      "etiqueta": "Obligaciones Parte B",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "anexo_entregables": {
+      "etiqueta": "Anexo de entregables",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "garantia": {
+      "etiqueta": "Garantía",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "titularidad_pi": {
+      "etiqueta": "Titularidad de propiedad intelectual",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "causas_terminacion": {
+      "etiqueta": "Causas de terminación",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilios_notificaciones": {
+      "etiqueta": "Domicilios y medios de notificación",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "legislacion_aplicable": {
+      "etiqueta": "Legislación aplicable",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar_firma": {
+      "etiqueta": "Lugar de firma",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_firma": {
+      "etiqueta": "Fecha de firma",
+      "tipo": "fecha",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "anexos": {
+      "etiqueta": "Anexos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante_parte_a": {
+      "etiqueta": "Firmante parte a",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "firmante_parte_b": {
+      "etiqueta": "Firmante parte b",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    }
+  },
+  "documento_generado": "CONTRATO DE FRANQUICIA EMPRESARIAL QUE CELEBRAN POR UNA PARTE {{parte_a_nombre}}, A QUIEN EN LO SUCESIVO SE LE DENOMINARÁ “LA PARTE A”, Y POR LA OTRA {{parte_b_nombre}}, A QUIEN SE LE DENOMINARÁ “LA PARTE B”, AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS. DECLARACIONES\nI. Declara LA PARTE A: a) ser una persona con capacidad jurídica para contratar; b) que su representante cuenta con facultades suficientes, mismas que deberán acreditarse y mantenerse vigentes; c) que la información proporcionada para la operación es veraz; y d) que conoce el objeto, riesgos y obligaciones del presente contrato.\nII. Declara LA PARTE B: a) ser una persona con capacidad jurídica para contratar; b) que su representante cuenta con facultades suficientes; c) que la información proporcionada es veraz; y d) que conoce el objeto y alcance de la operación.\nIII. Declaran ambas partes que su consentimiento se otorga libremente y que la operación no contraviene sus estatutos, facultades, leyes aplicables ni derechos de terceros. CLÁUSULAS\nPRIMERA. OBJETO. El objeto consiste en {{objeto_contrato}}, conforme a las especificaciones del Anexo {{anexo_objeto}}. SEGUNDA. CONTRAPRESTACIÓN. El precio, contraprestación, aportación o mecanismo económico será {{contraprestacion}}, más los impuestos que legalmente correspondan, en la forma y fechas pactadas. TERCERA. VIGENCIA Y CONDICIONES. El contrato tendrá vigencia de {{vigencia}}, iniciando el {{fecha_inicio}} y terminando el {{fecha_termino}}, salvo prórroga o terminación anticipada conforme a este instrumento. CUARTA. OBLIGACIONES DE LA PARTE A. {{obligaciones_parte_a}}. QUINTA. OBLIGACIONES DE LA PARTE B. {{obligaciones_parte_b}}. SEXTA. ENTREGA, ACEPTACIÓN O CUMPLIMIENTO. Los hitos, entregables, criterios de aceptación y responsables serán los establecidos en {{anexo_entregables}}. SÉPTIMA. INCUMPLIMIENTO. La parte que incumpla responderá en los términos permitidos por la legislación aplicable y por las consecuencias expresamente pactadas, incluyendo, cuando proceda, pena convencional, intereses, daños, suspensión, rescisión o terminación. OCTAVA. GARANTÍAS. Cuando la operación lo requiera, se constituirá {{garantia}}, precisando monto, vigencia, ejecución y liberación. NOVENA. CONFIDENCIALIDAD Y DATOS. Las partes conservarán la confidencialidad de la información no pública y tratarán los datos personales conforme a la legislación aplicable y al objeto del contrato. DÉCIMA. PROPIEDAD INTELECTUAL. Los derechos sobre materiales, software, marcas, documentación o entregables serán de {{titularidad_pi}}, conforme a los anexos y a la legislación aplicable. DÉCIMA PRIMERA. CUMPLIMIENTO REGULATORIO. Las partes deberán cumplir las disposiciones mercantiles, fiscales, regulatorias, de prevención de operaciones ilícitas, protección de datos, competencia económica, comercio exterior o financieras que resulten aplicables a la operación. DÉCIMA SEGUNDA. TERMINACIÓN ANTICIPADA. Procederá por {{causas_terminacion}}, sin perjuicio de las obligaciones que por su naturaleza deban sobrevivir. DÉCIMA TERCERA. NOTIFICACIONES. Las partes señalan como domicilios y medios de contacto {{domicilios_notificaciones}}. DÉCIMA CUARTA. SOLUCIÓN DE CONTROVERSIAS. Las partes procurarán negociación y, cuando resulte procedente, mecanismos alternativos; en defecto de solución, se someterán a la jurisdicción competente, sin perjuicio de reglas imperativas. DÉCIMA QUINTA. LEGISLACIÓN APLICABLE. Este contrato se interpretará conforme a {{legislacion_aplicable}}, atendiendo a la naturaleza de la operación y a las disposiciones especiales que correspondan. DÉCIMA SEXTA. INTEGRIDAD Y MODIFICACIONES. Cualquier modificación deberá constar por escrito y ser suscrita por representantes con facultades suficientes. LEÍDO QUE FUE EL PRESENTE CONTRATO Y ENTERADAS LAS PARTES DE SU ALCANCE, LO FIRMAN EN {{lugar_firma}}, A {{fecha_firma}}. LA PARTE A: {{parte_a_nombre}} / {{firmante_a}}\nLA PARTE B: {{parte_b_nombre}} / {{firmante_b}} ANEXOS: {{anexos}} FUNDAMENTO LEGAL\nCódigo de Comercio — Franquicia empresarial. Código de Comercio y Código Civil Federal: régimen general de actos, obligaciones y contratos; verificar la figura especial. Código Civil Federal — Franquicia empresarial. Disposiciones relacionadas con la materia; verificar artículos específicos contra la fuente. FIRMAS\nLA PARTE A: {{firmante_parte_a}}\nLA PARTE B: {{firmante_parte_b}} \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal de Protección a la Propiedad Industrial, artículos 245-249: Franquicia y requisitos del contrato..\n- Ley Federal de Protección a la Propiedad Industrial, artículos 245-249: Franquicia y requisitos del contrato..",
+  "siguiente_paso": "Negociación → verificación de capacidad y facultades → definición del objeto y contraprestación → cláusulas de riesgos e incumplimiento → revisión fiscal/regulatoria cuando aplique → firma → anexos → conservación y seguimiento.",
+  "alertas": [
+    "Completar todos los campos dinámicos antes de firmar.",
+    "Verificar personalidad, facultades, vigencia normativa, competencia y plazos.",
+    "Si la operación está regulada por una ley especial, prevalecerán sus requisitos específicos.",
+    "No presentar como sentencia, escritura o acto de autoridad un documento que SIGDE sólo genera como proyecto/promoción."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor — contrato: identificación → declaraciones → objeto → obligaciones/contraprestación → riesgos → incumplimiento → terminación → controversias → fundamento legal → firmas.",
+    "tipo_generacion": "contrato SIGDE",
+    "fuentes_usuario": [
+      {
+        "nombre": "Código de Comercio",
+        "reforma": "DOF 14-11-2025; cantidades actualizadas por Acuerdo DOF 18-02-2026",
+        "archivo": "CCom(1).pdf"
+      },
+      {
+        "nombre": "Código Civil Federal",
+        "reforma": "DOF 14-11-2025",
+        "archivo": "CCF(1).pdf"
+      }
+    ],
+    "formato_documental": "SIGDE_CONTRATO",
+    "identidad_visual": "dinamica_por_despacho",
+    "encabezado": "Logo, nombre y datos de identidad del despacho configurados en SIGDE.",
+    "pie_pagina": "Nombre del despacho y referencia de documento contractual SIGDE; se adapta a la identidad del despacho.",
+    "nota": "La identidad visual no forma parte del contenido jurídico sustantivo y se aplica al momento de visualizar, imprimir o exportar."
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

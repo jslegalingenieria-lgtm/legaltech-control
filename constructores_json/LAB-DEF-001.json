@@ -1,0 +1,197 @@
+{
+  "id": "LAB-DEF-001",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Determinar el medio de defensa procedente contra una resolución, acto o laudo en materia laboral Apartado A.",
+    "preguntas": [
+      "¿Qué resolución o acto se impugna y quién lo emitió?",
+      "¿Fecha de notificación?",
+      "¿Qué medio procede (recurso, incidente, amparo u otro)?",
+      "¿Plazo y requisitos?",
+      "¿Hay suspensión o garantía?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Diagnóstico medio de defensa",
+    "tipo_documento": "diagnostico",
+    "rol_promovente": "trabajador(a)",
+    "rol_contraparte": "patrón / empresa",
+    "criterios": [
+      "Resolución interlocutoria / definitiva",
+      "Acto de autoridad administrativa"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Diagnóstico medio de defensa",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Medio de impugnación procedente",
+    "requisitos": [
+      "Resolución impugnable.",
+      "Plazo vigente."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Resolución: {{resolucion_impugnada}} del {{fecha_resolucion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Notificación: {{fecha_notificacion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Agravios preliminares: {{agravios}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Revocar o modificar la resolución."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos exhibidos, para acreditar la resolución y su notificación.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Medios de impugnación en materia laboral",
+      "articulos": "873-K y 1336-1348 de la legislación procesal aplicable",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/medios_de_impugnacion_en_materia_laboral"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La resolución es impugnable y causa agravio.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "resolucion_impugnada": {
+      "etiqueta": "Resolución impugnada",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_resolucion": {
+      "etiqueta": "Fecha resolución",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_notificacion": {
+      "etiqueta": "Fecha notificación",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "agravios": {
+      "etiqueta": "Agravios",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DIAGNÓSTICO — DIAGNÓSTICO MEDIO DE DEFENSA INFORME DE DIAGNÓSTICO — DIAGNÓSTICO MEDIO DE DEFENSA\nI. DIAGNÓSTICO\nDeterminar el medio de defensa procedente contra una resolución, acto o laudo en materia laboral Apartado A.\nPreguntas a resolver con el expediente:\n1. ¿Qué resolución o acto se impugna y quién lo emitió?\n2. ¿Fecha de notificación?\n3. ¿Qué medio procede (recurso, incidente, amparo u otro)?\n4. ¿Plazo y requisitos?\n5. ¿Hay suspensión o garantía?\nII. CLASIFICACIÓN\n- Resolución interlocutoria / definitiva\n- Acto de autoridad administrativa\nIII. ACCIÓN/DEFENSA Y VÍA\n- Preparar el medio de defensa correspondiente.\nVía: Medio de impugnación procedente\nIV. REQUISITOS\n1. Resolución impugnable.\n2. Plazo vigente.\nV. HECHOS A ESTABLECER\nPRIMERO. Resolución: {{resolucion_impugnada}} del {{fecha_resolucion}}.\nSEGUNDO. Notificación: {{fecha_notificacion}}.\nTERCERO. Agravios preliminares: {{agravios}}.\nVI. PRETENSIONES / OBJETIVOS\n1. Revocar o modificar la resolución.\nVII. PRUEBAS\n1. DOCUMENTAL.- Documentos exhibidos, para acreditar la resolución y su notificación.\n2. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n- Ley Federal del Trabajo: Medios de impugnación en materia laboral. Artículos aplicables: 873-K y 1336-1348 de la legislación procesal aplicable.\nIX. SIGUIENTE PASO\nCalcular plazo y elegir medio. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 873-K y 1336-1348 de la legislación procesal aplicable: Medios de impugnación en materia laboral.",
+  "siguiente_paso": "Calcular plazo y elegir medio.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE.",
+    "Este diagnóstico no genera la demanda de amparo; en su caso se desarrolla en otro módulo."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

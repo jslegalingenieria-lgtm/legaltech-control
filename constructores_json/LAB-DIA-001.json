@@ -1,0 +1,258 @@
+{
+  "id": "LAB-DIA-001",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Clasificar el conflicto laboral del Apartado A, identificar acciones/defensas, vía, plazos y documentos, y recomendar el constructor siguiente.",
+    "preguntas": [
+      "¿Es Apartado A (LFT) o B?",
+      "¿Existe o existió relación de trabajo? ¿Individual o colectiva?",
+      "¿Quién es el promovente: trabajador, patrón, beneficiario o sindicato?",
+      "¿Hay despido, rescisión, modificación de condiciones, prestaciones omitidas, riesgo de trabajo o seguridad social?",
+      "¿Se agotó la conciliación prejudicial o aplica excepción?",
+      "¿Cuál es el plazo de prescripción aplicable?",
+      "¿Qué documentos y testigos hay?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Diagnóstico laboral integral",
+    "tipo_documento": "diagnostico",
+    "rol_promovente": "trabajador(a)",
+    "rol_contraparte": "patrón / empresa",
+    "criterios": [
+      "Individual / colectivo / seguridad social",
+      "Despido / rescisión / prestaciones / otro",
+      "Apartado A confirmado [SÍ/NO]"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Diagnóstico laboral integral",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Individual: procedimiento laboral conforme a la LFT; colectivo: huelga o conflicto colectivo según el caso",
+    "requisitos": [
+      "Confirmar Apartado A.",
+      "Identificar sujetos y relación.",
+      "Identificar fecha del hecho para prescripción."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Relación de trabajo: {{inicio_relacion}} a {{fin_relacion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Puesto, salario y jornada: {{puesto}}, {{salario}}, {{jornada}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Hecho que motiva el conflicto: {{hecho_conflicto}} en la fecha {{fecha_hecho}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Definir pretensiones principales y accesorias."
+    },
+    {
+      "orden": 2,
+      "texto": "Definir prestaciones y montos con la calculadora existente."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Informe o constancias de alta, baja y salario ante el IMSS e INFONAVIT, para acreditar antigüedad y salario.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Relación de trabajo, condiciones, terminación y procedimientos",
+      "articulos": "20-55, 684-B-873-K",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/relacion_de_trabajo_condiciones_terminacion_y_proc"
+    },
+    {
+      "ordenamiento": "Constitución Política de los Estados Unidos Mexicanos (Art. 123, Apartado A)",
+      "tema": "Marco constitucional laboral",
+      "articulos": "123 Apartado A constitucional",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/constitucion_politica_de_los_estados_uni/marco_constitucional_laboral"
+    },
+    {
+      "ordenamiento": "Ley del Seguro Social",
+      "tema": "Seguridad social (si aplica)",
+      "articulos": "11-16 LSS según seguro aplicable",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_del_seguro_social/seguridad_social_si_aplica"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Se identifica el supuesto laboral concreto y se orienta el caso al constructor y vía correctos.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "inicio_relacion": {
+      "etiqueta": "Inicio relacion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fin_relacion": {
+      "etiqueta": "Fin relacion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "puesto": {
+      "etiqueta": "Puesto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "salario": {
+      "etiqueta": "Salario",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "jornada": {
+      "etiqueta": "Jornada",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hecho_conflicto": {
+      "etiqueta": "Hecho conflicto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_hecho": {
+      "etiqueta": "Fecha hecho",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "testigos": {
+      "etiqueta": "Testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_testigos": {
+      "etiqueta": "Hechos testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DIAGNÓSTICO — DIAGNÓSTICO LABORAL INTEGRAL INFORME DE DIAGNÓSTICO — DIAGNÓSTICO LABORAL INTEGRAL\nI. DIAGNÓSTICO\nClasificar el conflicto laboral del Apartado A, identificar acciones o defensas, vía, plazos y documentos, y determinar la ruta de actuación correspondiente.\nPreguntas a resolver con el expediente:\n1. ¿Es Apartado A (LFT) o B?\n2. ¿Existe o existió relación de trabajo? ¿Individual o colectiva?\n3. ¿Quién es el promovente: trabajador, patrón, beneficiario o sindicato?\n4. ¿Hay despido, rescisión, modificación de condiciones, prestaciones omitidas, riesgo de trabajo o seguridad social?\n5. ¿Se agotó la conciliación prejudicial o aplica excepción?\n6. ¿Cuál es el plazo de prescripción aplicable?\n7. ¿Qué documentos y testigos hay?\nII. CLASIFICACIÓN\n- Individual / colectivo / seguridad social\n- Despido / rescisión / prestaciones / otro\n- Apartado A confirmado [SÍ/NO]\nIII. ACCIÓN/DEFENSA Y VÍA\n- Despido: constructor LAB-DES-001/003.\n- Rescisión por patrón: LAB-DIA-004 y LAB-DES-002.\n- Prestaciones: LAB-PRE-001.\n- Seguridad social: LAB-SEG-001, LAB-IMSS-001, LAB-INF-001.\n- Colectivo: LAB-HUE-001, LAB-CCE-001.\nVía: Individual: procedimiento laboral conforme a la LFT; colectivo: huelga o conflicto colectivo según el caso\nIV. REQUISITOS\n1. Confirmar Apartado A.\n2. Identificar sujetos y relación.\n3. Identificar fecha del hecho para prescripción.\nV. HECHOS A ESTABLECER\nPRIMERO. Relación de trabajo: {{inicio_relacion}} a {{fin_relacion}}.\nSEGUNDO. Puesto, salario y jornada: {{puesto}}, {{salario}}, {{jornada}}.\nTERCERO. Hecho que motiva el conflicto: {{hecho_conflicto}} en la fecha {{fecha_hecho}}.\nVI. PRETENSIONES / OBJETIVOS\n1. Definir pretensiones principales y accesorias.\n2. Definir prestaciones y montos con la calculadora existente.\nVII. PRUEBAS\n1. DOCUMENTAL.- Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.\n2. DOCUMENTAL.- Informe o constancias de alta, baja y salario ante el IMSS e INFONAVIT, para acreditar antigüedad y salario.\n3. TESTIMONIAL.- Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.\n- Ley Federal del Trabajo: Relación de trabajo, condiciones, terminación y procedimientos. Artículos aplicables: 20-55, 684-B-873-K.\n- Constitución Política de los Estados Unidos Mexicanos (Art. 123, Apartado A): Marco constitucional laboral. Artículos aplicables: 123 Apartado A constitucional.\n- Ley del Seguro Social: Seguridad social (si aplica). Artículos aplicables: 11-16 LSS según seguro aplicable.\nIX. SIGUIENTE PASO\nLa actuación se estructura conforme al resultado del diagnóstico y al régimen laboral que resulte acreditado en los hechos y documentos del expediente. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 20-55, 684-B-873-K: Relación de trabajo, condiciones, terminación y procedimientos.\n- Constitución Política de los Estados Unidos Mexicanos (Art. 123, Apartado A), artículos 123 Apartado A constitucional: Marco constitucional laboral.\n- Ley del Seguro Social, artículos 11-16 LSS según seguro aplicable: Seguridad social (si aplica).",
+  "siguiente_paso": "Seleccionar el constructor específico según el resultado del diagnóstico.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

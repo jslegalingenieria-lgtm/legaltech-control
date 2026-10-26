@@ -1,0 +1,240 @@
+{
+  "id": "AGR-DOM-001",
+  "materia": "Agraria",
+  "diagnostico": {
+    "objetivo": "Estructurar la documentación para la adopción del dominio pleno conforme a la resolución de asamblea.",
+    "preguntas": [
+      "¿Cuál es el acto o derecho agrario controvertido?",
+      "¿Cuál es la calidad agraria de cada sujeto?",
+      "¿Qué documentos acreditan el derecho?",
+      "¿Existe acta de asamblea o resolución administrativa?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "núcleo agrario",
+      "calidad agraria",
+      "parcela o tierras",
+      "hechos",
+      "documentos"
+    ],
+    "resultado_esperado": "Determinar la vía agraria, competencia, requisitos, prueba, fundamento y documento procedente con base en la legislación agraria vigente."
+  },
+  "clasificacion": {
+    "constructor": "Adopción de dominio pleno sobre parcela",
+    "tipo_documento": "promocion",
+    "rol_promovente": "ejidatario, comunero, posesionario, avecindado, núcleo agrario o interesado según el caso",
+    "rol_contraparte": "persona, órgano del núcleo o autoridad vinculada al conflicto",
+    "criterios": [
+      "Agraria",
+      "Dominio pleno"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Adopción de dominio pleno sobre parcela",
+    "naturaleza": "acción, defensa o promoción en materia agraria",
+    "descripcion": "Instrumento construido a partir de la Ley Agraria, el artículo 27 constitucional y las normas especiales identificadas en la ficha.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Asamblea y trámite registral",
+    "requisitos": [
+      "Identificar la naturaleza agraria del asunto y la competencia territorial.",
+      "Acreditar personalidad, calidad agraria o interés jurídico.",
+      "Integrar títulos, certificados, actas, planos y demás documentos relacionados con la controversia.",
+      "Precisar hechos, pretensiones y pruebas."
+    ],
+    "nota": "La vía y estrategia se determinan con los hechos y documentos concretos del expediente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "{{{{promovente_nombre}}}} tiene la calidad de {{calidad_agraria}} en relación con {{{{nucleo_agrario}}}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "El acto o hecho que origina la controversia es {{hechos_especificos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Las tierras o derechos involucrados corresponden a {{{{parcela_tierras}}}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Reconocimiento o protección del derecho agrario que corresponda."
+    },
+    {
+      "orden": 2,
+      "texto": "Declaración o condena conforme a la acción ejercitada."
+    },
+    {
+      "orden": 3,
+      "texto": "Medidas necesarias para hacer efectiva la resolución."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "certificados y constancias agrarias",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "actas de asamblea y constancias del RAN",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "hechos controvertidos cuando sea pertinente",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Identificación oficial y acreditación de calidad agraria",
+    "Certificado parcelario o de derechos",
+    "Acta de asamblea",
+    "Planos y constancias del RAN"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Constitución Política de los Estados Unidos Mexicanos",
+      "tema": "Régimen agrario y justicia agraria",
+      "articulos": "27, fracciones VII, XIX y XX",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/cpeum/articulo_27_agrario"
+    },
+    {
+      "ordenamiento": "Ley Agraria",
+      "tema": "Régimen agrario",
+      "articulos": "1-3",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_agraria/disposiciones_preliminares"
+    },
+    {
+      "ordenamiento": "Ley Agraria",
+      "tema": "Dominio pleno",
+      "articulos": "Ley Agraria 23 IX, 81-82",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_agraria/agr-dom-001"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La pretensión se apoya en la calidad agraria acreditada, los hechos demostrables y las disposiciones especiales de la Ley Agraria, bajo el marco del artículo 27 constitucional.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad o tribunal",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "nucleo_agrario": {
+      "etiqueta": "Núcleo agrario",
+      "tipo": "texto",
+      "fuente": "expediente.datos.nucleo_agrario",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "calidad_agraria": {
+      "etiqueta": "Calidad agraria",
+      "tipo": "texto",
+      "fuente": "expediente.datos.calidad_agraria",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "parcela_tierras": {
+      "etiqueta": "Parcela o tierras",
+      "tipo": "texto",
+      "fuente": "expediente.datos.parcela_tierras",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_especificos": {
+      "etiqueta": "Hechos específicos",
+      "tipo": "textarea",
+      "fuente": "expediente.hechos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.domicilio_notificaciones",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "vigencia": {
+      "etiqueta": "Vigencia del instrumento",
+      "tipo": "texto",
+      "fuente": "expediente.contrato.vigencia",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "obligaciones_partes": {
+      "etiqueta": "Obligaciones de las partes",
+      "tipo": "textarea",
+      "fuente": "expediente.contrato.obligaciones",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar_fecha": {
+      "etiqueta": "Lugar y fecha",
+      "tipo": "texto",
+      "fuente": "expediente.lugar_fecha",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: ADOPCIÓN DE DOMINIO PLENO SOBRE PARCELA\n\nC. MAGISTRADO DEL TRIBUNAL UNITARIO AGRARIO\nP R E S E N T E.\n\n{{{{promovente_nombre}}}}, en mi carácter de {{calidad_agraria}}, respecto del núcleo {{{{nucleo_agrario}}}}, señalando domicilio para oír y recibir notificaciones en {{domicilio_notificaciones}}, comparezco para exponer:\n\nI. PERSONALIDAD Y CALIDAD AGRARIA\n{{{{promovente_nombre}}}} comparece como {{calidad_agraria}}, respecto del núcleo {{{{nucleo_agrario}}}} y de las tierras identificadas como {{{{parcela_tierras}}}}.\n\nII. HECHOS\nPRIMERO. {{hechos_especificos}}\n\nSEGUNDO. Se precisarán los actos, fechas, documentos y antecedentes que acrediten la relación agraria controvertida.\n\nTERCERO. Se identificarán las actuaciones de la asamblea, comisariado, Registro Agrario Nacional, Procuraduría Agraria o autoridad que correspondan.\n\nIII. PRETENSIONES\nPRIMERO. Que se determine la procedencia de la acción o promoción.\n\nSEGUNDO. Que se reconozca o restituya el derecho agrario acreditado.\n\nTERCERO. Que se dicten las medidas y efectos jurídicos que correspondan conforme a la legislación aplicable.\n\nIV. PRUEBAS\nDocumentales públicas y privadas; certificados parcelarios o de derechos; actas de asamblea; constancias del Registro Agrario Nacional; planos; periciales; testimoniales y demás medios admisibles conforme al artículo 186 de la Ley Agraria, según sean pertinentes.\n\nVI. DERECHO\nLa presente promoción se sustenta en la Constitución Política de los Estados Unidos Mexicanos, artículo 27, fracciones VII y XIX, así como en Ley Agraria 23 IX, 81-82.\n\nVII. PETITORIOS\nPRIMERO. Tenerme por presentado con este escrito y documentos.\nSEGUNDO. Admitir la promoción en los términos legalmente procedentes.\nTERCERO. Dictar la resolución que corresponda conforme a las disposiciones aplicables.\n\nPROTESTO LO NECESARIO\n\n{{{{lugar_fecha}}}}\n\n____________________________\n{{{{promovente_nombre}}}}",
+  "siguiente_paso": "Integrar datos del expediente, revisar competencia y fundamento, completar campos y verificar documentos antes de presentación.",
+  "alertas": [
+    "Verificar competencia territorial del Tribunal Unitario Agrario correspondiente.",
+    "Revisar certificados, actas, planos y constancias del Registro Agrario Nacional cuando sean relevantes."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "familia": "Agraria",
+    "fuente_principal": "Ley Agraria",
+    "fuente_constitucional": "CPEUM artículo 27",
+    "formato": "Escrito jurídico SIGDE estandarizado"
+  },
+  "auditoria_juridica": {
+    "fundamento_verificado": true,
+    "articulos_pendientes": [],
+    "observaciones": "Constructor basado exclusivamente en disposiciones identificadas en las fuentes proporcionadas."
+  }
+}

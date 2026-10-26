@@ -1,0 +1,266 @@
+{
+  "id": "LAB-CON-001",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Contrato individual.",
+    "preguntas": [
+      "¿Tipo de duración y su justificación?",
+      "¿Puesto, salario y jornada?",
+      "¿Prestaciones adicionales?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Contrato individual",
+    "tipo_documento": "contrato",
+    "rol_promovente": "patrón / empresa",
+    "rol_contraparte": "trabajador(a)",
+    "criterios": []
+  },
+  "accion_defensa": {
+    "nombre": "Contrato individual",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "[VALIDAR VÍA CONFORME A LA LEGISLACIÓN APLICABLE]",
+    "requisitos": [
+      "Verificar contenido mínimo y modalidad de duración exigidos por la LFT .",
+      "Evitar cláusulas contrarias a derechos irrenunciables ."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [],
+  "pretensiones": [],
+  "pruebas": [],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Contrato individual: contenido, duración y condiciones de trabajo",
+      "articulos": "24-39",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/contrato_individual_contenido_duracion_y_condicion"
+    },
+    {
+      "ordenamiento": "Constitución Política de los Estados Unidos Mexicanos (Art. 123, Apartado A)",
+      "tema": "Derechos mínimos",
+      "articulos": "123 Apartado A constitucional y 20-28 LFT",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/constitucion_politica_de_los_estados_uni/derechos_minimos"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Contrato que documenta condiciones lícitas y claras de la relación de trabajo.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente (propio derecho / representante)",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "nacionalidad_edad_estado_civil": {
+      "etiqueta": "Nacionalidad edad estado civil",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "puesto": {
+      "etiqueta": "Puesto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "funciones": {
+      "etiqueta": "Funciones",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "tipo_duracion": {
+      "etiqueta": "Tipo duracion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_ingreso": {
+      "etiqueta": "Fecha ingreso",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "periodo_prueba_o_capacitacion": {
+      "etiqueta": "Periodo prueba o capacitacion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar_trabajo": {
+      "etiqueta": "Lugar trabajo",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "jornada": {
+      "etiqueta": "Jornada",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "horario": {
+      "etiqueta": "Horario",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "descansos": {
+      "etiqueta": "Descansos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "salario": {
+      "etiqueta": "Salario",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "periodicidad_pago": {
+      "etiqueta": "Periodicidad pago",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar_forma_pago": {
+      "etiqueta": "Lugar forma pago",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "prestaciones_adicionales": {
+      "etiqueta": "Prestaciones adicionales",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "clausulas_adicionales": {
+      "etiqueta": "Clausulas adicionales",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante_parte_a": {
+      "etiqueta": "Firmante parte a",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "firmante_parte_b": {
+      "etiqueta": "Firmante parte b",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    }
+  },
+  "documento_generado": "CONTRATO INDIVIDUAL DE TRABAJO Que celebran, por una parte, {{promovente_nombre}} (en adelante «EL PATRÓN»), con domicilio en {{domicilio_promovente}}, y por la otra {{contraparte_nombre}} (en adelante «EL TRABAJADOR»), con domicilio en {{domicilio_contraparte}}, conforme a las siguientes DECLARACIONES\nI. EL PATRÓN declara ser {{personalidad_promovente}} y contar con la capacidad para contratar.\nII. EL TRABAJADOR declara ser {{nacionalidad_edad_estado_civil}} y contar con la aptitud para el puesto. CLÁUSULAS\nPRIMERA. OBJETO Y PUESTO. EL TRABAJADOR prestará sus servicios personales subordinados como {{puesto}}, realizando las funciones de {{funciones}}.\nSEGUNDA. DURACIÓN. La relación será por {{tipo_duracion}} {{modalidad_duracion_fundamento}}, iniciando el {{fecha_ingreso}}. {{periodo_prueba_o_capacitacion}}\nTERCERA. LUGAR DE TRABAJO. Los servicios se prestarán en {{lugar_trabajo}}.\nCUARTA. JORNADA. La jornada será {{jornada}}, con horario de {{horario}}, descansos y comidas conforme a {{descansos}}.\nQUINTA. SALARIO. EL TRABAJADOR percibirá {{salario}} pagadero {{periodicidad_pago}} en {{lugar_forma_pago}}.\nSEXTA. PRESTACIONES. EL TRABAJADOR gozará de las prestaciones de ley y de las adicionales siguientes: {{prestaciones_adicionales}}.\nSÉPTIMA. SEGURIDAD SOCIAL. EL PATRÓN inscribirá a EL TRABAJADOR ante las instituciones de seguridad social correspondientes.\nOCTAVA. DISPOSICIONES APLICABLES. En todo lo no previsto se estará a la Ley Federal del Trabajo (Apartado A) y demás normas aplicables.\nNOVENA. {{clausulas_adicionales}} {{lugar}}, a {{fecha}}. [FIRMA]\nEL PATRÓN: {{promovente_nombre}} EL TRABAJADOR: {{contraparte_nombre}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. FUNDAMENTO LEGAL\nLey Federal del Trabajo — Contrato individual: contenido, duración y condiciones de trabajo. Constitución Política de los Estados Unidos Mexicanos (Art. 123, Apartado A) — Derechos mínimos. FIRMAS\nLA PARTE A: {{firmante_parte_a}}\nLA PARTE B: {{firmante_parte_b}} \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 24-39: Contrato individual: contenido, duración y condiciones de trabajo.\n- Constitución Política de los Estados Unidos Mexicanos (Art. 123, Apartado A), artículos 123 Apartado A constitucional y 20-28 LFT: Derechos mínimos.",
+  "siguiente_paso": "Completar condiciones, validar modalidad de duración y obtener firmas.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE.",
+    "Un contrato por tiempo determinado o a prueba requiere justificación legal; no usarlo por default .",
+    "Entregar copia firmada al trabajador."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor — contrato: identificación → declaraciones → objeto → obligaciones/contraprestación → riesgos → incumplimiento → terminación → controversias → fundamento legal → firmas.",
+    "formato_documental": "SIGDE_CONTRATO",
+    "identidad_visual": "dinamica_por_despacho",
+    "encabezado": "Logo, nombre y datos de identidad del despacho configurados en SIGDE.",
+    "pie_pagina": "Nombre del despacho y referencia de documento contractual SIGDE; se adapta a la identidad del despacho.",
+    "nota": "La identidad visual no forma parte del contenido jurídico sustantivo y se aplica al momento de visualizar, imprimir o exportar."
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

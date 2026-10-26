@@ -1,0 +1,174 @@
+{
+  "id": "PEN-VIN-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Preparar la solicitud de vinculación y organizar los datos que sostienen el hecho señalado por la ley como delito y la probabilidad de participación.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Solicitud de vinculación a proceso",
+    "tipo_documento": "audiencia",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Solicitud de vinculación a proceso.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Audiencia inicial.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "El hecho señalado como delito consiste en {{hechos_atribuidos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Los datos de prueba relevantes son {{datos_prueba}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "La probabilidad de que {{imputado_nombre}} lo cometió o participó se sustenta en {{vinculo_participacion}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Que se dicte auto de vinculación a proceso por los hechos y clasificación que correspondan conforme a derecho."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Datos de prueba",
+      "objeto": "Datos que establecen el hecho y la probabilidad de participación.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Registros y documentos que soportan los datos expuestos.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Dictámenes pertinentes.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Registros de investigación.",
+    "Datos de prueba.",
+    "Dictámenes y documentos pertinentes."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Requisitos para dictar el auto de vinculación a proceso",
+      "articulos": "316",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Contenido del auto de vinculación a proceso",
+      "articulos": "317",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso debe separar dos planos: el hecho señalado por la ley como delito y los datos que establecen la probabilidad de que la persona imputada lo cometió o participó.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "imputado_nombre": {
+      "etiqueta": "Nombre de la persona imputada/acusada",
+      "tipo": "texto",
+      "fuente": "expediente.imputado_nombre",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_atribuidos": {
+      "etiqueta": "Hechos Atribuidos",
+      "tipo": "texto",
+      "fuente": "expediente.hechos_atribuidos",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "datos_prueba": {
+      "etiqueta": "Datos Prueba",
+      "tipo": "texto",
+      "fuente": "expediente.datos_prueba",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "vinculo_participacion": {
+      "etiqueta": "Vinculo Participacion",
+      "tipo": "texto",
+      "fuente": "expediente.vinculo_participacion",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "C. JUEZ DE CONTROL\nASUNTO: SOLICITUD DE VINCULACIÓN A PROCESO\nI. HECHO\n{{hechos_atribuidos}}.\nII. DATOS DE PRUEBA\n{{datos_prueba}}.\nIII. PROBABILIDAD DE PARTICIPACIÓN\nRespecto de {{imputado_nombre}}, la probabilidad de participación se sustenta en {{vinculo_participacion}}.\nIV. PETICIÓN\nSe dicte auto de vinculación a proceso por la clasificación jurídica que corresponda, con los alcances y hechos materia de la audiencia. \nFUNDAMENTO JURÍDICO APLICADO\n- Código Nacional de Procedimientos Penales, artículos 316: Requisitos para dictar el auto de vinculación a proceso.\n- Código Nacional de Procedimientos Penales, artículos 317: Contenido del auto de vinculación a proceso.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

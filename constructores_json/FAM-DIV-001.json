@@ -1,0 +1,321 @@
+{
+  "id": "FAM-DIV-001",
+  "materia": "Familiar",
+  "diagnostico": {
+    "objetivo": "Preparar la solicitud de divorcio y sus consecuencias familiares y patrimoniales.",
+    "preguntas": [
+      "¿Se solicita por mutuo consentimiento o por solicitud unilateral?",
+      "¿Hay hijas o hijos menores?",
+      "¿Qué régimen patrimonial existe?",
+      "¿Qué se solicitará respecto de alimentos, custodia y convivencias?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Demanda unilateral de divorcio incausado — juicio ordinario civil",
+    "tipo_documento": "demanda",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Familiar",
+      "Demanda de divorcio"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Divorcio y medidas/consecuencias inherentes",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Juicio ordinario civil / controversia del orden familiar, conforme al esquema del modelo proporcionado y a las reglas procesales del CPC Jalisco.",
+    "requisitos": [
+      "Acreditar matrimonio y régimen patrimonial.",
+      "Precisar partes, domicilios, prestaciones y hechos.",
+      "Identificar hijas e hijos y sus necesidades, si existen.",
+      "Plantear medidas provisionales cuando procedan.",
+      "Ofrecer pruebas relacionándolas con los hechos.",
+      "Acompañar documentos base y copias para traslado.",
+      "Preparar la contestación, audiencia conciliatoria cuando proceda, pruebas, alegatos y sentencia.",
+      "Verificar en cada caso la competencia, vigencia normativa y cualquier régimen procesal especial que resulte aplicable."
+    ],
+    "ruta_detallada": [
+      "Presentación de demanda",
+      "Admisión y emplazamiento",
+      "Contestación y defensas",
+      "Audiencia conciliatoria cuando sea aplicable",
+      "Ofrecimiento/admisión y preparación de pruebas",
+      "Audiencia de pruebas y alegatos",
+      "Sentencia",
+      "Ejecutoria y comunicación al Registro Civil"
+    ],
+    "nota": "La solicitud unilateral de divorcio no requiere expresar una causal. El documento debe evitar convertir los hechos familiares en una causal de divorcio inexistente; los hechos se narran sólo para sustentar medidas, consecuencias y pruebas cuando sean relevantes."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Las partes contrajeron matrimonio el {{fecha_matrimonio}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La relación matrimonial se encuentra en la situación descrita por {{situacion_matrimonial}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Existen las siguientes hijas o hijos: {{hijos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "El régimen patrimonial es {{regimen_patrimonial}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se decrete el divorcio."
+    },
+    {
+      "orden": 2,
+      "texto": "Se resuelva lo relativo a hijas e hijos conforme al interés superior de la niñez."
+    },
+    {
+      "orden": 3,
+      "texto": "Se determine lo relativo a alimentos cuando proceda."
+    },
+    {
+      "orden": 4,
+      "texto": "Se resuelva la situación patrimonial y compensación cuando proceda."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Acta de matrimonio y documentos del estado civil.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Actas de nacimiento de hijas o hijos.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Documentos patrimoniales relevantes.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado que favorezca.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Acta de matrimonio",
+    "Actas de nacimiento",
+    "Capitulaciones o información del régimen patrimonial",
+    "Documentos sobre bienes y obligaciones familiares"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Divorcio",
+      "articulos": "403 y 404 fracción II",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/divorcio_unilateral_incausado"
+    },
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Efectos y medidas del divorcio",
+      "articulos": "414, 414 Bis, 415, 416, 417-Bis, 418, 419, 420, 421 y 422",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/efectos_divorcio"
+    },
+    {
+      "ordenamiento": "Código de Procedimientos Civiles del Estado de Jalisco",
+      "tema": "Juicio ordinario civil",
+      "articulos": "266-298 y demás relativos aplicables a la etapa procesal",
+      "estatus": "registrado",
+      "ck_clave": "CK/cpc_jalisco/juicio_ordinario_civil_divorcio"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La parte promovente acredita la existencia del vínculo matrimonial y expresa de forma unilateral su voluntad de disolverlo; la controversia no versa sobre la existencia de una causal de divorcio, sino sobre las consecuencias familiares y patrimoniales que deban resolverse conforme a la ley.",
+    "elementos": [
+      "Vínculo matrimonial",
+      "Manifestación unilateral de voluntad",
+      "Situación de hijas e hijos, si existen",
+      "Régimen patrimonial",
+      "Medidas provisionales necesarias",
+      "Prueba de los hechos que sí requieran acreditación",
+      "Consecuencias patrimoniales y registrales"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_matrimonio": {
+      "etiqueta": "Fecha de matrimonio",
+      "tipo": "fecha",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "situacion_matrimonial": {
+      "etiqueta": "Situación matrimonial actual",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hijos": {
+      "etiqueta": "Hijas e hijos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "regimen_patrimonial": {
+      "etiqueta": "Régimen patrimonial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_demandado": {
+      "etiqueta": "Domicilio para emplazamiento",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hijos_detalle": {
+      "etiqueta": "Datos y situación de hijas e hijos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "medidas_provisionales": {
+      "etiqueta": "Medidas provisionales solicitadas",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "bienes_y_deudas": {
+      "etiqueta": "Bienes y deudas del régimen patrimonial",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}} {{promovente_nombre}}\nVS.\n{{domicilio_contraparte}} JUICIO: ORDINARIO CIVIL\nCONTROVERSIA DEL ORDEN FAMILIAR\nASUNTO: DEMANDA UNILATERAL DE DIVORCIO INCAUSADO C. JUEZ DE LO FAMILIAR EN TURNO\nDEL ESTADO DE JALISCO\nP R E S E N T E. {{promovente_nombre}}, por mi propio derecho y/o en la personalidad que tengo reconocida, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, y autorizando como abogado patrono a {{abogado_patrono}}, ante Usted comparezco para exponer: Que por medio del presente escrito, con fundamento en los artículos 403 y 404 fracción II del Código Civil del Estado de Jalisco, así como en las reglas del juicio ordinario civil aplicables, vengo a solicitar unilateralmente la disolución del vínculo matrimonial que me une con {{domicilio_contraparte}}, sin necesidad de expresar causa, y a plantear las consecuencias familiares y patrimoniales que deban resolverse en el procedimiento.\nI. PRESTACIONES A) La disolución del vínculo matrimonial.\nB) Las medidas provisionales que legalmente procedan mientras se resuelve el procedimiento.\nC) La determinación de la guarda y custodia de las personas menores de edad, si las hubiere, conforme al interés superior de la niñez.\nD) La fijación del régimen de visitas y convivencia que corresponda, sin condicionarlo al cumplimiento de obligaciones alimentarias.\nE) La fijación, aseguramiento y actualización de los alimentos de las personas acreedoras alimentarias, cuando proceda.\nF) La separación de los cónyuges y las medidas relativas al domicilio conyugal y bienes, cuando sean necesarias.\nG) La determinación de los efectos patrimoniales derivados del régimen matrimonial y, en su caso, la liquidación de la sociedad legal o conyugal.\nH) En su caso, el reconocimiento y cuantificación de la compensación prevista por la legislación aplicable.\nI) La inscripción y comunicaciones registrales que correspondan una vez ejecutoriada la resolución.\nII. HECHOS 1. En fecha {{fecha_matrimonio}}, las partes contrajimos matrimonio civil, lo que se acredita con el acta correspondiente.\n2. El régimen patrimonial bajo el cual se celebró el matrimonio es {{regimen_patrimonial}}. 3. Durante la relación matrimonial ocurrieron las circunstancias siguientes: {{situacion_matrimonial}}. Se narrarán de manera cronológica únicamente los hechos que tengan relevancia para las medidas familiares, patrimoniales o probatorias solicitadas.\n4. Los hijos e hijas procreados durante el matrimonio son: {{hijos}}. De existir personas menores de edad, se precisará su edad, domicilio, necesidades, situación escolar, condiciones de salud y la forma en que actualmente se desarrolla su cuidado.\n5. La parte promovente manifiesta de manera expresa, libre e inequívoca que no desea continuar unida en matrimonio. La solicitud no depende de acreditar una causal de divorcio. 6. En su caso, deberán describirse por separado los hechos que hagan necesaria alguna medida provisional: alimentos, custodia, convivencia, protección, domicilio, administración de bienes u otra medida jurídicamente procedente. 7. En materia patrimonial, deberá precisarse el régimen matrimonial, los bienes adquiridos durante la vigencia del matrimonio, las cargas o deudas, los bienes propios, los documentos disponibles y cualquier circunstancia relevante para la posterior liquidación. 8. Si existe una situación de violencia, riesgo, sustracción, ocultamiento de bienes o afectación a personas menores de edad, se deberá narrar con precisión qué ocurrió, cuándo, dónde, quién intervino y qué prueba existe, evitando afirmaciones genéricas.\nIII. DERECHO Son aplicables, en cuanto al fondo, los artículos 403 y 404 fracción II del Código Civil del Estado de Jalisco, que reconocen el divorcio por solicitud de cualquiera de los cónyuges sin necesidad de atender a un motivo. También deberán revisarse los artículos 414, 414 Bis, 415, 416, 417-Bis, 418, 419, 420, 421 y 422, según las consecuencias familiares y patrimoniales del caso concreto. En cuanto al procedimiento, deberán observarse las reglas del juicio ordinario civil que resulten aplicables. El Código de Procedimientos Civiles dispone que las contiendas sin tramitación especial se ventilan en juicio ordinario; la demanda debe precisar tribunal, partes, prestaciones, hechos, fundamentos y pruebas, y el demandado debe ser emplazado para contestar. Deberán revisarse particularmente los artículos 266 a 268, 273, 274, 279, 282 Bis, 283 a 298 y demás relativos que correspondan a la etapa procesal.\nIV. PRUEBAS 1. DOCUMENTAL PÚBLICA. Acta certificada de matrimonio, para acreditar la existencia del vínculo y el régimen matrimonial.\n2. DOCUMENTALES PÚBLICAS. Actas de nacimiento de las hijas e hijos, cuando existan, para acreditar filiación y edad.\n3. DOCUMENTALES. Comprobantes de ingresos, gastos, escolares, médicos y demás documentos que permitan acreditar necesidades y capacidad económica cuando se soliciten alimentos.\n4. DOCUMENTALES. Escrituras, certificados registrales, facturas, estados de cuenta, contratos, créditos y demás documentos relacionados con el patrimonio común o propio.\n5. DECLARACIÓN DE PARTE y/o CONFESIONAL, cuando resulte pertinente y sea admisible para los hechos controvertidos.\n6. TESTIMONIAL, respecto de los hechos que no puedan acreditarse exclusivamente mediante documentos.\n7. PERICIAL, cuando resulte necesaria para valuación de bienes, aspectos psicológicos, contables u otra materia que requiera conocimiento especializado.\n8. INSTRUMENTAL DE ACTUACIONES.\n9. PRESUNCIONAL LEGAL Y HUMANA. Cada prueba deberá relacionarse expresamente con los hechos que pretende acreditar y prepararse conforme a las reglas procesales aplicables.\nV. DOCUMENTOS QUE SE ACOMPAÑAN\n1. Acta de matrimonio.\n2. Actas de nacimiento de hijos e hijas, en su caso.\n3. Documentación relativa al régimen patrimonial.\n4. Documentos patrimoniales y financieros relevantes.\n5. Documentos que acrediten necesidades alimentarias, gastos y capacidad económica, cuando corresponda.\n6. Documentos que sustenten las medidas provisionales solicitadas.\n7. Copias necesarias para traslado y demás requisitos procesales.\nVI. PETITORIOS\nPRIMERO. Tenerme por presentado con este escrito y documentos, promoviendo juicio ordinario civil de divorcio por solicitud unilateral.\nSEGUNDO. Admitir la demanda y ordenar el emplazamiento de la contraparte en el domicilio que legalmente corresponda.\nTERCERO. Dictar, en su caso, las medidas provisionales necesarias para proteger alimentos, custodia, convivencia, seguridad y demás derechos involucrados.\nCUARTO. Tener por ofrecidas las pruebas y proveer sobre su admisión y preparación conforme a derecho.\nQUINTO. En su oportunidad, dictar sentencia declarando la disolución del vínculo matrimonial y resolviendo las consecuencias familiares y patrimoniales que correspondan.\nSEXTO. Ejecutoriada la sentencia, ordenar las comunicaciones y anotaciones ante el Registro Civil que legalmente procedan. PROTESTO LO NECESARIO. {{lugar}}, {{fecha}}. {{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Civil del Estado de Jalisco, artículos 403 y 404 fracción II: Divorcio.\n- Código Civil del Estado de Jalisco, artículos 414, 414 Bis, 415, 416, 417-Bis, 418, 419, 420, 421 y 422: Efectos y medidas del divorcio.\n- Código de Procedimientos Civiles del Estado de Jalisco, artículos 266-298 y demás relativos aplicables a la etapa procesal: Juicio ordinario civil.",
+  "siguiente_paso": "Verificar modalidad de divorcio, competencia y medidas relativas a menores y patrimonio.",
+  "alertas": [
+    "No asumir que el divorcio resuelve automáticamente todas las cuestiones patrimoniales.",
+    "Si existen menores, priorizar interés superior y medidas de protección.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "id": "FAM-CON-001",
+  "materia": "Familiar",
+  "diagnostico": {
+    "objetivo": "Establecer, modificar o hacer cumplir un régimen de visitas y convivencia.",
+    "preguntas": [
+      "¿Existe resolución o convenio previo?",
+      "¿Qué incumplimiento ocurrió?",
+      "¿Qué calendario es viable?",
+      "¿Existe riesgo que justifique convivencia supervisada?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Solicitud o modificación de régimen de convivencias",
+    "tipo_documento": "promoción",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Familiar",
+      "Solicitud o modificación de régimen de convivencias"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Régimen de visitas y convivencia",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Promoción en el procedimiento familiar correspondiente.",
+    "requisitos": [
+      "Verificar competencia y legitimación.",
+      "Integrar documentos base.",
+      "Identificar personas que deban ser llamadas.",
+      "Revisar requisitos especiales de la legislación aplicable."
+    ],
+    "nota": "SIGDE no sustituye la determinación profesional de competencia, vía y estrategia del caso concreto."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Existe el régimen {{regimen_previo}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Se han presentado los siguientes incumplimientos: {{incumplimientos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Se propone el siguiente calendario: {{calendario}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Establecimiento o modificación del régimen."
+    },
+    {
+      "orden": 2,
+      "texto": "Medidas de protección o supervisión cuando procedan."
+    },
+    {
+      "orden": 3,
+      "texto": "Apercibimientos y cumplimiento de la resolución, en su caso."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Resolución o convenio previo.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Pruebas de incumplimiento.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Personas que conozcan los hechos.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Resolución/convenio previo",
+    "Calendario propuesto",
+    "Pruebas de incumplimiento",
+    "Información sobre traslados y seguridad"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Guarda, custodia y convivencia",
+      "articulos": "560-577",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/guarda_custodia_y_convivencia"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "El régimen solicitado protege el vínculo familiar y debe ser compatible con la seguridad, estabilidad e interés superior de la niñez.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "regimen_previo": {
+      "etiqueta": "Régimen previo",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "incumplimientos": {
+      "etiqueta": "Incumplimientos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "calendario": {
+      "etiqueta": "Calendario propuesto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: SOLICITUD O MODIFICACIÓN DE RÉGIMEN DE VISITAS Y CONVIVENCIA C. JUEZ DE LO FAMILIAR EN TURNO\nP R E S E N T E. {{promovente_nombre}}, comparezco para solicitar que se establezca o modifique el régimen de visitas y convivencia respecto de las personas menores de edad involucradas.\nI. ANTECEDENTES 1. Régimen previo: {{regimen_previo}}.\n2. Incumplimientos o circunstancias que justifican la modificación: {{incumplimientos}}.\n3. Propuesta de calendario: {{calendario}}.\nII. PROPUESTA Se propone establecer días, horarios, vacaciones, días festivos, cumpleaños, comunicación electrónica, lugar de entrega y recepción y reglas para cambios extraordinarios. La propuesta debe evitar ambigüedades y permitir su ejecución práctica.\nIII. FUNDAMENTO El artículo 573 del Código Civil reconoce el régimen de visitas y convivencia como un derecho de las personas menores de edad, autónomo respecto de la guarda y custodia. Los artículos 574 a 577 regulan supuestos de restricción, suspensión y medidas de protección. En todo momento debe privilegiarse el interés superior de la niñez.\nIV. PRUEBAS Y DOCUMENTOS Se ofrecerán las documentales, testimoniales, declaraciones de parte, periciales y demás medios que acrediten el régimen vigente, los incumplimientos y las circunstancias que justifican la propuesta.\nV. PETITORIOS\nPRIMERO. Tener por presentada la solicitud.\nSEGUNDO. Dictar, en su caso, medidas provisionales.\nTERCERO. Establecer o modificar el régimen con precisión suficiente para su cumplimiento.\nCUARTO. Adoptar medidas de protección si existe riesgo para la persona menor de edad. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Civil del Estado de Jalisco, artículos 560-577: Guarda, custodia y convivencia.",
+  "siguiente_paso": "Revisar resolución previa y documentar cada incumplimiento con fecha y evidencia.",
+  "alertas": [
+    "No usar horarios ambiguos.",
+    "Distinguir conflicto entre adultos de un riesgo real para el menor.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

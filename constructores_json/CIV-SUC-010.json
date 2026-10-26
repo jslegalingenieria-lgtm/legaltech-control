@@ -1,0 +1,366 @@
+{
+  "id": "CIV-SUC-010",
+  "materia": "Sucesorio",
+  "diagnostico": {
+    "objetivo": "Preparar la distribución de los bienes hereditarios conforme a cuotas y disposiciones testamentarias.",
+    "preguntas": [
+      "¿Quiénes son los herederos reconocidos?",
+      "¿Cuáles son sus cuotas?",
+      "¿Qué bienes son divisibles?",
+      "¿Qué gravámenes existen?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Proyecto de partición",
+    "tipo_documento": "proyecto",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Sucesorio",
+      "Proyecto de partición"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Partición",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento sucesorio conforme al Código de Procedimientos Civiles del Estado de Jalisco.",
+    "requisitos": [
+      "Verificar competencia y legitimación.",
+      "Integrar documentos base.",
+      "Identificar personas que deban ser llamadas.",
+      "Revisar requisitos especiales de la legislación aplicable."
+    ],
+    "nota": "SIGDE no sustituye la determinación profesional de competencia, vía y estrategia del caso concreto."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La cuenta general fue aprobada o existe base legal para particionar.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "S"
+    },
+    {
+      "orden": 2,
+      "texto": "e"
+    },
+    {
+      "orden": 3,
+      "texto": ""
+    },
+    {
+      "orden": 4,
+      "texto": "a"
+    },
+    {
+      "orden": 5,
+      "texto": "p"
+    },
+    {
+      "orden": 6,
+      "texto": "r"
+    },
+    {
+      "orden": 7,
+      "texto": "u"
+    },
+    {
+      "orden": 8,
+      "texto": "e"
+    },
+    {
+      "orden": 9,
+      "texto": "b"
+    },
+    {
+      "orden": 10,
+      "texto": "e"
+    },
+    {
+      "orden": 11,
+      "texto": ""
+    },
+    {
+      "orden": 12,
+      "texto": "e"
+    },
+    {
+      "orden": 13,
+      "texto": "l"
+    },
+    {
+      "orden": 14,
+      "texto": ""
+    },
+    {
+      "orden": 15,
+      "texto": "p"
+    },
+    {
+      "orden": 16,
+      "texto": "r"
+    },
+    {
+      "orden": 17,
+      "texto": "o"
+    },
+    {
+      "orden": 18,
+      "texto": "y"
+    },
+    {
+      "orden": 19,
+      "texto": "e"
+    },
+    {
+      "orden": 20,
+      "texto": "c"
+    },
+    {
+      "orden": 21,
+      "texto": "t"
+    },
+    {
+      "orden": 22,
+      "texto": "o"
+    },
+    {
+      "orden": 23,
+      "texto": ""
+    },
+    {
+      "orden": 24,
+      "texto": "d"
+    },
+    {
+      "orden": 25,
+      "texto": "e"
+    },
+    {
+      "orden": 26,
+      "texto": ""
+    },
+    {
+      "orden": 27,
+      "texto": "p"
+    },
+    {
+      "orden": 28,
+      "texto": "a"
+    },
+    {
+      "orden": 29,
+      "texto": "r"
+    },
+    {
+      "orden": 30,
+      "texto": "t"
+    },
+    {
+      "orden": 31,
+      "texto": "i"
+    },
+    {
+      "orden": 32,
+      "texto": "c"
+    },
+    {
+      "orden": 33,
+      "texto": "i"
+    },
+    {
+      "orden": 34,
+      "texto": "ó"
+    },
+    {
+      "orden": 35,
+      "texto": "n"
+    },
+    {
+      "orden": 36,
+      "texto": "."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos que acreditan los hechos y el derecho invocado.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Actuaciones del expediente en lo que favorezcan.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional",
+      "objeto": "Presunciones que resulten de los hechos acreditados.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Inventario y avalúo aprobado",
+    "Cuenta de administración",
+    "Cuotas hereditarias",
+    "Avalúos"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código de Procedimientos Civiles del Estado de Jalisco",
+      "tema": "Partición",
+      "articulos": "904-926",
+      "estatus": "registrado",
+      "ck_clave": "CK/cpc_jalisco/partici_n"
+    },
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Herencia y derechos de herederos",
+      "articulos": "2652-2665",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/herencia_y_derechos_de_herederos"
+    }
+  ],
+  "teoria_caso": {
+    "texto": [
+      "La partición debe respetar designaciones testamentarias y reglas legales de distribución."
+    ],
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "autor_sucesion": {
+      "etiqueta": "Autor de la sucesión",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_especificos": {
+      "etiqueta": "Hechos específicos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: PROYECTO DE PARTICIÓN C. JUEZ COMPETENTE\nP R E S E N T E. {{promovente_nombre}}, en mi carácter de {{personalidad_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, y autorizando a {{abogado_patrono}}, comparezco para exponer:\nI. OBJETO Se presenta proyecto de partición de los bienes de la sucesión de {{autor_sucesion}}. La información base y acuerdos existentes son: {{hechos_especificos}}.\nII. BASES DE LA PARTICIÓN\n1. Identificación de todos los herederos y legatarios.\n2. Porciones hereditarias que correspondan.\n3. Bienes disponibles después de la liquidación.\n4. Valor de cada bien conforme al avalúo aprobado.\n5. Aplicación de bienes a cada porción.\n6. Tratamiento de bienes indivisibles o que desmerezcan por división.\n7. Gravámenes, deudas o compensaciones que deban reflejarse.\nIII. FUNDAMENTO Los artículos 904 a 933 del CPC regulan el proyecto de partición y adjudicación. El artículo 904 fija el plazo para presentar el proyecto después de aprobada la cuenta general; los artículos 909 y 910 establecen reglas sobre bases de partición, bienes de la misma especie y gravámenes; y el 911 regula la vista y aprobación.\nIV. PROYECTO Se propone la siguiente distribución: {{hechos_especificos}}. La tabla o relación definitiva deberá contener bien, valor, heredero adjudicatario, porcentaje o cuota, cargas y, cuando corresponda, compensación en dinero.\nV. PETITORIOS\nPRIMERO. Tener por presentado el proyecto.\nSEGUNDO. Ponerlo a la vista de los interesados.\nTERCERO. Resolver las oposiciones concretas que se formulen.\nCUARTO. Aprobar el proyecto y dictar la resolución de adjudicación que corresponda. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código de Procedimientos Civiles del Estado de Jalisco, artículos 904-926: Partición.\n- Código Civil del Estado de Jalisco, artículos 2652-2665: Herencia y derechos de herederos.",
+  "siguiente_paso": "Verificar etapa procesal, legitimación y documentos antes de presentar.",
+  "alertas": [
+    "No confundir la etapa procesal del constructor con una etapa ya agotada.",
+    "Verificar legislación vigente y resoluciones del expediente.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "id": "LAB-CON-002",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Modificación condiciones.",
+    "preguntas": [
+      "¿Qué condición cambia?",
+      "¿Es favorable o perjudicial para el trabajador?",
+      "¿Hay consentimiento libre?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Modificación condiciones",
+    "tipo_documento": "convenio",
+    "rol_promovente": "patrón / empresa",
+    "rol_contraparte": "trabajador(a)",
+    "criterios": []
+  },
+  "accion_defensa": {
+    "nombre": "Modificación condiciones",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "[VALIDAR VÍA CONFORME A LA LEGISLACIÓN APLICABLE]",
+    "requisitos": [
+      "Consentimiento del trabajador.",
+      "No reducir derechos mínimos de ley.",
+      "Validar si requiere forma o autorización especial ."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [],
+  "pretensiones": [],
+  "pruebas": [],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Modificación de las condiciones de trabajo",
+      "articulos": "426 y 900-919",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/modificacion_de_las_condiciones_de_trabajo"
+    },
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Irrenunciabilidad de derechos",
+      "articulos": "33",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/irrenunciabilidad_de_derechos"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Las partes acuerdan libremente un cambio lícito que no vulnera derechos mínimos.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_ingreso": {
+      "etiqueta": "Fecha ingreso",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "puesto_actual": {
+      "etiqueta": "Puesto actual",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "salario_actual": {
+      "etiqueta": "Salario actual",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "jornada_actual": {
+      "etiqueta": "Jornada actual",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar_actual": {
+      "etiqueta": "Lugar actual",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "condicion_modificada": {
+      "etiqueta": "Condicion modificada",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "condicion_nueva": {
+      "etiqueta": "Condicion nueva",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_vigencia": {
+      "etiqueta": "Fecha vigencia",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "motivo_modificacion": {
+      "etiqueta": "Motivo modificacion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "manifestacion_consentimiento": {
+      "etiqueta": "Manifestacion consentimiento",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "CONVENIO DE MODIFICACIÓN DE CONDICIONES DE TRABAJO Entre {{promovente_nombre}} («EL PATRÓN») y {{contraparte_nombre}} («EL TRABAJADOR»), con relación laboral iniciada el {{fecha_ingreso}}, se pacta: ANTECEDENTE. Actualmente EL TRABAJADOR desempeña el puesto de {{puesto_actual}}, con salario de {{salario_actual}}, jornada {{jornada_actual}} y lugar de trabajo {{lugar_actual}}.\nPRIMERA. MODIFICACIÓN. Las partes acuerdan modificar: {{condicion_modificada}}, para quedar como: {{condicion_nueva}}, a partir del {{fecha_vigencia}}.\nSEGUNDA. MOTIVO. La modificación obedece a {{motivo_modificacion}}.\nTERCERA. CONSENTIMIENTO. EL TRABAJADOR manifiesta su conformidad de manera libre y sin presión: {{manifestacion_consentimiento}}.\nCUARTA. DERECHOS. La modificación no implica renuncia a derechos laborales irrenunciables. Las demás condiciones continúan en los mismos términos. {{lugar}}, a {{fecha}}. [FIRMA]\nEL PATRÓN: {{promovente_nombre}} EL TRABAJADOR: {{contraparte_nombre}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 426 y 900-919: Modificación de las condiciones de trabajo.\n- Ley Federal del Trabajo, artículos 33: Irrenunciabilidad de derechos.",
+  "siguiente_paso": "Valorar impacto en salario y cotización a seguridad social.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE.",
+    "Una modificación unilateral perjudicial puede dar lugar a acciones del trabajador ."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

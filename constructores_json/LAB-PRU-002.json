@@ -1,0 +1,219 @@
+{
+  "id": "LAB-PRU-002",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Determinar a quién corresponde probar cada hecho controvertido y qué prueba falta.",
+    "preguntas": [
+      "¿Cuáles son los hechos controvertidos?",
+      "¿Quién debe acreditar cada uno según la LFT?",
+      "¿Qué documentos debe conservar el patrón?",
+      "¿Qué prueba ya existe y cuál falta?",
+      "¿Hay presunciones a favor de alguna parte?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Carga probatoria",
+    "tipo_documento": "diagnostico",
+    "rol_promovente": "trabajador(a)",
+    "rol_contraparte": "patrón / empresa",
+    "criterios": [
+      "Carga del trabajador",
+      "Carga del patrón",
+      "Presunciones"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Carga probatoria",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Etapa probatoria",
+    "requisitos": [
+      "Identificar la litis.",
+      "Asignar carga por hecho."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Hecho controvertido 1: {{hecho_controvertido_1}} — carga: {{parte_con_carga_1}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Hecho controvertido 2: {{hecho_controvertido_2}} — carga: {{parte_con_carga_2}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Fortalecer la prueba de los hechos con carga propia."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Inspección",
+      "objeto": "Sobre documentos que la ley obliga al patrón a conservar y exhibir, para acreditar los extremos de la relación [VALIDAR DOCUMENTOS OBLIGATORIOS].",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Carga de la prueba y presunciones",
+      "articulos": "784-804",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/carga_de_la_prueba_y_presunciones"
+    },
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Documentos que el patrón debe conservar",
+      "articulos": "804",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/documentos_que_el_patron_debe_conservar"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Cada parte debe acreditar los hechos que la ley le impone; la omisión documental del patrón puede revertir presunciones.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hecho_controvertido_1": {
+      "etiqueta": "Hecho controvertido 1",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "parte_con_carga_1": {
+      "etiqueta": "Parte con carga 1",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hecho_controvertido_2": {
+      "etiqueta": "Hecho controvertido 2",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "parte_con_carga_2": {
+      "etiqueta": "Parte con carga 2",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "testigos": {
+      "etiqueta": "Testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_testigos": {
+      "etiqueta": "Hechos testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DIAGNÓSTICO — CARGA PROBATORIA INFORME DE DIAGNÓSTICO — CARGA PROBATORIA\nI. DIAGNÓSTICO\nDeterminar a quién corresponde probar cada hecho controvertido y qué prueba falta.\nPreguntas a resolver con el expediente:\n1. ¿Cuáles son los hechos controvertidos?\n2. ¿Quién debe acreditar cada uno según la LFT?\n3. ¿Qué documentos debe conservar el patrón?\n4. ¿Qué prueba ya existe y cuál falta?\n5. ¿Hay presunciones a favor de alguna parte?\nII. CLASIFICACIÓN\n- Carga del trabajador\n- Carga del patrón\n- Presunciones\nIII. ACCIÓN/DEFENSA Y VÍA\n- Matriz hecho–carga–prueba.\nVía: Etapa probatoria\nIV. REQUISITOS\n1. Identificar la litis.\n2. Asignar carga por hecho.\nV. HECHOS A ESTABLECER\nPRIMERO. Hecho controvertido 1: {{hecho_controvertido_1}} — carga: {{parte_con_carga_1}}.\nSEGUNDO. Hecho controvertido 2: {{hecho_controvertido_2}} — carga: {{parte_con_carga_2}}.\nVI. PRETENSIONES / OBJETIVOS\n1. Fortalecer la prueba de los hechos con carga propia.\nVII. PRUEBAS\n1. DOCUMENTAL.- Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.\n2. INSPECCIÓN.- Sobre documentos que la ley obliga al patrón a conservar y exhibir, para acreditar los extremos de la relación.\n3. TESTIMONIAL.- Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.\n- Ley Federal del Trabajo: Carga de la prueba y presunciones. Artículos aplicables:\n804.\n- Ley Federal del Trabajo: Documentos que el patrón debe conservar. Artículos aplicables:\n804.\nIX. SIGUIENTE PASO\nElaborar matriz y completar la prueba faltante. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 784-804: Carga de la prueba y presunciones.\n- Ley Federal del Trabajo, artículos 804: Documentos que el patrón debe conservar.",
+  "siguiente_paso": "Elaborar matriz y completar la prueba faltante.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE.",
+    "La asignación de carga debe verificarse con la LFT vigente ."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

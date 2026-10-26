@@ -1,0 +1,308 @@
+{
+  "id": "CIV-EJE-001",
+  "materia": "Civil",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Ejecución civil.",
+    "preguntas": [
+      "¿Existe resolución firme o título ejecutivo?",
+      "¿Monto líquido?",
+      "¿Hay bienes localizados?",
+      "¿Se requiere incidente de liquidación?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Ejecución civil",
+    "tipo_documento": "solicitud",
+    "rol_promovente": "parte ejecutante",
+    "rol_contraparte": "parte ejecutada",
+    "criterios": [
+      "Ejecución",
+      "Forzosa"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Ejecución de sentencia, convenio o título con fuerza ejecutiva",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Ejecución conforme al Código de Procedimientos Civiles del Estado de Jalisco [VALIDAR: ejecución de sentencia / vía ejecutiva según el título]",
+    "requisitos": [
+      "Resolución firme o título con fuerza ejecutiva.",
+      "Cantidad líquida o liquidable.",
+      "Legitimación del ejecutante.",
+      "Vencimiento o exigibilidad de la obligación."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Mediante {{documento_ejecutivo}} de fecha {{fecha_documento}}, se condenó / obligó a {{contraparte_nombre}} a {{obligacion_ejecutable}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La resolución / título causó estado o es exigible desde {{fecha_exigibilidad}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "A la fecha, {{contraparte_nombre}} no ha cumplido voluntariamente, pese a {{requerimientos_previos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "La cantidad líquida a ejecutar es {{monto_reclamado}}, conforme a {{base_liquidacion}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se ordene la ejecución de {{documento_ejecutivo}}."
+    },
+    {
+      "orden": 2,
+      "texto": "Se requiera de pago a {{contraparte_nombre}}."
+    },
+    {
+      "orden": 3,
+      "texto": "De no pagar, se decrete el embargo de bienes suficientes para cubrir {{monto_reclamado}} y accesorios."
+    },
+    {
+      "orden": 4,
+      "texto": "Se señalen para embargo los bienes siguientes: {{bienes_senalados}}."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos exhibidos, para acreditar la existencia y exigibilidad del título o resolución.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Todo lo actuado en el expediente, en lo que favorezca al oferente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Copia certificada de la resolución o título",
+    "Constancia de ejecutoria o exigibilidad",
+    "Planilla de liquidación"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código de Procedimientos Civiles del Estado de Jalisco",
+      "tema": "Ejecución de sentencias y convenios",
+      "articulos": "477-504",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_de_procedimientos_civiles_del_est/ejecucion_de_sentencias_y_convenios"
+    },
+    {
+      "ordenamiento": "Código de Procedimientos Civiles del Estado de Jalisco",
+      "tema": "Requerimiento, embargo y depósito",
+      "articulos": "481-530",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_de_procedimientos_civiles_del_est/requerimiento_embargo_y_deposito"
+    },
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Cumplimiento de obligaciones",
+      "articulos": "1590-1618",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/codigo_civil_del_estado_de_jalisco/cumplimiento_de_obligaciones"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Existe un título o resolución exigible; la deuda es líquida y está vencida; el deudor no cumplió, por lo que procede el requerimiento y, en su caso, el embargo.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "JUEZ CIVIL COMPETENTE DEL ESTADO DE JALISCO según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente (propio derecho / representante)",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "caracter_promovente": {
+      "etiqueta": "Caracter promovente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "parte ejecutante"
+    },
+    "documento_personalidad": {
+      "etiqueta": "Documento personalidad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "documento_ejecutivo": {
+      "etiqueta": "Documento ejecutivo",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "monto_reclamado": {
+      "etiqueta": "Monto reclamado",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "bienes_senalados": {
+      "etiqueta": "Bienes senalados",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_documento": {
+      "etiqueta": "Fecha documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "obligacion_ejecutable": {
+      "etiqueta": "Obligación ejecutable",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_exigibilidad": {
+      "etiqueta": "Fecha exigibilidad",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "requerimientos_previos": {
+      "etiqueta": "Requerimientos previos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "base_liquidacion": {
+      "etiqueta": "Base liquidacion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: SOLICITUD DE EJECUCIÓN\nC. {{autoridad}}:\n{{promovente_nombre}}, {{personalidad_promovente}}, con domicilio en {{domicilio_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}} y autorizando para tales efectos a {{abogado_patrono}}, comparezco para exponer:\nI. PERSONALIDAD Y DOMICILIO\nComparezco en mi carácter de {{caracter_promovente}}, personalidad que acredito con {{documento_personalidad}}. Mi domicilio es {{domicilio_promovente}}; el de la contraparte, {{contraparte_nombre}}, es {{domicilio_contraparte}}.\nII. PRETENSIONES\nPor medio del presente escrito reclamo/solicito:\n1. Se ordene la ejecución de {{documento_ejecutivo}}.\n2. Se requiera de pago a {{contraparte_nombre}}.\n3. De no pagar, se decrete el embargo de bienes suficientes para cubrir {{monto_reclamado}} y accesorios.\n4. Se señalen para embargo los bienes siguientes: {{bienes_senalados}}.\nIII. HECHOS\nPRIMERO. Mediante {{documento_ejecutivo}} de fecha {{fecha_documento}}, se condenó / obligó a {{contraparte_nombre}} a {{obligacion_ejecutable}}.\nSEGUNDO. La resolución / título causó estado o es exigible desde {{fecha_exigibilidad}}.\nTERCERO. A la fecha, {{contraparte_nombre}} no ha cumplido voluntariamente, pese a {{requerimientos_previos}}.\nCUARTO. La cantidad líquida a ejecutar es {{monto_reclamado}}, conforme a {{base_liquidacion}}.\nIV. DERECHO\nFundan la presente promoción las disposiciones siguientes (artículos aplicables al acto y a la vía indicada):\n- Código de Procedimientos Civiles del Estado de Jalisco: Ejecución de sentencias y convenios. Artículos aplicables: 481-530.\n- Código de Procedimientos Civiles del Estado de Jalisco: Requerimiento, embargo y depósito. Artículos aplicables: 481-530.\n- Código Civil del Estado de Jalisco: Cumplimiento de obligaciones. Artículos aplicables: 1590-1618.\nV. PRUEBAS\nOfrezco las siguientes pruebas, relacionándolas con los hechos indicados:\n1. DOCUMENTAL.- Documentos exhibidos, para acreditar la existencia y exigibilidad del título o resolución.\n2. INSTRUMENTAL DE ACTUACIONES.- Todo lo actuado en el expediente, en lo que favorezca al oferente.\n\nSe acompañan los documentos siguientes:\n1. Copia certificada de la resolución o título\n2. Constancia de ejecutoria o exigibilidad\n3. Planilla de liquidación\nVI. PETITORIOS\nPor lo expuesto, a Usted atentamente pido:\nPRIMERO. Tenerme por presentado(a) con esta solicitud y los documentos que se acompañan.\nSEGUNDO. Dar el trámite correspondiente y acordar de conformidad lo solicitado.\nTERCERO. Notificarme en el domicilio señalado. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Código de Procedimientos Civiles del Estado de Jalisco, artículos 477-504: Ejecución de sentencias y convenios.\n- Código de Procedimientos Civiles del Estado de Jalisco, artículos 481-530: Requerimiento, embargo y depósito.\n- Código Civil del Estado de Jalisco, artículos 1590-1618: Cumplimiento de obligaciones.",
+  "siguiente_paso": "Verificar si el monto es líquido; si no, preparar incidente de liquidación antes de solicitar embargo.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Materia civil: legislación de Jalisco. No mezclar el CNPCF en esta fase."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "id": "LAB-CONC-002",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Convenio conciliación.",
+    "preguntas": [
+      "¿Qué se concilia y a qué monto?",
+      "¿Qué pasa con la relación?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Convenio conciliación",
+    "tipo_documento": "convenio",
+    "rol_promovente": "trabajador(a)",
+    "rol_contraparte": "patrón / empresa",
+    "criterios": []
+  },
+  "accion_defensa": {
+    "nombre": "Convenio conciliación",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "[VALIDAR VÍA CONFORME A LA LEGISLACIÓN APLICABLE]",
+    "requisitos": [
+      "Voluntad libre.",
+      "Respeto a derechos irrenunciables.",
+      "Ratificación/aprobación por la autoridad conciliadora ."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [],
+  "pretensiones": [],
+  "pruebas": [],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Convenios en conciliación y su eficacia",
+      "articulos": "684-E-684-F",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/convenios_en_conciliacion_y_su_eficacia"
+    },
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Derechos irrenunciables",
+      "articulos": "33",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/derechos_irrenunciables"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Las partes resuelven el conflicto en condiciones lícitas y ejecutables.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_conflicto": {
+      "etiqueta": "Hechos conflicto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "prestaciones_en_conflicto": {
+      "etiqueta": "Prestaciones en conflicto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "prestaciones_convenio": {
+      "etiqueta": "Prestaciones convenio",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "monto_convenio": {
+      "etiqueta": "Monto convenio",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "forma_pago_convenio": {
+      "etiqueta": "Forma pago convenio",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "situacion_relacion": {
+      "etiqueta": "Situacion relacion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "consecuencia_incumplimiento": {
+      "etiqueta": "Consecuencia incumplimiento",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "CONVENIO DE CONCILIACIÓN Expediente de conciliación {{expediente}} ante {{autoridad}}. Comparecen {{promovente_nombre}} («EL TRABAJADOR») y {{contraparte_nombre}} («EL PATRÓN») y convienen: ANTECEDENTES. {{hechos_conflicto}}.\nPRIMERA. OBJETO. Poner fin al conflicto relativo a {{prestaciones_en_conflicto}}.\nSEGUNDA. PRESTACIONES. EL PATRÓN pagará/otorgará: {{prestaciones_convenio}} por un total de {{monto_convenio}} (cálculo desglosado con la calculadora de SIGDE).\nTERCERA. FORMA Y FECHA DE PAGO. {{forma_pago_convenio}}.\nCUARTA. SITUACIÓN DE LA RELACIÓN. {{situacion_relacion}} (reinstalación / terminación).\nQUINTA. CUMPLIMIENTO. En caso de incumplimiento, {{consecuencia_incumplimiento}}.\nSEXTA. APROBACIÓN. Las partes solicitan la aprobación/ratificación del convenio por la autoridad conciliadora conforme a la ley. {{lugar}}, a {{fecha}}. [FIRMA]\nEL TRABAJADOR: {{promovente_nombre}} EL PATRÓN: {{contraparte_nombre}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 684-E-684-F: Convenios en conciliación y su eficacia.\n- Ley Federal del Trabajo, artículos 33: Derechos irrenunciables.",
+  "siguiente_paso": "Calcular montos y presentar a ratificación.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE.",
+    "Los montos de finiquito/indemnización/prestaciones vienen de la calculadora existente de SIGDE; no recalcular en el constructor."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

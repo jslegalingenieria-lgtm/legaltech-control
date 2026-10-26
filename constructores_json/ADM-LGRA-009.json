@@ -1,0 +1,219 @@
+{
+  "id": "ADM-LGRA-009",
+  "materia": "Administrativo",
+  "jurisdiccion": "Federal/Entidades federativas",
+  "diagnostico": {
+    "objetivo": "Preparar matriz para analizar sanción de servidor público o particular conforme a LGRA.",
+    "preguntas": [
+      "¿Qué falta se acreditó?",
+      "¿Es grave/no grave?",
+      "¿Qué daño existe?",
+      "¿Qué beneficio obtuvo?",
+      "¿Qué circunstancias deben valorarse?"
+    ],
+    "datos_minimos": [
+      "falta",
+      "responsable",
+      "daño",
+      "beneficio",
+      "circunstancias"
+    ],
+    "resultado_esperado": "Determinar vía, competencia, plazo, hechos, prueba y documento procedente."
+  },
+  "clasificacion": {
+    "constructor": "Análisis de sanción en responsabilidad administrativa",
+    "tipo_documento": "análisis de sanción",
+    "rol_promovente": "Promovente / interesado / presunto responsable según caso",
+    "rol_contraparte": "Autoridad / tercero / denunciante",
+    "criterios": [
+      "competencia",
+      "legalidad",
+      "fundamentación y motivación",
+      "debido procedimiento",
+      "plazo",
+      "prueba",
+      "vía"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Análisis de sanción en responsabilidad administrativa",
+    "naturaleza": "procesal administrativa",
+    "descripcion": "Preparar matriz para analizar sanción de servidor público o particular conforme a LGRA.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Hechos acreditados → clasificación → factores → sanción → proporcionalidad → resolución",
+    "requisitos": [
+      "Identificar autoridad",
+      "Acreditar personalidad",
+      "Precisar acto/conducta",
+      "Integrar expediente y pruebas",
+      "Verificar ley especial y plazo"
+    ],
+    "nota": "Constructor basado únicamente en las fuentes cargadas; verificar legislación especial vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Se acreditó {{falta}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "El daño es {{daño}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Las circunstancias relevantes son {{circunstancias}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Determinar sanción dentro del marco legal."
+    },
+    {
+      "orden": 2,
+      "texto": "Justificar individualización."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Resolución y pruebas.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Cuantificación cuando proceda.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Resolución",
+    "Pruebas",
+    "Cuantificación",
+    "Antecedentes"
+  ],
+  "fundamento": [
+    {
+      "orden": 1,
+      "ordenamiento": "Ley General de Responsabilidades Administrativas",
+      "tema": "Sanciones y faltas",
+      "articulos": "75-78",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/lgra/sanciones"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría de sanción conecta falta acreditada, circunstancias y consecuencia, evitando saltos entre hecho y castigo.",
+    "elementos": [
+      "Hechos",
+      "Norma",
+      "Competencia",
+      "Acto/conducta",
+      "Prueba",
+      "Vicio/defensa",
+      "Riesgo",
+      "Resultado"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el documento final."
+  },
+  "campos_dinamicos": {
+    "promovente_nombre": {
+      "etiqueta": "Nombre / razón social",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "autoridad_nombre": {
+      "etiqueta": "Autoridad",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "expediente_numero": {
+      "etiqueta": "Expediente / folio",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "fecha_acto": {
+      "etiqueta": "Fecha del acto",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "notificacion_fecha": {
+      "etiqueta": "Fecha de notificación",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "relato_hechos": {
+      "etiqueta": "Relato de hechos",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pretension_principal": {
+      "etiqueta": "Resultado buscado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pruebas_disponibles": {
+      "etiqueta": "Pruebas disponibles",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "falta": {
+      "etiqueta": "Falta",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "daño": {
+      "etiqueta": "Daño",
+      "tipo": "numero",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "circunstancias": {
+      "etiqueta": "Circunstancias",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    }
+  },
+  "checklist": [
+    "Identificar falta",
+    "Clasificar gravedad",
+    "Cuantificar daño",
+    "Analizar factores",
+    "Revisar proporcionalidad",
+    "Redactar propuesta/resolución"
+  ],
+  "ruta_procesal": [
+    "Hechos acreditados",
+    "clasificación",
+    "factores",
+    "sanción",
+    "proporcionalidad",
+    "resolución"
+  ],
+  "advertencias": [
+    "Revisar ley especial y reglamento interior.",
+    "Verificar vigencia de la norma.",
+    "No presentar sin revisar expediente y cómputo de plazos."
+  ],
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  },
+  "documento_generado": "{{autoridad_competente}}\nEXPEDIENTE: {{numero_expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: ANÁLISIS DE SANCIÓN EN RESPONSABILIDAD ADMINISTRATIVA\nC. {autoridad_competente}:\n{{promovente_nombre}}, por mi propio derecho / en representación de {{representado_nombre}}, personalidad que acredito con {{documento_personalidad}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, comparezco para exponer:\nI. OBJETO\nEl presente análisis de sanción tiene por objeto plantear Preparar matriz para analizar sanción de servidor público o particular conforme a LGRA en la vía Hechos acreditados → clasificación → factores → sanción → proporcionalidad → resolución.\nII. HECHOS\n1. Se acreditó {{falta}}.\n2. El daño es {{daño}}.\n3. Las circunstancias relevantes son {{circunstancias}}.\nIII. DERECHO\nCon fundamento en Ley General de Responsabilidades Administrativas, artículos 75-78, en relación con Sanciones y faltas.\nIV. PRETENSIONES / PETICIONES\n1. Determinar sanción dentro del marco legal..\n2. Justificar individualización..\nV. PRUEBAS\n1. {'medio': 'Documental', 'objeto': 'Resolución y pruebas.', 'estatus': 'por_ofrecer'}\n2. {'medio': 'Pericial', 'objeto': 'Cuantificación cuando proceda.', 'estatus': 'por_ofrecer'}\nVI. DOCUMENTOS\n{{documentos_anexos}}\nVII. PETITORIOS\nPRIMERO. Tenerme por presentado con este escrito y documentos.\nSEGUNDO. Acordar lo conducente conforme a la vía y competencia indicadas.\nTERCERO. Tener por formuladas las pretensiones y por ofrecidas las pruebas relacionadas.\nCUARTO. Dictar la resolución que en derecho corresponda. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Ley General de Responsabilidades Administrativas, artículos 75-78: Sanciones y faltas."
+}

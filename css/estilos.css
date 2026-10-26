@@ -653,3 +653,39 @@ RESPONSIVE
 .sidebar-submenu a{display:block;padding:.55rem .7rem;border-radius:7px;color:#cbd5e1;text-decoration:none;font-size:.86rem;line-height:1.25}
 .sidebar-submenu a:hover,.sidebar-submenu a:focus{background:rgba(59,130,246,.16);color:#fff;outline:none}
 @media(max-width:768px){.sidebar-submenu{padding-left:1rem}.sidebar-submenu a{padding:.65rem .7rem}}
+
+
+/* v4.9.0 — Kanban de Asuntos y Gestión y control */
+.asuntos-toolbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.asuntos-toolbar-actions{display:flex;align-items:center;justify-content:flex-end;gap:.75rem;flex-wrap:wrap}
+.asuntos-view-switch{display:inline-flex;align-items:center;gap:3px;padding:4px;background:#eef2f7;border:1px solid #d7e0ea;border-radius:10px}
+.asuntos-view-switch button{border:1px solid transparent;background:transparent;color:#475569;border-radius:7px;padding:.55rem .8rem;font-size:.86rem;font-weight:800;cursor:pointer;white-space:nowrap}
+.asuntos-view-switch button.active{background:#1e3a8a;color:#fff;box-shadow:0 1px 3px #0f172a22}
+.asuntos-view-switch button:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+.asuntos-kanban-vista{width:100%;min-width:0}
+.asuntos-kanban-board{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(245px,1fr);gap:12px;align-items:start;overflow-x:auto;overflow-y:hidden;width:100%;max-width:100%;padding:2px 2px 12px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.asuntos-kanban-columna{min-width:0;max-height:calc(100vh - 245px);min-height:230px;display:flex;flex-direction:column;overflow:hidden;border:1px solid #dbe3ed;border-radius:13px;background:#f8fafc;scroll-snap-align:start}
+.asuntos-kanban-columna-header{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 13px;background:#edf2f8;border-bottom:1px solid #dbe3ed;color:#263b58}
+.asuntos-kanban-columna-header strong{font-size:.9rem}
+.asuntos-kanban-columna-header span{display:inline-flex;align-items:center;justify-content:center;min-width:25px;height:25px;padding:0 7px;border-radius:999px;background:#fff;border:1px solid #d3dce8;font-size:.78rem;font-weight:800}
+.asuntos-kanban-en-proceso .asuntos-kanban-columna-header{border-top:3px solid #3b82f6}
+.asuntos-kanban-suspendido .asuntos-kanban-columna-header{border-top:3px solid #d97706}
+.asuntos-kanban-concluido .asuntos-kanban-columna-header{border-top:3px solid #16a34a}
+.asuntos-kanban-cancelado .asuntos-kanban-columna-header{border-top:3px solid #dc2626}
+.asuntos-kanban-tarjetas{display:flex;flex-direction:column;gap:10px;padding:10px;overflow-y:auto;min-height:170px}
+.asuntos-kanban-card{border:1px solid #dce4ee;border-radius:10px;background:#fff;padding:12px;box-shadow:0 2px 5px #0f172a08;min-width:0}
+.asuntos-kanban-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:9px;color:#1e3a8a;font-size:.78rem}
+.asuntos-kanban-card-top span{color:#64748b;text-align:right;overflow-wrap:anywhere}
+.asuntos-kanban-card h4{font-size:.95rem;color:#172b4d;line-height:1.35;margin:0 0 7px;overflow-wrap:anywhere}
+.asuntos-kanban-card p{font-size:.8rem;line-height:1.4;margin:5px 0;color:#475569;overflow-wrap:anywhere}
+.asuntos-kanban-card .asuntos-kanban-materia{font-weight:700;color:#334155}
+.asuntos-kanban-responsable{display:flex;flex-direction:column;gap:3px;margin-top:10px;padding-top:8px;border-top:1px solid #edf0f5;font-size:.76rem;color:#64748b}
+.asuntos-kanban-responsable strong{color:#334155;overflow-wrap:anywhere}
+.asuntos-kanban-card-actions{display:flex;gap:5px;flex-wrap:wrap;margin-top:11px}
+.asuntos-kanban-card-actions button{font-size:.73rem!important;padding:.42rem .55rem!important;border:1px solid #d5dfeb!important;border-radius:7px!important;background:#f8fafc!important;color:#334155!important;cursor:pointer}
+.asuntos-kanban-card-actions button:hover{background:#eff6ff!important;border-color:#93c5fd!important}
+.asuntos-kanban-vacia,.asuntos-kanban-vacio-global{padding:20px 12px;color:#64748b;font-size:.83rem;text-align:center;border:1px dashed #d1dbe7;border-radius:9px;background:#ffffffb8}
+.asuntos-kanban-vacio-global{grid-column:1/-1;padding:32px}
+.asuntos-tabla-vista{width:100%;min-width:0}
+.sidebar-submenu li.active>a{background:rgba(59,130,246,.2);color:#fff;font-weight:800}
+@media(max-width:768px){.asuntos-toolbar{align-items:flex-start}.asuntos-toolbar-actions{justify-content:flex-start;width:100%}.asuntos-kanban-board{grid-auto-columns:minmax(255px,86vw);gap:10px}.asuntos-kanban-columna{max-height:none;min-height:220px}.asuntos-kanban-tarjetas{overflow:visible}.asuntos-view-switch button{padding:.65rem .75rem}}

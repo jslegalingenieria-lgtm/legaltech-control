@@ -1,0 +1,270 @@
+{
+  "id": "LAB-DIA-003",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Determinar si hubo despido, su modalidad, la acción procedente y la carga de la prueba.",
+    "preguntas": [
+      "¿Cuándo, dónde y quién despidió?",
+      "¿Fue verbal, por escrito, por aviso de rescisión o renuncia forzada?",
+      "¿Hubo testigos o pruebas del despido?",
+      "¿Qué se pretende: reinstalación o indemnización?",
+      "¿Existe oferta de trabajo del patrón?",
+      "¿Antigüedad, salario y prestaciones a calcular?",
+      "¿Prescripción?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Diagnóstico despido",
+    "tipo_documento": "diagnostico",
+    "rol_promovente": "trabajador(a)",
+    "rol_contraparte": "patrón / empresa",
+    "criterios": [
+      "Despido injustificado",
+      "Rescisión con aviso",
+      "Renuncia (posible simulación)",
+      "Terminación sin responsabilidad (defensa del patrón)"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Diagnóstico despido",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento ordinario laboral previa conciliación prejudicial, salvo excepciones",
+    "requisitos": [
+      "Hecho del despido con fecha y circunstancias.",
+      "Relación de trabajo acreditable.",
+      "Salario base."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Fecha de ingreso: {{fecha_ingreso}}; puesto: {{puesto}}; salario: {{salario}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "El {{fecha_despido}} a las {{hora_despido}}, en {{lugar_despido}}, {{persona_despide}} manifestó: {{expresion_despido}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Presentes: {{testigos}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "No se entregó aviso escrito de rescisión [CONFIRMAR].",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Reinstalación o indemnización (elegir)."
+    },
+    {
+      "orden": 2,
+      "texto": "Salarios vencidos, prestaciones devengadas, proporcionales (calculadora existente)."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Documental",
+      "objeto": "Informe o constancias de alta, baja y salario ante el IMSS e INFONAVIT, para acreditar antigüedad y salario.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Confesional",
+      "objeto": "A cargo del patrón o su representante.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Terminación de la relación de trabajo, rescisión e indemnización",
+      "articulos": "46-55",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/terminacion_de_la_relacion_de_trabajo_rescision_e_"
+    },
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Carga de la prueba",
+      "articulos": "784-804",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/carga_de_la_prueba"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "El trabajador fue separado sin causa justificada y sin aviso, lo que genera derecho a reinstalación o indemnización.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "AUTORIDAD LABORAL COMPETENTE, APARTADO A según la competencia federal o local que corresponda al supuesto"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_ingreso": {
+      "etiqueta": "Fecha ingreso",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "puesto": {
+      "etiqueta": "Puesto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "salario": {
+      "etiqueta": "Salario",
+      "tipo": "monto",
+      "fuente": "expediente.montos",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_despido": {
+      "etiqueta": "Fecha despido",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hora_despido": {
+      "etiqueta": "Hora despido",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar_despido": {
+      "etiqueta": "Lugar despido",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "persona_despide": {
+      "etiqueta": "Persona despide",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expresion_despido": {
+      "etiqueta": "Expresion despido",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "testigos": {
+      "etiqueta": "Testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_testigos": {
+      "etiqueta": "Hechos testigos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DIAGNÓSTICO — DIAGNÓSTICO DESPIDO INFORME DE DIAGNÓSTICO — DIAGNÓSTICO DESPIDO\nI. DIAGNÓSTICO\nDeterminar si hubo despido, su modalidad, la acción procedente y la carga de la prueba.\nPreguntas a resolver con el expediente:\n1. ¿Cuándo, dónde y quién despidió?\n2. ¿Fue verbal, por escrito, por aviso de rescisión o renuncia forzada?\n3. ¿Hubo testigos o pruebas del despido?\n4. ¿Qué se pretende: reinstalación o indemnización?\n5. ¿Existe oferta de trabajo del patrón?\n6. ¿Antigüedad, salario y prestaciones a calcular?\n7. ¿Prescripción?\nII. CLASIFICACIÓN\n- Despido injustificado\n- Rescisión con aviso\n- Renuncia (posible simulación)\n- Terminación sin responsabilidad (defensa del patrón)\nIII. ACCIÓN/DEFENSA Y VÍA\n- Acción por despido: reinstalación o indemnización.\n- Salarios caídos y prestaciones.\nVía: Procedimiento ordinario laboral previa conciliación prejudicial, salvo excepciones\nIV. REQUISITOS\n1. Hecho del despido con fecha y circunstancias.\n2. Relación de trabajo acreditable.\n3. Salario base.\nV. HECHOS A ESTABLECER\nPRIMERO. Fecha de ingreso: {{fecha_ingreso}}; puesto: {{puesto}}; salario: {{salario}}.\nSEGUNDO. El {{fecha_despido}} a las {{hora_despido}}, en {{lugar_despido}}, {{persona_despide}} manifestó: {{expresion_despido}}.\nTERCERO. Presentes: {{testigos}}.\nCUARTO. No se entregó aviso escrito de rescisión [CONFIRMAR].\nVI. PRETENSIONES / OBJETIVOS\n1. Reinstalación o indemnización (elegir).\n2. Salarios vencidos, prestaciones devengadas, proporcionales (calculadora existente).\nVII. PRUEBAS\n1. DOCUMENTAL.- Contrato, recibos de nómina, constancias, comunicaciones y demás documentos que acreditan la relación de trabajo, sus condiciones y los hechos del caso.\n2. TESTIMONIAL.- Declaración de {{testigos}}, quienes presenciaron los hechos {{hechos_testigos}}.\n3. DOCUMENTAL.- Informe o constancias de alta, baja y salario ante el IMSS e INFONAVIT, para acreditar antigüedad y salario.\n4. CONFESIONAL.- A cargo del patrón o su representante.\n- Ley Federal del Trabajo: Terminación de la relación de trabajo, rescisión e indemnización. Artículos aplicables: 784-804.\n- Ley Federal del Trabajo: Carga de la prueba. Artículos aplicables: 784-804.\nIX. SIGUIENTE PASO\nElegir pretensión principal y continuar con LAB-DES-001 / LAB-DES-003. Protesto lo necesario\n{{lugar}}, a {{fecha}}. [FIRMA]\n{{firmante}} El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 46-55: Terminación de la relación de trabajo, rescisión e indemnización.\n- Ley Federal del Trabajo, artículos 784-804: Carga de la prueba.",
+  "siguiente_paso": "Elegir pretensión principal y continuar con LAB-DES-001 / LAB-DES-003.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE.",
+    "Los montos de finiquito/indemnización/prestaciones vienen de la calculadora existente de SIGDE; no recalcular en el constructor."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

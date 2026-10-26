@@ -1,0 +1,249 @@
+{
+  "id": "FAM-VIF-001",
+  "materia": "Familiar",
+  "diagnostico": {
+    "objetivo": "Documentar y solicitar medidas de protección ante violencia familiar.",
+    "preguntas": [
+      "¿Quién es la persona agresora?",
+      "¿Qué hechos ocurrieron y cuándo?",
+      "¿Existe riesgo actual?",
+      "¿Hay niñas, niños o adolescentes afectados?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Solicitud de medidas por violencia familiar",
+    "tipo_documento": "promoción",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Familiar",
+      "Solicitud de medidas por violencia familiar"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Protección frente a violencia familiar",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento y medidas de protección conforme a la legislación aplicable; coordinar con autoridades competentes cuando exista posible delito.",
+    "requisitos": [
+      "Verificar competencia y legitimación.",
+      "Integrar documentos base.",
+      "Identificar personas que deban ser llamadas.",
+      "Revisar requisitos especiales de la legislación aplicable."
+    ],
+    "nota": "SIGDE no sustituye la determinación profesional de competencia, vía y estrategia del caso concreto."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La persona afectada es {{victima}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Los hechos consisten en {{hechos_violencia}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Existe riesgo actual descrito como {{riesgo}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Se dicten medidas de protección legalmente procedentes."
+    },
+    {
+      "orden": 2,
+      "texto": "Se proteja a niñas, niños y adolescentes cuando corresponda."
+    },
+    {
+      "orden": 3,
+      "texto": "Se dé intervención a las autoridades competentes."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Mensajes, fotografías, certificados o constancias disponibles.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Personas que conozcan los hechos.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Valoraciones que resulten pertinentes.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Identificación de víctima y agresor",
+    "Cronología de hechos",
+    "Pruebas",
+    "Datos de menores afectados"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Civil del Estado de Jalisco",
+      "tema": "Violencia familiar",
+      "articulos": "455 Bis-455 Quáter",
+      "estatus": "registrado",
+      "ck_clave": "CK/codigo_civil_jalisco/violencia_familiar"
+    },
+    {
+      "ordenamiento": "Ley de Acceso de las Mujeres a una Vida Libre de Violencia del Estado de Jalisco",
+      "tema": "Medidas y protección",
+      "articulos": "revisar versión vigente",
+      "estatus": "requiere_verificacion",
+      "ck_clave": "CK/lamvlv_jalisco/medidas_proteccion"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Existe una situación de violencia o riesgo que debe documentarse y atenderse mediante las medidas jurídicas adecuadas, priorizando la integridad de las personas afectadas.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "victima": {
+      "etiqueta": "Persona afectada",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_violencia": {
+      "etiqueta": "Hechos de violencia",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "riesgo": {
+      "etiqueta": "Riesgo actual",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: SOLICITUD DE MEDIDAS POR VIOLENCIA FAMILIAR C. JUEZ DE LO FAMILIAR / AUTORIDAD COMPETENTE\nP R E S E N T E. {{promovente_nombre}}, en relación con {{victima}}, comparezco para solicitar medidas de protección y las determinaciones familiares que resulten procedentes.\nI. HECHOS DE VIOLENCIA Los hechos se describen de manera cronológica: {{hechos_violencia}}. Deberán precisarse fechas, lugares, conductas, personas presentes, medios de comunicación involucrados, antecedentes, denuncias o intervenciones previas y cualquier riesgo actual.\nII. RIESGO ACTUAL La situación de riesgo se identifica como: {{riesgo}}. Se deberá indicar si existe riesgo para la vida, integridad física o psicológica, niñas, niños o adolescentes, bienes, domicilio o libertad de la víctima.\nIII. FUNDAMENTO El Código Civil, en sus artículos 455 Bis y siguientes, reconoce el derecho de las personas integrantes de la familia a su integridad física, psíquica y emocional y prohíbe conductas de violencia familiar, incluida la violencia vicaria en los términos de la legislación aplicable. En juicios relacionados con violencia familiar deberán observarse las medidas y actuaciones que correspondan para proteger a las personas afectadas.\nIV. PRUEBAS Documentales, mensajes, fotografías, registros electrónicos, certificados médicos o psicológicos, denuncias, informes, testimoniales, declaración de parte y cualquier otro medio lícito que permita acreditar el riesgo y los hechos.\nV. PETITORIOS\nPRIMERO. Tener por presentada la solicitud.\nSEGUNDO. Dictar de inmediato las medidas de protección que legalmente procedan.\nTERCERO. Ordenar las medidas necesarias respecto de domicilio, contacto, convivencia o cualquier otro ámbito cuando exista riesgo.\nCUARTO. Dar intervención a las autoridades de protección de niñas, niños y adolescentes cuando corresponda.\nQUINTO. Continuar el procedimiento hasta resolver las cuestiones de fondo. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Civil del Estado de Jalisco, artículos 455 Bis-455 Quáter: Violencia familiar.\n- Ley de Acceso de las Mujeres a una Vida Libre de Violencia del Estado de Jalisco, artículos revisar versión vigente: Medidas y protección.",
+  "siguiente_paso": "Si existe riesgo inmediato, priorizar medidas urgentes y la intervención de las autoridades competentes.",
+  "alertas": [
+    "No minimizar riesgo ni retrasar medidas urgentes.",
+    "Si los hechos pueden constituir delito, analizar también la vía penal.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

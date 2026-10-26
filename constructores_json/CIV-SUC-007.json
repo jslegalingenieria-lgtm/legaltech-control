@@ -1,0 +1,381 @@
+{
+  "id": "CIV-SUC-007",
+  "materia": "Sucesorio",
+  "diagnostico": {
+    "objetivo": "Impugnar concretamente la inclusión, exclusión o valuación de bienes.",
+    "preguntas": [
+      "¿Qué partida se objeta?",
+      "¿Qué valor correcto se propone?",
+      "¿Qué prueba sustenta la oposición?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "hechos",
+      "documentos base",
+      "fechas relevantes"
+    ],
+    "resultado_esperado": "Determinar procedencia, vía, requisitos, pruebas y documento adecuado para el caso concreto."
+  },
+  "clasificacion": {
+    "constructor": "Oposición al inventario o avalúo",
+    "tipo_documento": "incidente",
+    "rol_promovente": "persona interesada / representante",
+    "rol_contraparte": "personas interesadas que deban ser llamadas",
+    "criterios": [
+      "Sucesorio",
+      "Oposición al inventario o avalúo"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Oposición incidental",
+    "naturaleza": "tramite o acción judicial",
+    "descripcion": "Estructura documental guiada por la legislación aplicable y por los hechos capturados.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Procedimiento sucesorio conforme al Código de Procedimientos Civiles del Estado de Jalisco.",
+    "requisitos": [
+      "Verificar competencia y legitimación.",
+      "Integrar documentos base.",
+      "Identificar personas que deban ser llamadas.",
+      "Revisar requisitos especiales de la legislación aplicable."
+    ],
+    "nota": "SIGDE no sustituye la determinación profesional de competencia, vía y estrategia del caso concreto."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Existe oposición concreta al inventario o avalúo aprobado o propuesto.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "S"
+    },
+    {
+      "orden": 2,
+      "texto": "e"
+    },
+    {
+      "orden": 3,
+      "texto": ""
+    },
+    {
+      "orden": 4,
+      "texto": "m"
+    },
+    {
+      "orden": 5,
+      "texto": "o"
+    },
+    {
+      "orden": 6,
+      "texto": "d"
+    },
+    {
+      "orden": 7,
+      "texto": "i"
+    },
+    {
+      "orden": 8,
+      "texto": "f"
+    },
+    {
+      "orden": 9,
+      "texto": "i"
+    },
+    {
+      "orden": 10,
+      "texto": "q"
+    },
+    {
+      "orden": 11,
+      "texto": "u"
+    },
+    {
+      "orden": 12,
+      "texto": "e"
+    },
+    {
+      "orden": 13,
+      "texto": ""
+    },
+    {
+      "orden": 14,
+      "texto": "l"
+    },
+    {
+      "orden": 15,
+      "texto": "a"
+    },
+    {
+      "orden": 16,
+      "texto": ""
+    },
+    {
+      "orden": 17,
+      "texto": "p"
+    },
+    {
+      "orden": 18,
+      "texto": "a"
+    },
+    {
+      "orden": 19,
+      "texto": "r"
+    },
+    {
+      "orden": 20,
+      "texto": "t"
+    },
+    {
+      "orden": 21,
+      "texto": "i"
+    },
+    {
+      "orden": 22,
+      "texto": "d"
+    },
+    {
+      "orden": 23,
+      "texto": "a"
+    },
+    {
+      "orden": 24,
+      "texto": ""
+    },
+    {
+      "orden": 25,
+      "texto": "o"
+    },
+    {
+      "orden": 26,
+      "texto": ""
+    },
+    {
+      "orden": 27,
+      "texto": "v"
+    },
+    {
+      "orden": 28,
+      "texto": "a"
+    },
+    {
+      "orden": 29,
+      "texto": "l"
+    },
+    {
+      "orden": 30,
+      "texto": "o"
+    },
+    {
+      "orden": 31,
+      "texto": "r"
+    },
+    {
+      "orden": 32,
+      "texto": ""
+    },
+    {
+      "orden": 33,
+      "texto": "i"
+    },
+    {
+      "orden": 34,
+      "texto": "m"
+    },
+    {
+      "orden": 35,
+      "texto": "p"
+    },
+    {
+      "orden": 36,
+      "texto": "u"
+    },
+    {
+      "orden": 37,
+      "texto": "g"
+    },
+    {
+      "orden": 38,
+      "texto": "n"
+    },
+    {
+      "orden": 39,
+      "texto": "a"
+    },
+    {
+      "orden": 40,
+      "texto": "d"
+    },
+    {
+      "orden": 41,
+      "texto": "o"
+    },
+    {
+      "orden": 42,
+      "texto": "."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos que acreditan los hechos y el derecho invocado.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental de actuaciones",
+      "objeto": "Actuaciones del expediente en lo que favorezcan.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Presuncional",
+      "objeto": "Presunciones que resulten de los hechos acreditados.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Inventario",
+    "Avalúo",
+    "Prueba del valor o propiedad"
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código de Procedimientos Civiles del Estado de Jalisco",
+      "tema": "Oposición a inventario y avalúo",
+      "articulos": "869-874",
+      "estatus": "registrado",
+      "ck_clave": "CK/cpc_jalisco/oposici_n_a_inventario_y_aval_o"
+    }
+  ],
+  "teoria_caso": {
+    "texto": [
+      "La oposición debe identificar concretamente la partida, valor y pruebas."
+    ],
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable",
+      "Prueba que lo acredita",
+      "Consecuencia o pretensión",
+      "Riesgos y puntos de controversia"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Número de expediente",
+      "tipo": "texto",
+      "fuente": "expediente.expediente",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_promovente": {
+      "etiqueta": "Domicilio del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_notificaciones": {
+      "etiqueta": "Domicilio para oír y recibir notificaciones",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.domicilio_notificaciones",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "abogado_patrono": {
+      "etiqueta": "Abogado patrono / autorizado",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.abogado",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Nombre de quien firma",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "autor_sucesion": {
+      "etiqueta": "Autor de la sucesión",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_especificos": {
+      "etiqueta": "Hechos específicos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nASUNTO: OPOSICIÓN AL INVENTARIO O AVALÚO C. JUEZ COMPETENTE\nP R E S E N T E. {{promovente_nombre}}, en mi carácter de {{personalidad_promovente}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, y autorizando a {{abogado_patrono}}, comparezco para exponer:\nI. OBJETO DE LA OPOSICIÓN La parte promovente formula oposición concreta respecto del inventario o avalúo presentado en la sucesión de {{autor_sucesion}}. Los hechos y bienes involucrados son: {{hechos_especificos}}.\nII. PUNTOS DE INCONFORMIDAD 1. Identificar con precisión el bien o dato objetado.\n2. Explicar el error en la cosa, sus condiciones o circunstancias esenciales, cuando ésa sea la causa.\n3. Si se afirma cohecho o inteligencia fraudulenta, describir hechos y elementos de prueba que sustenten la afirmación.\n4. Proponer la corrección concreta que se solicita.\nIII. FUNDAMENTO Los artículos 868 a 878 del Código de Procedimientos Civiles regulan la formación, revisión y oposición al inventario y avalúo. En particular, el artículo 874 delimita las causas de oposición a los avalúos.\nIV. PRUEBAS Dictamen pericial; documentos registrales; títulos; fotografías; informes; declaraciones y demás medios pertinentes.\nV. PETITORIOS\nPRIMERO. Tener por formulada la oposición.\nSEGUNDO. Dar trámite incidental cuando corresponda.\nTERCERO. Admitir las pruebas relacionadas con cada punto de inconformidad.\nCUARTO. Modificar, corregir o mantener el inventario o avalúo según resulte de las pruebas y la ley. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código de Procedimientos Civiles del Estado de Jalisco, artículos 869-874: Oposición a inventario y avalúo.",
+  "siguiente_paso": "Verificar etapa procesal, legitimación y documentos antes de presentar.",
+  "alertas": [
+    "No confundir la etapa procesal del constructor con una etapa ya agotada.",
+    "Verificar legislación vigente y resoluciones del expediente.",
+    "El documento generado es un borrador jurídico estructurado: completar hechos, datos, pruebas, anexos, competencia y petitorios antes de firmar."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → petitorios.",
+    "fuentes_base": [
+      "Código Civil del Estado de Jalisco-240626 (fuente proporcionada por el usuario).",
+      "Código de Procedimientos Civiles del Estado de Jalisco-250424 (fuente proporcionada por el usuario)."
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

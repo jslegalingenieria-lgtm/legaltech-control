@@ -1,0 +1,205 @@
+{
+  "id": "CRE-003",
+  "materia": "Corporativo",
+  "diagnostico": {
+    "objetivo": "",
+    "preguntas": [
+      "¿Quién interviene y con qué capacidad?",
+      "¿Qué acto, operación o procedimiento se pretende documentar?",
+      "¿Cuál es la fuente legal especial aplicable?",
+      "¿Qué documentos y pruebas son indispensables?",
+      "¿Existen plazos, autorizaciones, registros o formalidades?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "personalidad/facultades",
+      "hechos",
+      "documentos base",
+      "objeto de la operación"
+    ],
+    "resultado_esperado": "Documento estructurado y jurídicamente parametrizado para revisión profesional."
+  },
+  "clasificacion": {
+    "constructor": "Cheque",
+    "tipo_documento": "promocion",
+    "rol_promovente": "interesado / promovente",
+    "rol_contraparte": "contraparte / autoridad",
+    "criterios": [
+      "procedencia",
+      "competencia",
+      "plazo",
+      "prueba",
+      "pretensión"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Cheque",
+    "naturaleza": "promocion",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "",
+    "requisitos": [
+      "Identificación de partes y capacidad/facultades.",
+      "Documentos base.",
+      "Verificación de legislación especial y vigencia."
+    ],
+    "nota": "No sustituye la revisión profesional ni la verificación de requisitos sectoriales."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "Identificar el acto, resolución, controversia o trámite: {{asunto_descripcion}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "Precisar fechas, sujetos, autoridad, documentos y antecedentes relevantes.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Obtener el resultado jurídico correspondiente al acto o procedimiento analizado."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos que acreditan hechos, personalidad, autoridad o acto impugnado.",
+      "estatus": "por_integrar"
+    }
+  ],
+  "documentos": [
+    "Documentos base del asunto.",
+    "Acreditación de personalidad y facultades, cuando proceda."
+  ],
+  "fundamento": [
+    {
+      "orden": 1,
+      "ordenamiento": "Ley General de Títulos y Operaciones de Crédito",
+      "tema": "Cheque",
+      "articulos": "LGTOC arts. 175-196.",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/lgtoc/cheque"
+    },
+    {
+      "orden": 2,
+      "ordenamiento": "Ley General de Títulos y Operaciones de Crédito",
+      "tema": "Cheque",
+      "articulos": "175-207",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ccom/cheque",
+      "fundamento_texto": "Régimen del cheque."
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La estrategia debe conectar cada hecho relevante con una norma aplicable, una prueba idónea y una pretensión concreta; la selección de vía y competencia debe verificarse antes de producir el escrito final.",
+    "elementos": [
+      "Hecho o necesidad empresarial",
+      "Norma aplicable",
+      "Documento o prueba que lo acredita",
+      "Riesgo jurídico",
+      "Resultado pretendido"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en documentos finales salvo que el constructor lo indique."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "expediente": {
+      "etiqueta": "Expediente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Promovente",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "asunto_descripcion": {
+      "etiqueta": "Descripción del asunto",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "antecedentes_relevantes": {
+      "etiqueta": "Antecedentes relevantes",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha",
+      "tipo": "fecha",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar": {
+      "etiqueta": "Lugar",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "firmante": {
+      "etiqueta": "Firmante",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nEXPEDIENTE: {{expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: CHEQUE\nI. ANTECEDENTES Y HECHOS\n1. {{asunto_descripcion}}\n2. {{antecedentes_relevantes}}\nII. PROBLEMA JURÍDICO\nDeterminar la procedencia, requisitos, efectos y estrategia del acto o procedimiento de cheque.\nIII. VÍA / RUTA\nIV. PRETENSIONES / OBJETIVOS\n1. Obtener el resultado jurídico correspondiente al acto o procedimiento analizado.\nV. PRUEBAS Y DOCUMENTOS\n- Documental: Documentos que acreditan hechos, personalidad, autoridad o acto impugnado.\nVI. FUNDAMENTO LGTOC arts. 175-196.\nVII. SIGUIENTE PASO [FIRMA / DATOS] \nFUNDAMENTO JURÍDICO APLICADO\n- Ley General de Títulos y Operaciones de Crédito, artículos LGTOC arts. 175-196.: Cheque.\n- Ley General de Títulos y Operaciones de Crédito, artículos 175-207: Régimen del cheque..",
+  "siguiente_paso": "",
+  "alertas": [
+    "Completar todos los campos dinámicos antes de firmar.",
+    "Verificar personalidad, facultades, vigencia normativa, competencia y plazos.",
+    "Si la operación está regulada por una ley especial, prevalecerán sus requisitos específicos.",
+    "No presentar como sentencia, escritura o acto de autoridad un documento que SIGDE sólo genera como proyecto/promoción."
+  ],
+  "requiere_revision_abogado": true,
+  "metadatos_redaccion": {
+    "nivel_contenido": "ampliado",
+    "metodologia": "SIGDE Master Constructor: hechos → problema jurídico → fundamento → prueba → pretensión → documento final.",
+    "tipo_generacion": "documento SIGDE",
+    "fuentes_usuario": [
+      {
+        "nombre": "Ley General de Títulos y Operaciones de Crédito",
+        "reforma": "DOF 26-03-2024",
+        "archivo": "LGTOC(1).pdf"
+      },
+      {
+        "nombre": "Código de Comercio",
+        "reforma": "DOF 14-11-2025; cantidades actualizadas por Acuerdo DOF 18-02-2026",
+        "archivo": "CCom(1).pdf"
+      }
+    ]
+  },
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

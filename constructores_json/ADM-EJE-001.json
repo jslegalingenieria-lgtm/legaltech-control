@@ -1,0 +1,245 @@
+{
+  "id": "ADM-EJE-001",
+  "materia": "Administrativo",
+  "jurisdiccion": "Jalisco",
+  "diagnostico": {
+    "objetivo": "Analizar defensa frente a ejecución coactiva de actos administrativos.",
+    "preguntas": [
+      "¿Qué acto se ejecuta?",
+      "¿Está firme?",
+      "¿Hubo apercibimiento?",
+      "¿Qué medio de ejecución?",
+      "¿Existe recurso/suspensión?"
+    ],
+    "datos_minimos": [
+      "acto",
+      "firmeza",
+      "apercibimiento",
+      "ejecucion",
+      "recurso"
+    ],
+    "resultado_esperado": "Determinar competencia, naturaleza del acto o conducta, plazo, vía, prueba y documento procedente."
+  },
+  "clasificacion": {
+    "constructor": "Defensa frente a ejecución administrativa Jalisco",
+    "tipo_documento": "defensa de ejecución",
+    "rol_promovente": "Promovente / interesado / presunto responsable según el caso",
+    "rol_contraparte": "Autoridad / tercero / denunciante según corresponda",
+    "criterios": [
+      "competencia",
+      "legalidad",
+      "fundamentación y motivación",
+      "plazo",
+      "prueba",
+      "vía",
+      "interés jurídico o legítimo",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Defensa frente a ejecución administrativa Jalisco",
+    "naturaleza": "procesal administrativa",
+    "descripcion": "Analizar defensa frente a ejecución coactiva de actos administrativos.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Acto → notificación → apercibimiento → ejecución → defensa/suspensión → seguimiento",
+    "requisitos": [
+      "Identificación de partes y autoridad",
+      "Acreditación de personalidad cuando corresponda",
+      "Acto, conducta o procedimiento plenamente identificado",
+      "Pruebas y documentos base",
+      "Verificación de competencia y plazo"
+    ],
+    "nota": "Validar siempre ley especial, reglamento interior, competencia, notificación y texto vigente. No se inventan artículos de fuentes no proporcionadas."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "La autoridad pretende ejecutar {{acto}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La ejecución consiste en {{medio}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Se controvierte porque {{razon}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Suspensión cuando proceda."
+    },
+    {
+      "orden": 2,
+      "texto": "Dejar sin efectos actos de ejecución ilegales."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Actos y constancias.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Instrumental",
+      "objeto": "Expediente.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Acto base",
+    "Apercibimiento",
+    "Diligencia",
+    "Recurso"
+  ],
+  "fundamento": [
+    {
+      "orden": 1,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Objeto, ámbito y principios",
+      "articulos": "1-7",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/principios"
+    },
+    {
+      "orden": 2,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Actos administrativos, validez y eficacia",
+      "articulos": "8-20",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/acto"
+    },
+    {
+      "orden": 3,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Silencio administrativo",
+      "articulos": "21-25",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/silencio"
+    },
+    {
+      "orden": 4,
+      "ordenamiento": "Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios",
+      "tema": "Ejecución de actos administrativos",
+      "articulos": "148-152",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/jalpa/ejecucion"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "Separar validez del acto base y legalidad de su ejecución.",
+    "elementos": [
+      "Hechos jurídicamente relevantes",
+      "Acto/omisión/conducta",
+      "Norma aplicable",
+      "Competencia",
+      "Prueba de cada proposición",
+      "Vicios o defensas",
+      "Riesgos",
+      "Resultado procesal"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el documento final salvo instrucción del constructor."
+  },
+  "campos_dinamicos": {
+    "promovente_nombre": {
+      "etiqueta": "Nombre / razón social",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "autoridad_nombre": {
+      "etiqueta": "Autoridad",
+      "tipo": "texto",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "expediente_numero": {
+      "etiqueta": "Expediente / folio",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "fecha_acto": {
+      "etiqueta": "Fecha del acto o conocimiento",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "notificacion_fecha": {
+      "etiqueta": "Fecha de notificación",
+      "tipo": "fecha",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    },
+    "relato_hechos": {
+      "etiqueta": "Relato circunstanciado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pretension_principal": {
+      "etiqueta": "Resultado buscado",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "pruebas_disponibles": {
+      "etiqueta": "Pruebas disponibles",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "medio": {
+      "etiqueta": "Medio de ejecución",
+      "tipo": "select",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "razon": {
+      "etiqueta": "Razón de defensa",
+      "tipo": "textarea",
+      "obligatorio": true,
+      "fuente": "expediente.captura"
+    },
+    "acto": {
+      "etiqueta": "Acto",
+      "tipo": "texto",
+      "obligatorio": false,
+      "fuente": "expediente.captura"
+    }
+  },
+  "checklist": [
+    "Identificar acto",
+    "Firmeza",
+    "Notificación",
+    "Apercibimiento",
+    "Medio",
+    "Recurso/suspensión",
+    "Documentar ejecución"
+  ],
+  "ruta_procesal": [
+    "Acto",
+    "notificación",
+    "apercibimiento",
+    "ejecución",
+    "defensa/suspensión",
+    "seguimiento"
+  ],
+  "advertencias": [
+    "No sustituye revisión del expediente.",
+    "La ley especial puede desplazar la LFPA.",
+    "Verificar vigencia y competencia antes de presentar."
+  ],
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  },
+  "documento_generado": "{{autoridad_competente}}\nEXPEDIENTE: {{numero_expediente}}\nPROMOVENTE: {{promovente_nombre}}\nCONTRAPARTE: {{contraparte_nombre}}\nASUNTO: DEFENSA FRENTE A EJECUCIÓN ADMINISTRATIVA JALISCO\nC. {autoridad_competente}:\n{{promovente_nombre}}, por mi propio derecho / en representación de {{representado_nombre}}, personalidad que acredito con {{documento_personalidad}}, señalando como domicilio para oír y recibir notificaciones {{domicilio_notificaciones}}, comparezco para exponer:\nI. OBJETO\nEl presente defensa de ejecución tiene por objeto plantear Analizar defensa frente a ejecución coactiva de actos administrativos en la vía Acto → notificación → apercibimiento → ejecución → defensa/suspensión → seguimiento.\nII. HECHOS\n1. La autoridad pretende ejecutar {{acto}}.\n2. La ejecución consiste en {{medio}}.\n3. Se controvierte porque {{razon}}.\nIII. DERECHO\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 1-7, en relación con Objeto, ámbito y principios.\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 8-20, en relación con Actos administrativos, validez y eficacia.\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 21-25, en relación con Silencio administrativo.\nCon fundamento en Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 148-152, en relación con Ejecución de actos administrativos.\nIV. PRETENSIONES / PETICIONES\n1. Suspensión cuando proceda..\n2. Dejar sin efectos actos de ejecución ilegales..\nV. PRUEBAS\n1. {'medio': 'Documental', 'objeto': 'Actos y constancias.', 'estatus': 'por_ofrecer'}\n2. {'medio': 'Instrumental', 'objeto': 'Expediente.', 'estatus': 'por_ofrecer'}\nVI. DOCUMENTOS\n{{documentos_anexos}}\nVII. PETITORIOS\nPRIMERO. Tenerme por presentado con este escrito y documentos.\nSEGUNDO. Acordar lo conducente conforme a la vía y competencia indicadas.\nTERCERO. Tener por formuladas las pretensiones y por ofrecidas las pruebas relacionadas.\nCUARTO. Dictar la resolución que en derecho corresponda. PROTESTO LO NECESARIO.\n{{lugar}}, {{fecha}}.\n{{firmante}} \nFUNDAMENTO JURÍDICO APLICADO\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 1-7: Objeto, ámbito y principios.\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 8-20: Actos administrativos, validez y eficacia.\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 21-25: Silencio administrativo.\n- Ley del Procedimiento Administrativo del Estado de Jalisco y sus Municipios, artículos 148-152: Ejecución de actos administrativos."
+}

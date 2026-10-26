@@ -1,0 +1,197 @@
+{
+  "id": "LAB-DES-002",
+  "materia": "Laboral",
+  "diagnostico": {
+    "objetivo": "Determinar si procede y cómo estructurar: Aviso rescisión.",
+    "preguntas": [
+      "¿Causa y hechos?",
+      "¿Oportunidad?",
+      "¿Cómo se entregará?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha",
+      "hechos",
+      "documentos base",
+      "montos (si aplica)"
+    ],
+    "resultado_esperado": "Decisión fundada sobre acción/defensa, vía y documento a generar."
+  },
+  "clasificacion": {
+    "constructor": "Aviso rescisión",
+    "tipo_documento": "aviso",
+    "rol_promovente": "patrón / empresa",
+    "rol_contraparte": "trabajador(a)",
+    "criterios": []
+  },
+  "accion_defensa": {
+    "nombre": "Aviso rescisión",
+    "naturaleza": "tramite",
+    "descripcion": "",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "[VALIDAR VÍA CONFORME A LA LEGISLACIÓN APLICABLE]",
+    "requisitos": [
+      "Causa de rescisión de ley acreditable.",
+      "Hechos y fechas precisos.",
+      "Entrega con constancia, o notificación por la vía legal que proceda ."
+    ],
+    "nota": "Validar vía, competencia y requisitos de procedencia contra la legislación fuente."
+  },
+  "hechos": [],
+  "pretensiones": [],
+  "pruebas": [],
+  "documentos": [],
+  "fundamento": [
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Causas de rescisión sin responsabilidad del patrón",
+      "articulos": "47",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/causas_de_rescision_sin_responsabilidad_del_patron"
+    },
+    {
+      "ordenamiento": "Ley Federal del Trabajo",
+      "tema": "Aviso de rescisión: forma y entrega",
+      "articulos": "47",
+      "estatus": "fuente_verificada",
+      "ck_clave": "CK/ley_federal_del_trabajo/aviso_de_rescision_forma_y_entrega"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La causa de rescisión se actualizó y el patrón la comunica en forma y tiempo.",
+    "elementos": [
+      "Hecho jurídico relevante",
+      "Norma aplicable (por validar)",
+      "Prueba que lo acredita",
+      "Pretensión que se sigue"
+    ],
+    "uso": "Herramienta estratégica interna; no se inserta automáticamente en el escrito final."
+  },
+  "campos_dinamicos": {
+    "lugar": {
+      "etiqueta": "Lugar de emisión",
+      "tipo": "texto",
+      "fuente": "expediente.competencia.lugar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha": {
+      "etiqueta": "Fecha del documento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "contraparte_nombre": {
+      "etiqueta": "Nombre de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "domicilio_contraparte": {
+      "etiqueta": "Domicilio de la contraparte",
+      "tipo": "texto",
+      "fuente": "expediente.partes.contraparte.domicilio",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "promovente_nombre": {
+      "etiqueta": "Nombre del promovente",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "personalidad_promovente": {
+      "etiqueta": "Personalidad del promovente (propio derecho / representante)",
+      "tipo": "texto",
+      "fuente": "expediente.partes.promovente.personalidad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_efectos_rescision": {
+      "etiqueta": "Fecha efectos rescision",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "causa_rescision": {
+      "etiqueta": "Causa rescision",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "hechos_causa": {
+      "etiqueta": "Hechos causa",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_hechos": {
+      "etiqueta": "Fecha hechos",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar_hechos": {
+      "etiqueta": "Lugar hechos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "testigos_hechos": {
+      "etiqueta": "Testigos hechos",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_conocimiento": {
+      "etiqueta": "Fecha conocimiento",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "conceptos_a_disposicion": {
+      "etiqueta": "Conceptos a disposicion",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar_pago": {
+      "etiqueta": "Lugar pago",
+      "tipo": "texto",
+      "fuente": "expediente.captura",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "AVISO DE RESCISIÓN DE LA RELACIÓN DE TRABAJO {{lugar}}, a {{fecha}} A: {{contraparte_nombre}}\nDomicilio: {{domicilio_contraparte}} Por medio del presente, {{promovente_nombre}}, {{personalidad_promovente}}, le comunica que ha decidido rescindir su relación de trabajo, sin responsabilidad para el patrón, con efectos a partir del {{fecha_efectos_rescision}}, por las causas siguientes: CAUSA(S): {{causa_rescision}}.\nHECHOS: {{hechos_causa}}, ocurridos el {{fecha_hechos}}, en {{lugar_hechos}}, en presencia de {{testigos_hechos}}.\nCONOCIMIENTO DEL PATRÓN: {{fecha_conocimiento}}. Se pone a su disposición {{conceptos_a_disposicion}} (salarios devengados, prestaciones proporcionales) en {{lugar_pago}}. [FIRMA]\nPatrón: {{promovente_nombre}} Recibí (fecha y firma): ______________________ El presente documento fue generado mediante SIGDE a partir de la información capturada y los parámetros jurídicos seleccionados. \nFUNDAMENTO JURÍDICO APLICADO\n- Ley Federal del Trabajo, artículos 47: Causas de rescisión sin responsabilidad del patrón.\n- Ley Federal del Trabajo, artículos 47: Aviso de rescisión: forma y entrega.",
+  "siguiente_paso": "Entregar con constancia y conservar pruebas de los hechos.",
+  "alertas": [
+    "Todo texto entre corchetes [ ] o llaves {{ }} sin dato capturado debe completarse o suprimirse antes de firmar.",
+    "El fundamento jurídico está listado por ordenamiento y tema; los artículos exactos deben validarse contra la legislación fuente antes de producción.",
+    "Verificar competencia, vía y plazos (incluida prescripción o caducidad aplicable) contra la legislación vigente.",
+    "Laboral Apartado A (LFT/LSS/INFONAVIT). Si el trabajador es del Apartado B, este constructor no aplica.",
+    "No duplicar calculadoras: los montos de finiquito, indemnización y prestaciones deben tomarse de las calculadoras existentes de SIGDE.",
+    "Si el trabajador se niega a recibir el aviso, verificar el procedimiento legal de notificación .",
+    "Un aviso sin hechos precisos puede ser insuficiente ."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}

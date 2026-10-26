@@ -1,0 +1,239 @@
+{
+  "id": "PEN-VIOLF-001",
+  "materia": "Penal",
+  "diagnostico": {
+    "objetivo": "Preparar el relato y solicitud de investigación de un hecho posiblemente constitutivo de Violencia familiar, sin prejuzgar sobre la responsabilidad.",
+    "preguntas": [
+      "¿Quién interviene y en qué calidad?",
+      "¿Qué ocurrió, cuándo, dónde y cómo?",
+      "¿Qué datos o medios de prueba existen?",
+      "¿Qué resultado procesal se pretende obtener?"
+    ],
+    "datos_minimos": [
+      "partes",
+      "autoridad",
+      "fecha y lugar de los hechos",
+      "carpeta o expediente si existe",
+      "relato circunstanciado",
+      "datos y medios de prueba"
+    ],
+    "resultado_esperado": "Determinar la actuación procedente y generar un documento base verificable."
+  },
+  "clasificacion": {
+    "constructor": "Denuncia/querella por Violencia familiar",
+    "tipo_documento": "denuncia/querella según procedencia",
+    "rol_promovente": "Promovente",
+    "rol_contraparte": "Contraparte / autoridad / persona imputada según corresponda",
+    "criterios": [
+      "Materia penal",
+      "Sistema acusatorio",
+      "Jalisco"
+    ]
+  },
+  "accion_defensa": {
+    "nombre": "Denuncia/querella por Violencia familiar.",
+    "naturaleza": "procesal",
+    "descripcion": "Actuación estructurada conforme a las disposiciones del Código Nacional de Procedimientos Penales y, cuando corresponde, del Código Penal para el Estado de Jalisco.",
+    "excepciones_defensas": []
+  },
+  "via_procedimiento": {
+    "via": "Investigación inicial conforme al CNPP y al régimen de procedibilidad del tipo penal aplicable.",
+    "requisitos": [
+      "Competencia y calidad procesal.",
+      "Hechos y circunstancias concretas.",
+      "Datos o medios de prueba disponibles.",
+      "Cumplimiento de requisitos formales aplicables."
+    ],
+    "nota": "Verificar procedencia, oportunidad, competencia y legislación vigente antes de presentar."
+  },
+  "hechos": [
+    {
+      "orden": 1,
+      "texto": "El {{fecha_hecho}}, en {{lugar_hecho}}, La persona señalada, en relación con {{relacion_familiar}}, realizó {{conducta_maltrato}}.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 2,
+      "texto": "La persona señalada es {{persona_señalada}}, sin perjuicio de la investigación.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 3,
+      "texto": "Elementos relevantes para la clasificación preliminar: relación entre las partes, conducta u omisión, afectación física/psicológica/libertad sexual.",
+      "estatus": "plantilla_por_completar"
+    },
+    {
+      "orden": 4,
+      "texto": "Los datos iniciales disponibles son {{datos_disponibles}}.",
+      "estatus": "plantilla_por_completar"
+    }
+  ],
+  "pretensiones": [
+    {
+      "orden": 1,
+      "texto": "Que se reciba la denuncia/querella según corresponda."
+    },
+    {
+      "orden": 2,
+      "texto": "Que se inicie y conduzca la investigación."
+    },
+    {
+      "orden": 3,
+      "texto": "Que se practiquen los actos de investigación pertinentes."
+    },
+    {
+      "orden": 4,
+      "texto": "Que se determine la reparación del daño conforme a derecho."
+    }
+  ],
+  "pruebas": [
+    {
+      "medio": "Documental",
+      "objeto": "Documentos relacionados con el hecho.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Testimonial",
+      "objeto": "Personas que presenciaron o tienen conocimiento.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Pericial",
+      "objeto": "Dictamen pertinente a la naturaleza del hecho.",
+      "estatus": "por_ofrecer"
+    },
+    {
+      "medio": "Fotográfica/video",
+      "objeto": "Registros disponibles, si existen.",
+      "estatus": "por_ofrecer"
+    }
+  ],
+  "documentos": [
+    "Identificación de la víctima/ofendido.",
+    "Documentos o registros del hecho.",
+    "Datos de testigos.",
+    "Constancias médicas/periciales cuando proceda."
+  ],
+  "fundamento": [
+    {
+      "ordenamiento": "Código Penal para el Estado Libre y Soberano de Jalisco",
+      "tema": "Violencia familiar",
+      "articulos": "176-Ter",
+      "estatus": "fuente_proporcionada",
+      "fuente": "Código Penal Jalisco proporcionado"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Forma y contenido de denuncia",
+      "articulos": "223",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    },
+    {
+      "ordenamiento": "Código Nacional de Procedimientos Penales",
+      "tema": "Querella u otro requisito equivalente",
+      "articulos": "225",
+      "estatus": "fuente_proporcionada",
+      "fuente": "CNPP.pdf"
+    }
+  ],
+  "teoria_caso": {
+    "texto": "La teoría del caso debe identificar los elementos fácticos del tipo de Violencia familiar, separar hechos de inferencias y vincular cada proposición con un dato o medio de prueba.",
+    "elementos": [
+      "Hechos relevantes",
+      "Problema jurídico",
+      "Calificación jurídica cuando corresponda",
+      "Proposición probatoria",
+      "Pretensión o resultado procesal",
+      "Hipótesis de la contraparte",
+      "Riesgos y contradicciones"
+    ],
+    "uso": "Herramienta estratégica interna del litigante. En materia penal se muestra de forma destacada y puede alimentar la preparación de audiencias; no se inserta automáticamente en el escrito final salvo que el abogado lo decida."
+  },
+  "campos_dinamicos": {
+    "autoridad": {
+      "etiqueta": "Autoridad ante quien se promueve",
+      "tipo": "autoridad",
+      "fuente": "expediente.autoridad",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "carpeta": {
+      "etiqueta": "Número de carpeta de investigación",
+      "tipo": "texto",
+      "fuente": "expediente.carpeta",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "victima_nombre": {
+      "etiqueta": "Nombre de la víctima u ofendido",
+      "tipo": "texto",
+      "fuente": "expediente.victima_nombre",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_hecho": {
+      "etiqueta": "Fecha del hecho",
+      "tipo": "fecha",
+      "fuente": "expediente.fecha_hecho",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "lugar_hecho": {
+      "etiqueta": "Lugar del hecho",
+      "tipo": "texto",
+      "fuente": "expediente.lugar_hecho",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "persona_señalada": {
+      "etiqueta": "Persona Señalada",
+      "tipo": "texto",
+      "fuente": "expediente.persona_señalada",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "datos_disponibles": {
+      "etiqueta": "Datos Disponibles",
+      "tipo": "texto",
+      "fuente": "expediente.datos_disponibles",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "fecha_firma": {
+      "etiqueta": "Fecha Firma",
+      "tipo": "texto",
+      "fuente": "expediente.fecha_firma",
+      "obligatorio": false,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "conducta_maltrato": {
+      "etiqueta": "Conducta maltrato",
+      "tipo": "texto",
+      "fuente": "expediente.conducta_maltrato",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    },
+    "relacion_familiar": {
+      "etiqueta": "Relacion familiar",
+      "tipo": "texto",
+      "fuente": "expediente.relacion_familiar",
+      "obligatorio": true,
+      "valor_por_defecto": "[CAPTURAR INFORMACIÓN]"
+    }
+  },
+  "documento_generado": "{{autoridad}}\nCARPETA: {{carpeta}}\nASUNTO: DENUNCIA/QUERELLA POR VIOLENCIA FAMILIAR\nC. AGENTE DEL MINISTERIO PÚBLICO: {{victima_nombre}}, comparezco para exponer:\nI. HECHOS\nPRIMERO. El {{fecha_hecho}}, en {{lugar_hecho}}, La persona señalada, en relación con {{relacion_familiar}}, realizó {{conducta_maltrato}}.\nSEGUNDO. La persona señalada es {{persona_señalada}}.\nTERCERO. relación entre las partes, conducta u omisión, afectación física/psicológica/libertad sexual.\nCUARTO. Los datos disponibles son {{datos_disponibles}}.\nII. CLASIFICACIÓN PRELIMINAR\nLos hechos podrían ser relevantes para el tipo penal de Violencia familiar, artículo 176-Ter del Código Penal para el Estado de Jalisco, sin perjuicio de la clasificación que resulte de la investigación.\nIII. PETICIONES\nPRIMERO. Recibir la denuncia/querella.\nSEGUNDO. Iniciar o continuar la investigación.\nTERCERO. Practicar los actos de investigación pertinentes.\nCUARTO. Determinar lo que legalmente corresponda. {{fecha_firma}}\n{{victima_nombre}} \nFUNDAMENTO JURÍDICO APLICADO\n- Código Penal para el Estado Libre y Soberano de Jalisco, artículos 176-Ter: Violencia familiar.\n- Código Nacional de Procedimientos Penales, artículos 223: Forma y contenido de denuncia.\n- Código Nacional de Procedimientos Penales, artículos 225: Querella u otro requisito equivalente.",
+  "siguiente_paso": "Revisar y completar campos; verificar legislación, hechos, competencia, plazos, datos de prueba y estrategia antes de firma o presentación.",
+  "alertas": [
+    "No dejar campos {{ }} sin completar antes de presentar.",
+    "Verificar que la clasificación jurídica corresponda a los hechos concretos.",
+    "Verificar competencia, oportunidad y requisitos de procedencia.",
+    "Revisar la legislación fuente vigente antes de utilizar el documento."
+  ],
+  "requiere_revision_abogado": true,
+  "auditoria_juridica": {
+    "version": "v3-20261005",
+    "criterio": "Fundamento sustituido por referencias normativas concretas verificadas contra fuentes disponibles; no se conserva texto de sugerencia en documento_generado.",
+    "fundamento_verificado": true
+  }
+}
