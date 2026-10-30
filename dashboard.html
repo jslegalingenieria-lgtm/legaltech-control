@@ -129,7 +129,7 @@
             <span class="dashboard-eyebrow">Panel ejecutivo</span>
             <h3 id="dashboard-saludo">Resumen del despacho</h3>
             <p id="dashboard-subtitulo">
-                Información actualizada en tiempo real desde Firebase.
+                Información sincronizada mediante Firestore. Los archivos adjuntos se conservan localmente en este navegador.
             </p>
         </div>
 
@@ -140,14 +140,14 @@
                         <strong>📎 Gestión documental</strong>
                         <span id="dashboard-storage-estado">Desactivada</span>
                     </div>
-                    <label class="gestion-documental-switch" title="Habilitar o deshabilitar la carga de archivos en todo el sistema">
+                    <label class="gestion-documental-switch" title="Habilitar o deshabilitar los archivos adjuntos locales en este navegador">
                         <input type="checkbox" id="dashboard-storage-habilitado" aria-describedby="dashboard-storage-aviso">
                         <span class="gestion-documental-slider" aria-hidden="true"></span>
                     </label>
                 </div>
                 <div id="dashboard-storage-aviso" class="gestion-documental-aviso" hidden>
                     <strong>⚠ Aviso sobre almacenamiento</strong>
-                    <span>Los documentos se almacenan en Firebase Storage. El servicio puede generar costos cuando el consumo supere los límites incluidos en el plan gratuito.</span>
+                    <span>Los archivos se guardan en este navegador mediante IndexedDB. No se utiliza Firebase Storage y no se sincronizan entre equipos.</span>
                 </div>
             </div>
 
@@ -917,7 +917,7 @@
                                     </div>
                                 </div>
                                 <div id="act-archivos-cola" style="margin-top:.7rem;"></div>
-                                <small style="display:block;margin-top:.55rem;color:#64748b;">Los archivos son internos: nunca se mostrarán en el Portal del Cliente, aunque la actuación sea visible.</small>
+                                <small style="display:block;margin-top:.55rem;color:#64748b;">Los archivos se guardan localmente en este navegador, no se suben a Firebase Storage y son internos: no se mostrarán en el Portal del Cliente, aunque la actuación sea visible.</small>
                             </div>
 
                             <button type="submit" style="background:#7c3aed; color:white; border:none; padding:0.65rem 1rem; border-radius:6px; cursor:pointer; font-weight:700; width:100%;">
@@ -1588,7 +1588,6 @@
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-functions-compat.js"></script>
 
 <!-- Configuración de Firebase -->

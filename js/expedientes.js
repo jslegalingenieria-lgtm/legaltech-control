@@ -8,6 +8,74 @@
     const MAX_ARCHIVOS = 20;
     const MAX_BYTES = 10 * 1024 * 1024;
     const TIPOS = ["application/pdf", "image/jpeg", "image/png"];
+    const DB_LOCAL_ARCHIVOS = "js_legaltech_archivos_locales";
+    const STORE_LOCAL_ARCHIVOS = "archivos";
+
+    // Los metadatos permanecen en Firestore; el contenido binario vive únicamente
+    // en IndexedDB de este navegador y nunca se envía a Firebase Storage.
+    function abrirBDLocal() {
+        return new Promise((resolve, reject) => {
+            const request = indexedDB.open(DB_LOCAL_ARCHIVOS, 1);
+            request.onupgradeneeded = () => {
+                const db = request.result;
+                if (!db.objectStoreNames.contains(STORE_LOCAL_ARCHIVOS)) {
+                    db.createObjectStore(STORE_LOCAL_ARCHIVOS, { keyPath: "id" });
+                }
+            };
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error || new Error("No se pudo abrir IndexedDB."));
+        });
+    }
+
+    async function guardarArchivoLocal(id, archivo, asuntoId, actuacionId = "") {
+        const db = await abrirBDLocal();
+        return new Promise((resolve, reject) => {
+            const tx = db.transaction(STORE_LOCAL_ARCHIVOS, "readwrite");
+            tx.objectStore(STORE_LOCAL_ARCHIVOS).put({
+                id: String(id), asuntoId: String(asuntoId), actuacionId: String(actuacionId || ""),
+                nombre: archivo.name, tipo: archivo.type, tamano: archivo.size,
+                blob: archivo, guardadoEn: new Date().toISOString()
+            });
+            tx.oncomplete = () => { db.close(); resolve(true); };
+            tx.onerror = () => { const e=tx.error; db.close(); reject(e || new Error("No se pudo guardar el archivo localmente.")); };
+            tx.onabort = () => { const e=tx.error; db.close(); reject(e || new Error("Se canceló el guardado local.")); };
+        });
+    }
+
+    async function obtenerArchivoLocal(id) {
+        const db = await abrirBDLocal();
+        return new Promise((resolve, reject) => {
+            const tx = db.transaction(STORE_LOCAL_ARCHIVOS, "readonly");
+            const req = tx.objectStore(STORE_LOCAL_ARCHIVOS).get(String(id));
+            req.onsuccess = () => { const r=req.result || null; db.close(); resolve(r); };
+            req.onerror = () => { const e=req.error; db.close(); reject(e); };
+        });
+    }
+
+    async function eliminarArchivoLocal(id) {
+        const db = await abrirBDLocal();
+        return new Promise((resolve, reject) => {
+            const tx = db.transaction(STORE_LOCAL_ARCHIVOS, "readwrite");
+            tx.objectStore(STORE_LOCAL_ARCHIVOS).delete(String(id));
+            tx.oncomplete = () => { db.close(); resolve(true); };
+            tx.onerror = () => { const e=tx.error; db.close(); reject(e); };
+        });
+    }
+
+    async function abrirODescargarArchivoLocal(id, descargar = false) {
+        const registro = await obtenerArchivoLocal(id);
+        if (!registro?.blob) throw new Error("El archivo no está guardado en este navegador. Los adjuntos locales no se sincronizan entre equipos.");
+        const url = URL.createObjectURL(registro.blob);
+        if (descargar) {
+            const a = document.createElement("a"); a.href=url; a.download=registro.nombre || "archivo";
+            document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 60000);
+        } else {
+            const w = window.open(url, "_blank", "noopener");
+            if (!w) { const a=document.createElement("a"); a.href=url; a.download=registro.nombre || "archivo"; a.click(); }
+            setTimeout(() => URL.revokeObjectURL(url), 60000);
+        }
+    }
 
     let expedientes = [];
     let expedienteSeleccionado = null;
@@ -137,7 +205,7 @@
             check.setAttribute("aria-checked", String(gestionDocumentalHabilitada));
         }
         const estado = $("dashboard-storage-estado");
-        if (estado) estado.textContent = gestionDocumentalHabilitada ? "Activada" : "Desactivada";
+        if (estado) estado.textContent = gestionDocumentalHabilitada ? "Activada · almacenamiento local" : "Desactivada";
         const avisoCosto = $("dashboard-storage-aviso");
         if (avisoCosto && !gestionDocumentalHabilitada) {
             avisoCosto.hidden = true;
@@ -153,7 +221,7 @@
         const aviso = $("exp-documentos-aviso");
         if (aviso) {
             aviso.hidden = gestionDocumentalHabilitada;
-            aviso.textContent = "La gestión documental está desactivada. Los documentos existentes continúan disponibles para consulta.";
+            aviso.textContent = "La gestión documental está desactivada. Al activarla, los archivos nuevos se guardarán localmente en este navegador (IndexedDB), sin Firebase Storage.";
         }
     }
 
@@ -252,8 +320,10 @@
         $("exp-detalle-archivos").innerHTML = activos.length ? activos.map(d => `<div class="exp-archivo">
             <span>${d.tipo === "application/pdf" ? "📄" : "🖼️"}</span><div><strong>${escaparHTML(d.nombre)}</strong>
             <small>${tamanoLegible(d.tamano)} · ${fechaLegible(d.fechaCarga)} · ${escaparHTML(d.subidoPorNombre || d.subidoPor || "Usuario")}</small></div>
-            <div class="exp-archivo-acciones"><a href="${escaparHTML(d.url)}" target="_blank" rel="noopener">Ver</a>
-            <a href="${escaparHTML(d.url)}" download>Descargar</a><button type="button" data-eliminar-doc="${escaparHTML(d.id)}">Eliminar</button></div></div>`).join("")
+            <div class="exp-archivo-acciones">${d.localOnly
+                ? `<button type="button" data-abrir-doc="${escaparHTML(d.id)}">Ver</button><button type="button" data-descargar-doc="${escaparHTML(d.id)}">Descargar</button>`
+                : `<a href="${escaparHTML(d.url || "#")}" target="_blank" rel="noopener">Ver</a><a href="${escaparHTML(d.url || "#")}" download>Descargar</a>`}
+            <button type="button" data-eliminar-doc="${escaparHTML(d.id)}">Eliminar</button></div></div>`).join("")
             : '<p class="exp-sin-datos">No hay archivos adjuntos en este expediente.</p>';
         $("exp-papelera").hidden = eliminados.length === 0;
         $("exp-papelera-contador").textContent = eliminados.length;
@@ -264,44 +334,33 @@
     }
 
     async function subirArchivo(archivo) {
-        if (!gestionDocumentalHabilitada) return alert("La gestión documental está desactivada.");
+        if (!gestionDocumentalHabilitada) return alert("La gestión documental está desactivada. Actívala desde el panel de administración.");
         if (!expedienteSeleccionado) return;
         const activos = documentos.filter(d => d.estado !== "eliminado");
         if (activos.length >= MAX_ARCHIVOS) return alert(`Este expediente ya alcanzó el límite de ${MAX_ARCHIVOS} archivos.`);
         if (!TIPOS.includes(archivo.type)) return alert("Formato no permitido. Solo se aceptan PDF, JPG, JPEG y PNG.");
         if (archivo.size > MAX_BYTES) return alert("El archivo supera el límite de 10 MB.");
-        if (!window.firebaseStorage) return alert("Firebase Storage no está disponible. Revisa la configuración del proyecto.");
 
         const id = window.db.collection("_ids").doc().id;
-        const nombreSeguro = archivo.name.replace(/[^a-zA-Z0-9._-]+/g, "_");
-        const ruta = `expedientes/${expedienteSeleccionado.id}/${id}_${nombreSeguro}`;
-        const referencia = window.firebaseStorage.ref().child(ruta);
         const progreso = $("exp-progreso");
         progreso.hidden = false;
-        progreso.querySelector("span").style.width = "0%";
-
+        progreso.querySelector("span").style.width = "35%";
         try {
-            const tarea = referencia.put(archivo, {contentType: archivo.type});
-            await new Promise((resolve, reject) => tarea.on("state_changed", snapshot => {
-                const porcentaje = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100);
-                progreso.querySelector("span").style.width = `${porcentaje}%`;
-            }, reject, resolve));
-            const url = await referencia.getDownloadURL();
+            await guardarArchivoLocal(id, archivo, expedienteSeleccionado.id);
             const usuario = sesion() || {};
             await window.db.collection("asuntos").doc(String(expedienteSeleccionado.id)).collection("documentos").doc(id).set({
-                nombre: archivo.name, tipo: archivo.type, tamano: archivo.size, rutaStorage: ruta, url,
+                nombre: archivo.name, tipo: archivo.type, tamano: archivo.size,
+                almacenamiento: "indexeddb-local", localOnly: true, url: null,
                 estado: "activo", fechaCarga: firebase.firestore.FieldValue.serverTimestamp(),
                 subidoPor: usuario.id || usuario.uid || usuario.usuario || usuario.correo || "",
                 subidoPorNombre: usuario.nombre || usuario.usuario || usuario.correo || "Usuario"
             });
+            progreso.querySelector("span").style.width = "100%";
             await actualizarConteoAsunto();
         } catch (error) {
+            try { await eliminarArchivoLocal(id); } catch (_) {}
             console.error(error);
-            if (error?.code === "storage/unauthorized") {
-                alert("Firebase Storage rechazó la carga. Despliega las reglas incluidas en esta versión con: firebase deploy --only storage,firestore:rules. Después cierra sesión, vuelve a ingresar y prueba nuevamente.");
-            } else {
-                alert(`No fue posible subir el archivo: ${error.message}`);
-            }
+            alert(`No fue posible guardar el archivo localmente: ${error.message}`);
         } finally {
             progreso.hidden = true;
             progreso.querySelector("span").style.width = "0%";
@@ -351,9 +410,8 @@
     async function borrarDefinitivamente(id) {
         if (!esSuperadmin() || !confirm("Esta acción eliminará definitivamente el archivo. ¿Deseas continuar?")) return;
         const doc = documentos.find(d => d.id === id);
-        try {
-            if (doc?.rutaStorage) await window.firebaseStorage.ref().child(doc.rutaStorage).delete();
-        } catch (error) { if (error.code !== "storage/object-not-found") throw error; }
+        if (doc?.localOnly || doc?.almacenamiento === "indexeddb-local") await eliminarArchivoLocal(id);
+        // Compatibilidad: no se elimina automáticamente un archivo remoto legado.
         await window.db.collection("asuntos").doc(String(expedienteSeleccionado.id)).collection("documentos").doc(id).delete();
     }
 
@@ -399,7 +457,14 @@
         $("dashboard-storage-habilitado")?.addEventListener("change", cambiarConfiguracion);
         $("exp-input-pdf")?.addEventListener("change", e => { if (e.target.files[0]) subirArchivo(e.target.files[0]); e.target.value=""; });
         $("exp-input-imagen")?.addEventListener("change", e => { if (e.target.files[0]) subirArchivo(e.target.files[0]); e.target.value=""; });
-        $("exp-detalle-archivos")?.addEventListener("click", e => { const b=e.target.closest("button[data-eliminar-doc]"); if (b) eliminarDocumento(b.dataset.eliminarDoc); });
+        $("exp-detalle-archivos")?.addEventListener("click", e => {
+            const b=e.target.closest("button[data-eliminar-doc]");
+            const ver=e.target.closest("button[data-abrir-doc]");
+            const descargar=e.target.closest("button[data-descargar-doc]");
+            if (b) eliminarDocumento(b.dataset.eliminarDoc);
+            if (ver) abrirODescargarArchivoLocal(ver.dataset.abrirDoc, false).catch(err => alert(err.message));
+            if (descargar) abrirODescargarArchivoLocal(descargar.dataset.descargarDoc, true).catch(err => alert(err.message));
+        });
         $("exp-papelera-lista")?.addEventListener("click", e => { const r=e.target.closest("button[data-restaurar-doc]"); const b=e.target.closest("button[data-borrar-doc]"); if(r) restaurarDocumento(r.dataset.restaurarDoc); if(b) borrarDefinitivamente(b.dataset.borrarDoc); });
         window.addEventListener("asuntosActualizados", () => cargarExpedientes());
         cargarConfiguracion(); cargarExpedientes();
@@ -410,29 +475,30 @@
         estaHabilitada: () => gestionDocumentalHabilitada,
         recargarConfiguracion: cargarConfiguracion,
         subirArchivoActuacion: async (asuntoId, actuacionId, archivo) => {
-            if (!gestionDocumentalHabilitada) throw new Error("La gestión documental está desactivada.");
+            if (!gestionDocumentalHabilitada) throw new Error("La gestión documental está desactivada. Actívala desde el panel de administración.");
             if (!TIPOS.includes(archivo.type)) throw new Error("Formato no permitido. Solo PDF, JPG, JPEG y PNG.");
             if (archivo.size > MAX_BYTES) throw new Error("El archivo supera el límite de 10 MB.");
-            if (!window.firebaseStorage) throw new Error("Firebase Storage no está disponible.");
             const coleccion = window.db.collection("asuntos").doc(String(asuntoId)).collection("documentos");
             const activos = await coleccion.where("estado", "==", "activo").get();
             if (activos.size >= MAX_ARCHIVOS) throw new Error(`El expediente ya alcanzó el límite de ${MAX_ARCHIVOS} archivos activos.`);
             const id = window.db.collection("_ids").doc().id;
-            const nombreSeguro = archivo.name.replace(/[^a-zA-Z0-9._-]+/g, "_");
-            const ruta = `expedientes/${asuntoId}/actuaciones/${actuacionId}/${id}_${nombreSeguro}`;
-            const referencia = window.firebaseStorage.ref().child(ruta);
-            await referencia.put(archivo, {contentType: archivo.type, customMetadata: {asuntoId: String(asuntoId), actuacionId: String(actuacionId)}});
-            const url = await referencia.getDownloadURL();
+            await guardarArchivoLocal(id, archivo, asuntoId, actuacionId);
             const usuario = sesion() || {};
-            await coleccion.doc(id).set({
-                nombre: archivo.name, tipo: archivo.type, tamano: archivo.size, rutaStorage: ruta, url,
-                estado: "activo", actuacionId: String(actuacionId), origen: "actuacion",
-                fechaCarga: firebase.firestore.FieldValue.serverTimestamp(),
-                subidoPor: usuario.id || usuario.uid || usuario.usuario || usuario.correo || "",
-                subidoPorNombre: usuario.nombre || usuario.usuario || usuario.correo || "Usuario"
-            });
+            try {
+                await coleccion.doc(id).set({
+                    nombre: archivo.name, tipo: archivo.type, tamano: archivo.size,
+                    almacenamiento: "indexeddb-local", localOnly: true, url: null,
+                    estado: "activo", actuacionId: String(actuacionId), origen: "actuacion",
+                    fechaCarga: firebase.firestore.FieldValue.serverTimestamp(),
+                    subidoPor: usuario.id || usuario.uid || usuario.usuario || usuario.correo || "",
+                    subidoPorNombre: usuario.nombre || usuario.usuario || usuario.correo || "Usuario"
+                });
+            } catch (error) {
+                await eliminarArchivoLocal(id);
+                throw error;
+            }
             await actualizarConteoPorAsunto(asuntoId);
-            return {id, nombre: archivo.name, url};
+            return {id, nombre: archivo.name, localOnly: true};
         }
     };
 

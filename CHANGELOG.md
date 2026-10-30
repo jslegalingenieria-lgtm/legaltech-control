@@ -225,3 +225,11 @@
 - Los vencimientos requieren fecha manual verificada; no se generan fechas automáticamente a partir de registros de catálogo.
 - Se retira el submódulo independiente Estrategia Procesal del menú, la vista, el script y la caché PWA.
 - No se cambió `firebase.json`, `.firebaserc`, `firestore.rules` ni se desplegaron servicios.
+
+## 2026-10-29 — Archivos adjuntos locales sin Firebase Storage
+- Se eliminó la carga del SDK y la inicialización de Firebase Storage.
+- Los adjuntos nuevos de expedientes y actuaciones se guardan como Blob en IndexedDB del navegador.
+- Firestore conserva los metadatos documentales y los permisos; no almacena el contenido de los archivos.
+- Se incorporaron acciones para abrir y descargar archivos locales, además de eliminación definitiva local.
+- Se conserva compatibilidad de lectura con documentos antiguos que tengan URL remota.
+- Los archivos locales no se sincronizan entre navegadores o equipos; consultar `LEEME-SIN-FIREBASE-STORAGE.md`.

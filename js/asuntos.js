@@ -1204,7 +1204,7 @@
         const botones = document.getElementById("act-documentos-botones");
         const estado = document.getElementById("act-documentos-estado");
         if (botones) botones.hidden = !habilitada;
-        if (estado) estado.textContent = habilitada ? "Puedes adjuntar hasta 20 archivos de 10 MB." : "La gestión documental está desactivada por el Superadministrador.";
+        if (estado) estado.textContent = habilitada ? "Puedes adjuntar hasta 20 archivos de 10 MB. Se guardan en este navegador." : "La gestión documental está desactivada por el Superadministrador.";
     }
 
     async function guardarActuacion(event) {

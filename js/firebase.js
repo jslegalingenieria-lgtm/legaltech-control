@@ -9,7 +9,6 @@
         apiKey: "AIzaSyCirsdiVuRzrNBFdrurKgH26zX1vMs5xl8",
         authDomain: "legaltech-app.firebaseapp.com",
         projectId: "legaltech-app",
-        storageBucket: "legaltech-app.firebasestorage.app",
         messagingSenderId: "1068350106232",
         appId: "1:1068350106232:web:48b2a3510c563c28305b8d",
         measurementId: "G-VSHY6ZJ3GN"
@@ -28,7 +27,6 @@
     const db = firebase.firestore();
     const auth = firebase.auth();
     const functions = typeof firebase.functions === "function" ? firebase.functions() : null;
-    const storage = typeof firebase.storage === "function" ? firebase.storage() : null;
 
     db.enablePersistence({ synchronizeTabs: true }).catch(error => {
         if (error.code === "failed-precondition") {
@@ -45,7 +43,6 @@
     window.firebaseDB = db;
     window.firebaseAuth = auth;
     window.firebaseFunctions = functions;
-    window.firebaseStorage = storage;
 
-    console.log(`✅ Firebase Authentication, Firestore${storage ? " y Storage" : ""} conectados${functions ? "; Cloud Functions disponible" : ""}.`);
+    console.log(`✅ Firebase Authentication y Firestore conectados${functions ? "; Cloud Functions disponible" : ""}. Los archivos adjuntos se guardan en IndexedDB local.`);
 })();
